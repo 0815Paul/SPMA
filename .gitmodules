@@ -1,3 +1,0 @@
-[submodule "mpi-sppy"]
-	path = mpi-sppy
-	url = https://github.com/Pyomo/mpi-sppy.git
