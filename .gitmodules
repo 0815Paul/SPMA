@@ -1,3 +1,5 @@
-[submodule "git-repos/mpi-sppy"]
-	path = git-repos/mpi-sppy
+[submodule "mpi-sppy"]
+	path = mpi-sppy
 	url = https://github.com/Pyomo/mpi-sppy.git
+
+
