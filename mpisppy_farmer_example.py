@@ -32,8 +32,8 @@ cost_beet = 260
 
 # Szenarien
 scenarios = {
-    'good': {'prob': 1/3, 'yield_wheat': 3.0, 'yield_corn': 3.6, 'yield_beet': 24},
-    'average': {'prob': 1/3, 'yield_wheat': 2.5, 'yield_corn': 3.0, 'yield_beet': 20},
+    'good': {'prob': 1/10, 'yield_wheat': 3.0, 'yield_corn': 3.6, 'yield_beet': 24},
+    'average': {'prob': 1/5, 'yield_wheat': 2.5, 'yield_corn': 3.0, 'yield_beet': 20},
     'bad': {'prob': 1/3, 'yield_wheat': 2.0, 'yield_corn': 2.4, 'yield_beet': 16},
 }
 
@@ -80,6 +80,7 @@ def scenario_creator(scenario_name, node_names=None, cb_data=None):
     model.objective = Objective(expr=model.first_stage_cost + model.second_stage_cost, sense=minimize)
 
     sputils.attach_root_node(model, model.first_stage_cost, [model.x_wheat_flaeche, model.x_corn_flaeche, model.x_beet_flaeche])
+    model._mpisppy_probability = scenario_data['prob']
 
     return model
 
