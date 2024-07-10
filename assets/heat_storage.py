@@ -75,7 +75,8 @@ class HeatStorage:
         def capacity_balance_rule(asset, t):
             """Capacity balance constraint, heat capacity is the difference between the initial capacity and the heat balance at time t"""
             if t == 1:
-                return asset.heat_capacity[t] == self.data.loc['initial', 'capacity'] - asset.heat_balance[t] 
+                #return asset.heat_capacity[t] == self.data.loc['initial', 'capacity'] - asset.heat_balance[t]
+                return asset.heat_capacity[t] == 10 - asset.heat_balance[t] 
             else:
                 return asset.heat_capacity[t] == asset.heat_capacity[t-1] - asset.heat_balance[t]
         asset.capacity_balance_constr = Constraint(t, rule=capacity_balance_rule)

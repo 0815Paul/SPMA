@@ -34,30 +34,31 @@ class Model:
             self.solver.options[key] = kwargs[key]
     
     def load_timeseries_data(self):
+        """Load timeseries data from file."""
         self.timeseries_data = DataPortal()
 
-        self.timeseries.load(
-            filename=PATH_IN + '',
+        self.timeseries_data.load(
+            filename=PATH_IN + 'gas_price.csv',
             index='t',
-            Param='gas_price',
+            param='gas_price'
         )
 
-        self.timeseries.load(
-            filename=PATH_IN + '',
+        self.timeseries_data.load(
+            filename=PATH_IN + 'power_price.csv',
             index='t',
-            Param='power_price',
+            param='power_price'
         )
 
-        self.timeseries.load(
-            filename=PATH_IN + '',
+        self.timeseries_data.load(
+            filename=PATH_IN + 'heat_demand.csv',
             index='t',
-            Param='heat_demand',
+            param='heat_demand'
         )
     
     def add_components(self):
 
         # Sets
-        self.model.t = Set(orderd=True)
+        self.model.t = Set(ordered=True)
 
         # Parameters
         self.model.gas_price = Param(self.model.t)
@@ -173,35 +174,33 @@ class Model:
         )
         return objective_expr
 
+
+if __name__ == "__main__":
+    model = Model()
+
+    print('Setting solver...')
+    model.set_solver('gurobi')
         
+    print('Loading timeseries data...')
+    model.load_timeseries_data()
 
+    print('Adding components...')
+    model.add_components()
 
-    if name == "__main__":
-        model = Model()
+    print('Adding objective...')
+    model.add_objective()
 
-        print('Setting solver...')
-        model.set_solver('gurobi')
-        
-        print('Loading timeseries data...')
-        model.load_timeseries_data()
+    print('Instantiating model...')
+    model.instantiate_model()
 
-        print('Adding components...')
-        model.add_components()
+    print('Declairing arcs...')
+    model.add_arcs()
+    model.expand_arcs()
 
-        print('Adding objective...')
-        model.add_objective()
+    print('Solving model...')
+    model.solve()
 
-        print('Instantiating model...')
-        model.instantiate_model()
-
-        print('Declairing arcs...')
-        model.add_arcs()
-        model.expand_arcs()
-
-        print('Solving model...')
-        model.solve()
-
-        print('Writing results...')
-        model.write_results()
-        model.save_results(PATH_OUT + 'results.csv')
+    print('Writing results...')
+    model.write_results()
+    model.save_results(PATH_OUT + 'results.csv')
     
