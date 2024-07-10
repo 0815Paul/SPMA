@@ -150,4 +150,3 @@ class NGasGrid:
             Port.Extensive,
             include_splitfrac=True
         )
-    

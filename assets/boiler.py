@@ -50,5 +50,13 @@ class Boiler:
         )
 
         # Declare construction rules for components
-        # ...
         
+        def max_heat_rule(asset, t):
+            """Maximum heat production constraint"""
+            return asset.heat[t] <= self.data.loc['max', 'heat']*asset.bin[t]
+        asset.max_heat_constr = Constraint(t, rule=max_heat_rule)
+
+        def gas_depends_on_heat_rule(asset, t):
+            """Gas consumption depends on heat production"""
+            return asset.gas[t] == asset.heat[t] * self.data.loc['efficiency', 'heat'] # fehlt hier noch *asset.bin[t]?
+        asset.gas_depends_on_heat_constr = Constraint(t, rule=gas_depends_on_heat_rule)        

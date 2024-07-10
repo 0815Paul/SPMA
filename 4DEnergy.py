@@ -66,27 +66,27 @@ class Model:
 
         # Assets
         chp = chp.Chp(
-            'chp' + PATH_IN + '/assets/chp.csv',
+            'chp', PATH_IN + '/assets/chp.csv'
         )
 
         boiler = boiler.Boiler(
-            'boiler' + PATH_IN + '/assets/boiler.csv',
+            'boiler', PATH_IN + '/assets/boiler.csv',
         )
 
         heat_storage = heat_storage.HeatStorage(
-            'heat_storage' + PATH_IN + '/assets/heat_storage.csv',
+            'heat_storage', PATH_IN + '/assets/heat_storage.csv',
         )
 
-        ngas_grid = grid.Grid(
-            'ngas_grid' + PATH_IN + '/assets/ngas_grid.csv',
+        ngas_grid = grid.NGasGrid(
+            'ngas_grid', PATH_IN + '/assets/ngas_grid.csv',
         )
 
-        power_grid = grid.Grid(
-            'power_grid' + PATH_IN + '/assets/power_grid.csv',
+        power_grid = grid.ElectricalGrid(
+            'power_grid', PATH_IN + '/assets/power_grid.csv',
         )
 
-        heat_grid = grid.Grid(
-            'heat_grid' + PATH_IN + '/assets/heat_grid.csv',
+        heat_grid = grid.HeatGrid(
+            'heat_grid', PATH_IN + '/assets/heat_grid.csv',
         )
 
         chp.add_to_model(self.model)
@@ -119,8 +119,30 @@ class Model:
 
     def add_arcs(self, arcs):
         """Add arcs to the instance."""
-        # empty for now
-        pass
+        self.instance.arc01 = Arc(
+            source=self.instance.chp.power_out,
+            destination=self.instance.power_grid.power_in,
+        )
+        self.instance.arc02 = Arc(
+            source=self.instance.chp.heat_out,
+            destination=self.instance.heat_storage.heat_in,
+        )
+        self.instance.arc03 = Arc(
+            source=self.instance.heat_storage.heat_out,
+            destination=self.instance.heat_grid.heat_in,
+        )
+        self.instance.arc04 = Arc(
+            source=self.instance.boiler.heat_out,
+            destination=self.instance.heat_grid.heat_in,
+        )
+        self.instance.arc05 = Arc(
+            source=self.instance.ngas_grid.gas_out,
+            destination=self.instance.boiler.natural_gas_in,
+        )
+        self.instance.arc06 = Arc(
+            source=self.instance.ngas_grid.gas_out,
+            destination=self.instance.chp.natural_gas_in,
+        )
 
     def solve(self):
         """Solve the model."""
@@ -142,10 +164,16 @@ class Model:
         """Save results to object."""
         self.results_data.to_csv(filepath)
 
-    def objective_expr(self, m):
+    def objective_expr(self, model):
         """Objective function expression."""
-        # empty for now
-        pass
+        objective_expr = (
+        quicksum(model.gas_price[t] * model.ngas_grid.gas_balance[t] for t in model) +
+        quicksum(model.power_price[t] * model.power_grid.power_balance[t] for t in model) +
+        quicksum(model.heat_price[t] * model.heat_grid.heat_balance[t] for t in model) 
+        )
+        return objective_expr
+
+        
 
 
     if name == "__main__":
