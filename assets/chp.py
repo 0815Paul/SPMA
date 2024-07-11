@@ -8,7 +8,7 @@ class Chp:
 
     def __init__(self, name, filepath, index_col=0, **kwargs):
         self.name = name
-        self.get_data = (filepath, index_col)
+        self.get_data(filepath, index_col)
         # leave **kwargs for future use
     
     def get_data(self, filepath, index_col):
@@ -16,7 +16,7 @@ class Chp:
             filepath,
             index_col=index_col
         )
-
+    
     def add_to_model(self, model):
         model.add_component(
             self.name,
@@ -24,6 +24,9 @@ class Chp:
         )
     
     def chp_block_rule(self, asset):
+
+        print("Test")
+        print(self.data.loc['max', 'power'])
 
         # Get index fom model
         t = asset.model().t
@@ -35,7 +38,7 @@ class Chp:
         asset.gas = Var(t, within=NonNegativeReals)
 
         asset.power_out = Port()
-        asset.power_out_add(
+        asset.power_out.add(
             asset.power,
             'power',
             Port.Extensive,
@@ -43,7 +46,7 @@ class Chp:
         )
 
         asset.heat_out = Port()
-        asset.heat_out_add(
+        asset.heat_out.add(
             asset.heat,
             'heat',
             Port.Extensive,
@@ -51,9 +54,9 @@ class Chp:
         )
 
         asset.natural_gas_in = Port()
-        asset.natural_gas_in_add(
+        asset.natural_gas_in.add(
             asset.gas,
-            'gas',
+            'natural_gas',
             Port.Extensive,
             include_splitfrac=True
         )

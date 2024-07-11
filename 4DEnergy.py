@@ -50,9 +50,9 @@ class Model:
         )
 
         self.timeseries_data.load(
-            filename=PATH_IN + 'heat_demand.csv',
+            filename=PATH_IN + 'heat_price.csv',
             index='t',
-            param='heat_demand'
+            param='heat_price'
         )
     
     def add_components(self):
@@ -63,36 +63,36 @@ class Model:
         # Parameters
         self.model.gas_price = Param(self.model.t)
         self.model.power_price = Param(self.model.t)
-        self.model.heat_demand = Param(self.model.t)
+        self.model.heat_price = Param(self.model.t)
 
         # Assets
-        chp = chp.Chp(
-            'chp', PATH_IN + '/assets/chp.csv'
+        chp1 = chp.Chp(
+            'chp1', PATH_IN + '/assets/chp.csv'
         )
 
-        boiler = boiler.Boiler(
-            'boiler', PATH_IN + '/assets/boiler.csv',
+        boiler1 = boiler.Boiler(
+            'boiler1', PATH_IN + '/assets/boiler.csv'
         )
 
-        heat_storage = heat_storage.HeatStorage(
-            'heat_storage', PATH_IN + '/assets/heat_storage.csv',
+        heat_storage1 = heat_storage.HeatStorage(
+            'heat_storage1', PATH_IN + '/assets/heat_storage.csv'
         )
 
         ngas_grid = grid.NGasGrid(
-            'ngas_grid', PATH_IN + '/assets/ngas_grid.csv',
+            'ngas_grid', PATH_IN + '/assets/ngas_grid.csv'
         )
 
         power_grid = grid.ElectricalGrid(
-            'power_grid', PATH_IN + '/assets/power_grid.csv',
+            'power_grid', PATH_IN + '/assets/power_grid.csv'
         )
 
         heat_grid = grid.HeatGrid(
-            'heat_grid', PATH_IN + '/assets/heat_grid.csv',
+            'heat_grid', PATH_IN + '/assets/heat_grid.csv'
         )
 
-        chp.add_to_model(self.model)
-        boiler.add_to_model(self.model)
-        heat_storage.add_to_model(self.model)
+        chp1.add_to_model(self.model)
+        boiler1.add_to_model(self.model)
+        heat_storage1.add_to_model(self.model)
         ngas_grid.add_to_model(self.model)
         power_grid.add_to_model(self.model)
         heat_grid.add_to_model(self.model)
@@ -101,8 +101,8 @@ class Model:
     def add_objective(self):
         """Add objective function to model."""
         self.model.objective = Objective(
-            rule=self.model.objective_expr,
-            sense=minimize,
+            rule=self.objective_expr,
+            sense=minimize
         )
     
     def instantiate_model(self):
@@ -118,31 +118,31 @@ class Model:
         """Add components to the instance."""
         self.instance.add_component(component_name, component)
 
-    def add_arcs(self, arcs):
+    def add_arcs(self):
         """Add arcs to the instance."""
         self.instance.arc01 = Arc(
-            source=self.instance.chp.power_out,
-            destination=self.instance.power_grid.power_in,
+            source=self.instance.chp1.power_out,
+            destination=self.instance.power_grid.power_in
         )
         self.instance.arc02 = Arc(
-            source=self.instance.chp.heat_out,
-            destination=self.instance.heat_storage.heat_in,
+            source=self.instance.chp1.heat_out,
+            destination=self.instance.heat_storage1.heat_in
         )
         self.instance.arc03 = Arc(
-            source=self.instance.heat_storage.heat_out,
-            destination=self.instance.heat_grid.heat_in,
+            source=self.instance.heat_storage1.heat_out,
+            destination=self.instance.heat_grid.heat_in
         )
         self.instance.arc04 = Arc(
-            source=self.instance.boiler.heat_out,
-            destination=self.instance.heat_grid.heat_in,
+            source=self.instance.boiler1.heat_out,
+            destination=self.instance.heat_grid.heat_in
         )
         self.instance.arc05 = Arc(
             source=self.instance.ngas_grid.gas_out,
-            destination=self.instance.boiler.natural_gas_in,
+            destination=self.instance.boiler1.natural_gas_in
         )
         self.instance.arc06 = Arc(
             source=self.instance.ngas_grid.gas_out,
-            destination=self.instance.chp.natural_gas_in,
+            destination=self.instance.chp1.natural_gas_in
         )
 
     def solve(self):
@@ -168,9 +168,9 @@ class Model:
     def objective_expr(self, model):
         """Objective function expression."""
         objective_expr = (
-        quicksum(model.gas_price[t] * model.ngas_grid.gas_balance[t] for t in model) +
-        quicksum(model.power_price[t] * model.power_grid.power_balance[t] for t in model) +
-        quicksum(model.heat_price[t] * model.heat_grid.heat_balance[t] for t in model) 
+        quicksum(model.gas_price[t] * model.ngas_grid.gas_balance[t] for t in model.t) +
+        quicksum(model.power_price[t] * model.power_grid.power_balance[t] for t in model.t) +
+        quicksum(model.heat_price[t] * model.heat_grid.heat_balance[t] for t in model.t) 
         )
         return objective_expr
 

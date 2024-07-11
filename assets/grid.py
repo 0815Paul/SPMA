@@ -33,14 +33,14 @@ class ElectricalGrid:
 
 
         asset.power_in = Port()
-        asset.power_in_add(
+        asset.power_in.add(
             asset.power_feedin,
             'power',
             Port.Extensive,
             include_splitfrac=True
         )
         asset.power_out = Port()
-        asset.power_out_add(
+        asset.power_out.add(
             asset.power_supply,
             'power',
             Port.Extensive,
@@ -90,14 +90,14 @@ class HeatGrid:
 
 
         asset.heat_in = Port()
-        asset.heat_in_add(
+        asset.heat_in.add(
             asset.heat_feedin,
             'heat',
             Port.Extensive,
             include_splitfrac=True
         )
         asset.heat_out = Port()
-        asset.heat_out_add(
+        asset.heat_out.add(
             asset.heat_supply,
             'heat',
             Port.Extensive,
@@ -118,8 +118,9 @@ class HeatGrid:
 
 class NGasGrid:
     """"Natural Gas Grid class"""
-    def __init__(self, name):
+    def __init__(self, name, filepath, index_col=0):
         self.name = name
+        self.get_data = (filepath, index_col)
 
         
     def get_data(self, filepath, index_col):
@@ -142,9 +143,8 @@ class NGasGrid:
         # Declare components
         asset.gas_balance = Var(t, within=Reals)
 
-
         asset.gas_out = Port()
-        asset.gas_out_add(
+        asset.gas_out.add(
             asset.gas_balance,
             'natural_gas',
             Port.Extensive,

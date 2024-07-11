@@ -1,0 +1,34 @@
+Solver command line: ['C:\\Program Files\\gurobi1102\\win64\\bin\\gurobi.bat']
+
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-07-11
+Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmp03nq1os4.pyomo.lp
+Reading time = 0.02 seconds
+objective: 528 rows, 580 columns, 1223 nonzeros
+Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: Intel(R) Xeon(R) CPU E5-1607 v2 @ 3.00GHz, instruction set [SSE2|AVX]
+Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
+
+Optimize a model with 528 rows, 580 columns and 1223 nonzeros
+Model fingerprint: 0x87b68791
+Model has 96 quadratic constraints
+Variable types: 484 continuous, 96 integer (96 binary)
+Coefficient statistics:
+  Matrix range     [9e-01, 6e+00]
+  QMatrix range    [1e+00, 1e+00]
+  QLMatrix range   [1e+00, 1e+00]
+  Objective range  [2e+00, 6e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+01]
+Presolve removed 130 rows and 164 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 1 (of 4 available processors)
+
+Solution count 0
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+

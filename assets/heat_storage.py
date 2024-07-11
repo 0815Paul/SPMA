@@ -7,7 +7,7 @@ class HeatStorage:
 
     def __init__(self, name, filepath, index_col=0):
         self.name = name
-        self.get_data = (filepath, index_col)
+        self.get_data(filepath, index_col)
 
     def get_data(self, filepath, index_col):
         self.data = pd.read_csv(
@@ -31,12 +31,12 @@ class HeatStorage:
         asset.bin_discharge = Var(t, within=Binary)
         asset.heat_charge = Var(t, within=NonNegativeReals)
         asset.heat_discharge = Var(t, within=NonNegativeReals)
-        asset.heat_capacity = Var(within=NonNegativeReals)
+        asset.heat_capacity = Var(t, within=NonNegativeReals)
         asset.heat_balance = Var(t, within=Reals)
 
 
         asset.heat_in = Port()
-        asset.heat_in_add(
+        asset.heat_in.add(
             asset.heat_charge,
             'heat',
             Port.Extensive,
@@ -44,7 +44,7 @@ class HeatStorage:
         )
 
         asset.heat_out = Port()
-        asset.heat_out_add(
+        asset.heat_out.add(
             asset.heat_discharge,
             'heat',
             Port.Extensive,

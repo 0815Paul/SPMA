@@ -8,7 +8,7 @@ class Boiler:
 
     def __init__(self, name, filepath, index_col=0, **kwargs):
         self.name = name
-        self.get_data = (filepath, index_col)
+        self.get_data(filepath, index_col)
         # leave **kwargs for future use
 
     def get_data(self, filepath, index_col):
@@ -34,7 +34,7 @@ class Boiler:
         asset.gas = Var(t, within=NonNegativeReals)
 
         asset.heat_out = Port()
-        asset.heat_out_add(
+        asset.heat_out.add(
             asset.heat,
             'heat',
             Port.Extensive,
@@ -42,9 +42,9 @@ class Boiler:
         )
 
         asset.natural_gas_in = Port()
-        asset.natural_gas_in_add(
+        asset.natural_gas_in.add(
             asset.gas,
-            'gas',
+            'natural_gas',
             Port.Extensive,
             include_splitfrac=True
         )
