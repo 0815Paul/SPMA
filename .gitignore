@@ -13,7 +13,7 @@
 
 data/raw
 data/input
-
+data_test
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

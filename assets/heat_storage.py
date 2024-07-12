@@ -27,12 +27,12 @@ class HeatStorage:
         t = asset.model().t
 
         # Declare components
-        asset.bin_charge = Var(t, within=Binary)
-        asset.bin_discharge = Var(t, within=Binary)
+        asset.heat_balance = Var(t, within=Reals)
         asset.heat_charge = Var(t, within=NonNegativeReals)
         asset.heat_discharge = Var(t, within=NonNegativeReals)
         asset.heat_capacity = Var(t, within=NonNegativeReals)
-        asset.heat_balance = Var(t, within=Reals)
+        asset.bin_charge = Var(t, within=Binary)
+        asset.bin_discharge = Var(t, within=Binary)
 
 
         asset.heat_in = Port()
@@ -40,7 +40,7 @@ class HeatStorage:
             asset.heat_charge,
             'heat',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )
 
         asset.heat_out = Port()
@@ -48,24 +48,29 @@ class HeatStorage:
             asset.heat_discharge,
             'heat',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )   
 
         # Declare construction rules for components
         def max_heat_charge_rule(asset, t):
             """Maximum heat charge constraint"""
-            return asset.heat_charge[t] <= self.data.loc['max', 'charge']*asset.bin_charge[t]
+            return asset.heat_charge[t] <= self.data.loc['max', 'heat']*asset.bin_charge[t]
         asset.max_heat_charge_constr = Constraint(t, rule=max_heat_charge_rule)
 
         def max_heat_discharge_rule(asset, t):
             """Maximum heat discharge constraint"""
-            return asset.heat_discharge[t] <= self.data.loc['max', 'discharge']*asset.bin_discharge[t]
+            return asset.heat_discharge[t] <= self.data.loc['max', 'heat']*asset.bin_discharge[t]
         asset.max_heat_discharge_constr = Constraint(t, rule=max_heat_discharge_rule)
 
         def max_heat_capacity(asset, t):
             """Maximum heat capacity constraint"""
-            return asset.heat_capacity[t] <= self.data.loc['max', 'capacity']
+            return asset.heat_capacity[t] <= self.data.loc['max', 'content']
         asset.max_heat_capacity_constr = Constraint(t, rule=max_heat_capacity)
+
+        def min_heat_capacity(asset, t):
+            """Minimum heat capacity constraint"""
+            return asset.heat_capacity[t] >= self.data.loc['min', 'content']
+        asset.min_heat_capacity_constr = Constraint(t, rule=min_heat_capacity)
 
         def heat_balance_rule(asset, t):
             """Heat balance constraint"""
@@ -76,7 +81,7 @@ class HeatStorage:
             """Capacity balance constraint, heat capacity is the difference between the initial capacity and the heat balance at time t"""
             if t == 1:
                 #return asset.heat_capacity[t] == self.data.loc['initial', 'capacity'] - asset.heat_balance[t]
-                return asset.heat_capacity[t] == 10 - asset.heat_balance[t] 
+                return asset.heat_capacity[t] == 0 - asset.heat_balance[t] 
             else:
                 return asset.heat_capacity[t] == asset.heat_capacity[t-1] - asset.heat_balance[t]
         asset.capacity_balance_constr = Constraint(t, rule=capacity_balance_rule)

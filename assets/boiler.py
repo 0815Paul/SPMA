@@ -41,10 +41,10 @@ class Boiler:
             include_splitfrac=True
         )
 
-        asset.natural_gas_in = Port()
-        asset.natural_gas_in.add(
+        asset.gas_in = Port()
+        asset.gas_in.add(
             asset.gas,
-            'natural_gas',
+            'gas',
             Port.Extensive,
             include_splitfrac=True
         )
@@ -55,6 +55,11 @@ class Boiler:
             """Maximum heat production constraint"""
             return asset.heat[t] <= self.data.loc['max', 'heat']*asset.bin[t]
         asset.max_heat_constr = Constraint(t, rule=max_heat_rule)
+
+        def min_heat_rule(asset, t):
+            """Minimum heat production constraint"""
+            return self.data.loc['min', 'heat']*asset.bin[t] <= asset.heat[t]
+        asset.min_heat_constr = Constraint(t, rule=min_heat_rule)
 
         def gas_depends_on_heat_rule(asset, t):
             """Gas consumption depends on heat production"""

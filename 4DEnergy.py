@@ -11,11 +11,11 @@ import assets.grid as grid
 
 
 # Path
-PATH_IN = 'data/input/'
-PATH_OUT = 'data/output/'
+PATH_IN = 'data_test/input/'
+PATH_OUT = 'data_test/output/'
 
 # Declare constants
-
+HEAT_PRICE = 1
 
 class Model:
     
@@ -38,22 +38,29 @@ class Model:
         self.timeseries_data = DataPortal()
 
         self.timeseries_data.load(
-            filename=PATH_IN + 'gas_price.csv',
+            filename=PATH_IN + '/prices/gas_price.csv',
             index='t',
             param='gas_price'
         )
 
         self.timeseries_data.load(
-            filename=PATH_IN + 'power_price.csv',
+            filename=PATH_IN + '/prices/power_price.csv',
             index='t',
             param='power_price'
         )
 
+        # self.timeseries_data.load(
+        #     filename=PATH_IN + '/prices/heat_price.csv',
+        #     index='t',
+        #     param='heat_price'
+        # )
+
         self.timeseries_data.load(
-            filename=PATH_IN + 'heat_price.csv',
+            filename=PATH_IN + '/demands/heat_demand.csv',
             index='t',
-            param='heat_price'
+            param='heat_demand'
         )
+
     
     def add_components(self):
 
@@ -63,7 +70,8 @@ class Model:
         # Parameters
         self.model.gas_price = Param(self.model.t)
         self.model.power_price = Param(self.model.t)
-        self.model.heat_price = Param(self.model.t)
+        #self.model.heat_price = Param(self.model.t)
+        self.model.heat_demand = Param(self.model.t)
 
         # Assets
         chp1 = chp.Chp(
@@ -78,9 +86,7 @@ class Model:
             'heat_storage1', PATH_IN + '/assets/heat_storage.csv'
         )
 
-        ngas_grid = grid.NGasGrid(
-            'ngas_grid', PATH_IN + '/assets/ngas_grid.csv'
-        )
+        ngas_grid = grid.NGasGrid('ngas_grid')
 
         power_grid = grid.ElectricalGrid(
             'power_grid', PATH_IN + '/assets/power_grid.csv'
@@ -138,11 +144,11 @@ class Model:
         )
         self.instance.arc05 = Arc(
             source=self.instance.ngas_grid.gas_out,
-            destination=self.instance.boiler1.natural_gas_in
+            destination=self.instance.boiler1.gas_in
         )
         self.instance.arc06 = Arc(
             source=self.instance.ngas_grid.gas_out,
-            destination=self.instance.chp1.natural_gas_in
+            destination=self.instance.chp1.gas_in
         )
 
     def solve(self):
@@ -158,8 +164,26 @@ class Model:
     
     def write_results(self):
         """Write results to file."""
-        # empty for now
-        pass
+        self.results.write()
+
+        df_params = pd.DataFrame()
+        df_variables = pd.DataFrame()
+        df_output = pd.DataFrame()
+
+        for params in self.instance.component_objects(Param, active=True):
+            name = params.name
+            df_params[name] = [value(params[t]) for t in self.instance.t]
+        
+        for variables in self.instance.component_objects(Var, active=True):
+            name = variables.name
+            df_variables[name] = [value(variables[t]) for t in self.instance.t]
+
+        df_output = pd.concat([df_params, df_variables], axis=1)
+        df_output.index = self.instance.t
+        df_output.index.name = 't'
+
+        self.results_data = df_output
+
 
     def save_results(self, filepath):
         """Save results to object."""
@@ -170,7 +194,7 @@ class Model:
         objective_expr = (
         quicksum(model.gas_price[t] * model.ngas_grid.gas_balance[t] for t in model.t) +
         quicksum(model.power_price[t] * model.power_grid.power_balance[t] for t in model.t) +
-        quicksum(model.heat_price[t] * model.heat_grid.heat_balance[t] for t in model.t) 
+        quicksum(HEAT_PRICE * model.heat_grid.heat_balance[t] for t in model.t) 
         )
         return objective_expr
 
@@ -179,8 +203,10 @@ if __name__ == "__main__":
     model = Model()
 
     print('Setting solver...')
-    model.set_solver('gurobi')
-        
+    model.set_solver(
+        solver_name= 'gurobi'
+        )
+
     print('Loading timeseries data...')
     model.load_timeseries_data()
 
@@ -199,7 +225,7 @@ if __name__ == "__main__":
 
     print('Solving model...')
     model.solve()
-
+    
     print('Writing results...')
     model.write_results()
     model.save_results(PATH_OUT + 'results.csv')
