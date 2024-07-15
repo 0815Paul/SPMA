@@ -11,8 +11,8 @@ import assets.grid as grid
 
 
 # Path
-PATH_IN = 'data_test/input/'
-PATH_OUT = 'data_test/output/'
+PATH_IN = 'data/input/'
+PATH_OUT = 'data/output/'
 
 # Declare constants
 HEAT_PRICE = 1
@@ -49,11 +49,11 @@ class Model:
             param='power_price'
         )
 
-        # self.timeseries_data.load(
-        #     filename=PATH_IN + '/prices/heat_price.csv',
-        #     index='t',
-        #     param='heat_price'
-        # )
+        self.timeseries_data.load(
+            filename=PATH_IN + '/prices/heat_price.csv',
+            index='t',
+            param='heat_price'
+        )
 
         self.timeseries_data.load(
             filename=PATH_IN + '/demands/heat_demand.csv',

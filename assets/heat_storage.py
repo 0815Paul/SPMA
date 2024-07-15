@@ -27,12 +27,12 @@ class HeatStorage:
         t = asset.model().t
 
         # Declare components
-        asset.heat_balance = Var(t, within=Reals)
         asset.heat_charge = Var(t, within=NonNegativeReals)
-        asset.heat_discharge = Var(t, within=NonNegativeReals)
-        asset.heat_capacity = Var(t, within=NonNegativeReals)
         asset.bin_charge = Var(t, within=Binary)
+        asset.heat_discharge = Var(t, within=NonNegativeReals)
         asset.bin_discharge = Var(t, within=Binary)
+        asset.heat_balance = Var(t, within=Reals)
+        asset.heat_capacity = Var(t, within=NonNegativeReals)
 
 
         asset.heat_in = Port()
@@ -80,16 +80,15 @@ class HeatStorage:
         def capacity_balance_rule(asset, t):
             """Capacity balance constraint, heat capacity is the difference between the initial capacity and the heat balance at time t"""
             if t == 1:
-                #return asset.heat_capacity[t] == self.data.loc['initial', 'capacity'] - asset.heat_balance[t]
                 return asset.heat_capacity[t] == 0 - asset.heat_balance[t] 
             else:
                 return asset.heat_capacity[t] == asset.heat_capacity[t-1] - asset.heat_balance[t]
         asset.capacity_balance_constr = Constraint(t, rule=capacity_balance_rule)
 
-        def charge_discharge_rule(asset, t):
-            """Charge and discharge constraint, only one of them can be used at a time"""
-            return asset.bin_charge[t] + asset.bin_discharge[t] <= 1
-        asset.charge_discharge_constr = Constraint(t, rule=charge_discharge_rule)
+        # def charge_discharge_rule(asset, t):
+        #     """Charge and discharge constraint, only one of them can be used at a time"""
+        #     return asset.bin_charge[t] + asset.bin_discharge[t] <= 1
+        # asset.charge_discharge_constr = Constraint(t, rule=charge_discharge_rule)
 
 
 

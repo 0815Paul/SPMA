@@ -38,7 +38,7 @@ class Boiler:
             asset.heat,
             'heat',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )
 
         asset.gas_in = Port()
@@ -46,7 +46,7 @@ class Boiler:
             asset.gas,
             'gas',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )
 
         # Declare construction rules for components

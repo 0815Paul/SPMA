@@ -37,7 +37,7 @@ class ElectricalGrid:
             asset.power_feedin,
             'power',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )
         asset.power_out = Port()
         asset.power_out.add(
@@ -87,7 +87,7 @@ class NGasGrid:
             asset.gas_balance,
             'gas',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )
 
 class HeatGrid:
@@ -116,40 +116,39 @@ class HeatGrid:
         # Declare components
         asset.heat_balance = Var(t, within=NonNegativeReals)
         asset.heat_supply = Var(t, within=NonNegativeReals)
-        asset.heat_feedin = Var(t, within=NonNegativeReals)
+        asset.heat_feedin = Var(t, within=NonNegativeReals)      
 
-
+        # Declare ports
         asset.heat_in = Port()
         asset.heat_in.add(
             asset.heat_feedin,
             'heat',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )
         asset.heat_out = Port()
         asset.heat_out.add(
             asset.heat_supply,
             'heat',
             Port.Extensive,
-            include_splitfrac=True
+            include_splitfrac=False
         )
 
-        # def max_heat_supply_rule(asset, t):
-        #     """Maximum heat supply constraint"""
-        #     return asset.heat_supply[t] <= self.data.loc['max', 'heat']
-        # asset.max_heat_supply_constr = Constraint(t, rule=max_heat_supply_rule)
-
-        # def max_heat_feedin_rule(asset, t):
-        #     """Minimum heat supply constraint"""
-        #     return asset.heat_feedin[t] >= self.data.loc['max', 'heat']
-        # asset.min_heat_supply_constr = Constraint(t, rule=max_heat_feedin_rule)
-            
+        # Declare constraints
         def heat_balance_rule(asset, t):
-            """ Heat balance = heat supply - heat feed-in"""
-            return asset.heat_balance[t] == asset.model().heat_demand[t] + asset.heat_supply[t] - asset.heat_feedin[t]
+            return asset.heat_balance[t] ==  asset.heat_feedin[t] - asset.heat_supply[t]
         asset.heat_balance_constr = Constraint(t, rule=heat_balance_rule)
 
         def supply_heat_demand_rule(asset, t):
             """ Supply heat demand"""
             return asset.heat_balance[t] == 0
         asset.supply_heat_demand_constr = Constraint(t, rule=supply_heat_demand_rule)
+
+        def heat_supply_rule(asset, t):
+            """ Heat supply"""
+            return asset.heat_supply[t] == asset.model().heat_demand[t]
+        asset.heat_supply_constr = Constraint(t, rule=heat_supply_rule)
+
+
+
+        

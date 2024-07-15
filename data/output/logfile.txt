@@ -2,33 +2,41 @@ Solver command line: ['C:\\Program Files\\gurobi1102\\win64\\bin\\gurobi.bat']
 
 Set parameter Username
 Academic license - for non-commercial use only - expires 2025-07-11
-Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpzsglvuhd.pyomo.lp
-Reading time = 0.00 seconds
-objective: 624 rows, 579 columns, 1343 nonzeros
+Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmp8gezdw63.pyomo.lp
+Reading time = 0.01 seconds
+objective: 648 rows, 576 columns, 1343 nonzeros
 Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (win64 - Windows 10.0 (19045.2))
 
 CPU model: Intel(R) Xeon(R) CPU E5-1607 v2 @ 3.00GHz, instruction set [SSE2|AVX]
 Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
 
-Optimize a model with 624 rows, 579 columns and 1343 nonzeros
-Model fingerprint: 0x15fc0a9a
-Model has 72 quadratic constraints
-Variable types: 483 continuous, 96 integer (96 binary)
+Optimize a model with 648 rows, 576 columns and 1343 nonzeros
+Model fingerprint: 0x85bc55c2
+Variable types: 480 continuous, 96 integer (96 binary)
 Coefficient statistics:
-  Matrix range     [8e-01, 6e+00]
-  QMatrix range    [1e+00, 1e+00]
-  QLMatrix range   [1e+00, 1e+00]
+  Matrix range     [8e-01, 2e+02]
   Objective range  [1e+00, 6e+01]
   Bounds range     [1e+00, 1e+00]
-  RHS range        [1e+00, 1e+04]
-Presolve removed 95 rows and 119 columns
-Presolve time: 0.00s
+  RHS range        [7e+01, 1e+04]
+Presolve removed 555 rows and 483 columns
+Presolve time: 0.01s
+Presolved: 93 rows, 93 columns, 277 nonzeros
+Variable types: 47 continuous, 46 integer (46 binary)
+Found heuristic solution: objective -120573.6735
 
-Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
-Thread count was 1 (of 4 available processors)
+Root relaxation: objective -1.206121e+05, 36 iterations, 0.00 seconds (0.00 work units)
 
-Solution count 0
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-Model is infeasible or unbounded
-Best objective -, best bound -, gap -
+     0     0 -120612.09    0    3 -120573.67 -120612.09  0.03%     -    0s
+H    0     0                    -120607.2449 -120612.09  0.00%     -    0s
+
+Explored 1 nodes (36 simplex iterations) in 0.02 seconds (0.00 work units)
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: -120607 -120574 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -1.206072448980e+05, best bound -1.206120927037e+05, gap 0.0040%
 
