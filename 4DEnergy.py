@@ -15,9 +15,13 @@ PATH_IN = 'data/input/'
 PATH_OUT = 'data/output/'
 
 # Declare constants
-HEAT_PRICE = 1
+GAS_PRICE = 0.1543 # €/kWh  (HS)
+POWER_PRICE = 0.251 # €/kWh (el)
+HEAT_PRICE = 0.105 # €/kWh (th)
+
 
 class Model:
+    """Model class."""
     
     def __init__(self):
         self.model = AbstractModel()
@@ -38,40 +42,71 @@ class Model:
         self.timeseries_data = DataPortal()
 
         self.timeseries_data.load(
-            filename=PATH_IN + '/prices/gas_price.csv',
-            index='t',
-            param='gas_price'
-        )
-
-        self.timeseries_data.load(
-            filename=PATH_IN + '/prices/power_price.csv',
-            index='t',
-            param='power_price'
-        )
-
-        self.timeseries_data.load(
-            filename=PATH_IN + '/prices/heat_price.csv',
-            index='t',
-            param='heat_price'
-        )
-
-        self.timeseries_data.load(
-            filename=PATH_IN + '/demands/heat_demand.csv',
+            filename=PATH_IN + '/demands/heat_demand_20230401.csv',
             index='t',
             param='heat_demand'
         )
 
+        #_____ In case of power price is not constant _____#
+
+        # self.timeseries_data.load(
+        #     filename=PATH_IN + '/prices/power_price.csv',
+        #     index='t',
+        #     param='power_price'
+        # )
+
+        #_________________________________________________#
+
+        #_____ In case of heat price is not constant _____#
+
+        # self.timeseries_data.load(
+        #     filename=PATH_IN + '/prices/heat_price.csv',
+        #     index='t',
+        #     param='heat_price'
+        # )
+
+        #_________________________________________________#
+
+        #_____ In case of gas price is not constant _____#
     
+        # self.timeseries_data.load(
+        #     filename=PATH_IN + '/prices/gas_price.csv',
+        #     index='t',
+        #     param='gas_price'
+        # )
+
+        #_________________________________________________#
+
+
     def add_components(self):
+        """Add components to the model."""
 
         # Sets
         self.model.t = Set(ordered=True)
 
         # Parameters
-        self.model.gas_price = Param(self.model.t)
-        self.model.power_price = Param(self.model.t)
-        #self.model.heat_price = Param(self.model.t)
+        self.model.GAS_PRICE = Param(initialize=GAS_PRICE)
+        self.model.POWER_PRICE = Param(initialize=POWER_PRICE)
+        self.model.HEAT_PRICE = Param(initialize=HEAT_PRICE)
         self.model.heat_demand = Param(self.model.t)
+
+        #_____ In case of power price is not constant _____#
+        
+        #self.model.power_price = Param(self.model.t)
+
+        #_________________________________________________#
+        
+        #_____ In case of heat price is not constant _____#
+
+        #self.model.heat_price = Param(self.model.t)
+
+        #_________________________________________________#
+
+        #_____ In case of gas price is not constant _____#
+
+        #self.model.gas_price = Param(self.model.t)
+
+        #_________________________________________________#
 
         # Assets
         chp1 = chp.Chp(
@@ -172,7 +207,11 @@ class Model:
 
         for params in self.instance.component_objects(Param, active=True):
             name = params.name
-            df_params[name] = [value(params[t]) for t in self.instance.t]
+            if len(params) == 1:
+                single_value = value(list(params.values())[0])
+                df_params[name]= [single_value for t in self.instance.t]
+            else:                        
+                df_params[name] = [value(params[t]) for t in self.instance.t]
         
         for variables in self.instance.component_objects(Var, active=True):
             name = variables.name
@@ -192,9 +231,9 @@ class Model:
     def objective_expr(self, model):
         """Objective function expression."""
         objective_expr = (
-        quicksum(model.gas_price[t] * model.ngas_grid.gas_balance[t] for t in model.t) +
-        quicksum(model.power_price[t] * model.power_grid.power_balance[t] for t in model.t) +
-        quicksum(HEAT_PRICE * model.heat_grid.heat_balance[t] for t in model.t) 
+        quicksum(model.GAS_PRICE * model.ngas_grid.gas_balance[t] for t in model.t) +
+        quicksum(model.POWER_PRICE * model.power_grid.power_balance[t] for t in model.t) +
+        quicksum(model.HEAT_PRICE * model.heat_grid.heat_balance[t] for t in model.t) 
         )
         return objective_expr
 
