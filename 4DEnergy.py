@@ -109,9 +109,21 @@ class Model:
         #_________________________________________________#
 
         # Assets
+
+        chp_filepaths = [
+            PATH_IN + '/assets/chp.csv',
+            PATH_IN + '/assets/chp_operation1_2.csv',
+            PATH_IN + '/assets/chp_operation2_3.csv',
+        ]
+
         chp1 = chp.Chp(
-            'chp1', PATH_IN + '/assets/chp.csv'
+            'chp1', chp_filepaths
         )
+
+
+        # chp1 = chp.Chp(
+        #     'chp1', PATH_IN + '/assets/chp.csv'
+        # )
 
         boiler1 = boiler.Boiler(
             'boiler1', PATH_IN + '/assets/boiler.csv'

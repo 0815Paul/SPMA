@@ -2,42 +2,34 @@ Solver command line: ['C:\\Program Files\\gurobi1102\\win64\\bin\\gurobi.bat']
 
 Set parameter Username
 Academic license - for non-commercial use only - expires 2025-07-11
-Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpab401zwp.pyomo.lp
+Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpkpmhz4u8.pyomo.lp
 Reading time = 0.02 seconds
-objective: 648 rows, 576 columns, 1343 nonzeros
+objective: 936 rows, 672 columns, 2183 nonzeros
 Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (win64 - Windows 10.0 (19045.2))
 
 CPU model: Intel(R) Xeon(R) CPU E5-1607 v2 @ 3.00GHz, instruction set [SSE2|AVX]
 Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
 
-Optimize a model with 648 rows, 576 columns and 1343 nonzeros
-Model fingerprint: 0xd40620bf
-Variable types: 480 continuous, 96 integer (96 binary)
+Optimize a model with 936 rows, 672 columns and 2183 nonzeros
+Model fingerprint: 0x47db9ab5
+Variable types: 528 continuous, 144 integer (144 binary)
 Coefficient statistics:
-  Matrix range     [8e-01, 4e+02]
+  Matrix range     [1e-03, 1e+06]
   Objective range  [1e-01, 3e-01]
   Bounds range     [1e+00, 1e+00]
-  RHS range        [7e+01, 1e+04]
-Presolve removed 568 rows and 493 columns
+  RHS range        [1e+00, 1e+06]
+Presolve removed 641 rows and 515 columns
 Presolve time: 0.02s
-Presolved: 80 rows, 83 columns, 242 nonzeros
-Variable types: 41 continuous, 42 integer (42 binary)
-Found heuristic solution: objective 316.1034490
-Found heuristic solution: objective 302.4077490
-Found heuristic solution: objective 58.1224990
+Presolved: 295 rows, 157 columns, 904 nonzeros
+Variable types: 115 continuous, 42 integer (42 binary)
+Found heuristic solution: objective -268.8468088
+Found heuristic solution: objective -271.3649847
 
-Root relaxation: objective 5.810453e+01, 46 iterations, 0.00 seconds (0.00 work units)
-
-    Nodes    |    Current Node    |     Objective Bounds      |     Work
- Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
-
-     0     0   58.10453    0    4   58.12250   58.10453  0.03%     -    0s
-
-Explored 1 nodes (46 simplex iterations) in 0.10 seconds (0.00 work units)
+Explored 0 nodes (0 simplex iterations) in 0.05 seconds (0.01 work units)
 Thread count was 4 (of 4 available processors)
 
-Solution count 3: 58.1225 302.408 316.103 
+Solution count 2: -271.365 -268.847 
 
 Optimal solution found (tolerance 1.00e-04)
-Best objective 5.812249900000e+01, best bound 5.812249900000e+01, gap 0.0000%
+Best objective -2.713649848242e+02, best bound -2.713649848712e+02, gap 0.0000%
 
