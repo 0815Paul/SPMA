@@ -18,7 +18,21 @@ PATH_OUT = 'data/output/'
 GAS_PRICE = 0.1543 # €/kWh  (HS)
 POWER_PRICE = 0.251 # €/kWh (el)
 HEAT_PRICE = 0.105 # €/kWh (th)
+CALORIFIC_VALUE_NGAS = 10 # kWh/m3
 
+
+# CHP 
+CHP_BONUS_SELF_CONSUMPTION= 0.08  # €/kWhel
+CHP_BONUS= 0.16  # €/kWhel
+CHP_INDEX_EEX= 0.1158  # €/kWhel
+ENERGY_TAX_REFUND_GAS= 0.0055  # €/kWhHS
+AVOIDED_GRID_FEES= 0.0097  # €/kWhel
+SHARE_SELF_CONSUMPTION= 0.03 # %
+SHARE_FEED_IN= 0.97 # %
+
+
+# Costs
+MAINTENANCE_COSTS = 1.8 # €/kWh (HS)
 
 class Model:
     """Model class."""
@@ -112,8 +126,12 @@ class Model:
 
         chp_filepaths = [
             PATH_IN + '/assets/chp.csv',
-            PATH_IN + '/assets/chp_operation1_2.csv',
-            PATH_IN + '/assets/chp_operation2_3.csv',
+            PATH_IN + '/assets/chp_operation.csv'
+        ]
+
+        boiler_filepaths = [
+            PATH_IN + '/assets/boiler.csv',
+            PATH_IN + '/assets/boiler_operation.csv'
         ]
 
         chp1 = chp.Chp(
@@ -126,8 +144,12 @@ class Model:
         # )
 
         boiler1 = boiler.Boiler(
-            'boiler1', PATH_IN + '/assets/boiler.csv'
+            'boiler1', boiler_filepaths
         )
+
+        #boiler1 = boiler.Boiler(
+        #    'boiler1', PATH_IN + '/assets/boiler.csv'
+        #)
 
         heat_storage1 = heat_storage.HeatStorage(
             'heat_storage1', PATH_IN + '/assets/heat_storage.csv'
@@ -243,19 +265,65 @@ class Model:
     def objective_expr(self, model):
         """Objective function expression."""
         objective_expr = (
-        quicksum(model.GAS_PRICE * model.ngas_grid.gas_balance[t] for t in model.t) +
-        quicksum(model.POWER_PRICE * model.power_grid.power_balance[t] for t in model.t) +
-        quicksum(model.HEAT_PRICE * model.heat_grid.heat_balance[t] for t in model.t) 
+            self._gas_costs(model) +
+            self._maintenance_costs(model) -
+            self._power_revenue(model) -
+            self._heat_revenue(model) -
+            self._chp_revenue(model)
         )
         return objective_expr
 
+    def _gas_costs(self, model):
+        """ Calculate gas costs for CHP and Boiler."""
+        gas_costs = (
+        quicksum(model.chp1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) + 
+        quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
+        )
+        return gas_costs
+    
+    def _maintenance_costs(self, model):
+        """Calculate maintenance costs for CHP."""
+        maintenance_costs = quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t)
+        return maintenance_costs
+
+    def _power_revenue(self, model):
+        """Calculate power revenue for CHP."""
+        power_revenue = quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t)
+        return power_revenue
+    
+    def _heat_revenue(self, model):
+        """Calculate heat revenue for CHP and Boiler."""
+        heat_revenue = (
+        quicksum(model.chp1.heat[t] * model.HEAT_PRICE for t in model.t) +
+        quicksum(model.boiler1.heat[t] * model.HEAT_PRICE for t in model.t)
+        )
+        return heat_revenue
+    
+    def _chp_revenue(self, model):
+        """Calculate CHP revenue."""
+        chp_bonus_for_self_consumption = quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t)
+        chp_bonus_for_feed_in = quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t)
+        chp_index = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t)
+        avoided_grid_fees = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t)
+        energy_tax_refund = quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t)
+        
+        chp_revenue = (
+            chp_bonus_for_self_consumption +
+            chp_bonus_for_feed_in +
+            chp_index +
+            avoided_grid_fees +
+            energy_tax_refund
+        )
+        return chp_revenue
 
 if __name__ == "__main__":
     model = Model()
 
     print('Setting solver...')
     model.set_solver(
-        solver_name= 'gurobi'
+        solver_name= 'gurobi',
+        MIPGap=0.015,
+        TimeLimit=30
         )
 
     print('Loading timeseries data...')
