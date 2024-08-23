@@ -2,58 +2,54 @@ Solver command line: ['C:\\Program Files\\gurobi1102\\win64\\bin\\gurobi.bat']
 
 Set parameter Username
 Academic license - for non-commercial use only - expires 2025-07-11
-Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmp2o18x_np.pyomo.lp
-Reading time = 0.02 seconds
-objective: 744 rows, 744 columns, 1583 nonzeros
-Set parameter MIPGap to value 0.015
-Set parameter TimeLimit to value 30
+Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpixhp19ca.pyomo.lp
+Reading time = 0.03 seconds
+EF_Obj: 1704 rows, 1872 columns, 3549 nonzeros
 Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (win64 - Windows 10.0 (19045.2))
 
 CPU model: Intel(R) Xeon(R) CPU E5-1607 v2 @ 3.00GHz, instruction set [SSE2|AVX]
 Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
 
-Optimize a model with 744 rows, 744 columns and 1583 nonzeros
-Model fingerprint: 0x925c5648
-Model has 528 quadratic constraints
-Variable types: 552 continuous, 192 integer (192 binary)
+Optimize a model with 1704 rows, 1872 columns and 3549 nonzeros
+Model fingerprint: 0x1b60f862
+Model has 1584 quadratic constraints
+Variable types: 1296 continuous, 576 integer (576 binary)
 Coefficient statistics:
   Matrix range     [8e-01, 1e+06]
   QMatrix range    [2e-04, 1e+06]
   QLMatrix range   [1e+00, 1e+06]
-  Objective range  [1e-01, 2e+00]
+  Objective range  [3e-02, 6e-01]
   Bounds range     [1e+00, 1e+00]
   RHS range        [7e+01, 1e+06]
-Presolve removed 319 rows and 456 columns
-Presolve time: 0.02s
-Presolved: 724 rows, 357 columns, 2413 nonzeros
-Variable types: 222 continuous, 135 integer (135 binary)
-Found heuristic solution: objective -485.5884536
+Presolve removed 1668 rows and 1850 columns
+Presolve time: 0.59s
+Presolved: 75 rows, 31 columns, 264 nonzeros
+Variable types: 16 continuous, 15 integer (15 binary)
+Found heuristic solution: objective 167.1240894
+Found heuristic solution: objective -0.0000000
 
-Root relaxation: objective -7.081847e+02, 315 iterations, 0.00 seconds (0.00 work units)
+Root relaxation: objective -3.535415e+05, 46 iterations, 0.00 seconds (0.00 work units)
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-     0     0 -708.18469    0   49 -485.58845 -708.18469  45.8%     -    0s
-H    0     0                    -486.0069344 -558.45784  14.9%     -    0s
-     0     0 -558.45784    0   47 -486.00693 -558.45784  14.9%     -    0s
-H    0     0                    -488.2766848 -557.48464  14.2%     -    0s
-H    0     0                    -535.9414421 -557.48464  4.02%     -    0s
+     0     0 -353541.51    0    9   -0.00000 -353541.51      -     -    0s
+     0     0     cutoff    0        -0.00000   -0.00000  0.00%     -    0s
 
 Cutting planes:
-  Learned: 2
-  Gomory: 47
-  MIR: 15
-  Flow cover: 46
-  RLT: 3
-  Relax-and-lift: 46
+  Gomory: 6
+  Implied bound: 1
+  Clique: 6
+  MIR: 3
+  Zero half: 3
+  Relax-and-lift: 6
+  BQP: 6
 
-Explored 1 nodes (493 simplex iterations) in 0.10 seconds (0.04 work units)
+Explored 1 nodes (68 simplex iterations) in 0.60 seconds (0.06 work units)
 Thread count was 4 (of 4 available processors)
 
-Solution count 4: -535.941 -488.277 -486.007 -485.588 
-No other solutions better than -535.941
+Solution count 2: -3.30353e-09 167.124 
 
-Optimal solution found (tolerance 1.50e-02)
-Best objective -5.359414420720e+02, best bound -5.359414420720e+02, gap 0.0000%
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.303525240881e-09, best bound -3.303525240881e-09, gap 0.0000%
 
