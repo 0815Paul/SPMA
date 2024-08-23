@@ -183,6 +183,8 @@ class Model:
     def instantiate_model(self):
         """Create a concrete instance of the model."""
         self.instance = self.model.create_instance(self.timeseries_data)
+        with open('output.txt', 'w') as f:
+            self.instance.pprint(ostream=f)
 
     
     def expand_arcs(self):

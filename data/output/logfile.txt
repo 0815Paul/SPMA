@@ -2,7 +2,7 @@ Solver command line: ['C:\\Program Files\\gurobi1102\\win64\\bin\\gurobi.bat']
 
 Set parameter Username
 Academic license - for non-commercial use only - expires 2025-07-11
-Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpwp1tfatk.pyomo.lp
+Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpxw3l254k.pyomo.lp
 Reading time = 0.02 seconds
 objective: 744 rows, 744 columns, 1583 nonzeros
 Set parameter MIPGap to value 0.015
@@ -59,7 +59,7 @@ Cutting planes:
   RLT: 2
   Relax-and-lift: 1
 
-Explored 7425 nodes (32657 simplex iterations) in 1.75 seconds (1.04 work units)
+Explored 7425 nodes (32657 simplex iterations) in 1.85 seconds (1.04 work units)
 Thread count was 4 (of 4 available processors)
 
 Solution count 9: 3577.13 3577.13 3577.28 ... 5121.96
