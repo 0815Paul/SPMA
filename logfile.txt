@@ -1,0 +1,38 @@
+Solver command line: ['C:\\Program Files\\gurobi1102\\win64\\bin\\gurobi.bat']
+
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-07-11
+Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpjmwmsce0.pyomo.lp
+Reading time = 0.03 seconds
+EF_Obj: 1704 rows, 1872 columns, 3549 nonzeros
+Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: Intel(R) Xeon(R) CPU E5-1607 v2 @ 3.00GHz, instruction set [SSE2|AVX]
+Thread count: 4 physical cores, 4 logical processors, using up to 4 threads
+
+Optimize a model with 1704 rows, 1872 columns and 3549 nonzeros
+Model fingerprint: 0xe6073627
+Model has 1584 quadratic constraints
+Variable types: 1296 continuous, 576 integer (576 binary)
+Coefficient statistics:
+  Matrix range     [8e-01, 1e+06]
+  QMatrix range    [2e-04, 1e+06]
+  QLMatrix range   [1e+00, 1e+06]
+  Objective range  [5e-02, 5e-02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [7e+01, 1e+06]
+Presolve removed 1668 rows and 1850 columns
+Presolve time: 0.19s
+Presolved: 75 rows, 31 columns, 264 nonzeros
+Variable types: 16 continuous, 15 integer (15 binary)
+Found heuristic solution: objective 18.0475043
+Found heuristic solution: objective 0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.19 seconds (0.03 work units)
+Thread count was 4 (of 4 available processors)
+
+Solution count 2: 0 18.0475 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
