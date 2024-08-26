@@ -82,6 +82,10 @@ def scenario_creator(scenario_name, node_names=None, cb_data=None):
     sputils.attach_root_node(model, model.first_stage_cost, [model.x_wheat_flaeche, model.x_corn_flaeche, model.x_beet_flaeche])
     model._mpisppy_probability = scenario_data['prob']
 
+    print("Writing instance output.txt ...")
+    with open('output_minimalbeispiel.txt', 'w') as f:
+        model.pprint(ostream=f)
+
     return model
 
 # Erstellen der Szenarien

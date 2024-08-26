@@ -146,6 +146,7 @@ class HeatGrid:
 
         def heat_supply_rule(asset, t):
             """ Heat supply"""
+            #print("heat_supply:",asset.heat_supply[t])
             return asset.heat_supply[t] == asset.model().heat_demand[t]
         asset.heat_supply_constr = Constraint(t, rule=heat_supply_rule)
 

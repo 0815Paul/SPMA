@@ -55,39 +55,15 @@ class Model:
         self._define_parameters()
         self._define_assets()
         self._define_expressions()
-        self._define_stochastic_data()
 
     def _define_parameters(self):
         """Define model parameters."""
         # Load Constants and the heat demand
-        self.model.GAS_PRICE = Param(initialize=GAS_PRICE)
+        # self.model.GAS_PRICE = Param(initialize=GAS_PRICE)
         self.model.POWER_PRICE = Param(initialize=POWER_PRICE)
         self.model.HEAT_PRICE = Param(initialize=HEAT_PRICE)
         self.model.heat_demand = Param(self.model.t)
-        self.model.price_scenario = Param(within=NonNegativeReals, mutable=True)
-
-    def _define_stochastic_data(self):
-        # """Define stochastic data."""
-        # scennum = 3
-        # basenames = ['FirstScenario', 'SecondScenario', 'ThirdScenario']
-        # basenum = scennum % 3
-        # groupnum = scennum // 3
-        # scenname = basenames[basenum] + str(groupnum)
-        # scenario_base_name = scenname.rstrip('1234567890')
-
-        # # Szenario-spezifische Initialisierungen
-        # price_scenario = {
-        #     'FirstScenario': {'GAS_PRICE': 0.1541},
-        #     'SecondScenario': {'GAS_PRICE': 0.1542},
-        #     'ThirdScenario': {'GAS_PRICE': 0.1543}
-        # }
-
-        # def price_init(m):
-        #     price_base_name = 'GAS_PRICE'
-        #     return price_scenario[scenario_base_name][price_base_name]
-
-        # self.model.price_scenario = Param(within=NonNegativeReals, initialize=price_init, mutable=True)
-        pass
+        
 
     def _define_assets(self):
         """Define model assets."""
@@ -131,7 +107,7 @@ class Model:
         """Define model expressions"""
         
         def first_stage_cost_rule(model):
-            return quicksum(model.chp1.gas[t] * model.price_scenario for t in model.t)
+            return quicksum(model.chp1.gas[t] * model.price for t in model.t)
         self.model.first_stage_cost = Expression(rule=first_stage_cost_rule)
 
         def second_stage_cost_rule(model):  
@@ -145,7 +121,7 @@ class Model:
         """Add objective function to model."""
         def objective_expression_rule(model):
             return model.first_stage_cost + model.second_stage_cost
-        self.model.objective = Objective(rule=objective_expression_rule,sense=minimize)  
+        self.model.objective = Objective(rule=objective_expression_rule,sense=maximize)  
 
     def load_timeseries_data(self):
         """Load timeseries data from file."""
@@ -173,21 +149,21 @@ class Model:
         scenname = basenames[basenum] + str(groupnum)
         scenario_base_name = scenname.rstrip('1234567890')
 
-        print(f"1. Creating scenario {scenname} from {scenario_name}")
-        print(f"2. Creating scenario base name {scenario_base_name} from {scenname}")
 
         # Szenario-spezifische Initialisierungen
-        price_scenario = {
-            'FirstScenario': {'GAS_PRICE': 0.1541},
-            'SecondScenario': {'GAS_PRICE': 0.1542},
-            'ThirdScenario': {'GAS_PRICE': 0.1543}
+        price = {
+            'FirstScenario':  0.1541,
+            'SecondScenario': 0.1542,
+            'ThirdScenario': 0.1543
         }
 
-        def price_init(m):
-            price_base_name = 'GAS_PRICE'
-            return price_scenario[scenario_base_name][price_base_name]
+        # def price_init(model):
+        #     price_base_name = 'GAS_PRICE'
+        #     print("price[scenario_base_name][price_base_name]", price[scenario_base_name][price_base_name])
+        #     return price[scenario_base_name][price_base_name]
 
-        self.model.price_scenario = Param(within=NonNegativeReals, initialize=price_init, mutable=True)
+        print(f"Price for {scenario_base_name}: {price[scenario_base_name]}")
+        self.model.price = Param(within=NonNegativeReals, initialize=price[scenario_base_name], mutable=True)
 
         self.instance = self.model.create_instance(self.timeseries_data)
         
@@ -195,9 +171,31 @@ class Model:
             self.instance._mpisppy_probability = 1 / num_scens
 
         # Variable mit Index t anlegen
-        varlist = [self.instance.chp1.gas[t] for t in self.instance.t]
+        varlist = [self.instance.chp1.gas]
         sputils.attach_root_node(self.instance, self.instance.first_stage_cost, varlist)
 
+        print("Writing instance output.txt ...")
+        with open('output.txt', 'w') as f:
+            self.instance.pprint(ostream=f)
+
+        print("____________________________________")
+        print("Model instance created successfully.")
+        print("First stage cost expression:", self.instance.first_stage_cost.expr)
+        print("Price parameter value:", pyo.value(self.instance.price))
+        print("____________________________________")
+
+        with open('constraints_output.txt', 'w') as f:
+            # Iteriere über alle aktiven Constraints in der Modellinstanz
+            for con in self.instance.component_objects(Constraint, active=True):
+                # Schreibe den Namen der Constraint-Komponente in die Datei
+                f.write(f"Constraint: {con.name}\n")
+                f.write("Details:\n")
+                # Nutze pprint, um die Details der Constraint in die Datei zu schreiben
+                con.pprint(ostream=f)
+                f.write("____________________________________\n")
+        
+        
+        
         return self.instance
 
 
@@ -228,19 +226,10 @@ class Model:
             destination=self.instance.chp1.gas_in
         )
 
-    def add_instance_components(self, component_name, component):
-        """Add components to the instance."""
-        self.instance.add_component(component_name, component)
-
-
     def expand_arcs(self):
         """Expands arcs and generate connection constraints."""
         TransformationFactory('network.expand_arcs').apply_to(self.instance)
 
-
-    # def solve(self, ef_instance):
-    #     """Solve the model."""
-    #     self.results = self.solver.solve(ef_instance, tee=True, symbolic_solver_labels=True, load_solutions=True, report_timing=True)
        
     def create_extensive_form2(self,options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
@@ -255,18 +244,6 @@ class Model:
     def solve2(self):
         """Solve the model."""
         self.results = self.ef_instance.solve_extensive_form()
-    
-    
-    # def create_extensive_form(self, scenario_names, scenario_creator_kwargs):
-    #     """Create the extensive form."""
-    #     self.ef_instance = sputils.create_EF(
-    #         scenario_names=scenario_names,
-    #         scenario_creator=self.scenario_creator,
-    #         scenario_creator_kwargs=scenario_creator_kwargs
-    #     )
-    #     return self.ef_instance
-
-
 
 
     def write_results(self):
@@ -293,7 +270,6 @@ class Model:
         solution = self.ef_instance.get_root_solution()
         for [var_name, var_val] in solution.items():
             print(var_name, var_val)
-
 
 
 

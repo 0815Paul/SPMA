@@ -100,9 +100,9 @@ class Chp:
         gas_2 = heat_2/eta_th_2
         gas_3 = heat_3/eta_th_3
 
-        print("Gas CHP :", gas_1, gas_2, gas_3)
-        print("Power CHP:", power_1, power_2, power_3)
-        print("Heat CHP:", heat_1, heat_2, heat_3)
+        # print("Gas CHP :", gas_1, gas_2, gas_3)
+        # print("Power CHP:", power_1, power_2, power_3)
+        # print("Heat CHP:", heat_1, heat_2, heat_3)
 
         # Constraints
 

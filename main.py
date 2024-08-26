@@ -39,9 +39,10 @@ def main():
 
 
 
-    # print("Writing instance output.txt ...")
-    # with open('output.txt', 'w') as f:
-    #     my_ef.pprint(ostream=f)
+    print("Writing instance output.txt ...")
+    with open('ef_output.txt', 'w') as f:
+        my_ef.ef.pprint(ostream=f)
+        
 
     print("Solving...")
     my_model.solve2()
