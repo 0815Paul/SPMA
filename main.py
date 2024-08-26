@@ -8,6 +8,7 @@ def main():
     # Some parameters 
     crops_multiplier = 1
     scen_count = 3
+    solver_name = "gurobi"
 
     scenario_creator_kwargs = {
         "use_integer": False,
@@ -24,29 +25,34 @@ def main():
     my_model.load_timeseries_data()
 
     print("Setting Solver...")
-    my_model.set_solver(solver_name="gurobi")
+    my_model.set_solver(solver_name=solver_name)
 
     print("Add objective...")
     my_model.add_objective()
 
-    print("Creating model instance...")
-    scenario_creator = my_model.scenario_creator
-
     print("Creating Extensive Formulation...")
-    my_ef = sputils.create_EF(
-        scenario_names = scenario_names,
-        scenario_creator = scenario_creator,
-        scenario_creator_kwargs=scenario_creator_kwargs
-    )
+    #my_ef = my_model.create_extensive_form(scenario_names, scenario_creator_kwargs)
     
-    with open('output.txt', 'w') as f:
-        my_ef.pprint(ostream=f)
+    options = {"solver": "gurobi"}
 
-    solver = pyo.SolverFactory("gurobi")
-    solver.solve(my_ef, tee=True, symbolic_solver_labels=True, logfile='logfile.txt', load_solutions=True, report_timing=True)
+    my_ef = my_model.create_extensive_form2(options, scenario_names, scenario_creator_kwargs)
+
+
+
+    # print("Writing instance output.txt ...")
+    # with open('output.txt', 'w') as f:
+    #     my_ef.pprint(ostream=f)
 
     print("Solving...")
-    print(f"EF objective: {pyo.value(my_ef.EF_Obj)}")
+    my_model.solve2()
+    
+    # print(f"EF objective: {pyo.value(my_ef.EF_Obj)}")
+
+    print("Writing results...")
+    my_model.write_results()
+
+    # print("Saving results...")
+    # my_model.save_results("results_test.csv")
 
 if __name__ == "__main__":
     main()

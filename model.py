@@ -8,10 +8,13 @@ from pyomo.network import *
 
 from mpisppy.opt.ph import PH
 from mpisppy.opt.lshaped import LShapedMethod
+from mpisppy.opt.ef import ExtensiveForm
 from mpisppy.utils.sputils import scenario_tree
 from mpisppy.utils import config
+
 import mpisppy.utils.sputils as sputils
 import mpisppy.utils.solver_spec as solver_spec
+
 
 
 
@@ -39,6 +42,7 @@ class Model:
         self.PATH_OUT = PATH_OUT
         self.model = AbstractModel()
         self.instance = None
+        self.ef_instance = None
         self.solver = None
         self.timeseries_data = None
         self.results = None
@@ -131,7 +135,7 @@ class Model:
         self.model.first_stage_cost = Expression(rule=first_stage_cost_rule)
 
         def second_stage_cost_rule(model):  
-            return 0
+            return 2
         self.model.second_stage_cost = Expression(rule=second_stage_cost_rule)
     
     # __________________________________________________________________________
@@ -233,3 +237,72 @@ class Model:
         """Expands arcs and generate connection constraints."""
         TransformationFactory('network.expand_arcs').apply_to(self.instance)
 
+
+    # def solve(self, ef_instance):
+    #     """Solve the model."""
+    #     self.results = self.solver.solve(ef_instance, tee=True, symbolic_solver_labels=True, load_solutions=True, report_timing=True)
+       
+    def create_extensive_form2(self,options , all_scenario_names, scenario_creator_kwargs):
+        """Create the extensive form."""
+        self.ef_instance = ExtensiveForm(
+            options = options,
+            all_scenario_names=all_scenario_names,
+            scenario_creator=self.scenario_creator,
+            scenario_creator_kwargs=scenario_creator_kwargs
+        )
+        return self.ef_instance
+    
+    def solve2(self):
+        """Solve the model."""
+        self.results = self.ef_instance.solve_extensive_form()
+    
+    
+    # def create_extensive_form(self, scenario_names, scenario_creator_kwargs):
+    #     """Create the extensive form."""
+    #     self.ef_instance = sputils.create_EF(
+    #         scenario_names=scenario_names,
+    #         scenario_creator=self.scenario_creator,
+    #         scenario_creator_kwargs=scenario_creator_kwargs
+    #     )
+    #     return self.ef_instance
+
+
+
+
+    def write_results(self):
+        """Write results to file."""
+
+        # self.results.write()
+
+        # df_params = pd.DataFrame()
+        # df_vars = pd.DataFrame()
+        # df_output = pd.DataFrame()
+
+        # for params in self.ef_instance.component_objects(Param, active=True):
+        #     name = params.name
+        #     if len(params) == 1:
+        #         single_value = value(list(params.values())[0])
+        #         df_params[name]= [single_value for t in self.instance.t]
+        #     else:                        
+        #         df_params[name] = [value(params[t]) for t in self.instance.t]
+    
+        # # for vars in self.ef_instance.component_objects(Var, active = True):
+        # #     name = vars.name
+        # #     df_vars[name] = [value(vars[t]) for t in self.instance.t]
+
+        solution = self.ef_instance.get_root_solution()
+        for [var_name, var_val] in solution.items():
+            print(var_name, var_val)
+
+
+
+
+        # df_output = pd.concat([df_params, df_vars], axis=1)
+        # df_output.index = self.instance.t
+        # df_output.index.name = 't'
+
+        # self.results_data = df_params
+    
+    
+    def save_results(self, filename):
+        self.results_data.to_csv(filename, index=False)

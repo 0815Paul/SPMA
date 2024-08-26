@@ -2,8 +2,8 @@ Solver command line: ['C:\\Program Files\\gurobi1102\\win64\\bin\\gurobi.bat']
 
 Set parameter Username
 Academic license - for non-commercial use only - expires 2025-07-11
-Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmpjmwmsce0.pyomo.lp
-Reading time = 0.03 seconds
+Read LP format model from file C:\Users\PAULWI~1\AppData\Local\Temp\tmptpgwx0yj.pyomo.lp
+Reading time = 0.04 seconds
 EF_Obj: 1704 rows, 1872 columns, 3549 nonzeros
 Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (win64 - Windows 10.0 (19045.2))
 
@@ -22,13 +22,13 @@ Coefficient statistics:
   Bounds range     [1e+00, 1e+00]
   RHS range        [7e+01, 1e+06]
 Presolve removed 1668 rows and 1850 columns
-Presolve time: 0.19s
+Presolve time: 0.18s
 Presolved: 75 rows, 31 columns, 264 nonzeros
 Variable types: 16 continuous, 15 integer (15 binary)
 Found heuristic solution: objective 18.0475043
 Found heuristic solution: objective 0.0000000
 
-Explored 0 nodes (0 simplex iterations) in 0.19 seconds (0.03 work units)
+Explored 0 nodes (0 simplex iterations) in 0.18 seconds (0.03 work units)
 Thread count was 4 (of 4 available processors)
 
 Solution count 2: 0 18.0475 
