@@ -24,6 +24,9 @@ def main():
     print("Load timeseries data...")
     my_model.load_timeseries_data()
 
+    # print("Load scenario data...")
+    # my_model.load_stochastic_data()
+    
     print("Setting Solver...")
     my_model.set_solver(solver_name=solver_name)
 

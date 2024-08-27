@@ -52,9 +52,11 @@ class Model:
     def _initialize_model_components(self):
         """Initialize basic model components."""
         self.model.t = Set(ordered=True)
+        self.model.scenarios = Set(ordered=True)
         self._define_parameters()
         self._define_assets()
         self._define_expressions()
+        self._define_stochastic_parameters()
 
     def _define_parameters(self):
         """Define model parameters."""
@@ -63,6 +65,9 @@ class Model:
         self.model.POWER_PRICE = Param(initialize=POWER_PRICE)
         self.model.HEAT_PRICE = Param(initialize=HEAT_PRICE)
         self.model.heat_demand = Param(self.model.t)
+    
+    def _define_stochastic_parameters(self):
+        self.model.heat_demand_scenarios = Param(self.model.scenarios, self.model.t)
         
 
     def _define_assets(self):
@@ -131,6 +136,25 @@ class Model:
             index='t',
             param='heat_demand'
         )
+    
+
+    def load_stochastic_data(self):
+        df = pd.read_csv(self.PATH_IN + '/demands/heat_demand_scens_dummy.csv')
+        scenario_names = [f"Scenario{i+1}" for i in range(len(df))]
+
+        # Zeitperioden definieren (T1, T2, ..., T24)
+        time_periods = [f"{j+1}" for j in range(df.shape[1])]
+
+        # Dictionary erstellen
+        heat_demand_scenarios = {}
+
+        for i, scenario in enumerate(scenario_names):
+            heat_demand_scenarios[scenario] = {}
+            for j, time_period in enumerate(time_periods):
+                heat_demand_scenarios[scenario][time_period] = df.iloc[i, j]
+        
+        return heat_demand_scenarios
+
 
     def set_solver(self, solver_name, **kwargs):
         """Set solver for the model."""
