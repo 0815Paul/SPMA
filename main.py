@@ -6,13 +6,11 @@ import pyomo.environ as pyo
 def main():
     
     # Some parameters 
-    crops_multiplier = 1
     scen_count = 3
     solver_name = "gurobi"
 
     scenario_creator_kwargs = {
         "use_integer": False,
-        "crops_multiplier": crops_multiplier
     }
 
     scenario_names = ['Scenario' + str(i) for i in range(scen_count)]

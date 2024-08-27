@@ -39,7 +39,7 @@
          22 :  71.97
          23 :   79.7
          24 :  84.06
-    heat_demand_scenarios : Size=0, Index=scenarios*t, Domain=Any, Default=None, Mutable=False
+    heat_demand_scenarios : Size=0, Index=scenarios*t, Domain=Any, Default=None, Mutable=True
         Key : Value
     price : Size=1, Index=None, Domain=NonNegativeReals, Default=None, Mutable=True
         Key  : Value
@@ -2014,4 +2014,4 @@
 
         8 Declarations: power_balance power_supply power_feedin power_in power_out max_power_supply_constr max_power_feedin_constr power_balance_constr
 
-16 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost heat_demand_scenarios objective price
+16 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective heat_demand_scenarios price

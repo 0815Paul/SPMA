@@ -100,7 +100,7 @@
                  22 :  71.97
                  23 :   79.7
                  24 :  84.06
-            heat_demand_scenarios : Size=0, Index=Scenario0.scenarios*Scenario0.t, Domain=Any, Default=None, Mutable=False
+            heat_demand_scenarios : Size=0, Index=Scenario0.scenarios*Scenario0.t, Domain=Any, Default=None, Mutable=True
                 Key : Value
             price : Size=1, Index=None, Domain=NonNegativeReals, Default=None, Mutable=True
                 Key  : Value
@@ -2079,7 +2079,7 @@
 
                 8 Declarations: power_balance power_supply power_feedin power_in power_out max_power_supply_constr max_power_feedin_constr power_balance_constr
 
-        18 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost heat_demand_scenarios objective price _mpisppy_data _mpisppy_model
+        18 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective heat_demand_scenarios price _mpisppy_data _mpisppy_model
     Scenario1 : Size=1, Index=None, Active=True
         2 Set Declarations
             scenarios : Size=1, Index=None, Ordered=Insertion
@@ -2122,7 +2122,7 @@
                  22 :  71.97
                  23 :   79.7
                  24 :  84.06
-            heat_demand_scenarios : Size=0, Index=Scenario1.scenarios*Scenario1.t, Domain=Any, Default=None, Mutable=False
+            heat_demand_scenarios : Size=0, Index=Scenario1.scenarios*Scenario1.t, Domain=Any, Default=None, Mutable=True
                 Key : Value
             price : Size=1, Index=None, Domain=NonNegativeReals, Default=None, Mutable=True
                 Key  : Value
@@ -4101,7 +4101,7 @@
 
                 8 Declarations: power_balance power_supply power_feedin power_in power_out max_power_supply_constr max_power_feedin_constr power_balance_constr
 
-        18 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost heat_demand_scenarios objective price _mpisppy_data _mpisppy_model
+        18 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective heat_demand_scenarios price _mpisppy_data _mpisppy_model
     Scenario2 : Size=1, Index=None, Active=True
         2 Set Declarations
             scenarios : Size=1, Index=None, Ordered=Insertion
@@ -4144,7 +4144,7 @@
                  22 :  71.97
                  23 :   79.7
                  24 :  84.06
-            heat_demand_scenarios : Size=0, Index=Scenario2.scenarios*Scenario2.t, Domain=Any, Default=None, Mutable=False
+            heat_demand_scenarios : Size=0, Index=Scenario2.scenarios*Scenario2.t, Domain=Any, Default=None, Mutable=True
                 Key : Value
             price : Size=1, Index=None, Domain=NonNegativeReals, Default=None, Mutable=True
                 Key  : Value
@@ -6123,7 +6123,7 @@
 
                 8 Declarations: power_balance power_supply power_feedin power_in power_out max_power_supply_constr max_power_feedin_constr power_balance_constr
 
-        18 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost heat_demand_scenarios objective price _mpisppy_data _mpisppy_model
+        18 Declarations: t scenarios POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective heat_demand_scenarios price _mpisppy_data _mpisppy_model
     _mpisppy_data : Size=1, Index=None, Active=True
         0 Declarations: 
     _mpisppy_model : Size=1, Index=None, Active=True

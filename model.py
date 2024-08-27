@@ -67,7 +67,7 @@ class Model:
         self.model.heat_demand = Param(self.model.t)
     
     def _define_stochastic_parameters(self):
-        self.model.heat_demand_scenarios = Param(self.model.scenarios, self.model.t)
+        self.model.heat_demand_scenarios = Param(self.model.scenarios, self.model.t, within=NonNegativeReals)
         
 
     def _define_assets(self):
@@ -112,8 +112,10 @@ class Model:
         """Define model expressions"""
         
         def first_stage_cost_rule(model):
-            return quicksum(model.chp1.gas[t] * model.price for t in model.t)
+            # return quicksum(model.chp1.gas[t] * model.price for t in model.t)
+            return 3
         self.model.first_stage_cost = Expression(rule=first_stage_cost_rule)
+     
 
         def second_stage_cost_rule(model):  
             return 2
@@ -140,8 +142,9 @@ class Model:
 
     def load_stochastic_data(self):
         df = pd.read_csv(self.PATH_IN + '/demands/heat_demand_scens_dummy.csv')
+        #print(df.head())
         scenario_names = [f"Scenario{i+1}" for i in range(len(df))]
-
+        
         # Zeitperioden definieren (T1, T2, ..., T24)
         time_periods = [f"{j+1}" for j in range(df.shape[1])]
 
@@ -152,7 +155,7 @@ class Model:
             heat_demand_scenarios[scenario] = {}
             for j, time_period in enumerate(time_periods):
                 heat_demand_scenarios[scenario][time_period] = df.iloc[i, j]
-        
+               
         return heat_demand_scenarios
 
 
@@ -162,32 +165,76 @@ class Model:
         for key in kwargs:
             self.solver.options[key] = kwargs[key]    
 
-    def scenario_creator(self, scenario_name, use_integer=False, sense=pyo.minimize, crops_multiplier=1, num_scens=None):
+    def scenario_creator(self, scenario_name, use_integer=False, sense=pyo.minimize, num_scens=None):
         """Erstellt die Szenarien für das Modell."""
-        #Erstelle die konkrete Instanz des Modells
         
-        scennum = sputils.extract_num(scenario_name)
-        basenames = ['FirstScenario', 'SecondScenario', 'ThirdScenario']
-        basenum = scennum % 3
-        groupnum = scennum // 3
-        scenname = basenames[basenum] + str(groupnum)
-        scenario_base_name = scenname.rstrip('1234567890')
+        #Erstelle die konkrete Instanz des Modells 
+        print("Creating scenario", scenario_name)
+        scenario_index = sputils.extract_num(scenario_name)
+        scenario_name = scenario_name.rstrip('1234567890')        
+        num_scens = len(self.load_stochastic_data())
+        print("Index des Szenarios", scenario_index)
+        print("Anzahl der Szenarien", num_scens)
+       
+        # Szenario Dictionary laden
+        heat_demand_scenarios = self.load_stochastic_data()
+        print(heat_demand_scenarios)
+        #print("heat_demand_scenarios", heat_demand_scenarios)
+
+        if (scenario_index < 0) or (scenario_index >= num_scens):
+            raise RuntimeError('Provided scenario index is invalid (must lie in '
+                            '{0,1,...' + str(num_scens-1) + '} inclusive)')
+
+        def heat_demand_init(model, t):
+            y = scenario_index+1
+            scenario_base_name = scenario_name + str(y)
+            return heat_demand_scenarios[scenario_base_name][t]
+        
+        self.model.x = pyo.Param(self.model.t, initialize=heat_demand_init, mutable=True)
 
 
-        # Szenario-spezifische Initialisierungen
-        price = {
-            'FirstScenario':  0.1541,
-            'SecondScenario': 0.1542,
-            'ThirdScenario': 0.1543
-        }
+        
+
+
+        # for t in self.model.t:
+        #     self.model.heat_demand_s[t] = heat_demand_scenarios[scenario_name][t-1]
+      
+      
+        # self.model.heat_demand_s = Param(self.model.t, within=NonNegativeReals, mutable=True)
+      
+      
+        # basenames = ['Scenario1', 'Scenario2', 'Scenario3']
+        # basenum = scennum % 3
+        # groupnum = scennum // 3
+        # scenname = basenames[basenum] + str(groupnum)
+        
+        #scenario_base_name = scenname.rstrip('1234567890')
+
+
+        #Szenario-spezifische Initialisierungen
+        # price = {
+        #     'Scenario1':  0.1541,
+        #     'Scenario2': 0.1542,
+        #     'Scenario3': 0.1543
+        # }
+
+        
+
+        # def heat_demand_init(model, scenario_name, t):
+        #     return heat_demand_scenarios[scenario_base_name][t-1]
+        
+        # self.model.heat_demand_scenarios = Param( self.model.t, initialize=heat_demand_init, mutable=True)
+        
+
+
 
         # def price_init(model):
         #     price_base_name = 'GAS_PRICE'
         #     print("price[scenario_base_name][price_base_name]", price[scenario_base_name][price_base_name])
         #     return price[scenario_base_name][price_base_name]
 
-        print(f"Price for {scenario_base_name}: {price[scenario_base_name]}")
-        self.model.price = Param(within=NonNegativeReals, initialize=price[scenario_base_name], mutable=True)
+        # print(f"Price for {scenario_base_name}: {price[scenario_base_name]}")
+        # self.model.price = Param(within=NonNegativeReals, initialize=price[scenario_base_name], mutable=True)
 
         self.instance = self.model.create_instance(self.timeseries_data)
         
