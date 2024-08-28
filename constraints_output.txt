@@ -578,6 +578,35 @@ electrical_efficiency_depends_on_thermal_load2_lower : Size=24, Index=t, Active=
      23 :  -Inf : (0.0011428571428571438*chp1.heat[23] + 0.2402857142857142 - 1000000.0*(1 - chp1.y2[23]))*chp1.bin[23] - chp1.eta_el[23] :   0.0 :   True
      24 :  -Inf : (0.0011428571428571438*chp1.heat[24] + 0.2402857142857142 - 1000000.0*(1 - chp1.y2[24]))*chp1.bin[24] - chp1.eta_el[24] :   0.0 :   True
 ____________________________________
+Constraint: chp1.gas_in_gas_insum
+Details:
+gas_in_gas_insum : Size=24, Index=t, Active=True
+    Key : Lower : Body                                  : Upper : Active
+      1 :   0.0 :   arc06_expanded.gas[1] - chp1.gas[1] :   0.0 :   True
+      2 :   0.0 :   arc06_expanded.gas[2] - chp1.gas[2] :   0.0 :   True
+      3 :   0.0 :   arc06_expanded.gas[3] - chp1.gas[3] :   0.0 :   True
+      4 :   0.0 :   arc06_expanded.gas[4] - chp1.gas[4] :   0.0 :   True
+      5 :   0.0 :   arc06_expanded.gas[5] - chp1.gas[5] :   0.0 :   True
+      6 :   0.0 :   arc06_expanded.gas[6] - chp1.gas[6] :   0.0 :   True
+      7 :   0.0 :   arc06_expanded.gas[7] - chp1.gas[7] :   0.0 :   True
+      8 :   0.0 :   arc06_expanded.gas[8] - chp1.gas[8] :   0.0 :   True
+      9 :   0.0 :   arc06_expanded.gas[9] - chp1.gas[9] :   0.0 :   True
+     10 :   0.0 : arc06_expanded.gas[10] - chp1.gas[10] :   0.0 :   True
+     11 :   0.0 : arc06_expanded.gas[11] - chp1.gas[11] :   0.0 :   True
+     12 :   0.0 : arc06_expanded.gas[12] - chp1.gas[12] :   0.0 :   True
+     13 :   0.0 : arc06_expanded.gas[13] - chp1.gas[13] :   0.0 :   True
+     14 :   0.0 : arc06_expanded.gas[14] - chp1.gas[14] :   0.0 :   True
+     15 :   0.0 : arc06_expanded.gas[15] - chp1.gas[15] :   0.0 :   True
+     16 :   0.0 : arc06_expanded.gas[16] - chp1.gas[16] :   0.0 :   True
+     17 :   0.0 : arc06_expanded.gas[17] - chp1.gas[17] :   0.0 :   True
+     18 :   0.0 : arc06_expanded.gas[18] - chp1.gas[18] :   0.0 :   True
+     19 :   0.0 : arc06_expanded.gas[19] - chp1.gas[19] :   0.0 :   True
+     20 :   0.0 : arc06_expanded.gas[20] - chp1.gas[20] :   0.0 :   True
+     21 :   0.0 : arc06_expanded.gas[21] - chp1.gas[21] :   0.0 :   True
+     22 :   0.0 : arc06_expanded.gas[22] - chp1.gas[22] :   0.0 :   True
+     23 :   0.0 : arc06_expanded.gas[23] - chp1.gas[23] :   0.0 :   True
+     24 :   0.0 : arc06_expanded.gas[24] - chp1.gas[24] :   0.0 :   True
+____________________________________
 Constraint: boiler1.max_heat_constr
 Details:
 max_heat_constr : Size=24, Index=t, Active=True
@@ -955,6 +984,64 @@ thermal_efficiency_depends_on_thermal_load2_lower : Size=24, Index=t, Active=Tru
      23 :  -Inf : (-0.0003552330022918257*boiler1.heat[23] + 1.1328105423987775 - 1000000.0*(1 - boiler1.y2[23]))*boiler1.bin[23] - boiler1.eta_th[23] :   0.0 :   True
      24 :  -Inf : (-0.0003552330022918257*boiler1.heat[24] + 1.1328105423987775 - 1000000.0*(1 - boiler1.y2[24]))*boiler1.bin[24] - boiler1.eta_th[24] :   0.0 :   True
 ____________________________________
+Constraint: boiler1.heat_out_heat_outsum
+Details:
+heat_out_heat_outsum : Size=24, Index=t, Active=True
+    Key : Lower : Body                                       : Upper : Active
+      1 :   0.0 :   arc04_expanded.heat[1] - boiler1.heat[1] :   0.0 :   True
+      2 :   0.0 :   arc04_expanded.heat[2] - boiler1.heat[2] :   0.0 :   True
+      3 :   0.0 :   arc04_expanded.heat[3] - boiler1.heat[3] :   0.0 :   True
+      4 :   0.0 :   arc04_expanded.heat[4] - boiler1.heat[4] :   0.0 :   True
+      5 :   0.0 :   arc04_expanded.heat[5] - boiler1.heat[5] :   0.0 :   True
+      6 :   0.0 :   arc04_expanded.heat[6] - boiler1.heat[6] :   0.0 :   True
+      7 :   0.0 :   arc04_expanded.heat[7] - boiler1.heat[7] :   0.0 :   True
+      8 :   0.0 :   arc04_expanded.heat[8] - boiler1.heat[8] :   0.0 :   True
+      9 :   0.0 :   arc04_expanded.heat[9] - boiler1.heat[9] :   0.0 :   True
+     10 :   0.0 : arc04_expanded.heat[10] - boiler1.heat[10] :   0.0 :   True
+     11 :   0.0 : arc04_expanded.heat[11] - boiler1.heat[11] :   0.0 :   True
+     12 :   0.0 : arc04_expanded.heat[12] - boiler1.heat[12] :   0.0 :   True
+     13 :   0.0 : arc04_expanded.heat[13] - boiler1.heat[13] :   0.0 :   True
+     14 :   0.0 : arc04_expanded.heat[14] - boiler1.heat[14] :   0.0 :   True
+     15 :   0.0 : arc04_expanded.heat[15] - boiler1.heat[15] :   0.0 :   True
+     16 :   0.0 : arc04_expanded.heat[16] - boiler1.heat[16] :   0.0 :   True
+     17 :   0.0 : arc04_expanded.heat[17] - boiler1.heat[17] :   0.0 :   True
+     18 :   0.0 : arc04_expanded.heat[18] - boiler1.heat[18] :   0.0 :   True
+     19 :   0.0 : arc04_expanded.heat[19] - boiler1.heat[19] :   0.0 :   True
+     20 :   0.0 : arc04_expanded.heat[20] - boiler1.heat[20] :   0.0 :   True
+     21 :   0.0 : arc04_expanded.heat[21] - boiler1.heat[21] :   0.0 :   True
+     22 :   0.0 : arc04_expanded.heat[22] - boiler1.heat[22] :   0.0 :   True
+     23 :   0.0 : arc04_expanded.heat[23] - boiler1.heat[23] :   0.0 :   True
+     24 :   0.0 : arc04_expanded.heat[24] - boiler1.heat[24] :   0.0 :   True
+____________________________________
+Constraint: boiler1.gas_in_gas_insum
+Details:
+gas_in_gas_insum : Size=24, Index=t, Active=True
+    Key : Lower : Body                                     : Upper : Active
+      1 :   0.0 :   arc05_expanded.gas[1] - boiler1.gas[1] :   0.0 :   True
+      2 :   0.0 :   arc05_expanded.gas[2] - boiler1.gas[2] :   0.0 :   True
+      3 :   0.0 :   arc05_expanded.gas[3] - boiler1.gas[3] :   0.0 :   True
+      4 :   0.0 :   arc05_expanded.gas[4] - boiler1.gas[4] :   0.0 :   True
+      5 :   0.0 :   arc05_expanded.gas[5] - boiler1.gas[5] :   0.0 :   True
+      6 :   0.0 :   arc05_expanded.gas[6] - boiler1.gas[6] :   0.0 :   True
+      7 :   0.0 :   arc05_expanded.gas[7] - boiler1.gas[7] :   0.0 :   True
+      8 :   0.0 :   arc05_expanded.gas[8] - boiler1.gas[8] :   0.0 :   True
+      9 :   0.0 :   arc05_expanded.gas[9] - boiler1.gas[9] :   0.0 :   True
+     10 :   0.0 : arc05_expanded.gas[10] - boiler1.gas[10] :   0.0 :   True
+     11 :   0.0 : arc05_expanded.gas[11] - boiler1.gas[11] :   0.0 :   True
+     12 :   0.0 : arc05_expanded.gas[12] - boiler1.gas[12] :   0.0 :   True
+     13 :   0.0 : arc05_expanded.gas[13] - boiler1.gas[13] :   0.0 :   True
+     14 :   0.0 : arc05_expanded.gas[14] - boiler1.gas[14] :   0.0 :   True
+     15 :   0.0 : arc05_expanded.gas[15] - boiler1.gas[15] :   0.0 :   True
+     16 :   0.0 : arc05_expanded.gas[16] - boiler1.gas[16] :   0.0 :   True
+     17 :   0.0 : arc05_expanded.gas[17] - boiler1.gas[17] :   0.0 :   True
+     18 :   0.0 : arc05_expanded.gas[18] - boiler1.gas[18] :   0.0 :   True
+     19 :   0.0 : arc05_expanded.gas[19] - boiler1.gas[19] :   0.0 :   True
+     20 :   0.0 : arc05_expanded.gas[20] - boiler1.gas[20] :   0.0 :   True
+     21 :   0.0 : arc05_expanded.gas[21] - boiler1.gas[21] :   0.0 :   True
+     22 :   0.0 : arc05_expanded.gas[22] - boiler1.gas[22] :   0.0 :   True
+     23 :   0.0 : arc05_expanded.gas[23] - boiler1.gas[23] :   0.0 :   True
+     24 :   0.0 : arc05_expanded.gas[24] - boiler1.gas[24] :   0.0 :   True
+____________________________________
 Constraint: heat_storage1.max_heat_charge_constr
 Details:
 max_heat_charge_constr : Size=24, Index=t, Active=True
@@ -1129,6 +1216,64 @@ capacity_balance_constr : Size=24, Index=t, Active=True
      23 :   0.0 : heat_storage1.heat_capacity[23] - (heat_storage1.heat_capacity[22] - heat_storage1.heat_balance[23]) :   0.0 :   True
      24 :   0.0 : heat_storage1.heat_capacity[24] - (heat_storage1.heat_capacity[23] - heat_storage1.heat_balance[24]) :   0.0 :   True
 ____________________________________
+Constraint: heat_storage1.heat_out_heat_outsum
+Details:
+heat_out_heat_outsum : Size=24, Index=t, Active=True
+    Key : Lower : Body                                                       : Upper : Active
+      1 :   0.0 :   arc03_expanded.heat[1] - heat_storage1.heat_discharge[1] :   0.0 :   True
+      2 :   0.0 :   arc03_expanded.heat[2] - heat_storage1.heat_discharge[2] :   0.0 :   True
+      3 :   0.0 :   arc03_expanded.heat[3] - heat_storage1.heat_discharge[3] :   0.0 :   True
+      4 :   0.0 :   arc03_expanded.heat[4] - heat_storage1.heat_discharge[4] :   0.0 :   True
+      5 :   0.0 :   arc03_expanded.heat[5] - heat_storage1.heat_discharge[5] :   0.0 :   True
+      6 :   0.0 :   arc03_expanded.heat[6] - heat_storage1.heat_discharge[6] :   0.0 :   True
+      7 :   0.0 :   arc03_expanded.heat[7] - heat_storage1.heat_discharge[7] :   0.0 :   True
+      8 :   0.0 :   arc03_expanded.heat[8] - heat_storage1.heat_discharge[8] :   0.0 :   True
+      9 :   0.0 :   arc03_expanded.heat[9] - heat_storage1.heat_discharge[9] :   0.0 :   True
+     10 :   0.0 : arc03_expanded.heat[10] - heat_storage1.heat_discharge[10] :   0.0 :   True
+     11 :   0.0 : arc03_expanded.heat[11] - heat_storage1.heat_discharge[11] :   0.0 :   True
+     12 :   0.0 : arc03_expanded.heat[12] - heat_storage1.heat_discharge[12] :   0.0 :   True
+     13 :   0.0 : arc03_expanded.heat[13] - heat_storage1.heat_discharge[13] :   0.0 :   True
+     14 :   0.0 : arc03_expanded.heat[14] - heat_storage1.heat_discharge[14] :   0.0 :   True
+     15 :   0.0 : arc03_expanded.heat[15] - heat_storage1.heat_discharge[15] :   0.0 :   True
+     16 :   0.0 : arc03_expanded.heat[16] - heat_storage1.heat_discharge[16] :   0.0 :   True
+     17 :   0.0 : arc03_expanded.heat[17] - heat_storage1.heat_discharge[17] :   0.0 :   True
+     18 :   0.0 : arc03_expanded.heat[18] - heat_storage1.heat_discharge[18] :   0.0 :   True
+     19 :   0.0 : arc03_expanded.heat[19] - heat_storage1.heat_discharge[19] :   0.0 :   True
+     20 :   0.0 : arc03_expanded.heat[20] - heat_storage1.heat_discharge[20] :   0.0 :   True
+     21 :   0.0 : arc03_expanded.heat[21] - heat_storage1.heat_discharge[21] :   0.0 :   True
+     22 :   0.0 : arc03_expanded.heat[22] - heat_storage1.heat_discharge[22] :   0.0 :   True
+     23 :   0.0 : arc03_expanded.heat[23] - heat_storage1.heat_discharge[23] :   0.0 :   True
+     24 :   0.0 : arc03_expanded.heat[24] - heat_storage1.heat_discharge[24] :   0.0 :   True
+____________________________________
+Constraint: ngas_grid.gas_out_gas_outsum
+Details:
+gas_out_gas_outsum : Size=24, Index=t, Active=True
+    Key : Lower : Body                                                                        : Upper : Active
+      1 :   0.0 :    arc05_expanded.gas[1] + arc06_expanded.gas[1] - ngas_grid.gas_balance[1] :   0.0 :   True
+      2 :   0.0 :    arc05_expanded.gas[2] + arc06_expanded.gas[2] - ngas_grid.gas_balance[2] :   0.0 :   True
+      3 :   0.0 :    arc05_expanded.gas[3] + arc06_expanded.gas[3] - ngas_grid.gas_balance[3] :   0.0 :   True
+      4 :   0.0 :    arc05_expanded.gas[4] + arc06_expanded.gas[4] - ngas_grid.gas_balance[4] :   0.0 :   True
+      5 :   0.0 :    arc05_expanded.gas[5] + arc06_expanded.gas[5] - ngas_grid.gas_balance[5] :   0.0 :   True
+      6 :   0.0 :    arc05_expanded.gas[6] + arc06_expanded.gas[6] - ngas_grid.gas_balance[6] :   0.0 :   True
+      7 :   0.0 :    arc05_expanded.gas[7] + arc06_expanded.gas[7] - ngas_grid.gas_balance[7] :   0.0 :   True
+      8 :   0.0 :    arc05_expanded.gas[8] + arc06_expanded.gas[8] - ngas_grid.gas_balance[8] :   0.0 :   True
+      9 :   0.0 :    arc05_expanded.gas[9] + arc06_expanded.gas[9] - ngas_grid.gas_balance[9] :   0.0 :   True
+     10 :   0.0 : arc05_expanded.gas[10] + arc06_expanded.gas[10] - ngas_grid.gas_balance[10] :   0.0 :   True
+     11 :   0.0 : arc05_expanded.gas[11] + arc06_expanded.gas[11] - ngas_grid.gas_balance[11] :   0.0 :   True
+     12 :   0.0 : arc05_expanded.gas[12] + arc06_expanded.gas[12] - ngas_grid.gas_balance[12] :   0.0 :   True
+     13 :   0.0 : arc05_expanded.gas[13] + arc06_expanded.gas[13] - ngas_grid.gas_balance[13] :   0.0 :   True
+     14 :   0.0 : arc05_expanded.gas[14] + arc06_expanded.gas[14] - ngas_grid.gas_balance[14] :   0.0 :   True
+     15 :   0.0 : arc05_expanded.gas[15] + arc06_expanded.gas[15] - ngas_grid.gas_balance[15] :   0.0 :   True
+     16 :   0.0 : arc05_expanded.gas[16] + arc06_expanded.gas[16] - ngas_grid.gas_balance[16] :   0.0 :   True
+     17 :   0.0 : arc05_expanded.gas[17] + arc06_expanded.gas[17] - ngas_grid.gas_balance[17] :   0.0 :   True
+     18 :   0.0 : arc05_expanded.gas[18] + arc06_expanded.gas[18] - ngas_grid.gas_balance[18] :   0.0 :   True
+     19 :   0.0 : arc05_expanded.gas[19] + arc06_expanded.gas[19] - ngas_grid.gas_balance[19] :   0.0 :   True
+     20 :   0.0 : arc05_expanded.gas[20] + arc06_expanded.gas[20] - ngas_grid.gas_balance[20] :   0.0 :   True
+     21 :   0.0 : arc05_expanded.gas[21] + arc06_expanded.gas[21] - ngas_grid.gas_balance[21] :   0.0 :   True
+     22 :   0.0 : arc05_expanded.gas[22] + arc06_expanded.gas[22] - ngas_grid.gas_balance[22] :   0.0 :   True
+     23 :   0.0 : arc05_expanded.gas[23] + arc06_expanded.gas[23] - ngas_grid.gas_balance[23] :   0.0 :   True
+     24 :   0.0 : arc05_expanded.gas[24] + arc06_expanded.gas[24] - ngas_grid.gas_balance[24] :   0.0 :   True
+____________________________________
 Constraint: power_grid.max_power_supply_constr
 Details:
 max_power_supply_constr : Size=24, Index=t, Active=True
@@ -1302,4 +1447,91 @@ heat_supply_constr : Size=24, Index=t, Active=True
      22 :  71.97 : heat_grid.heat_supply[22] :  71.97 :   True
      23 :   79.7 : heat_grid.heat_supply[23] :   79.7 :   True
      24 :  84.06 : heat_grid.heat_supply[24] :  84.06 :   True
+____________________________________
+Constraint: heat_grid.heat_in_heat_insum
+Details:
+heat_in_heat_insum : Size=24, Index=t, Active=True
+    Key : Lower : Body                                                                          : Upper : Active
+      1 :   0.0 :    arc03_expanded.heat[1] + arc04_expanded.heat[1] - heat_grid.heat_feedin[1] :   0.0 :   True
+      2 :   0.0 :    arc03_expanded.heat[2] + arc04_expanded.heat[2] - heat_grid.heat_feedin[2] :   0.0 :   True
+      3 :   0.0 :    arc03_expanded.heat[3] + arc04_expanded.heat[3] - heat_grid.heat_feedin[3] :   0.0 :   True
+      4 :   0.0 :    arc03_expanded.heat[4] + arc04_expanded.heat[4] - heat_grid.heat_feedin[4] :   0.0 :   True
+      5 :   0.0 :    arc03_expanded.heat[5] + arc04_expanded.heat[5] - heat_grid.heat_feedin[5] :   0.0 :   True
+      6 :   0.0 :    arc03_expanded.heat[6] + arc04_expanded.heat[6] - heat_grid.heat_feedin[6] :   0.0 :   True
+      7 :   0.0 :    arc03_expanded.heat[7] + arc04_expanded.heat[7] - heat_grid.heat_feedin[7] :   0.0 :   True
+      8 :   0.0 :    arc03_expanded.heat[8] + arc04_expanded.heat[8] - heat_grid.heat_feedin[8] :   0.0 :   True
+      9 :   0.0 :    arc03_expanded.heat[9] + arc04_expanded.heat[9] - heat_grid.heat_feedin[9] :   0.0 :   True
+     10 :   0.0 : arc03_expanded.heat[10] + arc04_expanded.heat[10] - heat_grid.heat_feedin[10] :   0.0 :   True
+     11 :   0.0 : arc03_expanded.heat[11] + arc04_expanded.heat[11] - heat_grid.heat_feedin[11] :   0.0 :   True
+     12 :   0.0 : arc03_expanded.heat[12] + arc04_expanded.heat[12] - heat_grid.heat_feedin[12] :   0.0 :   True
+     13 :   0.0 : arc03_expanded.heat[13] + arc04_expanded.heat[13] - heat_grid.heat_feedin[13] :   0.0 :   True
+     14 :   0.0 : arc03_expanded.heat[14] + arc04_expanded.heat[14] - heat_grid.heat_feedin[14] :   0.0 :   True
+     15 :   0.0 : arc03_expanded.heat[15] + arc04_expanded.heat[15] - heat_grid.heat_feedin[15] :   0.0 :   True
+     16 :   0.0 : arc03_expanded.heat[16] + arc04_expanded.heat[16] - heat_grid.heat_feedin[16] :   0.0 :   True
+     17 :   0.0 : arc03_expanded.heat[17] + arc04_expanded.heat[17] - heat_grid.heat_feedin[17] :   0.0 :   True
+     18 :   0.0 : arc03_expanded.heat[18] + arc04_expanded.heat[18] - heat_grid.heat_feedin[18] :   0.0 :   True
+     19 :   0.0 : arc03_expanded.heat[19] + arc04_expanded.heat[19] - heat_grid.heat_feedin[19] :   0.0 :   True
+     20 :   0.0 : arc03_expanded.heat[20] + arc04_expanded.heat[20] - heat_grid.heat_feedin[20] :   0.0 :   True
+     21 :   0.0 : arc03_expanded.heat[21] + arc04_expanded.heat[21] - heat_grid.heat_feedin[21] :   0.0 :   True
+     22 :   0.0 : arc03_expanded.heat[22] + arc04_expanded.heat[22] - heat_grid.heat_feedin[22] :   0.0 :   True
+     23 :   0.0 : arc03_expanded.heat[23] + arc04_expanded.heat[23] - heat_grid.heat_feedin[23] :   0.0 :   True
+     24 :   0.0 : arc03_expanded.heat[24] + arc04_expanded.heat[24] - heat_grid.heat_feedin[24] :   0.0 :   True
+____________________________________
+Constraint: arc01_expanded.power_equality
+Details:
+power_equality : Size=24, Index=t, Active=True
+    Key : Lower : Body                                         : Upper : Active
+      1 :   0.0 :   chp1.power[1] - power_grid.power_feedin[1] :   0.0 :   True
+      2 :   0.0 :   chp1.power[2] - power_grid.power_feedin[2] :   0.0 :   True
+      3 :   0.0 :   chp1.power[3] - power_grid.power_feedin[3] :   0.0 :   True
+      4 :   0.0 :   chp1.power[4] - power_grid.power_feedin[4] :   0.0 :   True
+      5 :   0.0 :   chp1.power[5] - power_grid.power_feedin[5] :   0.0 :   True
+      6 :   0.0 :   chp1.power[6] - power_grid.power_feedin[6] :   0.0 :   True
+      7 :   0.0 :   chp1.power[7] - power_grid.power_feedin[7] :   0.0 :   True
+      8 :   0.0 :   chp1.power[8] - power_grid.power_feedin[8] :   0.0 :   True
+      9 :   0.0 :   chp1.power[9] - power_grid.power_feedin[9] :   0.0 :   True
+     10 :   0.0 : chp1.power[10] - power_grid.power_feedin[10] :   0.0 :   True
+     11 :   0.0 : chp1.power[11] - power_grid.power_feedin[11] :   0.0 :   True
+     12 :   0.0 : chp1.power[12] - power_grid.power_feedin[12] :   0.0 :   True
+     13 :   0.0 : chp1.power[13] - power_grid.power_feedin[13] :   0.0 :   True
+     14 :   0.0 : chp1.power[14] - power_grid.power_feedin[14] :   0.0 :   True
+     15 :   0.0 : chp1.power[15] - power_grid.power_feedin[15] :   0.0 :   True
+     16 :   0.0 : chp1.power[16] - power_grid.power_feedin[16] :   0.0 :   True
+     17 :   0.0 : chp1.power[17] - power_grid.power_feedin[17] :   0.0 :   True
+     18 :   0.0 : chp1.power[18] - power_grid.power_feedin[18] :   0.0 :   True
+     19 :   0.0 : chp1.power[19] - power_grid.power_feedin[19] :   0.0 :   True
+     20 :   0.0 : chp1.power[20] - power_grid.power_feedin[20] :   0.0 :   True
+     21 :   0.0 : chp1.power[21] - power_grid.power_feedin[21] :   0.0 :   True
+     22 :   0.0 : chp1.power[22] - power_grid.power_feedin[22] :   0.0 :   True
+     23 :   0.0 : chp1.power[23] - power_grid.power_feedin[23] :   0.0 :   True
+     24 :   0.0 : chp1.power[24] - power_grid.power_feedin[24] :   0.0 :   True
+____________________________________
+Constraint: arc02_expanded.heat_equality
+Details:
+heat_equality : Size=24, Index=t, Active=True
+    Key : Lower : Body                                          : Upper : Active
+      1 :   0.0 :   chp1.heat[1] - heat_storage1.heat_charge[1] :   0.0 :   True
+      2 :   0.0 :   chp1.heat[2] - heat_storage1.heat_charge[2] :   0.0 :   True
+      3 :   0.0 :   chp1.heat[3] - heat_storage1.heat_charge[3] :   0.0 :   True
+      4 :   0.0 :   chp1.heat[4] - heat_storage1.heat_charge[4] :   0.0 :   True
+      5 :   0.0 :   chp1.heat[5] - heat_storage1.heat_charge[5] :   0.0 :   True
+      6 :   0.0 :   chp1.heat[6] - heat_storage1.heat_charge[6] :   0.0 :   True
+      7 :   0.0 :   chp1.heat[7] - heat_storage1.heat_charge[7] :   0.0 :   True
+      8 :   0.0 :   chp1.heat[8] - heat_storage1.heat_charge[8] :   0.0 :   True
+      9 :   0.0 :   chp1.heat[9] - heat_storage1.heat_charge[9] :   0.0 :   True
+     10 :   0.0 : chp1.heat[10] - heat_storage1.heat_charge[10] :   0.0 :   True
+     11 :   0.0 : chp1.heat[11] - heat_storage1.heat_charge[11] :   0.0 :   True
+     12 :   0.0 : chp1.heat[12] - heat_storage1.heat_charge[12] :   0.0 :   True
+     13 :   0.0 : chp1.heat[13] - heat_storage1.heat_charge[13] :   0.0 :   True
+     14 :   0.0 : chp1.heat[14] - heat_storage1.heat_charge[14] :   0.0 :   True
+     15 :   0.0 : chp1.heat[15] - heat_storage1.heat_charge[15] :   0.0 :   True
+     16 :   0.0 : chp1.heat[16] - heat_storage1.heat_charge[16] :   0.0 :   True
+     17 :   0.0 : chp1.heat[17] - heat_storage1.heat_charge[17] :   0.0 :   True
+     18 :   0.0 : chp1.heat[18] - heat_storage1.heat_charge[18] :   0.0 :   True
+     19 :   0.0 : chp1.heat[19] - heat_storage1.heat_charge[19] :   0.0 :   True
+     20 :   0.0 : chp1.heat[20] - heat_storage1.heat_charge[20] :   0.0 :   True
+     21 :   0.0 : chp1.heat[21] - heat_storage1.heat_charge[21] :   0.0 :   True
+     22 :   0.0 : chp1.heat[22] - heat_storage1.heat_charge[22] :   0.0 :   True
+     23 :   0.0 : chp1.heat[23] - heat_storage1.heat_charge[23] :   0.0 :   True
+     24 :   0.0 : chp1.heat[24] - heat_storage1.heat_charge[24] :   0.0 :   True
 ____________________________________

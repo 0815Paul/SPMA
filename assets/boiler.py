@@ -23,7 +23,6 @@ class Boiler:
 
 
     def extract_chp_data(self):
-        self.boiler_data = self.data_dict['data/input//assets/boiler.csv']   
         self.boiler_op_data = self.data_dict['data/input//assets/boiler_operation.csv']
     
     def add_to_model(self, model):

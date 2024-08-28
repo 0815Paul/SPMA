@@ -15,9 +15,6 @@ from mpisppy.utils import config
 import mpisppy.utils.sputils as sputils
 import mpisppy.utils.solver_spec as solver_spec
 
-
-
-
 import assets.chp as chp
 import assets.boiler as boiler
 import assets.heat_storage as heat_storage
@@ -32,12 +29,26 @@ PATH_OUT = 'data/output/'
 GAS_PRICE = 0.1543 # €/kWh  (HS)
 POWER_PRICE = 0.251 # €/kWh (el)
 HEAT_PRICE = 0.105 # €/kWh (th)
+CALORIFIC_VALUE_NGAS = 10 # kWh/m3
+
+# CHP 
+CHP_BONUS_SELF_CONSUMPTION= 0.08  # €/kWhel
+CHP_BONUS= 0.16  # €/kWhel
+CHP_INDEX_EEX= 0.1158  # €/kWhel
+ENERGY_TAX_REFUND_GAS= 0.0055  # €/kWhHS
+AVOIDED_GRID_FEES= 0.0097  # €/kWhel
+SHARE_SELF_CONSUMPTION= 0.03 # %
+SHARE_FEED_IN= 0.97 # %
+
+# Costs
+MAINTENANCE_COSTS = 1.8 # €/kWh (HS)
 
 
 class Model:
     """Model class."""
     
     def __init__(self):
+        """Initialize the model."""
         self.PATH_IN = PATH_IN
         self.PATH_OUT = PATH_OUT
         self.model = AbstractModel()
@@ -52,85 +63,52 @@ class Model:
     def _initialize_model_components(self):
         """Initialize basic model components."""
         self.model.t = Set(ordered=True)
-        self.model.scenarios = Set(ordered=True)
         self._define_parameters()
         self._define_assets()
         self._define_expressions()
-        self._define_stochastic_parameters()
+        # self._define_stochastic_parameters()
 
     def _define_parameters(self):
         """Define model parameters."""
         # Load Constants and the heat demand
-        # self.model.GAS_PRICE = Param(initialize=GAS_PRICE)
+        self.model.GAS_PRICE = Param(initialize=GAS_PRICE)
         self.model.POWER_PRICE = Param(initialize=POWER_PRICE)
         self.model.HEAT_PRICE = Param(initialize=HEAT_PRICE)
         self.model.heat_demand = Param(self.model.t)
-    
-    def _define_stochastic_parameters(self):
-        self.model.heat_demand_scenarios = Param(self.model.scenarios, self.model.t, within=NonNegativeReals)
-        
 
     def _define_assets(self):
-        """Define model assets."""
-        chp_filepaths = [
-            self.PATH_IN + '/assets/chp.csv',
-            self.PATH_IN + '/assets/chp_operation.csv'
-        ]
+        self._add_chp_assets()
+        self._add_boiler_assets()
+        self._add_heat_storage_assets()
+        self._add_grid_assets()
+    
+    def _add_chp_assets(self):
+        """Define CHP assets."""
+        chp_filepaths = [self.PATH_IN + '/assets/chp_operation.csv']
+        chp1 = chp.Chp('chp1', chp_filepaths)
+        chp1.add_to_model(self.model)
 
-        boiler_filepaths = [
-            self.PATH_IN + '/assets/boiler.csv',
-            self.PATH_IN + '/assets/boiler_operation.csv'
-        ]
+    def _add_boiler_assets(self):
+        """Define Boiler assets."""
+        boiler_filepaths = [self.PATH_IN + '/assets/boiler_operation.csv']
+        boiler1 = boiler.Boiler('boiler1', boiler_filepaths)
+        boiler1.add_to_model(self.model)
 
-        chp1 = chp.Chp(
-            'chp1', chp_filepaths
-        )
+    def _add_heat_storage_assets(self):
+        """Define Heat Storage assets."""
+        heat_storage1 = heat_storage.HeatStorage('heat_storage1', self.PATH_IN + '/assets/heat_storage.csv')
+        heat_storage1.add_to_model(self.model)
 
-        boiler1 = boiler.Boiler(
-            'boiler1', boiler_filepaths
-        )
-
-        heat_storage1 = heat_storage.HeatStorage(
-            'heat_storage1', self.PATH_IN + '/assets/heat_storage.csv'
-        )
-
+    def _add_grid_assets(self):
+        """Define Grid assets."""
         ngas_grid = grid.NGasGrid('ngas_grid')
+        power_grid = grid.ElectricalGrid('power_grid', self.PATH_IN + '/assets/power_grid.csv')
+        heat_grid = grid.HeatGrid('heat_grid', self.PATH_IN + '/assets/heat_grid.csv')
 
-        power_grid = grid.ElectricalGrid(
-            'power_grid', self.PATH_IN + '/assets/power_grid.csv'
-        )
+        for grid_assets in [ngas_grid, power_grid, heat_grid]:
+            grid_assets.add_to_model(self.model)
 
-        heat_grid = grid.HeatGrid(
-            'heat_grid', self.PATH_IN + '/assets/heat_grid.csv'
-        )
-
-        for asset in [chp1, boiler1, heat_storage1, ngas_grid, power_grid, heat_grid]:
-            asset.add_to_model(self.model)
-
-    
-    def _define_expressions(self):
-        """Define model expressions"""
-        
-        def first_stage_cost_rule(model):
-            # return quicksum(model.chp1.gas[t] * model.price for t in model.t)
-            return 3
-        self.model.first_stage_cost = Expression(rule=first_stage_cost_rule)
-     
-
-        def second_stage_cost_rule(model):  
-            return 2
-        self.model.second_stage_cost = Expression(rule=second_stage_cost_rule)
-    
-    # __________________________________________________________________________
-
-    
-    def add_objective(self):
-        """Add objective function to model."""
-        def objective_expression_rule(model):
-            return model.first_stage_cost + model.second_stage_cost
-        self.model.objective = Objective(rule=objective_expression_rule,sense=maximize)  
-
-    def load_timeseries_data(self):
+    def _load_timeseries_data(self):
         """Load timeseries data from file."""
         self.timeseries_data = DataPortal()
         self.timeseries_data.load(
@@ -138,139 +116,9 @@ class Model:
             index='t',
             param='heat_demand'
         )
-    
-
-    def load_stochastic_data(self):
-        df = pd.read_csv(self.PATH_IN + '/demands/heat_demand_scens_dummy.csv')
-        #print(df.head())
-        scenario_names = [f"Scenario{i+1}" for i in range(len(df))]
-        
-        # Zeitperioden definieren (T1, T2, ..., T24)
-        time_periods = [f"{j+1}" for j in range(df.shape[1])]
-
-        # Dictionary erstellen
-        heat_demand_scenarios = {}
-
-        for i, scenario in enumerate(scenario_names):
-            heat_demand_scenarios[scenario] = {}
-            for j, time_period in enumerate(time_periods):
-                heat_demand_scenarios[scenario][time_period] = df.iloc[i, j]
-               
-        return heat_demand_scenarios
-
-
-    def set_solver(self, solver_name, **kwargs):
-        """Set solver for the model."""
-        self.solver = SolverFactory(solver_name)
-        for key in kwargs:
-            self.solver.options[key] = kwargs[key]    
-
-    def scenario_creator(self, scenario_name, use_integer=False, sense=pyo.minimize, num_scens=None):
-        """Erstellt die Szenarien für das Modell."""
-        
-        #Erstelle die konkrete Instanz des Modells 
-        print("Creating scenario", scenario_name)
-        scenario_index = sputils.extract_num(scenario_name)
-        scenario_name = scenario_name.rstrip('1234567890')        
-        num_scens = len(self.load_stochastic_data())
-        print("Index des Szenarios", scenario_index)
-        print("Anzahl der Szenarien", num_scens)
-       
-        # Szenario Dictionary laden
-        heat_demand_scenarios = self.load_stochastic_data()
-        print(heat_demand_scenarios)
-        #print("heat_demand_scenarios", heat_demand_scenarios)
-
-        if (scenario_index < 0) or (scenario_index >= num_scens):
-            raise RuntimeError('Provided scenario index is invalid (must lie in '
-                            '{0,1,...' + str(num_scens-1) + '} inclusive)')
-
-        def heat_demand_init(model, t):
-            y = scenario_index+1
-            scenario_base_name = scenario_name + str(y)
-            return heat_demand_scenarios[scenario_base_name][t]
-        
-        self.model.x = pyo.Param(self.model.t, initialize=heat_demand_init, mutable=True)
-
 
         
-
-
-        # for t in self.model.t:
-        #     self.model.heat_demand_s[t] = heat_demand_scenarios[scenario_name][t-1]
-      
-      
-        # self.model.heat_demand_s = Param(self.model.t, within=NonNegativeReals, mutable=True)
-      
-      
-        # basenames = ['Scenario1', 'Scenario2', 'Scenario3']
-        # basenum = scennum % 3
-        # groupnum = scennum // 3
-        # scenname = basenames[basenum] + str(groupnum)
-        
-        #scenario_base_name = scenname.rstrip('1234567890')
-
-
-        #Szenario-spezifische Initialisierungen
-        # price = {
-        #     'Scenario1':  0.1541,
-        #     'Scenario2': 0.1542,
-        #     'Scenario3': 0.1543
-        # }
-
-        
-
-        # def heat_demand_init(model, scenario_name, t):
-        #     return heat_demand_scenarios[scenario_base_name][t-1]
-        
-        # self.model.heat_demand_scenarios = Param( self.model.t, initialize=heat_demand_init, mutable=True)
-        
-
-
-
-        # def price_init(model):
-        #     price_base_name = 'GAS_PRICE'
-        #     print("price[scenario_base_name][price_base_name]", price[scenario_base_name][price_base_name])
-        #     return price[scenario_base_name][price_base_name]
-
-        # print(f"Price for {scenario_base_name}: {price[scenario_base_name]}")
-        # self.model.price = Param(within=NonNegativeReals, initialize=price[scenario_base_name], mutable=True)
-
-        self.instance = self.model.create_instance(self.timeseries_data)
-        
-        if num_scens is not None:
-            self.instance._mpisppy_probability = 1 / num_scens
-
-        # Variable mit Index t anlegen
-        varlist = [self.instance.chp1.gas]
-        sputils.attach_root_node(self.instance, self.instance.first_stage_cost, varlist)
-
-        print("Writing instance output.txt ...")
-        with open('output.txt', 'w') as f:
-            self.instance.pprint(ostream=f)
-
-        print("____________________________________")
-        print("Model instance created successfully.")
-        print("First stage cost expression:", self.instance.first_stage_cost.expr)
-        print("Price parameter value:", pyo.value(self.instance.price))
-        print("____________________________________")
-
-        with open('constraints_output.txt', 'w') as f:
-            # Iteriere über alle aktiven Constraints in der Modellinstanz
-            for con in self.instance.component_objects(Constraint, active=True):
-                # Schreibe den Namen der Constraint-Komponente in die Datei
-                f.write(f"Constraint: {con.name}\n")
-                f.write("Details:\n")
-                # Nutze pprint, um die Details der Constraint in die Datei zu schreiben
-                con.pprint(ostream=f)
-                f.write("____________________________________\n")
-        
-        
-        
-        return self.instance
-
-
-    def add_arcs(self):
+    def _add_arcs(self):
         """Add arcs to the instance."""
         self.instance.arc01 = Arc(
             source=self.instance.chp1.power_out,
@@ -297,12 +145,189 @@ class Model:
             destination=self.instance.chp1.gas_in
         )
 
-    def expand_arcs(self):
+    def _expand_arcs(self):
         """Expands arcs and generate connection constraints."""
         TransformationFactory('network.expand_arcs').apply_to(self.instance)
+    
+    def _define_expressions(self):
+        """Define Model expressions."""
+        self.model.first_stage_cost = Expression(rule=self._first_stage_cost_rule)
+        self.model.second_stage_cost = Expression(rule=self._second_stage_cost_rule)
+
+    def _first_stage_cost_rule(self, model):
+        return (
+            self._gas_costs(model) + 
+            self._maintenance_costs(model) - 
+            self._power_revenue(model) - 
+            self._heat_revenue(model) - 
+            self._chp_revenue(model)
+        )
+
+    def _second_stage_cost_rule(self, model):
+        return 2  # Dummy-Wert
+    
+    def _gas_costs(self, model):
+            """ Calculate gas costs for CHP and Boiler."""
+            gas_costs = (
+            quicksum(model.chp1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) + 
+            quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
+            )
+            return gas_costs
+    
+    def _maintenance_costs(self, model):
+        """Calculate maintenance costs for CHP."""
+        maintenance_costs = quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t)
+        return maintenance_costs
+
+    def _power_revenue(self, model):
+        """Calculate power revenue for CHP."""
+        power_revenue = quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t)
+        return power_revenue
+    
+    def _heat_revenue(self, model):
+        """Calculate heat revenue for CHP and Boiler."""
+        heat_revenue = (
+        quicksum(model.chp1.heat[t] * model.HEAT_PRICE for t in model.t) +
+        quicksum(model.boiler1.heat[t] * model.HEAT_PRICE for t in model.t)
+        )
+        return heat_revenue
+    
+    def _chp_revenue(self, model):
+        """Calculate CHP revenue."""
+        chp_bonus_for_self_consumption = quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t)
+        chp_bonus_for_feed_in = quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t)
+        chp_index = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t)
+        avoided_grid_fees = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t)
+        energy_tax_refund = quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t)
+        
+        chp_revenue = (
+            chp_bonus_for_self_consumption +
+            chp_bonus_for_feed_in +
+            chp_index +
+            avoided_grid_fees +
+            energy_tax_refund
+        )
+        return chp_revenue
+
+    def _load_stochastic_data(self):
+        df = pd.read_csv(self.PATH_IN + '/demands/heat_demand_scens_dummy.csv')
+        scenario_names = [f"Scenario{i+1}" for i in range(len(df))]
+        
+        # Define time periods
+        time_periods = [j + 1 for j in range(df.shape[1])]
+
+        # Dictionary erstellen
+        heat_demand_scenarios = {}
+
+        for i, scenario in enumerate(scenario_names):
+            heat_demand_scenarios[scenario] = {}
+            for j, time_period in enumerate(time_periods):
+                heat_demand_scenarios[scenario][time_period] = df.iloc[i, j]
+               
+        return heat_demand_scenarios
+    
+    def _initialize_scenario_parameters(self, heat_demand_scenario):
+        """Initialize scenario parameters."""
+        def heat_demand_init(m, t):
+            if t in heat_demand_scenario:
+                #print("heat_demand_scenario[t]: ", heat_demand_scenario[t])
+                return heat_demand_scenario[t]
+            else:
+                raise KeyError(f"Key {t} not found in scenario")
+        self.model.heat_demand_scenario = Param(self.model.t, initialize=heat_demand_init, mutable=True)
+
+    def _build_scenario_model(self, scenario_name):
+        """Build the scenario model. Each scenario has a different heat demand and its own model."""
+        heat_demand_scenarios = self._load_stochastic_data() #Dictionary mit Szenarien
+        scenario_key = f"{scenario_name}"
+
+
+        if scenario_key in heat_demand_scenarios:
+            heat_demand_scenario = heat_demand_scenarios[scenario_key]
+        else:
+            raise RuntimeError(f"Scenario {scenario_key} not found in heat demand scenarios")
+        
+        print(f"Heat demand scenario for {scenario_key}: {heat_demand_scenario}")
+
+        # Initialize scenario parameters
+        self._initialize_scenario_parameters(heat_demand_scenario)
+
+        # Load timeseries data
+        self._load_timeseries_data()
+        
+        ###################### Start Debugging Print ######################
+
+        # output_filename = f'output_model_{scenario_name}.txt'
+
+        # with open(output_filename, 'w') as f:
+        #     self.model.pprint(ostream=f)
+
+        ###################### End Debugging Print ######################
+
+        # Create a concrete instance of the model
+        self.instance = self.model.create_instance(self.timeseries_data)
+
+        # Add Arcs to the model
+        self._add_arcs()
+
+        # Expand arcs and generate connection constraints
+        self._expand_arcs()
+
+        return self.instance
+    
+
+
+
+    # Not needed for now
+    def set_solver(self, solver_name, **kwargs):
+        """Set solver for the model."""
+        self.solver = SolverFactory(solver_name)
+        for key in kwargs:
+            self.solver.options[key] = kwargs[key]    
+    
+    def add_objective(self):
+        """Add objective function to model."""
+        def objective_expression_rule(model):
+            return model.first_stage_cost + model.second_stage_cost
+        self.model.objective = Objective(rule=objective_expression_rule,sense=minimize)  
+
+    
+    def scenario_creator(self, scenario_name):
+        """Create a scenario model."""
+        print("Creating scenario: ", scenario_name)
+        self.instance = self._build_scenario_model(scenario_name)
+        
+        # Variable mit Index t anlegen
+        varlist = [self.instance.chp1.gas]
+        sputils.attach_root_node(self.instance, self.instance.first_stage_cost, varlist)
+        
+        ###################### Start Debugging Print ######################
+
+        output_filename = f'output_{scenario_name}.txt'
+
+        print(f"Writing instance {output_filename} ...")
+        with open(output_filename, 'w') as f:
+            self.instance.pprint(ostream=f)
+
+        for t in self.instance.t:
+            print(f"Time {t}: {pyo.value(self.instance.heat_demand_scenario[t])}")
+
+        with open('constraints_output.txt', 'w') as f:
+            # Iteriere über alle aktiven Constraints in der Modellinstanz
+            for con in self.instance.component_objects(Constraint, active=True):
+                # Schreibe den Namen der Constraint-Komponente in die Datei
+                f.write(f"Constraint: {con.name}\n")
+                f.write("Details:\n")
+                # Nutze pprint, um die Details der Constraint in die Datei zu schreiben
+                con.pprint(ostream=f)
+                f.write("____________________________________\n")
+
+        ###################### End Debugging Print ######################
+
+        return self.instance
 
        
-    def create_extensive_form2(self,options , all_scenario_names, scenario_creator_kwargs):
+    def create_extensive_form(self,options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
         self.ef_instance = ExtensiveForm(
             options = options,
@@ -312,13 +337,17 @@ class Model:
         )
         return self.ef_instance
     
-    def solve2(self):
+    def solve(self):
         """Solve the model."""
-        self.results = self.ef_instance.solve_extensive_form()
+        self.results = self.ef_instance.solve_extensive_form(tee=True)
 
 
     def write_results(self):
         """Write results to file."""
+
+        solution = self.ef_instance.get_root_solution()
+        for [var_name, var_val] in solution.items():
+            print(var_name, var_val)
 
         # self.results.write()
 
@@ -334,13 +363,10 @@ class Model:
         #     else:                        
         #         df_params[name] = [value(params[t]) for t in self.instance.t]
     
-        # # for vars in self.ef_instance.component_objects(Var, active = True):
-        # #     name = vars.name
-        # #     df_vars[name] = [value(vars[t]) for t in self.instance.t]
+        # for vars in self.ef_instance.component_objects(Var, active = True):
+        #     name = vars.name
+        #     df_vars[name] = [value(vars[t]) for t in self.instance.t]
 
-        solution = self.ef_instance.get_root_solution()
-        for [var_name, var_val] in solution.items():
-            print(var_name, var_val)
 
 
 
@@ -352,4 +378,5 @@ class Model:
     
     
     def save_results(self, filename):
-        self.results_data.to_csv(filename, index=False)
+        #self.results.to_csv(filename, index=False)
+        pass

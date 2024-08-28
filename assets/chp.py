@@ -22,7 +22,6 @@ class Chp:
                 print(f"File {filepath} not found.")
 
     def extract_chp_data(self):
-        self.chp_data = self.data_dict['data/input//assets/chp.csv'] 
         self.chp_op_data = self.data_dict['data/input//assets/chp_operation.csv']
     
     def add_to_model(self, model):
