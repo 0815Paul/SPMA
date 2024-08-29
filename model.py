@@ -11,6 +11,7 @@ from mpisppy.opt.lshaped import LShapedMethod
 from mpisppy.opt.ef import ExtensiveForm
 from mpisppy.utils.sputils import scenario_tree
 from mpisppy.utils import config
+import os
 
 import mpisppy.utils.sputils as sputils
 import mpisppy.utils.solver_spec as solver_spec
@@ -24,6 +25,9 @@ import assets.grid as grid
 # Path
 PATH_IN = 'data/input/'
 PATH_OUT = 'data/output/'
+PATH_OUT_LOGS = 'data/output/logs/'
+PATH_OUT_TIMESERIES = 'data/output/timeseries/'
+PATH_OUT_OBJECTIVES = 'data/output/objectives/'
 
 # Declare constants
 GAS_PRICE = 0.1543 # €/kWh  (HS)
@@ -51,6 +55,9 @@ class Model:
         """Initialize the model."""
         self.PATH_IN = PATH_IN
         self.PATH_OUT = PATH_OUT
+        self.PATH_OUT_LOGS = PATH_OUT_LOGS
+        self.PATH_OUT_TIMESERIES = PATH_OUT_TIMESERIES
+        self.PATH_OUT_OBJECTIVES = PATH_OUT_OBJECTIVES
         self.model = AbstractModel()
         self.instance = None
         self.ef_instance = None
@@ -330,9 +337,10 @@ class Model:
     def create_extensive_form(self,options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
         self.ef_instance = ExtensiveForm(
-            options = options,
-            all_scenario_names=all_scenario_names,
+            options,
+            all_scenario_names,
             scenario_creator=self.scenario_creator,
+            model_name='4DEnergie',
             scenario_creator_kwargs=scenario_creator_kwargs
         )
         return self.ef_instance
@@ -342,41 +350,55 @@ class Model:
         self.results = self.ef_instance.solve_extensive_form(tee=True)
 
 
-    def write_results(self):
+    def write_results(self, ef):
         """Write results to file."""
 
         solution = self.ef_instance.get_root_solution()
         for [var_name, var_val] in solution.items():
             print(var_name, var_val)
 
-        # self.results.write()
+        for sname, smodel in sputils.ef_scenarios(self.ef_instance.ef):
+            df_params = pd.DataFrame()
+            df_vars = pd.DataFrame()
+            df_output = pd.DataFrame()
+        
+            for params in smodel.component_objects(Param, active=True):
+                name = params.name
+                if len(params) == 1:
+                    single_value = value(list(params.values())[0])
+                    df_params[name]= [single_value for t in smodel.t]
+                else:
+                    df_params[name] = [value(params[t]) for t in smodel.t]
+            
+            for vars in smodel.component_objects(Var, active = True):
+                name = vars.name
+                df_vars[name] = [value(vars[t]) for t in smodel.t]
 
-        # df_params = pd.DataFrame()
-        # df_vars = pd.DataFrame()
-        # df_output = pd.DataFrame()
-
-        # for params in self.ef_instance.component_objects(Param, active=True):
-        #     name = params.name
-        #     if len(params) == 1:
-        #         single_value = value(list(params.values())[0])
-        #         df_params[name]= [single_value for t in self.instance.t]
-        #     else:                        
-        #         df_params[name] = [value(params[t]) for t in self.instance.t]
+            df_output = pd.concat([df_params, df_vars], axis=1)
+            df_output.index = smodel.t
+            df_output.index.name = 't'
+            
+            # Save results to file
+            output_file = f'{sname}_results.csv'
+            df_output.to_csv(self.PATH_OUT_TIMESERIES + output_file)
+            #print(f'Results for {sname} written to {output_file}')
+            
     
-        # for vars in self.ef_instance.component_objects(Var, active = True):
-        #     name = vars.name
-        #     df_vars[name] = [value(vars[t]) for t in self.instance.t]
+    def write_objective_values(self, ef):
+        """Writes he Objective-Value for each scenario."""
+        results = []
 
+        
+        for sname, smodel in sputils.ef_scenarios(ef):
+            objective_value = pyo.value(smodel.objective)
+            results.append({'Scenario': sname, 'ObjectiveValue': objective_value})
 
+        # Creates a DataFrame from the results list
+        df_results = pd.DataFrame(results)
 
+        if not os.path.exists(self.PATH_OUT_OBJECTIVES):
+            os.makedirs(self.PATH_OUT_OBJECTIVES)
 
-        # df_output = pd.concat([df_params, df_vars], axis=1)
-        # df_output.index = self.instance.t
-        # df_output.index.name = 't'
-
-        # self.results_data = df_params
-    
-    
-    def save_results(self, filename):
-        #self.results.to_csv(filename, index=False)
-        pass
+        # Speichere den DataFrame als CSV-Datei
+        output_filename = f"{self.PATH_OUT_OBJECTIVES}scenario_objectives.csv"
+        df_results.to_csv(output_filename, index=False)

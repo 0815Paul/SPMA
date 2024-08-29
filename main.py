@@ -1,21 +1,22 @@
 # Imports
-from model import Model
+from model import Model, PATH_OUT_LOGS
 import mpisppy.utils.sputils as sputils
 import pyomo.environ as pyo
+from datetime import datetime
 
 def main():
     
     # Some parameters 
     scen_count = 3
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_filename = f"{PATH_OUT_LOGS}logile_{timestamp}.log"
     options = {
-        "solver": "gurobi",
-        'MIPGap':0.5, 
-        'TimeLimit':30
+        'solver': 'gurobi', 
+        'TimeLimit':10.0, # TimeLimit Option added in ExtensiveForm Class
+        'MIPGap':0.01, # MIPOpt Option added in ExtensiveForm Class
+        'LogFile': log_filename # LogFile Option added in ExtensiveForm Class
         }
-    solver_kwargs = {
-        'MIPGap':0.5, 
-        'TimeLimit':30
-        }
+
     scenario_creator_kwargs = {}
 
     # Create scenario names
@@ -43,8 +44,16 @@ def main():
     
     print(f"EF objective: {pyo.value(my_ef.ef.EF_Obj)}")
 
+    # Output the objective value for each scenario
+    for sname, smodel in sputils.ef_scenarios(my_ef.ef):
+        print(f"Scenario {sname}: {pyo.value(smodel.objective)}")
+
+
     print("Writing results...")
-    my_model.write_results()
+    my_model.write_results(my_ef.ef)
+
+    my_model.write_objective_values(my_ef.ef)
+
 
     # Not needed for now
     # print("Saving results...")
