@@ -82,7 +82,8 @@ class Model:
         self.model.POWER_PRICE = Param(initialize=POWER_PRICE)
         self.model.HEAT_PRICE = Param(initialize=HEAT_PRICE)
         self.model.heat_demand = Param(self.model.t)
-
+        self.model.delta_x = Var(self.model.t, within=Reals)
+        
     def _define_assets(self):
         self._add_chp_assets()
         self._add_boiler_assets()
@@ -161,6 +162,7 @@ class Model:
         self.model.first_stage_cost = Expression(rule=self._first_stage_cost_rule)
         self.model.second_stage_cost = Expression(rule=self._second_stage_cost_rule)
 
+    
     def _first_stage_cost_rule(self, model):
         return (
             self._gas_costs(model) + 
@@ -171,8 +173,17 @@ class Model:
         )
 
     def _second_stage_cost_rule(self, model):
-        return 2  # Dummy-Wert
+        #return (self.model.prob[s] * self.model.delta_cost[s] for s in self.model.scenarios)
+        return 0
     
+    def _conditional_value_at_risk(self, model):
+        """Calculate Conditional Value at Risk."""
+        # CVaR = VaR + (1 / (1 - RHO)) * quicksum(model.prob[s] * model.eta_s for s in model.scenarios)
+        # return CVaR
+        return 0
+
+
+
     def _gas_costs(self, model):
             """ Calculate gas costs for CHP and Boiler."""
             gas_costs = (
@@ -230,37 +241,46 @@ class Model:
             heat_demand_scenarios[scenario] = {}
             for j, time_period in enumerate(time_periods):
                 heat_demand_scenarios[scenario][time_period] = df.iloc[i, j]
-               
+        
+        print(heat_demand_scenarios)
+
         return heat_demand_scenarios
     
     def _initialize_scenario_parameters(self, heat_demand_scenario):
         """Initialize scenario parameters."""
+        print("Initializing scenario parameters...")
         def heat_demand_init(m, t):
             if t in heat_demand_scenario:
-                #print("heat_demand_scenario[t]: ", heat_demand_scenario[t])
+                print("heat_demand_scenario[t]: ", heat_demand_scenario[t])
                 return heat_demand_scenario[t]
             else:
                 raise KeyError(f"Key {t} not found in scenario")
         self.model.heat_demand_scenario = Param(self.model.t, initialize=heat_demand_init, mutable=True)
 
+
     def _build_scenario_model(self, scenario_name):
         """Build the scenario model. Each scenario has a different heat demand and its own model."""
+        # Load timeseries data
+        print("Building scenario model...")
+        self._load_timeseries_data()
+
         heat_demand_scenarios = self._load_stochastic_data() #Dictionary mit Szenarien
         scenario_key = f"{scenario_name}"
-
 
         if scenario_key in heat_demand_scenarios:
             heat_demand_scenario = heat_demand_scenarios[scenario_key]
         else:
             raise RuntimeError(f"Scenario {scenario_key} not found in heat demand scenarios")
         
+        #print(self.model.heat_demand[t] for t in self.model.t)
+
         print(f"Heat demand scenario for {scenario_key}: {heat_demand_scenario}")
 
         # Initialize scenario parameters
         self._initialize_scenario_parameters(heat_demand_scenario)
 
-        # Load timeseries data
-        self._load_timeseries_data()
+        
+
         
         ###################### Start Debugging Print ######################
 
@@ -272,8 +292,13 @@ class Model:
         ###################### End Debugging Print ######################
 
         # Create a concrete instance of the model
+        print("Creating instance...")
         self.instance = self.model.create_instance(self.timeseries_data)
 
+        def delta_x_init(m, t):
+            return m.heat_demand[t] - m.heat_demand_scenario[t]
+        self.instance.delta_x = Var(self.instance.t, within=Reals, initialize=delta_x_init)
+        
         # Add Arcs to the model
         self._add_arcs()
 
@@ -299,7 +324,7 @@ class Model:
         self.model.objective = Objective(rule=objective_expression_rule,sense=minimize)  
 
     
-    def scenario_creator(self, scenario_name):
+    def _scenario_creator(self, scenario_name):
         """Create a scenario model."""
         print("Creating scenario: ", scenario_name)
         self.instance = self._build_scenario_model(scenario_name)
@@ -307,6 +332,10 @@ class Model:
         # Variable mit Index t anlegen
         varlist = [self.instance.chp1.gas]
         sputils.attach_root_node(self.instance, self.instance.first_stage_cost, varlist)
+
+        # Add Probability to the instance
+        #self.instance._mpisppy_probability = 1.0
+
         
         ###################### Start Debugging Print ######################
 
@@ -334,12 +363,12 @@ class Model:
         return self.instance
 
        
-    def create_extensive_form(self,options , all_scenario_names, scenario_creator_kwargs):
+    def create_extensive_form(self, options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
         self.ef_instance = ExtensiveForm(
             options,
             all_scenario_names,
-            scenario_creator=self.scenario_creator,
+            scenario_creator=self._scenario_creator,
             model_name='4DEnergie',
             scenario_creator_kwargs=scenario_creator_kwargs
         )

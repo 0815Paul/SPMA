@@ -26,6 +26,7 @@ class HeatStorage:
         # Get index from model
         t = asset.model().t
 
+
         # Declare components
         asset.heat_charge = Var(t, within=NonNegativeReals)
         asset.bin_charge = Var(t, within=Binary)
@@ -33,6 +34,8 @@ class HeatStorage:
         asset.bin_discharge = Var(t, within=Binary)
         asset.heat_balance = Var(t, within=Reals)
         asset.heat_capacity = Var(t, within=NonNegativeReals)
+        asset.delta_heat = Var(t, within=Reals)
+   
 
 
         asset.heat_in = Port()
@@ -86,5 +89,9 @@ class HeatStorage:
         asset.capacity_balance_constr = Constraint(t, rule=capacity_balance_rule)
 
 
+        # Define stochastic Constraints
+        def delta_heat_rule(asset, t):
+            """Delta heat constraint"""
+            return asset.delta_heat[t] == asset.model().delta_x[t]
+        asset.delta_heat_constr = Constraint(t, rule=delta_heat_rule)
 
-   

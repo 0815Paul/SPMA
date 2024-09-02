@@ -41,58 +41,30 @@
          24 :  84.06
     heat_demand_scenario : Size=24, Index=t, Domain=Any, Default=None, Mutable=True
         Key : Value
-          1 :  70.86623290756835
+          1 :  43.93333000084193
           2 : 107.39308425591857
-          3 :  185.1673941478988
-          4 : 131.67987674634276
-          5 : 110.54931808566268
+          3 :  77.43578252099309
+          4 :  77.81407093288993
+          5 : 164.41512389911554
           6 : 143.15753425155418
-          7 :    90.618475513098
-          8 :  110.5979908145095
-          9 :  131.6453370689565
-         10 :  149.0499946289878
-         11 :  86.81149971934046
-         12 : 107.77996644714928
-         13 : 54.115890875852095
+          7 :  117.5513784198244
+          8 :  29.79928209433024
+          9 :  77.77953125550366
+         10 :  95.18418881553497
+         11 :  59.87859681261404
+         12 :  80.84706354042288
+         13 :  27.18298796912568
          14 :  114.6137145530201
-         15 :  86.43636711218484
-         16 :  99.86343492989056
-         17 : 101.44504696902445
-         18 : 104.73125459748884
-         19 :  120.8089951999857
-         20 : 118.19482278702188
-         21 :  93.04518357076644
+         15 : 113.36927001891124
+         16 : 126.79633783661696
+         17 : 128.37794987575086
+         18 : 50.865448784036005
+         19 :  40.01028647980645
+         20 :  64.32901697356905
+         21 :   39.1793777573136
          22 :  90.51575707279684
-         23 :  71.31419503097553
-         24 : 102.60572558761336
-
-1 Var Declarations
-    delta_x : Size=24, Index=t
-        Key : Lower : Value               : Upper : Fixed : Stale : Domain
-          1 :  None :    8.39376709243166 :  None : False : False :  Reals
-          2 :  None : -18.543084255918572 :  None : False : False :  Reals
-          3 :  None : -18.547394147898785 :  None : False : False :  Reals
-          4 :  None : -18.539876746342756 :  None : False : False :  Reals
-          5 :  None :   8.390681914337321 :  None : False : False :  Reals
-          6 :  None : -18.547534251554183 :  None : False : False :  Reals
-          7 :  None :   35.32152448690199 :  None : False : False :  Reals
-          8 :  None :   8.392009185490494 :  None : False : False :  Reals
-          9 :  None : -18.545337068956513 :  None : False : False :  Reals
-         10 :  None :  -45.47999462898781 :  None : False : False :  Reals
-         11 :  None :   8.388500280659542 :  None : False : False :  Reals
-         12 :  None : -18.539966447149283 :  None : False : False :  Reals
-         13 :  None :    35.3241091241479 :  None : False : False :  Reals
-         14 :  None :  -18.54371455302011 :  None : False : False :  Reals
-         15 :  None :   8.393632887815158 :  None : False : False :  Reals
-         16 :  None :   8.386565070109441 :  None : False : False :  Reals
-         17 :  None :   8.394953030975557 :  None : False : False :  Reals
-         18 :  None :   8.388745402511162 :  None : False : False :  Reals
-         19 :  None : -18.538995199985706 :  None : False : False :  Reals
-         20 :  None :  -18.54482278702187 :  None : False : False :  Reals
-         21 :  None :  -18.54518357076644 :  None : False : False :  Reals
-         22 :  None : -18.545757072796846 :  None : False : False :  Reals
-         23 :  None :   8.385804969024477 :  None : False : False :  Reals
-         24 :  None :  -18.54572558761336 :  None : False : False :  Reals
+         23 :  44.38129212424911
+         24 :  75.67282268088694
 
 2 Expression Declarations
     first_stage_cost : Size=1, Index=None
@@ -100,12 +72,12 @@
         None : 1.543*chp1.gas[1] + 1.543*chp1.gas[2] + 1.543*chp1.gas[3] + 1.543*chp1.gas[4] + 1.543*chp1.gas[5] + 1.543*chp1.gas[6] + 1.543*chp1.gas[7] + 1.543*chp1.gas[8] + 1.543*chp1.gas[9] + 1.543*chp1.gas[10] + 1.543*chp1.gas[11] + 1.543*chp1.gas[12] + 1.543*chp1.gas[13] + 1.543*chp1.gas[14] + 1.543*chp1.gas[15] + 1.543*chp1.gas[16] + 1.543*chp1.gas[17] + 1.543*chp1.gas[18] + 1.543*chp1.gas[19] + 1.543*chp1.gas[20] + 1.543*chp1.gas[21] + 1.543*chp1.gas[22] + 1.543*chp1.gas[23] + 1.543*chp1.gas[24] + 1.543*boiler1.gas[1] + 1.543*boiler1.gas[2] + 1.543*boiler1.gas[3] + 1.543*boiler1.gas[4] + 1.543*boiler1.gas[5] + 1.543*boiler1.gas[6] + 1.543*boiler1.gas[7] + 1.543*boiler1.gas[8] + 1.543*boiler1.gas[9] + 1.543*boiler1.gas[10] + 1.543*boiler1.gas[11] + 1.543*boiler1.gas[12] + 1.543*boiler1.gas[13] + 1.543*boiler1.gas[14] + 1.543*boiler1.gas[15] + 1.543*boiler1.gas[16] + 1.543*boiler1.gas[17] + 1.543*boiler1.gas[18] + 1.543*boiler1.gas[19] + 1.543*boiler1.gas[20] + 1.543*boiler1.gas[21] + 1.543*boiler1.gas[22] + 1.543*boiler1.gas[23] + 1.543*boiler1.gas[24] + 1.8*chp1.bin[1] + 1.8*chp1.bin[2] + 1.8*chp1.bin[3] + 1.8*chp1.bin[4] + 1.8*chp1.bin[5] + 1.8*chp1.bin[6] + 1.8*chp1.bin[7] + 1.8*chp1.bin[8] + 1.8*chp1.bin[9] + 1.8*chp1.bin[10] + 1.8*chp1.bin[11] + 1.8*chp1.bin[12] + 1.8*chp1.bin[13] + 1.8*chp1.bin[14] + 1.8*chp1.bin[15] + 1.8*chp1.bin[16] + 1.8*chp1.bin[17] + 1.8*chp1.bin[18] + 1.8*chp1.bin[19] + 1.8*chp1.bin[20] + 1.8*chp1.bin[21] + 1.8*chp1.bin[22] + 1.8*chp1.bin[23] + 1.8*chp1.bin[24] - (0.251*chp1.power[1] + 0.251*chp1.power[2] + 0.251*chp1.power[3] + 0.251*chp1.power[4] + 0.251*chp1.power[5] + 0.251*chp1.power[6] + 0.251*chp1.power[7] + 0.251*chp1.power[8] + 0.251*chp1.power[9] + 0.251*chp1.power[10] + 0.251*chp1.power[11] + 0.251*chp1.power[12] + 0.251*chp1.power[13] + 0.251*chp1.power[14] + 0.251*chp1.power[15] + 0.251*chp1.power[16] + 0.251*chp1.power[17] + 0.251*chp1.power[18] + 0.251*chp1.power[19] + 0.251*chp1.power[20] + 0.251*chp1.power[21] + 0.251*chp1.power[22] + 0.251*chp1.power[23] + 0.251*chp1.power[24]) - (0.105*chp1.heat[1] + 0.105*chp1.heat[2] + 0.105*chp1.heat[3] + 0.105*chp1.heat[4] + 0.105*chp1.heat[5] + 0.105*chp1.heat[6] + 0.105*chp1.heat[7] + 0.105*chp1.heat[8] + 0.105*chp1.heat[9] + 0.105*chp1.heat[10] + 0.105*chp1.heat[11] + 0.105*chp1.heat[12] + 0.105*chp1.heat[13] + 0.105*chp1.heat[14] + 0.105*chp1.heat[15] + 0.105*chp1.heat[16] + 0.105*chp1.heat[17] + 0.105*chp1.heat[18] + 0.105*chp1.heat[19] + 0.105*chp1.heat[20] + 0.105*chp1.heat[21] + 0.105*chp1.heat[22] + 0.105*chp1.heat[23] + 0.105*chp1.heat[24] + 0.105*boiler1.heat[1] + 0.105*boiler1.heat[2] + 0.105*boiler1.heat[3] + 0.105*boiler1.heat[4] + 0.105*boiler1.heat[5] + 0.105*boiler1.heat[6] + 0.105*boiler1.heat[7] + 0.105*boiler1.heat[8] + 0.105*boiler1.heat[9] + 0.105*boiler1.heat[10] + 0.105*boiler1.heat[11] + 0.105*boiler1.heat[12] + 0.105*boiler1.heat[13] + 0.105*boiler1.heat[14] + 0.105*boiler1.heat[15] + 0.105*boiler1.heat[16] + 0.105*boiler1.heat[17] + 0.105*boiler1.heat[18] + 0.105*boiler1.heat[19] + 0.105*boiler1.heat[20] + 0.105*boiler1.heat[21] + 0.105*boiler1.heat[22] + 0.105*boiler1.heat[23] + 0.105*boiler1.heat[24]) - ((chp1.power[1] - 0.03*chp1.power[1])*0.1158 + (chp1.power[2] - 0.03*chp1.power[2])*0.1158 + (chp1.power[3] - 0.03*chp1.power[3])*0.1158 + (chp1.power[4] - 0.03*chp1.power[4])*0.1158 + (chp1.power[5] - 0.03*chp1.power[5])*0.1158 + (chp1.power[6] - 0.03*chp1.power[6])*0.1158 + (chp1.power[7] - 0.03*chp1.power[7])*0.1158 + (chp1.power[8] - 0.03*chp1.power[8])*0.1158 + (chp1.power[9] - 0.03*chp1.power[9])*0.1158 + (chp1.power[10] - 0.03*chp1.power[10])*0.1158 + (chp1.power[11] - 0.03*chp1.power[11])*0.1158 + (chp1.power[12] - 0.03*chp1.power[12])*0.1158 + (chp1.power[13] - 0.03*chp1.power[13])*0.1158 + (chp1.power[14] - 0.03*chp1.power[14])*0.1158 + (chp1.power[15] - 0.03*chp1.power[15])*0.1158 + (chp1.power[16] - 0.03*chp1.power[16])*0.1158 + (chp1.power[17] - 0.03*chp1.power[17])*0.1158 + (chp1.power[18] - 0.03*chp1.power[18])*0.1158 + (chp1.power[19] - 0.03*chp1.power[19])*0.1158 + (chp1.power[20] - 0.03*chp1.power[20])*0.1158 + (chp1.power[21] - 0.03*chp1.power[21])*0.1158 + (chp1.power[22] - 0.03*chp1.power[22])*0.1158 + (chp1.power[23] - 0.03*chp1.power[23])*0.1158 + (chp1.power[24] - 0.03*chp1.power[24])*0.1158 + (0.0024*chp1.power[1] + 0.0024*chp1.power[2] + 0.0024*chp1.power[3] + 0.0024*chp1.power[4] + 0.0024*chp1.power[5] + 0.0024*chp1.power[6] + 0.0024*chp1.power[7] + 0.0024*chp1.power[8] + 0.0024*chp1.power[9] + 0.0024*chp1.power[10] + 0.0024*chp1.power[11] + 0.0024*chp1.power[12] + 0.0024*chp1.power[13] + 0.0024*chp1.power[14] + 0.0024*chp1.power[15] + 0.0024*chp1.power[16] + 0.0024*chp1.power[17] + 0.0024*chp1.power[18] + 0.0024*chp1.power[19] + 0.0024*chp1.power[20] + 0.0024*chp1.power[21] + 0.0024*chp1.power[22] + 0.0024*chp1.power[23] + 0.0024*chp1.power[24] + 0.1552*chp1.power[1] + 0.1552*chp1.power[2] + 0.1552*chp1.power[3] + 0.1552*chp1.power[4] + 0.1552*chp1.power[5] + 0.1552*chp1.power[6] + 0.1552*chp1.power[7] + 0.1552*chp1.power[8] + 0.1552*chp1.power[9] + 0.1552*chp1.power[10] + 0.1552*chp1.power[11] + 0.1552*chp1.power[12] + 0.1552*chp1.power[13] + 0.1552*chp1.power[14] + 0.1552*chp1.power[15] + 0.1552*chp1.power[16] + 0.1552*chp1.power[17] + 0.1552*chp1.power[18] + 0.1552*chp1.power[19] + 0.1552*chp1.power[20] + 0.1552*chp1.power[21] + 0.1552*chp1.power[22] + 0.1552*chp1.power[23] + 0.1552*chp1.power[24]) + (chp1.power[1] - 0.03*chp1.power[1])*0.0097 + (chp1.power[2] - 0.03*chp1.power[2])*0.0097 + (chp1.power[3] - 0.03*chp1.power[3])*0.0097 + (chp1.power[4] - 0.03*chp1.power[4])*0.0097 + (chp1.power[5] - 0.03*chp1.power[5])*0.0097 + (chp1.power[6] - 0.03*chp1.power[6])*0.0097 + (chp1.power[7] - 0.03*chp1.power[7])*0.0097 + (chp1.power[8] - 0.03*chp1.power[8])*0.0097 + (chp1.power[9] - 0.03*chp1.power[9])*0.0097 + (chp1.power[10] - 0.03*chp1.power[10])*0.0097 + (chp1.power[11] - 0.03*chp1.power[11])*0.0097 + (chp1.power[12] - 0.03*chp1.power[12])*0.0097 + (chp1.power[13] - 0.03*chp1.power[13])*0.0097 + (chp1.power[14] - 0.03*chp1.power[14])*0.0097 + (chp1.power[15] - 0.03*chp1.power[15])*0.0097 + (chp1.power[16] - 0.03*chp1.power[16])*0.0097 + (chp1.power[17] - 0.03*chp1.power[17])*0.0097 + (chp1.power[18] - 0.03*chp1.power[18])*0.0097 + (chp1.power[19] - 0.03*chp1.power[19])*0.0097 + (chp1.power[20] - 0.03*chp1.power[20])*0.0097 + (chp1.power[21] - 0.03*chp1.power[21])*0.0097 + (chp1.power[22] - 0.03*chp1.power[22])*0.0097 + (chp1.power[23] - 0.03*chp1.power[23])*0.0097 + (chp1.power[24] - 0.03*chp1.power[24])*0.0097 + (0.05499999999999999*chp1.gas[1] + 0.05499999999999999*chp1.gas[2] + 0.05499999999999999*chp1.gas[3] + 0.05499999999999999*chp1.gas[4] + 0.05499999999999999*chp1.gas[5] + 0.05499999999999999*chp1.gas[6] + 0.05499999999999999*chp1.gas[7] + 0.05499999999999999*chp1.gas[8] + 0.05499999999999999*chp1.gas[9] + 0.05499999999999999*chp1.gas[10] + 0.05499999999999999*chp1.gas[11] + 0.05499999999999999*chp1.gas[12] + 0.05499999999999999*chp1.gas[13] + 0.05499999999999999*chp1.gas[14] + 0.05499999999999999*chp1.gas[15] + 0.05499999999999999*chp1.gas[16] + 0.05499999999999999*chp1.gas[17] + 0.05499999999999999*chp1.gas[18] + 0.05499999999999999*chp1.gas[19] + 0.05499999999999999*chp1.gas[20] + 0.05499999999999999*chp1.gas[21] + 0.05499999999999999*chp1.gas[22] + 0.05499999999999999*chp1.gas[23] + 0.05499999999999999*chp1.gas[24]))
     second_stage_cost : Size=1, Index=None
         Key  : Expression
-        None :        0.0
+        None :        2.0
 
 1 Objective Declarations
     objective : Size=1, Index=None, Active=True
         Key  : Active : Sense    : Expression
-        None :   True : minimize : (1.543*chp1.gas[1] + 1.543*chp1.gas[2] + 1.543*chp1.gas[3] + 1.543*chp1.gas[4] + 1.543*chp1.gas[5] + 1.543*chp1.gas[6] + 1.543*chp1.gas[7] + 1.543*chp1.gas[8] + 1.543*chp1.gas[9] + 1.543*chp1.gas[10] + 1.543*chp1.gas[11] + 1.543*chp1.gas[12] + 1.543*chp1.gas[13] + 1.543*chp1.gas[14] + 1.543*chp1.gas[15] + 1.543*chp1.gas[16] + 1.543*chp1.gas[17] + 1.543*chp1.gas[18] + 1.543*chp1.gas[19] + 1.543*chp1.gas[20] + 1.543*chp1.gas[21] + 1.543*chp1.gas[22] + 1.543*chp1.gas[23] + 1.543*chp1.gas[24] + 1.543*boiler1.gas[1] + 1.543*boiler1.gas[2] + 1.543*boiler1.gas[3] + 1.543*boiler1.gas[4] + 1.543*boiler1.gas[5] + 1.543*boiler1.gas[6] + 1.543*boiler1.gas[7] + 1.543*boiler1.gas[8] + 1.543*boiler1.gas[9] + 1.543*boiler1.gas[10] + 1.543*boiler1.gas[11] + 1.543*boiler1.gas[12] + 1.543*boiler1.gas[13] + 1.543*boiler1.gas[14] + 1.543*boiler1.gas[15] + 1.543*boiler1.gas[16] + 1.543*boiler1.gas[17] + 1.543*boiler1.gas[18] + 1.543*boiler1.gas[19] + 1.543*boiler1.gas[20] + 1.543*boiler1.gas[21] + 1.543*boiler1.gas[22] + 1.543*boiler1.gas[23] + 1.543*boiler1.gas[24] + 1.8*chp1.bin[1] + 1.8*chp1.bin[2] + 1.8*chp1.bin[3] + 1.8*chp1.bin[4] + 1.8*chp1.bin[5] + 1.8*chp1.bin[6] + 1.8*chp1.bin[7] + 1.8*chp1.bin[8] + 1.8*chp1.bin[9] + 1.8*chp1.bin[10] + 1.8*chp1.bin[11] + 1.8*chp1.bin[12] + 1.8*chp1.bin[13] + 1.8*chp1.bin[14] + 1.8*chp1.bin[15] + 1.8*chp1.bin[16] + 1.8*chp1.bin[17] + 1.8*chp1.bin[18] + 1.8*chp1.bin[19] + 1.8*chp1.bin[20] + 1.8*chp1.bin[21] + 1.8*chp1.bin[22] + 1.8*chp1.bin[23] + 1.8*chp1.bin[24] - (0.251*chp1.power[1] + 0.251*chp1.power[2] + 0.251*chp1.power[3] + 0.251*chp1.power[4] + 0.251*chp1.power[5] + 0.251*chp1.power[6] + 0.251*chp1.power[7] + 0.251*chp1.power[8] + 0.251*chp1.power[9] + 0.251*chp1.power[10] + 0.251*chp1.power[11] + 0.251*chp1.power[12] + 0.251*chp1.power[13] + 0.251*chp1.power[14] + 0.251*chp1.power[15] + 0.251*chp1.power[16] + 0.251*chp1.power[17] + 0.251*chp1.power[18] + 0.251*chp1.power[19] + 0.251*chp1.power[20] + 0.251*chp1.power[21] + 0.251*chp1.power[22] + 0.251*chp1.power[23] + 0.251*chp1.power[24]) - (0.105*chp1.heat[1] + 0.105*chp1.heat[2] + 0.105*chp1.heat[3] + 0.105*chp1.heat[4] + 0.105*chp1.heat[5] + 0.105*chp1.heat[6] + 0.105*chp1.heat[7] + 0.105*chp1.heat[8] + 0.105*chp1.heat[9] + 0.105*chp1.heat[10] + 0.105*chp1.heat[11] + 0.105*chp1.heat[12] + 0.105*chp1.heat[13] + 0.105*chp1.heat[14] + 0.105*chp1.heat[15] + 0.105*chp1.heat[16] + 0.105*chp1.heat[17] + 0.105*chp1.heat[18] + 0.105*chp1.heat[19] + 0.105*chp1.heat[20] + 0.105*chp1.heat[21] + 0.105*chp1.heat[22] + 0.105*chp1.heat[23] + 0.105*chp1.heat[24] + 0.105*boiler1.heat[1] + 0.105*boiler1.heat[2] + 0.105*boiler1.heat[3] + 0.105*boiler1.heat[4] + 0.105*boiler1.heat[5] + 0.105*boiler1.heat[6] + 0.105*boiler1.heat[7] + 0.105*boiler1.heat[8] + 0.105*boiler1.heat[9] + 0.105*boiler1.heat[10] + 0.105*boiler1.heat[11] + 0.105*boiler1.heat[12] + 0.105*boiler1.heat[13] + 0.105*boiler1.heat[14] + 0.105*boiler1.heat[15] + 0.105*boiler1.heat[16] + 0.105*boiler1.heat[17] + 0.105*boiler1.heat[18] + 0.105*boiler1.heat[19] + 0.105*boiler1.heat[20] + 0.105*boiler1.heat[21] + 0.105*boiler1.heat[22] + 0.105*boiler1.heat[23] + 0.105*boiler1.heat[24]) - ((chp1.power[1] - 0.03*chp1.power[1])*0.1158 + (chp1.power[2] - 0.03*chp1.power[2])*0.1158 + (chp1.power[3] - 0.03*chp1.power[3])*0.1158 + (chp1.power[4] - 0.03*chp1.power[4])*0.1158 + (chp1.power[5] - 0.03*chp1.power[5])*0.1158 + (chp1.power[6] - 0.03*chp1.power[6])*0.1158 + (chp1.power[7] - 0.03*chp1.power[7])*0.1158 + (chp1.power[8] - 0.03*chp1.power[8])*0.1158 + (chp1.power[9] - 0.03*chp1.power[9])*0.1158 + (chp1.power[10] - 0.03*chp1.power[10])*0.1158 + (chp1.power[11] - 0.03*chp1.power[11])*0.1158 + (chp1.power[12] - 0.03*chp1.power[12])*0.1158 + (chp1.power[13] - 0.03*chp1.power[13])*0.1158 + (chp1.power[14] - 0.03*chp1.power[14])*0.1158 + (chp1.power[15] - 0.03*chp1.power[15])*0.1158 + (chp1.power[16] - 0.03*chp1.power[16])*0.1158 + (chp1.power[17] - 0.03*chp1.power[17])*0.1158 + (chp1.power[18] - 0.03*chp1.power[18])*0.1158 + (chp1.power[19] - 0.03*chp1.power[19])*0.1158 + (chp1.power[20] - 0.03*chp1.power[20])*0.1158 + (chp1.power[21] - 0.03*chp1.power[21])*0.1158 + (chp1.power[22] - 0.03*chp1.power[22])*0.1158 + (chp1.power[23] - 0.03*chp1.power[23])*0.1158 + (chp1.power[24] - 0.03*chp1.power[24])*0.1158 + (0.0024*chp1.power[1] + 0.0024*chp1.power[2] + 0.0024*chp1.power[3] + 0.0024*chp1.power[4] + 0.0024*chp1.power[5] + 0.0024*chp1.power[6] + 0.0024*chp1.power[7] + 0.0024*chp1.power[8] + 0.0024*chp1.power[9] + 0.0024*chp1.power[10] + 0.0024*chp1.power[11] + 0.0024*chp1.power[12] + 0.0024*chp1.power[13] + 0.0024*chp1.power[14] + 0.0024*chp1.power[15] + 0.0024*chp1.power[16] + 0.0024*chp1.power[17] + 0.0024*chp1.power[18] + 0.0024*chp1.power[19] + 0.0024*chp1.power[20] + 0.0024*chp1.power[21] + 0.0024*chp1.power[22] + 0.0024*chp1.power[23] + 0.0024*chp1.power[24] + 0.1552*chp1.power[1] + 0.1552*chp1.power[2] + 0.1552*chp1.power[3] + 0.1552*chp1.power[4] + 0.1552*chp1.power[5] + 0.1552*chp1.power[6] + 0.1552*chp1.power[7] + 0.1552*chp1.power[8] + 0.1552*chp1.power[9] + 0.1552*chp1.power[10] + 0.1552*chp1.power[11] + 0.1552*chp1.power[12] + 0.1552*chp1.power[13] + 0.1552*chp1.power[14] + 0.1552*chp1.power[15] + 0.1552*chp1.power[16] + 0.1552*chp1.power[17] + 0.1552*chp1.power[18] + 0.1552*chp1.power[19] + 0.1552*chp1.power[20] + 0.1552*chp1.power[21] + 0.1552*chp1.power[22] + 0.1552*chp1.power[23] + 0.1552*chp1.power[24]) + (chp1.power[1] - 0.03*chp1.power[1])*0.0097 + (chp1.power[2] - 0.03*chp1.power[2])*0.0097 + (chp1.power[3] - 0.03*chp1.power[3])*0.0097 + (chp1.power[4] - 0.03*chp1.power[4])*0.0097 + (chp1.power[5] - 0.03*chp1.power[5])*0.0097 + (chp1.power[6] - 0.03*chp1.power[6])*0.0097 + (chp1.power[7] - 0.03*chp1.power[7])*0.0097 + (chp1.power[8] - 0.03*chp1.power[8])*0.0097 + (chp1.power[9] - 0.03*chp1.power[9])*0.0097 + (chp1.power[10] - 0.03*chp1.power[10])*0.0097 + (chp1.power[11] - 0.03*chp1.power[11])*0.0097 + (chp1.power[12] - 0.03*chp1.power[12])*0.0097 + (chp1.power[13] - 0.03*chp1.power[13])*0.0097 + (chp1.power[14] - 0.03*chp1.power[14])*0.0097 + (chp1.power[15] - 0.03*chp1.power[15])*0.0097 + (chp1.power[16] - 0.03*chp1.power[16])*0.0097 + (chp1.power[17] - 0.03*chp1.power[17])*0.0097 + (chp1.power[18] - 0.03*chp1.power[18])*0.0097 + (chp1.power[19] - 0.03*chp1.power[19])*0.0097 + (chp1.power[20] - 0.03*chp1.power[20])*0.0097 + (chp1.power[21] - 0.03*chp1.power[21])*0.0097 + (chp1.power[22] - 0.03*chp1.power[22])*0.0097 + (chp1.power[23] - 0.03*chp1.power[23])*0.0097 + (chp1.power[24] - 0.03*chp1.power[24])*0.0097 + (0.05499999999999999*chp1.gas[1] + 0.05499999999999999*chp1.gas[2] + 0.05499999999999999*chp1.gas[3] + 0.05499999999999999*chp1.gas[4] + 0.05499999999999999*chp1.gas[5] + 0.05499999999999999*chp1.gas[6] + 0.05499999999999999*chp1.gas[7] + 0.05499999999999999*chp1.gas[8] + 0.05499999999999999*chp1.gas[9] + 0.05499999999999999*chp1.gas[10] + 0.05499999999999999*chp1.gas[11] + 0.05499999999999999*chp1.gas[12] + 0.05499999999999999*chp1.gas[13] + 0.05499999999999999*chp1.gas[14] + 0.05499999999999999*chp1.gas[15] + 0.05499999999999999*chp1.gas[16] + 0.05499999999999999*chp1.gas[17] + 0.05499999999999999*chp1.gas[18] + 0.05499999999999999*chp1.gas[19] + 0.05499999999999999*chp1.gas[20] + 0.05499999999999999*chp1.gas[21] + 0.05499999999999999*chp1.gas[22] + 0.05499999999999999*chp1.gas[23] + 0.05499999999999999*chp1.gas[24]))) + 0
+        None :   True : minimize : (1.543*chp1.gas[1] + 1.543*chp1.gas[2] + 1.543*chp1.gas[3] + 1.543*chp1.gas[4] + 1.543*chp1.gas[5] + 1.543*chp1.gas[6] + 1.543*chp1.gas[7] + 1.543*chp1.gas[8] + 1.543*chp1.gas[9] + 1.543*chp1.gas[10] + 1.543*chp1.gas[11] + 1.543*chp1.gas[12] + 1.543*chp1.gas[13] + 1.543*chp1.gas[14] + 1.543*chp1.gas[15] + 1.543*chp1.gas[16] + 1.543*chp1.gas[17] + 1.543*chp1.gas[18] + 1.543*chp1.gas[19] + 1.543*chp1.gas[20] + 1.543*chp1.gas[21] + 1.543*chp1.gas[22] + 1.543*chp1.gas[23] + 1.543*chp1.gas[24] + 1.543*boiler1.gas[1] + 1.543*boiler1.gas[2] + 1.543*boiler1.gas[3] + 1.543*boiler1.gas[4] + 1.543*boiler1.gas[5] + 1.543*boiler1.gas[6] + 1.543*boiler1.gas[7] + 1.543*boiler1.gas[8] + 1.543*boiler1.gas[9] + 1.543*boiler1.gas[10] + 1.543*boiler1.gas[11] + 1.543*boiler1.gas[12] + 1.543*boiler1.gas[13] + 1.543*boiler1.gas[14] + 1.543*boiler1.gas[15] + 1.543*boiler1.gas[16] + 1.543*boiler1.gas[17] + 1.543*boiler1.gas[18] + 1.543*boiler1.gas[19] + 1.543*boiler1.gas[20] + 1.543*boiler1.gas[21] + 1.543*boiler1.gas[22] + 1.543*boiler1.gas[23] + 1.543*boiler1.gas[24] + 1.8*chp1.bin[1] + 1.8*chp1.bin[2] + 1.8*chp1.bin[3] + 1.8*chp1.bin[4] + 1.8*chp1.bin[5] + 1.8*chp1.bin[6] + 1.8*chp1.bin[7] + 1.8*chp1.bin[8] + 1.8*chp1.bin[9] + 1.8*chp1.bin[10] + 1.8*chp1.bin[11] + 1.8*chp1.bin[12] + 1.8*chp1.bin[13] + 1.8*chp1.bin[14] + 1.8*chp1.bin[15] + 1.8*chp1.bin[16] + 1.8*chp1.bin[17] + 1.8*chp1.bin[18] + 1.8*chp1.bin[19] + 1.8*chp1.bin[20] + 1.8*chp1.bin[21] + 1.8*chp1.bin[22] + 1.8*chp1.bin[23] + 1.8*chp1.bin[24] - (0.251*chp1.power[1] + 0.251*chp1.power[2] + 0.251*chp1.power[3] + 0.251*chp1.power[4] + 0.251*chp1.power[5] + 0.251*chp1.power[6] + 0.251*chp1.power[7] + 0.251*chp1.power[8] + 0.251*chp1.power[9] + 0.251*chp1.power[10] + 0.251*chp1.power[11] + 0.251*chp1.power[12] + 0.251*chp1.power[13] + 0.251*chp1.power[14] + 0.251*chp1.power[15] + 0.251*chp1.power[16] + 0.251*chp1.power[17] + 0.251*chp1.power[18] + 0.251*chp1.power[19] + 0.251*chp1.power[20] + 0.251*chp1.power[21] + 0.251*chp1.power[22] + 0.251*chp1.power[23] + 0.251*chp1.power[24]) - (0.105*chp1.heat[1] + 0.105*chp1.heat[2] + 0.105*chp1.heat[3] + 0.105*chp1.heat[4] + 0.105*chp1.heat[5] + 0.105*chp1.heat[6] + 0.105*chp1.heat[7] + 0.105*chp1.heat[8] + 0.105*chp1.heat[9] + 0.105*chp1.heat[10] + 0.105*chp1.heat[11] + 0.105*chp1.heat[12] + 0.105*chp1.heat[13] + 0.105*chp1.heat[14] + 0.105*chp1.heat[15] + 0.105*chp1.heat[16] + 0.105*chp1.heat[17] + 0.105*chp1.heat[18] + 0.105*chp1.heat[19] + 0.105*chp1.heat[20] + 0.105*chp1.heat[21] + 0.105*chp1.heat[22] + 0.105*chp1.heat[23] + 0.105*chp1.heat[24] + 0.105*boiler1.heat[1] + 0.105*boiler1.heat[2] + 0.105*boiler1.heat[3] + 0.105*boiler1.heat[4] + 0.105*boiler1.heat[5] + 0.105*boiler1.heat[6] + 0.105*boiler1.heat[7] + 0.105*boiler1.heat[8] + 0.105*boiler1.heat[9] + 0.105*boiler1.heat[10] + 0.105*boiler1.heat[11] + 0.105*boiler1.heat[12] + 0.105*boiler1.heat[13] + 0.105*boiler1.heat[14] + 0.105*boiler1.heat[15] + 0.105*boiler1.heat[16] + 0.105*boiler1.heat[17] + 0.105*boiler1.heat[18] + 0.105*boiler1.heat[19] + 0.105*boiler1.heat[20] + 0.105*boiler1.heat[21] + 0.105*boiler1.heat[22] + 0.105*boiler1.heat[23] + 0.105*boiler1.heat[24]) - ((chp1.power[1] - 0.03*chp1.power[1])*0.1158 + (chp1.power[2] - 0.03*chp1.power[2])*0.1158 + (chp1.power[3] - 0.03*chp1.power[3])*0.1158 + (chp1.power[4] - 0.03*chp1.power[4])*0.1158 + (chp1.power[5] - 0.03*chp1.power[5])*0.1158 + (chp1.power[6] - 0.03*chp1.power[6])*0.1158 + (chp1.power[7] - 0.03*chp1.power[7])*0.1158 + (chp1.power[8] - 0.03*chp1.power[8])*0.1158 + (chp1.power[9] - 0.03*chp1.power[9])*0.1158 + (chp1.power[10] - 0.03*chp1.power[10])*0.1158 + (chp1.power[11] - 0.03*chp1.power[11])*0.1158 + (chp1.power[12] - 0.03*chp1.power[12])*0.1158 + (chp1.power[13] - 0.03*chp1.power[13])*0.1158 + (chp1.power[14] - 0.03*chp1.power[14])*0.1158 + (chp1.power[15] - 0.03*chp1.power[15])*0.1158 + (chp1.power[16] - 0.03*chp1.power[16])*0.1158 + (chp1.power[17] - 0.03*chp1.power[17])*0.1158 + (chp1.power[18] - 0.03*chp1.power[18])*0.1158 + (chp1.power[19] - 0.03*chp1.power[19])*0.1158 + (chp1.power[20] - 0.03*chp1.power[20])*0.1158 + (chp1.power[21] - 0.03*chp1.power[21])*0.1158 + (chp1.power[22] - 0.03*chp1.power[22])*0.1158 + (chp1.power[23] - 0.03*chp1.power[23])*0.1158 + (chp1.power[24] - 0.03*chp1.power[24])*0.1158 + (0.0024*chp1.power[1] + 0.0024*chp1.power[2] + 0.0024*chp1.power[3] + 0.0024*chp1.power[4] + 0.0024*chp1.power[5] + 0.0024*chp1.power[6] + 0.0024*chp1.power[7] + 0.0024*chp1.power[8] + 0.0024*chp1.power[9] + 0.0024*chp1.power[10] + 0.0024*chp1.power[11] + 0.0024*chp1.power[12] + 0.0024*chp1.power[13] + 0.0024*chp1.power[14] + 0.0024*chp1.power[15] + 0.0024*chp1.power[16] + 0.0024*chp1.power[17] + 0.0024*chp1.power[18] + 0.0024*chp1.power[19] + 0.0024*chp1.power[20] + 0.0024*chp1.power[21] + 0.0024*chp1.power[22] + 0.0024*chp1.power[23] + 0.0024*chp1.power[24] + 0.1552*chp1.power[1] + 0.1552*chp1.power[2] + 0.1552*chp1.power[3] + 0.1552*chp1.power[4] + 0.1552*chp1.power[5] + 0.1552*chp1.power[6] + 0.1552*chp1.power[7] + 0.1552*chp1.power[8] + 0.1552*chp1.power[9] + 0.1552*chp1.power[10] + 0.1552*chp1.power[11] + 0.1552*chp1.power[12] + 0.1552*chp1.power[13] + 0.1552*chp1.power[14] + 0.1552*chp1.power[15] + 0.1552*chp1.power[16] + 0.1552*chp1.power[17] + 0.1552*chp1.power[18] + 0.1552*chp1.power[19] + 0.1552*chp1.power[20] + 0.1552*chp1.power[21] + 0.1552*chp1.power[22] + 0.1552*chp1.power[23] + 0.1552*chp1.power[24]) + (chp1.power[1] - 0.03*chp1.power[1])*0.0097 + (chp1.power[2] - 0.03*chp1.power[2])*0.0097 + (chp1.power[3] - 0.03*chp1.power[3])*0.0097 + (chp1.power[4] - 0.03*chp1.power[4])*0.0097 + (chp1.power[5] - 0.03*chp1.power[5])*0.0097 + (chp1.power[6] - 0.03*chp1.power[6])*0.0097 + (chp1.power[7] - 0.03*chp1.power[7])*0.0097 + (chp1.power[8] - 0.03*chp1.power[8])*0.0097 + (chp1.power[9] - 0.03*chp1.power[9])*0.0097 + (chp1.power[10] - 0.03*chp1.power[10])*0.0097 + (chp1.power[11] - 0.03*chp1.power[11])*0.0097 + (chp1.power[12] - 0.03*chp1.power[12])*0.0097 + (chp1.power[13] - 0.03*chp1.power[13])*0.0097 + (chp1.power[14] - 0.03*chp1.power[14])*0.0097 + (chp1.power[15] - 0.03*chp1.power[15])*0.0097 + (chp1.power[16] - 0.03*chp1.power[16])*0.0097 + (chp1.power[17] - 0.03*chp1.power[17])*0.0097 + (chp1.power[18] - 0.03*chp1.power[18])*0.0097 + (chp1.power[19] - 0.03*chp1.power[19])*0.0097 + (chp1.power[20] - 0.03*chp1.power[20])*0.0097 + (chp1.power[21] - 0.03*chp1.power[21])*0.0097 + (chp1.power[22] - 0.03*chp1.power[22])*0.0097 + (chp1.power[23] - 0.03*chp1.power[23])*0.0097 + (chp1.power[24] - 0.03*chp1.power[24])*0.0097 + (0.05499999999999999*chp1.gas[1] + 0.05499999999999999*chp1.gas[2] + 0.05499999999999999*chp1.gas[3] + 0.05499999999999999*chp1.gas[4] + 0.05499999999999999*chp1.gas[5] + 0.05499999999999999*chp1.gas[6] + 0.05499999999999999*chp1.gas[7] + 0.05499999999999999*chp1.gas[8] + 0.05499999999999999*chp1.gas[9] + 0.05499999999999999*chp1.gas[10] + 0.05499999999999999*chp1.gas[11] + 0.05499999999999999*chp1.gas[12] + 0.05499999999999999*chp1.gas[13] + 0.05499999999999999*chp1.gas[14] + 0.05499999999999999*chp1.gas[15] + 0.05499999999999999*chp1.gas[16] + 0.05499999999999999*chp1.gas[17] + 0.05499999999999999*chp1.gas[18] + 0.05499999999999999*chp1.gas[19] + 0.05499999999999999*chp1.gas[20] + 0.05499999999999999*chp1.gas[21] + 0.05499999999999999*chp1.gas[22] + 0.05499999999999999*chp1.gas[23] + 0.05499999999999999*chp1.gas[24]))) + 2
 
 12 Block Declarations
     arc01_expanded : Size=1, Index=None, Active=True
@@ -1816,7 +1788,7 @@
 
         9 Declarations: heat_balance heat_supply heat_feedin heat_in heat_out heat_balance_constr supply_heat_demand_constr heat_supply_constr heat_in_heat_insum
     heat_storage1 : Size=1, Index=None, Active=True
-        7 Var Declarations
+        6 Var Declarations
             bin_charge : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
                   1 :     0 :  None :     1 : False :  True : Binary
@@ -1869,32 +1841,6 @@
                  22 :     0 :  None :     1 : False :  True : Binary
                  23 :     0 :  None :     1 : False :  True : Binary
                  24 :     0 :  None :     1 : False :  True : Binary
-            delta_heat : Size=24, Index=t
-                Key : Lower : Value : Upper : Fixed : Stale : Domain
-                  1 :  None :  None :  None : False :  True :  Reals
-                  2 :  None :  None :  None : False :  True :  Reals
-                  3 :  None :  None :  None : False :  True :  Reals
-                  4 :  None :  None :  None : False :  True :  Reals
-                  5 :  None :  None :  None : False :  True :  Reals
-                  6 :  None :  None :  None : False :  True :  Reals
-                  7 :  None :  None :  None : False :  True :  Reals
-                  8 :  None :  None :  None : False :  True :  Reals
-                  9 :  None :  None :  None : False :  True :  Reals
-                 10 :  None :  None :  None : False :  True :  Reals
-                 11 :  None :  None :  None : False :  True :  Reals
-                 12 :  None :  None :  None : False :  True :  Reals
-                 13 :  None :  None :  None : False :  True :  Reals
-                 14 :  None :  None :  None : False :  True :  Reals
-                 15 :  None :  None :  None : False :  True :  Reals
-                 16 :  None :  None :  None : False :  True :  Reals
-                 17 :  None :  None :  None : False :  True :  Reals
-                 18 :  None :  None :  None : False :  True :  Reals
-                 19 :  None :  None :  None : False :  True :  Reals
-                 20 :  None :  None :  None : False :  True :  Reals
-                 21 :  None :  None :  None : False :  True :  Reals
-                 22 :  None :  None :  None : False :  True :  Reals
-                 23 :  None :  None :  None : False :  True :  Reals
-                 24 :  None :  None :  None : False :  True :  Reals
             heat_balance : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
                   1 :  None :  None :  None : False :  True :  Reals
@@ -2000,7 +1946,7 @@
                  23 :     0 :  None :  None : False :  True : NonNegativeReals
                  24 :     0 :  None :  None : False :  True : NonNegativeReals
 
-        8 Constraint Declarations
+        7 Constraint Declarations
             capacity_balance_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                 : Upper : Active
                   1 :   0.0 :                                       heat_storage1.heat_capacity[1] + heat_storage1.heat_balance[1] :   0.0 :   True
@@ -2027,32 +1973,6 @@
                  22 :   0.0 : heat_storage1.heat_capacity[22] - (heat_storage1.heat_capacity[21] - heat_storage1.heat_balance[22]) :   0.0 :   True
                  23 :   0.0 : heat_storage1.heat_capacity[23] - (heat_storage1.heat_capacity[22] - heat_storage1.heat_balance[23]) :   0.0 :   True
                  24 :   0.0 : heat_storage1.heat_capacity[24] - (heat_storage1.heat_capacity[23] - heat_storage1.heat_balance[24]) :   0.0 :   True
-            delta_heat_constr : Size=24, Index=t, Active=True
-                Key : Lower : Body                                                : Upper : Active
-                  1 :   0.0 :  heat_storage1.delta_heat[1] - [Unattached VarData] :   0.0 :   True
-                  2 :   0.0 :  heat_storage1.delta_heat[2] - [Unattached VarData] :   0.0 :   True
-                  3 :   0.0 :  heat_storage1.delta_heat[3] - [Unattached VarData] :   0.0 :   True
-                  4 :   0.0 :  heat_storage1.delta_heat[4] - [Unattached VarData] :   0.0 :   True
-                  5 :   0.0 :  heat_storage1.delta_heat[5] - [Unattached VarData] :   0.0 :   True
-                  6 :   0.0 :  heat_storage1.delta_heat[6] - [Unattached VarData] :   0.0 :   True
-                  7 :   0.0 :  heat_storage1.delta_heat[7] - [Unattached VarData] :   0.0 :   True
-                  8 :   0.0 :  heat_storage1.delta_heat[8] - [Unattached VarData] :   0.0 :   True
-                  9 :   0.0 :  heat_storage1.delta_heat[9] - [Unattached VarData] :   0.0 :   True
-                 10 :   0.0 : heat_storage1.delta_heat[10] - [Unattached VarData] :   0.0 :   True
-                 11 :   0.0 : heat_storage1.delta_heat[11] - [Unattached VarData] :   0.0 :   True
-                 12 :   0.0 : heat_storage1.delta_heat[12] - [Unattached VarData] :   0.0 :   True
-                 13 :   0.0 : heat_storage1.delta_heat[13] - [Unattached VarData] :   0.0 :   True
-                 14 :   0.0 : heat_storage1.delta_heat[14] - [Unattached VarData] :   0.0 :   True
-                 15 :   0.0 : heat_storage1.delta_heat[15] - [Unattached VarData] :   0.0 :   True
-                 16 :   0.0 : heat_storage1.delta_heat[16] - [Unattached VarData] :   0.0 :   True
-                 17 :   0.0 : heat_storage1.delta_heat[17] - [Unattached VarData] :   0.0 :   True
-                 18 :   0.0 : heat_storage1.delta_heat[18] - [Unattached VarData] :   0.0 :   True
-                 19 :   0.0 : heat_storage1.delta_heat[19] - [Unattached VarData] :   0.0 :   True
-                 20 :   0.0 : heat_storage1.delta_heat[20] - [Unattached VarData] :   0.0 :   True
-                 21 :   0.0 : heat_storage1.delta_heat[21] - [Unattached VarData] :   0.0 :   True
-                 22 :   0.0 : heat_storage1.delta_heat[22] - [Unattached VarData] :   0.0 :   True
-                 23 :   0.0 : heat_storage1.delta_heat[23] - [Unattached VarData] :   0.0 :   True
-                 24 :   0.0 : heat_storage1.delta_heat[24] - [Unattached VarData] :   0.0 :   True
             heat_balance_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                : Upper : Active
                   1 :   0.0 :    heat_storage1.heat_balance[1] - (heat_storage1.heat_discharge[1] - heat_storage1.heat_charge[1]) :   0.0 :   True
@@ -2218,7 +2138,7 @@
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_storage1.heat_discharge
 
-        17 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity delta_heat heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr delta_heat_constr heat_out_heat_outsum
+        15 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr heat_out_heat_outsum
     ngas_grid : Size=1, Index=None, Active=True
         1 Var Declarations
             gas_balance : Size=24, Index=t
@@ -2473,4 +2393,4 @@
         Key  : Ports                            : Directed : Active
         None : (ngas_grid.gas_out, chp1.gas_in) :     True :  False
 
-28 Declarations: t GAS_PRICE POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective heat_demand_scenario delta_x arc01 arc02 arc03 arc04 arc05 arc06 arc01_expanded arc02_expanded arc03_expanded arc04_expanded arc05_expanded arc06_expanded
+27 Declarations: t GAS_PRICE POWER_PRICE HEAT_PRICE heat_demand chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective heat_demand_scenario arc01 arc02 arc03 arc04 arc05 arc06 arc01_expanded arc02_expanded arc03_expanded arc04_expanded arc05_expanded arc06_expanded

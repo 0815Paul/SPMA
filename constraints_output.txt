@@ -1216,6 +1216,35 @@ capacity_balance_constr : Size=24, Index=t, Active=True
      23 :   0.0 : heat_storage1.heat_capacity[23] - (heat_storage1.heat_capacity[22] - heat_storage1.heat_balance[23]) :   0.0 :   True
      24 :   0.0 : heat_storage1.heat_capacity[24] - (heat_storage1.heat_capacity[23] - heat_storage1.heat_balance[24]) :   0.0 :   True
 ____________________________________
+Constraint: heat_storage1.delta_heat_constr
+Details:
+delta_heat_constr : Size=24, Index=t, Active=True
+    Key : Lower : Body                                                : Upper : Active
+      1 :   0.0 :  heat_storage1.delta_heat[1] - [Unattached VarData] :   0.0 :   True
+      2 :   0.0 :  heat_storage1.delta_heat[2] - [Unattached VarData] :   0.0 :   True
+      3 :   0.0 :  heat_storage1.delta_heat[3] - [Unattached VarData] :   0.0 :   True
+      4 :   0.0 :  heat_storage1.delta_heat[4] - [Unattached VarData] :   0.0 :   True
+      5 :   0.0 :  heat_storage1.delta_heat[5] - [Unattached VarData] :   0.0 :   True
+      6 :   0.0 :  heat_storage1.delta_heat[6] - [Unattached VarData] :   0.0 :   True
+      7 :   0.0 :  heat_storage1.delta_heat[7] - [Unattached VarData] :   0.0 :   True
+      8 :   0.0 :  heat_storage1.delta_heat[8] - [Unattached VarData] :   0.0 :   True
+      9 :   0.0 :  heat_storage1.delta_heat[9] - [Unattached VarData] :   0.0 :   True
+     10 :   0.0 : heat_storage1.delta_heat[10] - [Unattached VarData] :   0.0 :   True
+     11 :   0.0 : heat_storage1.delta_heat[11] - [Unattached VarData] :   0.0 :   True
+     12 :   0.0 : heat_storage1.delta_heat[12] - [Unattached VarData] :   0.0 :   True
+     13 :   0.0 : heat_storage1.delta_heat[13] - [Unattached VarData] :   0.0 :   True
+     14 :   0.0 : heat_storage1.delta_heat[14] - [Unattached VarData] :   0.0 :   True
+     15 :   0.0 : heat_storage1.delta_heat[15] - [Unattached VarData] :   0.0 :   True
+     16 :   0.0 : heat_storage1.delta_heat[16] - [Unattached VarData] :   0.0 :   True
+     17 :   0.0 : heat_storage1.delta_heat[17] - [Unattached VarData] :   0.0 :   True
+     18 :   0.0 : heat_storage1.delta_heat[18] - [Unattached VarData] :   0.0 :   True
+     19 :   0.0 : heat_storage1.delta_heat[19] - [Unattached VarData] :   0.0 :   True
+     20 :   0.0 : heat_storage1.delta_heat[20] - [Unattached VarData] :   0.0 :   True
+     21 :   0.0 : heat_storage1.delta_heat[21] - [Unattached VarData] :   0.0 :   True
+     22 :   0.0 : heat_storage1.delta_heat[22] - [Unattached VarData] :   0.0 :   True
+     23 :   0.0 : heat_storage1.delta_heat[23] - [Unattached VarData] :   0.0 :   True
+     24 :   0.0 : heat_storage1.delta_heat[24] - [Unattached VarData] :   0.0 :   True
+____________________________________
 Constraint: heat_storage1.heat_out_heat_outsum
 Details:
 heat_out_heat_outsum : Size=24, Index=t, Active=True
