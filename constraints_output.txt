@@ -1216,35 +1216,6 @@ capacity_balance_constr : Size=24, Index=t, Active=True
      23 :   0.0 : heat_storage1.heat_capacity[23] - (heat_storage1.heat_capacity[22] - heat_storage1.heat_balance[23]) :   0.0 :   True
      24 :   0.0 : heat_storage1.heat_capacity[24] - (heat_storage1.heat_capacity[23] - heat_storage1.heat_balance[24]) :   0.0 :   True
 ____________________________________
-Constraint: heat_storage1.delta_heat_constr
-Details:
-delta_heat_constr : Size=24, Index=t, Active=True
-    Key : Lower : Body                                                : Upper : Active
-      1 :   0.0 :  heat_storage1.delta_heat[1] - [Unattached VarData] :   0.0 :   True
-      2 :   0.0 :  heat_storage1.delta_heat[2] - [Unattached VarData] :   0.0 :   True
-      3 :   0.0 :  heat_storage1.delta_heat[3] - [Unattached VarData] :   0.0 :   True
-      4 :   0.0 :  heat_storage1.delta_heat[4] - [Unattached VarData] :   0.0 :   True
-      5 :   0.0 :  heat_storage1.delta_heat[5] - [Unattached VarData] :   0.0 :   True
-      6 :   0.0 :  heat_storage1.delta_heat[6] - [Unattached VarData] :   0.0 :   True
-      7 :   0.0 :  heat_storage1.delta_heat[7] - [Unattached VarData] :   0.0 :   True
-      8 :   0.0 :  heat_storage1.delta_heat[8] - [Unattached VarData] :   0.0 :   True
-      9 :   0.0 :  heat_storage1.delta_heat[9] - [Unattached VarData] :   0.0 :   True
-     10 :   0.0 : heat_storage1.delta_heat[10] - [Unattached VarData] :   0.0 :   True
-     11 :   0.0 : heat_storage1.delta_heat[11] - [Unattached VarData] :   0.0 :   True
-     12 :   0.0 : heat_storage1.delta_heat[12] - [Unattached VarData] :   0.0 :   True
-     13 :   0.0 : heat_storage1.delta_heat[13] - [Unattached VarData] :   0.0 :   True
-     14 :   0.0 : heat_storage1.delta_heat[14] - [Unattached VarData] :   0.0 :   True
-     15 :   0.0 : heat_storage1.delta_heat[15] - [Unattached VarData] :   0.0 :   True
-     16 :   0.0 : heat_storage1.delta_heat[16] - [Unattached VarData] :   0.0 :   True
-     17 :   0.0 : heat_storage1.delta_heat[17] - [Unattached VarData] :   0.0 :   True
-     18 :   0.0 : heat_storage1.delta_heat[18] - [Unattached VarData] :   0.0 :   True
-     19 :   0.0 : heat_storage1.delta_heat[19] - [Unattached VarData] :   0.0 :   True
-     20 :   0.0 : heat_storage1.delta_heat[20] - [Unattached VarData] :   0.0 :   True
-     21 :   0.0 : heat_storage1.delta_heat[21] - [Unattached VarData] :   0.0 :   True
-     22 :   0.0 : heat_storage1.delta_heat[22] - [Unattached VarData] :   0.0 :   True
-     23 :   0.0 : heat_storage1.delta_heat[23] - [Unattached VarData] :   0.0 :   True
-     24 :   0.0 : heat_storage1.delta_heat[24] - [Unattached VarData] :   0.0 :   True
-____________________________________
 Constraint: heat_storage1.heat_out_heat_outsum
 Details:
 heat_out_heat_outsum : Size=24, Index=t, Active=True
@@ -1451,31 +1422,31 @@ ____________________________________
 Constraint: heat_grid.heat_supply_constr
 Details:
 heat_supply_constr : Size=24, Index=t, Active=True
-    Key : Lower  : Body                      : Upper  : Active
-      1 :  79.26 :  heat_grid.heat_supply[1] :  79.26 :   True
-      2 :  88.85 :  heat_grid.heat_supply[2] :  88.85 :   True
-      3 : 166.62 :  heat_grid.heat_supply[3] : 166.62 :   True
-      4 : 113.14 :  heat_grid.heat_supply[4] : 113.14 :   True
-      5 : 118.94 :  heat_grid.heat_supply[5] : 118.94 :   True
-      6 : 124.61 :  heat_grid.heat_supply[6] : 124.61 :   True
-      7 : 125.94 :  heat_grid.heat_supply[7] : 125.94 :   True
-      8 : 118.99 :  heat_grid.heat_supply[8] : 118.99 :   True
-      9 :  113.1 :  heat_grid.heat_supply[9] :  113.1 :   True
-     10 : 103.57 : heat_grid.heat_supply[10] : 103.57 :   True
-     11 :   95.2 : heat_grid.heat_supply[11] :   95.2 :   True
-     12 :  89.24 : heat_grid.heat_supply[12] :  89.24 :   True
-     13 :  89.44 : heat_grid.heat_supply[13] :  89.44 :   True
-     14 :  96.07 : heat_grid.heat_supply[14] :  96.07 :   True
-     15 :  94.83 : heat_grid.heat_supply[15] :  94.83 :   True
-     16 : 108.25 : heat_grid.heat_supply[16] : 108.25 :   True
-     17 : 109.84 : heat_grid.heat_supply[17] : 109.84 :   True
-     18 : 113.12 : heat_grid.heat_supply[18] : 113.12 :   True
-     19 : 102.27 : heat_grid.heat_supply[19] : 102.27 :   True
-     20 :  99.65 : heat_grid.heat_supply[20] :  99.65 :   True
-     21 :   74.5 : heat_grid.heat_supply[21] :   74.5 :   True
-     22 :  71.97 : heat_grid.heat_supply[22] :  71.97 :   True
-     23 :   79.7 : heat_grid.heat_supply[23] :   79.7 :   True
-     24 :  84.06 : heat_grid.heat_supply[24] :  84.06 :   True
+    Key : Lower              : Body                      : Upper              : Active
+      1 :  86.89020582132288 :  heat_grid.heat_supply[1] :  86.89020582132288 :   True
+      2 : 102.67012913651094 :  heat_grid.heat_supply[2] : 102.67012913651094 :   True
+      3 : 197.10818009752964 :  heat_grid.heat_supply[3] : 197.10818009752964 :   True
+      4 : 131.41110425250923 :  heat_grid.heat_supply[4] : 131.41110425250923 :   True
+      5 : 134.36278677058627 :  heat_grid.heat_supply[5] : 134.36278677058627 :   True
+      6 : 133.35488413447985 :  heat_grid.heat_supply[6] : 133.35488413447985 :   True
+      7 : 148.67082790766605 :  heat_grid.heat_supply[7] : 148.67082790766605 :   True
+      8 : 155.76612945938308 :  heat_grid.heat_supply[8] : 155.76612945938308 :   True
+      9 : 149.41335246313022 :  heat_grid.heat_supply[9] : 149.41335246313022 :   True
+     10 : 132.52799498318225 : heat_grid.heat_supply[10] : 132.52799498318225 :   True
+     11 :  128.1881334012233 : heat_grid.heat_supply[11] :  128.1881334012233 :   True
+     12 :  123.8851574175104 : heat_grid.heat_supply[12] :  123.8851574175104 :   True
+     13 : 120.24610785605115 : heat_grid.heat_supply[13] : 120.24610785605115 :   True
+     14 :  129.2256067900492 : heat_grid.heat_supply[14] :  129.2256067900492 :   True
+     15 : 144.84779804164918 : heat_grid.heat_supply[15] : 144.84779804164918 :   True
+     16 : 166.56653578784764 : heat_grid.heat_supply[16] : 166.56653578784764 :   True
+     17 : 169.65940464198837 : heat_grid.heat_supply[17] : 169.65940464198837 :   True
+     18 : 180.98217387350823 : heat_grid.heat_supply[18] : 180.98217387350823 :   True
+     19 : 159.72915392902087 : heat_grid.heat_supply[19] : 159.72915392902087 :   True
+     20 : 141.17185343819725 : heat_grid.heat_supply[20] : 141.17185343819725 :   True
+     21 : 103.37569949235706 : heat_grid.heat_supply[21] : 103.37569949235706 :   True
+     22 : 108.05637359730451 : heat_grid.heat_supply[22] : 108.05637359730451 :   True
+     23 : 106.48752403357732 : heat_grid.heat_supply[23] : 106.48752403357732 :   True
+     24 :   111.895874623898 : heat_grid.heat_supply[24] :   111.895874623898 :   True
 ____________________________________
 Constraint: heat_grid.heat_in_heat_insum
 Details:

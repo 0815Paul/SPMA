@@ -41,6 +41,7 @@ class Boiler:
         asset.heat = Var(t, domain=NonNegativeReals)
         asset.gas = Var(t, domain=NonNegativeReals)
         asset.eta_th = Var(t, domain=NonNegativeReals)
+        # asset.x = Var(t, domain=NonNegativeReals)
 
        # Binary variable for Big-M constraints
         asset.y1 = Var(t, domain=Binary)
@@ -79,9 +80,9 @@ class Boiler:
         gas_2 = heat_2 / eta_th_2
         gas_3 = heat_3 / eta_th_3
 
-        print("Gas Boiler :", gas_1, gas_2, gas_3)
-        print("Heat Boiler:", heat_1, heat_2, heat_3)
-        print("eta_th Boiler:", eta_th_1, eta_th_2, eta_th_3)
+        # print("Gas Boiler :", gas_1, gas_2, gas_3)
+        # print("Heat Boiler:", heat_1, heat_2, heat_3)
+        # print("eta_th Boiler:", eta_th_1, eta_th_2, eta_th_3)
 
         # Constraints
 
@@ -186,4 +187,7 @@ class Boiler:
         
         # __________________________________________________________________________________________
   
-    
+
+        # def test(asset, t):
+        #     return asset.x[t] == asset.model().delta_heat_demand_scenario[t]
+        # asset.test = Constraint(t, rule=test)
