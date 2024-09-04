@@ -34,7 +34,7 @@ class HeatStorage:
         asset.bin_discharge = Var(t, within=Binary)
         asset.heat_balance = Var(t, within=Reals)
         asset.heat_capacity = Var(t, within=NonNegativeReals)
-        
+        asset.x = Var(t, within=NonNegativeReals)
    
 
 

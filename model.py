@@ -69,6 +69,7 @@ class Model:
         self.ef_instance = None
         self.solver = None
         self.timeseries_data = None
+        self.scenario_data = None
         self.results = None
         self.results_data = None
         self._initialize_model_components()
@@ -77,11 +78,10 @@ class Model:
         """Initialize basic model components."""
         self.model.t = Set(ordered=True)
         self._define_parameters()
+        self._load_scenario_data()        
         self._define_assets()
         self._define_expressions()
-        self._calculate_delta_heat_demand()
-        # self._define_stochastic_parameters()
-
+        self._define_objective()
 
     def _define_parameters(self):
         """Define model parameters."""
@@ -90,6 +90,9 @@ class Model:
         self.model.POWER_PRICE = Param(initialize=POWER_PRICE)
         self.model.HEAT_PRICE = Param(initialize=HEAT_PRICE)
         self.model.heat_demand = Param(self.model.t)
+        self.model.heat_demand_scenario = Param(self.model.t)
+        self.model.delta_heat_demand = Param(self.model.t)
+        self.model.probability = Param()
         
     def _define_assets(self):
         self._add_chp_assets()
@@ -122,27 +125,7 @@ class Model:
 
         for grid_assets in [ngas_grid, power_grid, heat_grid]:
             grid_assets.add_to_model(self.model)
-
-    def _json_to_csv(self, json_file, csv_file):
-        """Convert JSON to CSV."""
-        with open(json_file) as f:
-            data = json.load(f)
-        df = pd.DataFrame(data)
-        df.to_csv(csv_file, index_label='t')
-
-    def _load_timeseries_data(self):
-        """Load timeseries data from file."""
-        filename = 'heat_demand_20230402'
-        self._json_to_csv(f'{self.PATH_IN_PP}demands/{filename}.json', f'{self.PATH_IN}demands/{filename}.csv')
-        self.timeseries_data = DataPortal()
-        self.timeseries_data.load(
-            filename=f'{self.PATH_IN}demands/{filename}.csv',
-            index='t',
-            param='heat_demand'
-        )
-
     
-        
     def _add_arcs(self):
         """Add arcs to the instance."""
         self.instance.arc01 = Arc(
@@ -179,7 +162,6 @@ class Model:
         self.model.first_stage_cost = Expression(rule=self._first_stage_cost_rule)
         self.model.second_stage_cost = Expression(rule=self._second_stage_cost_rule)
 
-    
     def _first_stage_cost_rule(self, model):
         return (
             self._gas_costs(model) + 
@@ -198,8 +180,6 @@ class Model:
         # CVaR = VaR + (1 / (1 - RHO)) * quicksum(model.prob[s] * model.eta_s for s in model.scenarios)
         # return CVaR
         return 0
-
-
 
     def _gas_costs(self, model):
             """ Calculate gas costs for CHP and Boiler."""
@@ -243,159 +223,52 @@ class Model:
             energy_tax_refund
         )
         return chp_revenue
-
-    def _calculate_delta_heat_demand(self):
-        """Calculate the difference between the heat demand and the heat demand scenario."""
-
-        # Load the heat demand data
-        with open(f'{self.PATH_IN_PP}demands/heat_demand_20230402.json') as f:
-            heat_demand_data = json.load(f)
-        
-        with open(f'{self.PATH_IN_PP}demands/heat_demand_scenarios_20230402.json') as f:
-            heat_demand_scenarios = json.load(f)
-
-        # Day Ahead demand
-        heat_demand = heat_demand_data['heat_demand']
-
-        # Initialize the delta heat demand dictionary
-        delta_heat_demand = {}
-
-        # Loop over all scenarios
-
-        for scenario, values in heat_demand_scenarios.items():
-            delta_heat_demand[scenario] = {}
-            for t, value in values.items():
-                if t != 'Probability':
-                    heat_d = heat_demand[t]
-                    delta_heat_demand[scenario][int(t)] = heat_d - value
-        
-        print(delta_heat_demand)
-
-        return delta_heat_demand
-
-    def _load_stochastic_data(self):
-        filename = 'heat_demand_scenarios_20230402' 
-        with open(f'{self.PATH_IN_PP}demands/{filename}.json') as f:
-            data = json.load(f)
-
-        # # Create a dictionary
-        # self.model.heat_demand.pprint()
-
-        heat_demand_scenarios = {}
-
-        for scenario, values in data.items():
-            heat_demand_scenarios[scenario] = {
-                'Probability': values['Probability']
-            }
-            for t, value in values.items():
-                if t != 'Probability':
-                    heat_demand_scenarios[scenario][int(t)] = value
-
-        return heat_demand_scenarios
     
-    def _initialize_scenario_parameters(self, heat_demand_scenario, probability, delta_heat_demand_scenario):
-        """Initialize scenario parameters."""
-        
-        print("Initializing scenario parameters...")
-        
-        def heat_demand_init(m, t):
-            if t in heat_demand_scenario:
-                # print("heat_demand_scenario[t]: ", heat_demand_scenario[t])
-                return heat_demand_scenario[t]
-            else:
-                raise KeyError(f"Key {t} not found in scenario")
-        
-        # Initialize heat demand scenario
-        self.model.heat_demand_scenario = Param(self.model.t, initialize=heat_demand_init, mutable=True)
-
-        def delta_heat_demand_init(m, t):
-            if t in delta_heat_demand_scenario:
-                return delta_heat_demand_scenario[t]
-            else:
-                raise KeyError(f"Key {t} not found in delta heat demand scenario")
-       
-       # Initialize delta heat demand scenario
-        self.model.delta_heat_demand_scenario = Param(self.model.t, initialize=delta_heat_demand_init, mutable=True)
-
-        # Initialize probability
-        self.model.probability = Param(initialize=probability)
-
-
-    def _build_scenario_model(self, scenario_name):
-        """Build the scenario model. Each scenario has a different heat demand and its own model."""
-        # Load timeseries data
-        print("Building scenario model...")
-
-        # Load the dictionary with the heat demand scenarios
-        heat_demand_scenarios = self._load_stochastic_data() 
-
-        scenario_key = f"{scenario_name}"
-
-        if scenario_key in heat_demand_scenarios:
-            scenario_data = heat_demand_scenarios[scenario_key]
-            probability = scenario_data.pop('Probability',0)
-            # print("Probability: ", probability)
-            heat_demand_scenario = scenario_data
-        else:
-            raise RuntimeError(f"Scenario {scenario_key} not found in heat demand scenarios")
-
-        #print(self.model.heat_demand[t] for t in self.model.t)
-        #print(f"Heat demand scenario for {scenario_key}: {heat_demand_scenario}")
-        
-        
-        # Load the dictionary with delta heat demand 
-        delta_heat_demand = self._calculate_delta_heat_demand()
-        
-        if scenario_key in delta_heat_demand:
-            delta_heat_demand_scenario = delta_heat_demand[scenario_key]
-        else:
-            raise RuntimeError(f"Scenario {scenario_key} not found in delta heat demand scenarios")
-        
-        self._load_timeseries_data()
-      
-
-        # Initialize scenario parameters
-        self._initialize_scenario_parameters(heat_demand_scenario, probability, delta_heat_demand_scenario)
-        
-        # self._define_assets()
-        # self._define_expressions()
-        
-        ###################### Start Debugging Print ######################
-
-        # output_filename = f'output_model_{scenario_name}.txt'
-
-        # with open(output_filename, 'w') as f:
-        #     self.model.pprint(ostream=f)
-
-        ###################### End Debugging Print ######################
-
-        # Create a concrete instance of the model
-        print("Creating instance...")
-        self.instance = self.model.create_instance(self.timeseries_data)
-        
-        # Add Arcs to the model
-        self._add_arcs()
-
-        # Expand arcs and generate connection constraints
-        self._expand_arcs()
-
-        return self.instance
-    
-
-
-
-    # Not needed for now
-    def set_solver(self, solver_name, **kwargs):
-        """Set solver for the model."""
-        self.solver = SolverFactory(solver_name)
-        for key in kwargs:
-            self.solver.options[key] = kwargs[key]    
-    
-    def add_objective(self):
+    def _define_objective(self):
         """Add objective function to model."""
         def objective_expression_rule(model):
             return model.first_stage_cost + model.second_stage_cost
-        self.model.objective = Objective(rule=objective_expression_rule,sense=maximize)  
+        self.model.objective = Objective(rule=objective_expression_rule,sense=minimize)  
+    
+    #####################################################################################
+
+    def _load_scenario_data(self):
+        """Load scenario data from files and load it in a dictionary."""  
+        
+        with open(f'{self.PATH_IN_PP}demands/heat_demand_20230402.json') as f:
+            heat_demand_data = json.load(f)
+
+        with open(f'{self.PATH_IN_PP}demands/heat_demand_scenarios_20230402.json') as f:
+            scenario_data = json.load(f)
+
+        # Extrahiere t-Werte und konvertiere sie in int
+        t_values = list(map(int, heat_demand_data['heat_demand'].keys()))
+        heat_demand = {int(k): v for k, v in heat_demand_data['heat_demand'].items()}
+
+        # Initialisiere das Hauptdictionary
+        self.scenario_data = {}
+
+        for scenario_name, scenario_values in scenario_data.items():
+            try:
+                probability = scenario_values['Probability']
+                
+                # Sicherstellen, dass alle Stunden als int behandelt werden
+                heat_demand_scenario = {int(hour): scenario_values[str(hour)] for hour in t_values}
+                delta_heat_demand = {
+                    int(hour): heat_demand_scenario[hour] - heat_demand[hour] for hour in t_values
+                }
+                
+                self.scenario_data[scenario_name] = {
+                    't': {None: t_values},
+                    'heat_demand': heat_demand,
+                    'heat_demand_scenario': heat_demand_scenario,
+                    'delta_heat_demand': delta_heat_demand,
+                    'probability': {None: probability}
+                }
+            except KeyError as e:
+                print(f"Fehler im Szenario {scenario_name}: fehlender Schlüssel {e}")
+            except Exception as e:
+                print(f"Allgemeiner Fehler im Szenario {scenario_name}: {e}")
 
     
     def _scenario_creator(self, scenario_name):
@@ -411,7 +284,6 @@ class Model:
         # Add Probability to the instance
         #self.instance._mpisppy_probability = 1.0
 
-        
         ###################### Start Debugging Print ######################
 
         output_filename = f'output_{scenario_name}.txt'
@@ -437,7 +309,50 @@ class Model:
 
         return self.instance
 
-       
+    def _build_scenario_model(self, scenario_name):
+        """Build the scenario model. Each scenario has its own model."""
+
+        # Load the dictionary with the heat demand scenarios
+        if scenario_name in self.scenario_data:
+            scenario_data = self.scenario_data[scenario_name]
+            # Importent for the needed format for instance creation
+            scenario_data = {
+                None: scenario_data
+            }
+        else:
+            raise RuntimeError(f"Scenario: {scenario_name} not found in scenario data")
+        
+        print(scenario_data)
+
+        # Create a concrete instance of the model
+        print("Creating instance...")
+        self.instance = self.model.create_instance(data=scenario_data, name=scenario_name)    
+        
+        # Add Arcs to the model
+        self._add_arcs()
+
+        # Expand arcs and generate connection constraints
+        self._expand_arcs()
+        
+        ###################### Start Debugging Print ######################
+
+        output_filename = f'output_model_{scenario_name}.txt'
+
+        with open(output_filename, 'w') as f:
+            self.instance.pprint(ostream=f)
+
+        ###################### End Debugging Print ######################
+
+        return self.instance
+
+    # Not needed for now
+    def set_solver(self, solver_name, **kwargs):
+        """Set solver for the model."""
+        self.solver = SolverFactory(solver_name)
+        for key in kwargs:
+            self.solver.options[key] = kwargs[key]    
+    
+
     def create_extensive_form(self, options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
         self.ef_instance = ExtensiveForm(
@@ -448,7 +363,7 @@ class Model:
             scenario_creator_kwargs=scenario_creator_kwargs
         )
         return self.ef_instance
-    
+
     def solve(self):
         """Solve the model."""
         self.results = self.ef_instance.solve_extensive_form(tee=True)
@@ -491,7 +406,6 @@ class Model:
     def write_objective_values(self, ef):
         """Writes he Objective-Value for each scenario."""
         results = []
-
         
         for sname, smodel in sputils.ef_scenarios(ef):
             objective_value = pyo.value(smodel.objective)

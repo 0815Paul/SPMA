@@ -7,7 +7,7 @@ from datetime import datetime
 def main():
     
     # Some parameters 
-    scen_count = 1
+    scen_count = 2
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = f"{PATH_OUT_LOGS}logile_{timestamp}.log"
     options = {
@@ -28,9 +28,6 @@ def main():
     # Not needed for now, because Solver is defined through Extensive Form
     #print("Setting Solver...")
     #my_model.set_solver(solver_name=solver_name, **solver_kwargs)
-
-    print("Add objective...")
-    my_model.add_objective()
 
     print("Creating Extensive Formulation...")
     my_ef = my_model.create_extensive_form(options, scenario_names, scenario_creator_kwargs)
