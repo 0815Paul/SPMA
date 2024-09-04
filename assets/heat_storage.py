@@ -34,7 +34,7 @@ class HeatStorage:
         asset.bin_discharge = Var(t, within=Binary)
         asset.heat_balance = Var(t, within=Reals)
         asset.heat_capacity = Var(t, within=NonNegativeReals)
-        asset.x = Var(t, within=NonNegativeReals)
+        asset.x = Var(t)
    
 
 
@@ -87,5 +87,11 @@ class HeatStorage:
             else:
                 return asset.heat_capacity[t] == asset.heat_capacity[t-1] - asset.heat_balance[t]
         asset.capacity_balance_constr = Constraint(t, rule=capacity_balance_rule)
+
+
+        # Testfunction
+        def test_rule(asset, t):
+            return asset.x[t] == asset.model().delta_heat_demand[t]
+        asset.test_constr = Constraint(t, rule=test_rule)
 
 

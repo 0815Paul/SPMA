@@ -15,29 +15,29 @@
         None : 0.251
     delta_heat_demand : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
-          1 :   8.712987542142756
-          2 :  -8.717701939869812
-          3 :  107.30616743442366
+          1 : -12.731658021190228
+          2 :   13.38614599835239
+          3 :   4.289053467406916
           4 :   -72.7555408844415
-          5 :   55.90454024433015
+          5 :   -20.9593248810352
           6 :  -55.65040466429653
           7 :    37.5130184056988
-          8 :  -8.965185204385364
-          9 :  -29.19281394631919
-         10 :  19.278714090161202
-         11 : -16.937169655534063
-         12 :     34.994173380953
-         13 :  -64.35799685189929
+          8 :  17.513356653656274
+          9 :  20.683353683413713
+         10 :  -68.10563023023083
+         11 :   -44.3425959568374
+         12 :  11.592746862130568
+         13 :  10.553273444153078
          14 :  -34.22677277581329
          15 :  11.159907814105537
-         16 :   -40.7466948732453
-         17 :  20.815634794626703
-         18 :  51.311911697206796
-         19 :   3.123465743890847
+         16 : -12.303575238253785
+         17 : -63.446609647593505
+         18 :  -4.348450417306509
+         19 :  -20.39916197375132
          20 :  -5.755868928895524
-         21 :  34.721796703227085
-         22 :   -53.4126620211962
-         23 :   19.23969208663742
+         21 : -20.181567376741853
+         22 :  31.835346251732346
+         23 : -0.9307048889857725
          24 :  -38.85262515031678
     heat_demand : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
@@ -67,33 +67,33 @@
          24 :   111.895874623898
     heat_demand_scenario : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
-          1 :  95.60319336346564
-          2 :  93.95242719664112
-          3 :  304.4143475319533
+          1 :  74.15854780013265
+          2 : 116.05627513486333
+          3 : 201.39723356493656
           4 :  58.65556336806773
-          5 : 190.26732701491642
+          5 : 113.40346188955107
           6 :  77.70447947018332
           7 : 186.18384631336485
-          8 : 146.80094425499772
-          9 : 120.22053851681103
-         10 : 151.80670907334346
-         11 : 111.25096374568923
-         12 :  158.8793307984634
-         13 :  55.88811100415187
+          8 : 173.27948611303935
+          9 : 170.09670614654394
+         10 :  64.42236475295142
+         11 :   83.8455374443859
+         12 : 135.47790427964097
+         13 : 130.79938130020423
          14 :  94.99883401423591
          15 : 156.00770585575472
-         16 : 125.81984091460234
-         17 : 190.47503943661508
-         18 : 232.29408557071503
-         19 : 162.85261967291171
+         16 : 154.26296054959386
+         17 : 106.21279499439487
+         18 : 176.63372345620172
+         19 : 139.32999195526955
          20 : 135.41598450930172
-         21 : 138.09749619558414
-         22 : 54.643711576108316
-         23 : 125.72721612021473
+         21 :   83.1941321156152
+         22 : 139.89171984903686
+         23 : 105.55681914459154
          24 :  73.04324947358121
     probability : Size=1, Index=None, Domain=Any, Default=None, Mutable=False
         Key  : Value
-        None : 3.417800370859148e-07
+        None : 6.120821617579103e-05
 
 2 Expression Declarations
     first_stage_cost : Size=1, Index=None
@@ -1976,32 +1976,32 @@
                  24 :     0 :  None :  None : False :  True : NonNegativeReals
             x : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
-                  1 :     0 :  None :  None : False :  True : NonNegativeReals
-                  2 :     0 :  None :  None : False :  True : NonNegativeReals
-                  3 :     0 :  None :  None : False :  True : NonNegativeReals
-                  4 :     0 :  None :  None : False :  True : NonNegativeReals
-                  5 :     0 :  None :  None : False :  True : NonNegativeReals
-                  6 :     0 :  None :  None : False :  True : NonNegativeReals
-                  7 :     0 :  None :  None : False :  True : NonNegativeReals
-                  8 :     0 :  None :  None : False :  True : NonNegativeReals
-                  9 :     0 :  None :  None : False :  True : NonNegativeReals
-                 10 :     0 :  None :  None : False :  True : NonNegativeReals
-                 11 :     0 :  None :  None : False :  True : NonNegativeReals
-                 12 :     0 :  None :  None : False :  True : NonNegativeReals
-                 13 :     0 :  None :  None : False :  True : NonNegativeReals
-                 14 :     0 :  None :  None : False :  True : NonNegativeReals
-                 15 :     0 :  None :  None : False :  True : NonNegativeReals
-                 16 :     0 :  None :  None : False :  True : NonNegativeReals
-                 17 :     0 :  None :  None : False :  True : NonNegativeReals
-                 18 :     0 :  None :  None : False :  True : NonNegativeReals
-                 19 :     0 :  None :  None : False :  True : NonNegativeReals
-                 20 :     0 :  None :  None : False :  True : NonNegativeReals
-                 21 :     0 :  None :  None : False :  True : NonNegativeReals
-                 22 :     0 :  None :  None : False :  True : NonNegativeReals
-                 23 :     0 :  None :  None : False :  True : NonNegativeReals
-                 24 :     0 :  None :  None : False :  True : NonNegativeReals
+                  1 :  None :  None :  None : False :  True :  Reals
+                  2 :  None :  None :  None : False :  True :  Reals
+                  3 :  None :  None :  None : False :  True :  Reals
+                  4 :  None :  None :  None : False :  True :  Reals
+                  5 :  None :  None :  None : False :  True :  Reals
+                  6 :  None :  None :  None : False :  True :  Reals
+                  7 :  None :  None :  None : False :  True :  Reals
+                  8 :  None :  None :  None : False :  True :  Reals
+                  9 :  None :  None :  None : False :  True :  Reals
+                 10 :  None :  None :  None : False :  True :  Reals
+                 11 :  None :  None :  None : False :  True :  Reals
+                 12 :  None :  None :  None : False :  True :  Reals
+                 13 :  None :  None :  None : False :  True :  Reals
+                 14 :  None :  None :  None : False :  True :  Reals
+                 15 :  None :  None :  None : False :  True :  Reals
+                 16 :  None :  None :  None : False :  True :  Reals
+                 17 :  None :  None :  None : False :  True :  Reals
+                 18 :  None :  None :  None : False :  True :  Reals
+                 19 :  None :  None :  None : False :  True :  Reals
+                 20 :  None :  None :  None : False :  True :  Reals
+                 21 :  None :  None :  None : False :  True :  Reals
+                 22 :  None :  None :  None : False :  True :  Reals
+                 23 :  None :  None :  None : False :  True :  Reals
+                 24 :  None :  None :  None : False :  True :  Reals
 
-        7 Constraint Declarations
+        8 Constraint Declarations
             capacity_balance_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                 : Upper : Active
                   1 :   0.0 :                                       heat_storage1.heat_capacity[1] + heat_storage1.heat_balance[1] :   0.0 :   True
@@ -2184,6 +2184,32 @@
                  22 :   0.0 : heat_storage1.heat_capacity[22] :  +Inf :   True
                  23 :   0.0 : heat_storage1.heat_capacity[23] :  +Inf :   True
                  24 :   0.0 : heat_storage1.heat_capacity[24] :  +Inf :   True
+            test_constr : Size=24, Index=t, Active=True
+                Key : Lower               : Body                : Upper               : Active
+                  1 : -12.731658021190228 :  heat_storage1.x[1] : -12.731658021190228 :   True
+                  2 :   13.38614599835239 :  heat_storage1.x[2] :   13.38614599835239 :   True
+                  3 :   4.289053467406916 :  heat_storage1.x[3] :   4.289053467406916 :   True
+                  4 :   -72.7555408844415 :  heat_storage1.x[4] :   -72.7555408844415 :   True
+                  5 :   -20.9593248810352 :  heat_storage1.x[5] :   -20.9593248810352 :   True
+                  6 :  -55.65040466429653 :  heat_storage1.x[6] :  -55.65040466429653 :   True
+                  7 :    37.5130184056988 :  heat_storage1.x[7] :    37.5130184056988 :   True
+                  8 :  17.513356653656274 :  heat_storage1.x[8] :  17.513356653656274 :   True
+                  9 :  20.683353683413713 :  heat_storage1.x[9] :  20.683353683413713 :   True
+                 10 :  -68.10563023023083 : heat_storage1.x[10] :  -68.10563023023083 :   True
+                 11 :   -44.3425959568374 : heat_storage1.x[11] :   -44.3425959568374 :   True
+                 12 :  11.592746862130568 : heat_storage1.x[12] :  11.592746862130568 :   True
+                 13 :  10.553273444153078 : heat_storage1.x[13] :  10.553273444153078 :   True
+                 14 :  -34.22677277581329 : heat_storage1.x[14] :  -34.22677277581329 :   True
+                 15 :  11.159907814105537 : heat_storage1.x[15] :  11.159907814105537 :   True
+                 16 : -12.303575238253785 : heat_storage1.x[16] : -12.303575238253785 :   True
+                 17 : -63.446609647593505 : heat_storage1.x[17] : -63.446609647593505 :   True
+                 18 :  -4.348450417306509 : heat_storage1.x[18] :  -4.348450417306509 :   True
+                 19 :  -20.39916197375132 : heat_storage1.x[19] :  -20.39916197375132 :   True
+                 20 :  -5.755868928895524 : heat_storage1.x[20] :  -5.755868928895524 :   True
+                 21 : -20.181567376741853 : heat_storage1.x[21] : -20.181567376741853 :   True
+                 22 :  31.835346251732346 : heat_storage1.x[22] :  31.835346251732346 :   True
+                 23 : -0.9307048889857725 : heat_storage1.x[23] : -0.9307048889857725 :   True
+                 24 :  -38.85262515031678 : heat_storage1.x[24] :  -38.85262515031678 :   True
 
         2 Port Declarations
             heat_in : Size=1, Index=None
@@ -2193,7 +2219,7 @@
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_storage1.heat_discharge
 
-        16 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity x heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr heat_out_heat_outsum
+        17 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity x heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr test_constr heat_out_heat_outsum
     ngas_grid : Size=1, Index=None, Active=True
         1 Var Declarations
             gas_balance : Size=24, Index=t

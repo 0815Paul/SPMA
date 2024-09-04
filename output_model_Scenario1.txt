@@ -1976,30 +1976,30 @@
                  24 :     0 :  None :  None : False :  True : NonNegativeReals
             x : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
-                  1 :     0 :  None :  None : False :  True : NonNegativeReals
-                  2 :     0 :  None :  None : False :  True : NonNegativeReals
-                  3 :     0 :  None :  None : False :  True : NonNegativeReals
-                  4 :     0 :  None :  None : False :  True : NonNegativeReals
-                  5 :     0 :  None :  None : False :  True : NonNegativeReals
-                  6 :     0 :  None :  None : False :  True : NonNegativeReals
-                  7 :     0 :  None :  None : False :  True : NonNegativeReals
-                  8 :     0 :  None :  None : False :  True : NonNegativeReals
-                  9 :     0 :  None :  None : False :  True : NonNegativeReals
-                 10 :     0 :  None :  None : False :  True : NonNegativeReals
-                 11 :     0 :  None :  None : False :  True : NonNegativeReals
-                 12 :     0 :  None :  None : False :  True : NonNegativeReals
-                 13 :     0 :  None :  None : False :  True : NonNegativeReals
-                 14 :     0 :  None :  None : False :  True : NonNegativeReals
-                 15 :     0 :  None :  None : False :  True : NonNegativeReals
-                 16 :     0 :  None :  None : False :  True : NonNegativeReals
-                 17 :     0 :  None :  None : False :  True : NonNegativeReals
-                 18 :     0 :  None :  None : False :  True : NonNegativeReals
-                 19 :     0 :  None :  None : False :  True : NonNegativeReals
-                 20 :     0 :  None :  None : False :  True : NonNegativeReals
-                 21 :     0 :  None :  None : False :  True : NonNegativeReals
-                 22 :     0 :  None :  None : False :  True : NonNegativeReals
-                 23 :     0 :  None :  None : False :  True : NonNegativeReals
-                 24 :     0 :  None :  None : False :  True : NonNegativeReals
+                  1 :  None :  None :  None : False :  True :  Reals
+                  2 :  None :  None :  None : False :  True :  Reals
+                  3 :  None :  None :  None : False :  True :  Reals
+                  4 :  None :  None :  None : False :  True :  Reals
+                  5 :  None :  None :  None : False :  True :  Reals
+                  6 :  None :  None :  None : False :  True :  Reals
+                  7 :  None :  None :  None : False :  True :  Reals
+                  8 :  None :  None :  None : False :  True :  Reals
+                  9 :  None :  None :  None : False :  True :  Reals
+                 10 :  None :  None :  None : False :  True :  Reals
+                 11 :  None :  None :  None : False :  True :  Reals
+                 12 :  None :  None :  None : False :  True :  Reals
+                 13 :  None :  None :  None : False :  True :  Reals
+                 14 :  None :  None :  None : False :  True :  Reals
+                 15 :  None :  None :  None : False :  True :  Reals
+                 16 :  None :  None :  None : False :  True :  Reals
+                 17 :  None :  None :  None : False :  True :  Reals
+                 18 :  None :  None :  None : False :  True :  Reals
+                 19 :  None :  None :  None : False :  True :  Reals
+                 20 :  None :  None :  None : False :  True :  Reals
+                 21 :  None :  None :  None : False :  True :  Reals
+                 22 :  None :  None :  None : False :  True :  Reals
+                 23 :  None :  None :  None : False :  True :  Reals
+                 24 :  None :  None :  None : False :  True :  Reals
 
         8 Constraint Declarations
             capacity_balance_constr : Size=24, Index=t, Active=True
@@ -2185,31 +2185,31 @@
                  23 :   0.0 : heat_storage1.heat_capacity[23] :  +Inf :   True
                  24 :   0.0 : heat_storage1.heat_capacity[24] :  +Inf :   True
             test_constr : Size=24, Index=t, Active=True
-                Key : Lower              : Body                : Upper              : Active
-                  1 :  95.60319336346564 :  heat_storage1.x[1] :  95.60319336346564 :   True
-                  2 :  93.95242719664112 :  heat_storage1.x[2] :  93.95242719664112 :   True
-                  3 :  304.4143475319533 :  heat_storage1.x[3] :  304.4143475319533 :   True
-                  4 :  58.65556336806773 :  heat_storage1.x[4] :  58.65556336806773 :   True
-                  5 : 190.26732701491642 :  heat_storage1.x[5] : 190.26732701491642 :   True
-                  6 :  77.70447947018332 :  heat_storage1.x[6] :  77.70447947018332 :   True
-                  7 : 186.18384631336485 :  heat_storage1.x[7] : 186.18384631336485 :   True
-                  8 : 146.80094425499772 :  heat_storage1.x[8] : 146.80094425499772 :   True
-                  9 : 120.22053851681103 :  heat_storage1.x[9] : 120.22053851681103 :   True
-                 10 : 151.80670907334346 : heat_storage1.x[10] : 151.80670907334346 :   True
-                 11 : 111.25096374568923 : heat_storage1.x[11] : 111.25096374568923 :   True
-                 12 :  158.8793307984634 : heat_storage1.x[12] :  158.8793307984634 :   True
-                 13 :  55.88811100415187 : heat_storage1.x[13] :  55.88811100415187 :   True
-                 14 :  94.99883401423591 : heat_storage1.x[14] :  94.99883401423591 :   True
-                 15 : 156.00770585575472 : heat_storage1.x[15] : 156.00770585575472 :   True
-                 16 : 125.81984091460234 : heat_storage1.x[16] : 125.81984091460234 :   True
-                 17 : 190.47503943661508 : heat_storage1.x[17] : 190.47503943661508 :   True
-                 18 : 232.29408557071503 : heat_storage1.x[18] : 232.29408557071503 :   True
-                 19 : 162.85261967291171 : heat_storage1.x[19] : 162.85261967291171 :   True
-                 20 : 135.41598450930172 : heat_storage1.x[20] : 135.41598450930172 :   True
-                 21 : 138.09749619558414 : heat_storage1.x[21] : 138.09749619558414 :   True
-                 22 : 54.643711576108316 : heat_storage1.x[22] : 54.643711576108316 :   True
-                 23 : 125.72721612021473 : heat_storage1.x[23] : 125.72721612021473 :   True
-                 24 :  73.04324947358121 : heat_storage1.x[24] :  73.04324947358121 :   True
+                Key : Lower               : Body                : Upper               : Active
+                  1 :   8.712987542142756 :  heat_storage1.x[1] :   8.712987542142756 :   True
+                  2 :  -8.717701939869812 :  heat_storage1.x[2] :  -8.717701939869812 :   True
+                  3 :  107.30616743442366 :  heat_storage1.x[3] :  107.30616743442366 :   True
+                  4 :   -72.7555408844415 :  heat_storage1.x[4] :   -72.7555408844415 :   True
+                  5 :   55.90454024433015 :  heat_storage1.x[5] :   55.90454024433015 :   True
+                  6 :  -55.65040466429653 :  heat_storage1.x[6] :  -55.65040466429653 :   True
+                  7 :    37.5130184056988 :  heat_storage1.x[7] :    37.5130184056988 :   True
+                  8 :  -8.965185204385364 :  heat_storage1.x[8] :  -8.965185204385364 :   True
+                  9 :  -29.19281394631919 :  heat_storage1.x[9] :  -29.19281394631919 :   True
+                 10 :  19.278714090161202 : heat_storage1.x[10] :  19.278714090161202 :   True
+                 11 : -16.937169655534063 : heat_storage1.x[11] : -16.937169655534063 :   True
+                 12 :     34.994173380953 : heat_storage1.x[12] :     34.994173380953 :   True
+                 13 :  -64.35799685189929 : heat_storage1.x[13] :  -64.35799685189929 :   True
+                 14 :  -34.22677277581329 : heat_storage1.x[14] :  -34.22677277581329 :   True
+                 15 :  11.159907814105537 : heat_storage1.x[15] :  11.159907814105537 :   True
+                 16 :   -40.7466948732453 : heat_storage1.x[16] :   -40.7466948732453 :   True
+                 17 :  20.815634794626703 : heat_storage1.x[17] :  20.815634794626703 :   True
+                 18 :  51.311911697206796 : heat_storage1.x[18] :  51.311911697206796 :   True
+                 19 :   3.123465743890847 : heat_storage1.x[19] :   3.123465743890847 :   True
+                 20 :  -5.755868928895524 : heat_storage1.x[20] :  -5.755868928895524 :   True
+                 21 :  34.721796703227085 : heat_storage1.x[21] :  34.721796703227085 :   True
+                 22 :   -53.4126620211962 : heat_storage1.x[22] :   -53.4126620211962 :   True
+                 23 :   19.23969208663742 : heat_storage1.x[23] :   19.23969208663742 :   True
+                 24 :  -38.85262515031678 : heat_storage1.x[24] :  -38.85262515031678 :   True
 
         2 Port Declarations
             heat_in : Size=1, Index=None

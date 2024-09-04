@@ -1216,35 +1216,6 @@ capacity_balance_constr : Size=24, Index=t, Active=True
      23 :   0.0 : heat_storage1.heat_capacity[23] - (heat_storage1.heat_capacity[22] - heat_storage1.heat_balance[23]) :   0.0 :   True
      24 :   0.0 : heat_storage1.heat_capacity[24] - (heat_storage1.heat_capacity[23] - heat_storage1.heat_balance[24]) :   0.0 :   True
 ____________________________________
-Constraint: heat_storage1.test_constr
-Details:
-test_constr : Size=24, Index=t, Active=True
-    Key : Lower              : Body                : Upper              : Active
-      1 :   52.7139022367997 :  heat_storage1.x[1] :   52.7139022367997 :   True
-      2 :  71.84857925841894 :  heat_storage1.x[2] :  71.84857925841894 :   True
-      3 : 235.73627155394212 :  heat_storage1.x[3] : 235.73627155394212 :   True
-      4 :  89.42365604590086 :  heat_storage1.x[4] :  89.42365604590086 :   True
-      5 : 113.40346188955107 :  heat_storage1.x[5] : 113.40346188955107 :   True
-      6 : 103.95450937665474 :  heat_storage1.x[6] : 103.95450937665474 :   True
-      7 : 186.18384631336485 :  heat_storage1.x[7] : 186.18384631336485 :   True
-      8 : 173.27948611303935 :  heat_storage1.x[8] : 173.27948611303935 :   True
-      9 :  195.0347899614104 :  heat_storage1.x[9] :  195.0347899614104 :   True
-     10 :  93.55047952641544 : heat_storage1.x[10] :  93.55047952641544 :   True
-     11 :  56.44011114308256 : heat_storage1.x[11] :  56.44011114308256 :   True
-     12 : 135.47790427964097 : heat_storage1.x[12] : 135.47790427964097 :   True
-     13 : 130.79938130020423 : heat_storage1.x[13] : 130.79938130020423 :   True
-     14 : 141.37889995998694 : heat_storage1.x[14] : 141.37889995998694 :   True
-     15 :  130.6125590589945 : heat_storage1.x[15] :  130.6125590589945 :   True
-     16 : 154.26296054959386 : heat_storage1.x[16] : 154.26296054959386 :   True
-     17 : 190.47503943661508 : heat_storage1.x[17] : 190.47503943661508 :   True
-     18 : 232.29408557071503 : heat_storage1.x[18] : 232.29408557071503 :   True
-     19 : 139.32999195526955 : heat_storage1.x[19] : 139.32999195526955 :   True
-     20 : 155.89442365808762 : heat_storage1.x[20] : 155.89442365808762 :   True
-     21 :  64.89301075562557 : heat_storage1.x[21] :  64.89301075562557 :   True
-     22 : 105.79251653986543 : heat_storage1.x[22] : 105.79251653986543 :   True
-     23 : 125.72721612021473 : heat_storage1.x[23] : 125.72721612021473 :   True
-     24 :  73.04324947358121 : heat_storage1.x[24] :  73.04324947358121 :   True
-____________________________________
 Constraint: heat_storage1.heat_out_heat_outsum
 Details:
 heat_out_heat_outsum : Size=24, Index=t, Active=True

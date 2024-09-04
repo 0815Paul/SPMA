@@ -57,7 +57,6 @@ class Model:
     
     def __init__(self):
         """Initialize the model."""
-        print("Initializing model...")
         self.PATH_IN = PATH_IN
         self.PATH_IN_PP= PATH_IN_PP
         self.PATH_OUT = PATH_OUT
@@ -71,7 +70,6 @@ class Model:
         self.timeseries_data = None
         self.scenario_data = None
         self.results = None
-        self.results_data = None
         self._initialize_model_components()
 
     def _initialize_model_components(self):
@@ -234,7 +232,7 @@ class Model:
 
     def _load_scenario_data(self):
         """Load scenario data from files and load it in a dictionary."""  
-        
+
         with open(f'{self.PATH_IN_PP}demands/heat_demand_20230402.json') as f:
             heat_demand_data = json.load(f)
 
@@ -273,12 +271,17 @@ class Model:
     
     def _scenario_creator(self, scenario_name):
         """Create a scenario model."""
-        print("Creating scenario: ", scenario_name)
+        print("=" * 40)
+        print(f"Creating scenario: {scenario_name}...")
+        print("=" * 40)
         self.instance = self._build_scenario_model(scenario_name)
         
         # Variable mit Index t anlegen
         varlist = [self.instance.chp1.gas]
-        print("Attaching scenario tree node...")
+
+        # print("=" * 40)
+        # print("Attaching scenario tree node...")
+        # print("=" * 40)
         sputils.attach_root_node(self.instance, self.instance.first_stage_cost, varlist)
 
         # Add Probability to the instance
@@ -286,24 +289,24 @@ class Model:
 
         ###################### Start Debugging Print ######################
 
-        output_filename = f'output_{scenario_name}.txt'
+        # output_filename = f'output_{scenario_name}.txt'
 
-        print(f"Writing instance {output_filename} ...")
-        with open(output_filename, 'w') as f:
-            self.instance.pprint(ostream=f)
+        # print(f"Writing instance {output_filename} ...")
+        # with open(output_filename, 'w') as f:
+        #     self.instance.pprint(ostream=f)
 
-        for t in self.instance.t:
-            print(f"Time {t}: {pyo.value(self.instance.heat_demand_scenario[t])}")
+        # for t in self.instance.t:
+        #     print(f"Time {t}: {pyo.value(self.instance.heat_demand_scenario[t])}")
 
-        with open('constraints_output.txt', 'w') as f:
-            # Iteriere über alle aktiven Constraints in der Modellinstanz
-            for con in self.instance.component_objects(Constraint, active=True):
-                # Schreibe den Namen der Constraint-Komponente in die Datei
-                f.write(f"Constraint: {con.name}\n")
-                f.write("Details:\n")
-                # Nutze pprint, um die Details der Constraint in die Datei zu schreiben
-                con.pprint(ostream=f)
-                f.write("____________________________________\n")
+        # with open('constraints_output.txt', 'w') as f:
+        #     # Iteriere über alle aktiven Constraints in der Modellinstanz
+        #     for con in self.instance.component_objects(Constraint, active=True):
+        #         # Schreibe den Namen der Constraint-Komponente in die Datei
+        #         f.write(f"Constraint: {con.name}\n")
+        #         f.write("Details:\n")
+        #         # Nutze pprint, um die Details der Constraint in die Datei zu schreiben
+        #         con.pprint(ostream=f)
+        #         f.write("____________________________________\n")
 
         ###################### End Debugging Print ######################
 
@@ -322,10 +325,12 @@ class Model:
         else:
             raise RuntimeError(f"Scenario: {scenario_name} not found in scenario data")
         
-        print(scenario_data)
+        # print(scenario_data)
 
         # Create a concrete instance of the model
-        print("Creating instance...")
+        # print("=" * 40)
+        # print("Creating instance...")
+        # print("=" * 40)
         self.instance = self.model.create_instance(data=scenario_data, name=scenario_name)    
         
         # Add Arcs to the model
@@ -372,9 +377,9 @@ class Model:
     def write_results(self, ef):
         """Write results to file."""
 
-        solution = self.ef_instance.get_root_solution()
-        for [var_name, var_val] in solution.items():
-            print(var_name, var_val)
+        # solution = self.ef_instance.get_root_solution()
+        # for [var_name, var_val] in solution.items():
+        #     print(var_name, var_val)
 
         for sname, smodel in sputils.ef_scenarios(self.ef_instance.ef):
             df_params = pd.DataFrame()
