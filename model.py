@@ -151,6 +151,20 @@ class Model:
             destination=self.instance.chp1.gas_in
         )
 
+        # Second Stage Arcs
+
+        # Das Constraint brauche ich nicht
+        self.instance.arc07 = Arc(
+            source = self.instance.chp1.heat_out,
+            destination=self.instance.heat_storage1.heat_in_secondstage
+        )
+
+        self.instance.arc08 = Arc(
+            source = self.instance.heat_storage1.heat_out_secondstage,
+            destination=self.instance.heat_grid.heat_in_secondstage
+        )
+
+
     def _expand_arcs(self):
         """Expands arcs and generate connection constraints."""
         TransformationFactory('network.expand_arcs').apply_to(self.instance)
@@ -170,8 +184,9 @@ class Model:
         )
 
     def _second_stage_cost_rule(self, model):
-        #return (self.model.prob[s] * self.model.delta_cost[s] for s in self.model.scenarios)
-        return 0
+        # return (self.model.prob[s] * self.model.delta_cost[s] for s in self.model.scenarios)
+        # return 0
+        return quicksum(model.heat_storage1.dispatch_heat_charge[t] * 1 for t in model.t)
     
     def _conditional_value_at_risk(self, model):
         """Calculate Conditional Value at Risk."""
@@ -183,7 +198,7 @@ class Model:
             """ Calculate gas costs for CHP and Boiler."""
             gas_costs = (
             quicksum(model.chp1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) + 
-            quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
+            quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS * 1000 for t in model.t)
             )
             return gas_costs
     
@@ -233,11 +248,22 @@ class Model:
     def _load_scenario_data(self):
         """Load scenario data from files and load it in a dictionary."""  
 
-        with open(f'{self.PATH_IN_PP}demands/heat_demand_20230402.json') as f:
+        # with open(f'{self.PATH_IN_PP}demands/heat_demand_20230402.json') as f:
+        #     heat_demand_data = json.load(f)
+
+        # with open(f'{self.PATH_IN_PP}demands/heat_demand_scenarios_20230402.json') as f:
+        #     scenario_data = json.load(f)
+
+        ################### For Testing ###################
+
+        with open(f'{self.PATH_IN_PP}demands/testing/heat_demand_dummy_2.json') as f:
             heat_demand_data = json.load(f)
 
-        with open(f'{self.PATH_IN_PP}demands/heat_demand_scenarios_20230402.json') as f:
+        with open(f'{self.PATH_IN_PP}demands/testing/heat_demand_scenarios_dummy_2.json') as f:
             scenario_data = json.load(f)
+
+        ################### For Testing ###################
+
 
         # Extrahiere t-Werte und konvertiere sie in int
         t_values = list(map(int, heat_demand_data['heat_demand'].keys()))
@@ -253,7 +279,7 @@ class Model:
                 # Sicherstellen, dass alle Stunden als int behandelt werden
                 heat_demand_scenario = {int(hour): scenario_values[str(hour)] for hour in t_values}
                 delta_heat_demand = {
-                    int(hour): heat_demand_scenario[hour] - heat_demand[hour] for hour in t_values
+                    int(hour): heat_demand[hour] - heat_demand_scenario[hour] for hour in t_values
                 }
                 
                 self.scenario_data[scenario_name] = {
@@ -277,7 +303,35 @@ class Model:
         self.instance = self._build_scenario_model(scenario_name)
         
         # Variable mit Index t anlegen
-        varlist = [self.instance.chp1.gas]
+        
+        # varlist = [self.instance.chp1.gas]
+        
+        varlist = [self.instance.chp1.bin, 
+                   self.instance.chp1.power,
+                   self.instance.chp1.gas,
+                   self.instance.chp1.heat,
+                   self.instance.chp1.eta_th,
+                   self.instance.chp1.eta_el,
+                   self.instance.boiler1.bin,
+                   self.instance.boiler1.heat,
+                   self.instance.boiler1.gas,
+                   self.instance.boiler1.eta_th,
+                   self.instance.boiler1.y1,
+                   self.instance.boiler1.y2,
+                   self.instance.heat_storage1.heat_charge,
+                   self.instance.heat_storage1.bin_charge,
+                   self.instance.heat_storage1.heat_discharge,
+                   self.instance.heat_storage1.bin_discharge,
+                   self.instance.heat_storage1.heat_balance,
+                   self.instance.heat_storage1.heat_capacity,
+                   self.instance.power_grid.power_balance,
+                   self.instance.power_grid.power_supply,
+                   self.instance.power_grid.power_feedin,
+                   self.instance.ngas_grid.gas_balance,
+                   self.instance.heat_grid.heat_balance,
+                   self.instance.heat_grid.heat_supply,
+                   self.instance.heat_grid.heat_feedin
+        ]
 
         # print("=" * 40)
         # print("Attaching scenario tree node...")

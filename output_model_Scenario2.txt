@@ -15,100 +15,100 @@
         None : 0.251
     delta_heat_demand : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
-          1 :  -34.17630358452318
-          2 :    -30.821549878092
-          3 :   38.62809145641248
-          4 :  -41.98744820660838
-          5 :   -20.9593248810352
-          6 : -29.400374757825105
-          7 :    37.5130184056988
-          8 :  17.513356653656274
-          9 :   45.62143749828019
-         10 :  -38.97751545676681
-         11 :  -71.74802225814074
-         12 :  11.592746862130568
-         13 :  10.553273444153078
-         14 :   12.15329316993774
-         15 : -14.235238982654693
-         16 : -12.303575238253785
-         17 :  20.815634794626703
-         18 :  51.311911697206796
-         19 :  -20.39916197375132
-         20 :  14.722570219890372
-         21 :  -38.48268873673149
-         22 : -2.2638570574390826
-         23 :   19.23969208663742
-         24 :  -38.85262515031678
+          1 : -0.3999999999999986
+          2 : -0.3999999999999986
+          3 : -0.4000000000000057
+          4 : -0.3999999999999986
+          5 : -0.3999999999999986
+          6 : -0.3999999999999986
+          7 : -0.3999999999999986
+          8 : -0.3999999999999986
+          9 : -0.3999999999999986
+         10 : -0.3999999999999986
+         11 : -0.4000000000000057
+         12 : -0.4000000000000057
+         13 : -0.3999999999999986
+         14 : -0.3999999999999986
+         15 : -0.3999999999999986
+         16 : -0.4000000000000057
+         17 : -0.4000000000000057
+         18 : -0.4000000000000057
+         19 : -0.3999999999999986
+         20 : -0.4000000000000057
+         21 : -0.3999999999999986
+         22 : -0.4000000000000057
+         23 : -0.3999999999999986
+         24 : -0.4000000000000057
     heat_demand : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
-          1 :  86.89020582132288
-          2 : 102.67012913651094
-          3 : 197.10818009752964
-          4 : 131.41110425250923
-          5 : 134.36278677058627
-          6 : 133.35488413447985
-          7 : 148.67082790766605
-          8 : 155.76612945938308
-          9 : 149.41335246313022
-         10 : 132.52799498318225
-         11 :  128.1881334012233
-         12 :  123.8851574175104
-         13 : 120.24610785605115
-         14 :  129.2256067900492
-         15 : 144.84779804164918
-         16 : 166.56653578784764
-         17 : 169.65940464198837
-         18 : 180.98217387350823
-         19 : 159.72915392902087
-         20 : 141.17185343819725
-         21 : 103.37569949235706
-         22 : 108.05637359730451
-         23 : 106.48752403357732
-         24 :   111.895874623898
+          1 :  34.75608232852915
+          2 : 41.068051654604375
+          3 :  78.84327203901185
+          4 : 52.564441701003695
+          5 :  53.74511470823451
+          6 :  53.34195365379194
+          7 :  59.46833116306642
+          8 :  62.30645178375323
+          9 :  59.76534098525209
+         10 :   53.0111979932729
+         11 : 51.275253360489316
+         12 :  49.55406296700416
+         13 : 48.098443142420464
+         14 :  51.69024271601968
+         15 :  57.93911921665968
+         16 :  66.62661431513905
+         17 :  67.86376185679535
+         18 :  72.39286954940329
+         19 : 63.891661571608346
+         20 : 56.468741375278896
+         21 :  41.35027979694282
+         22 :   43.2225494389218
+         23 : 42.595009613430925
+         24 : 44.758349849559195
     heat_demand_scenario : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
-          1 :   52.7139022367997
-          2 :  71.84857925841894
-          3 : 235.73627155394212
-          4 :  89.42365604590086
-          5 : 113.40346188955107
-          6 : 103.95450937665474
-          7 : 186.18384631336485
-          8 : 173.27948611303935
-          9 :  195.0347899614104
-         10 :  93.55047952641544
-         11 :  56.44011114308256
-         12 : 135.47790427964097
-         13 : 130.79938130020423
-         14 : 141.37889995998694
-         15 :  130.6125590589945
-         16 : 154.26296054959386
-         17 : 190.47503943661508
-         18 : 232.29408557071503
-         19 : 139.32999195526955
-         20 : 155.89442365808762
-         21 :  64.89301075562557
-         22 : 105.79251653986543
-         23 : 125.72721612021473
-         24 :  73.04324947358121
+          1 :  35.15608232852915
+          2 :  41.46805165460437
+          3 :  79.24327203901186
+          4 :  52.96444170100369
+          5 :  54.14511470823451
+          6 :  53.74195365379194
+          7 :  59.86833116306642
+          8 :  62.70645178375323
+          9 :  60.16534098525209
+         10 :   53.4111979932729
+         11 :  51.67525336048932
+         12 :  49.95406296700416
+         13 :  48.49844314242046
+         14 :  52.09024271601968
+         15 : 58.339119216659675
+         16 :  67.02661431513906
+         17 :  68.26376185679536
+         18 :  72.79286954940329
+         19 :  64.29166157160834
+         20 :   56.8687413752789
+         21 :  41.75027979694282
+         22 :  43.62254943892181
+         23 :  42.99500961343092
+         24 :   45.1583498495592
     probability : Size=1, Index=None, Domain=Any, Default=None, Mutable=False
         Key  : Value
-        None : 0.0004895716600698391
+        None : 0.03415418949006244
 
 2 Expression Declarations
     first_stage_cost : Size=1, Index=None
         Key  : Expression
-        None : 1.543*chp1.gas[1] + 1.543*chp1.gas[2] + 1.543*chp1.gas[3] + 1.543*chp1.gas[4] + 1.543*chp1.gas[5] + 1.543*chp1.gas[6] + 1.543*chp1.gas[7] + 1.543*chp1.gas[8] + 1.543*chp1.gas[9] + 1.543*chp1.gas[10] + 1.543*chp1.gas[11] + 1.543*chp1.gas[12] + 1.543*chp1.gas[13] + 1.543*chp1.gas[14] + 1.543*chp1.gas[15] + 1.543*chp1.gas[16] + 1.543*chp1.gas[17] + 1.543*chp1.gas[18] + 1.543*chp1.gas[19] + 1.543*chp1.gas[20] + 1.543*chp1.gas[21] + 1.543*chp1.gas[22] + 1.543*chp1.gas[23] + 1.543*chp1.gas[24] + 1.543*boiler1.gas[1] + 1.543*boiler1.gas[2] + 1.543*boiler1.gas[3] + 1.543*boiler1.gas[4] + 1.543*boiler1.gas[5] + 1.543*boiler1.gas[6] + 1.543*boiler1.gas[7] + 1.543*boiler1.gas[8] + 1.543*boiler1.gas[9] + 1.543*boiler1.gas[10] + 1.543*boiler1.gas[11] + 1.543*boiler1.gas[12] + 1.543*boiler1.gas[13] + 1.543*boiler1.gas[14] + 1.543*boiler1.gas[15] + 1.543*boiler1.gas[16] + 1.543*boiler1.gas[17] + 1.543*boiler1.gas[18] + 1.543*boiler1.gas[19] + 1.543*boiler1.gas[20] + 1.543*boiler1.gas[21] + 1.543*boiler1.gas[22] + 1.543*boiler1.gas[23] + 1.543*boiler1.gas[24] + 1.8*chp1.bin[1] + 1.8*chp1.bin[2] + 1.8*chp1.bin[3] + 1.8*chp1.bin[4] + 1.8*chp1.bin[5] + 1.8*chp1.bin[6] + 1.8*chp1.bin[7] + 1.8*chp1.bin[8] + 1.8*chp1.bin[9] + 1.8*chp1.bin[10] + 1.8*chp1.bin[11] + 1.8*chp1.bin[12] + 1.8*chp1.bin[13] + 1.8*chp1.bin[14] + 1.8*chp1.bin[15] + 1.8*chp1.bin[16] + 1.8*chp1.bin[17] + 1.8*chp1.bin[18] + 1.8*chp1.bin[19] + 1.8*chp1.bin[20] + 1.8*chp1.bin[21] + 1.8*chp1.bin[22] + 1.8*chp1.bin[23] + 1.8*chp1.bin[24] - (0.251*chp1.power[1] + 0.251*chp1.power[2] + 0.251*chp1.power[3] + 0.251*chp1.power[4] + 0.251*chp1.power[5] + 0.251*chp1.power[6] + 0.251*chp1.power[7] + 0.251*chp1.power[8] + 0.251*chp1.power[9] + 0.251*chp1.power[10] + 0.251*chp1.power[11] + 0.251*chp1.power[12] + 0.251*chp1.power[13] + 0.251*chp1.power[14] + 0.251*chp1.power[15] + 0.251*chp1.power[16] + 0.251*chp1.power[17] + 0.251*chp1.power[18] + 0.251*chp1.power[19] + 0.251*chp1.power[20] + 0.251*chp1.power[21] + 0.251*chp1.power[22] + 0.251*chp1.power[23] + 0.251*chp1.power[24]) - (0.105*chp1.heat[1] + 0.105*chp1.heat[2] + 0.105*chp1.heat[3] + 0.105*chp1.heat[4] + 0.105*chp1.heat[5] + 0.105*chp1.heat[6] + 0.105*chp1.heat[7] + 0.105*chp1.heat[8] + 0.105*chp1.heat[9] + 0.105*chp1.heat[10] + 0.105*chp1.heat[11] + 0.105*chp1.heat[12] + 0.105*chp1.heat[13] + 0.105*chp1.heat[14] + 0.105*chp1.heat[15] + 0.105*chp1.heat[16] + 0.105*chp1.heat[17] + 0.105*chp1.heat[18] + 0.105*chp1.heat[19] + 0.105*chp1.heat[20] + 0.105*chp1.heat[21] + 0.105*chp1.heat[22] + 0.105*chp1.heat[23] + 0.105*chp1.heat[24] + 0.105*boiler1.heat[1] + 0.105*boiler1.heat[2] + 0.105*boiler1.heat[3] + 0.105*boiler1.heat[4] + 0.105*boiler1.heat[5] + 0.105*boiler1.heat[6] + 0.105*boiler1.heat[7] + 0.105*boiler1.heat[8] + 0.105*boiler1.heat[9] + 0.105*boiler1.heat[10] + 0.105*boiler1.heat[11] + 0.105*boiler1.heat[12] + 0.105*boiler1.heat[13] + 0.105*boiler1.heat[14] + 0.105*boiler1.heat[15] + 0.105*boiler1.heat[16] + 0.105*boiler1.heat[17] + 0.105*boiler1.heat[18] + 0.105*boiler1.heat[19] + 0.105*boiler1.heat[20] + 0.105*boiler1.heat[21] + 0.105*boiler1.heat[22] + 0.105*boiler1.heat[23] + 0.105*boiler1.heat[24]) - ((chp1.power[1] - 0.03*chp1.power[1])*0.1158 + (chp1.power[2] - 0.03*chp1.power[2])*0.1158 + (chp1.power[3] - 0.03*chp1.power[3])*0.1158 + (chp1.power[4] - 0.03*chp1.power[4])*0.1158 + (chp1.power[5] - 0.03*chp1.power[5])*0.1158 + (chp1.power[6] - 0.03*chp1.power[6])*0.1158 + (chp1.power[7] - 0.03*chp1.power[7])*0.1158 + (chp1.power[8] - 0.03*chp1.power[8])*0.1158 + (chp1.power[9] - 0.03*chp1.power[9])*0.1158 + (chp1.power[10] - 0.03*chp1.power[10])*0.1158 + (chp1.power[11] - 0.03*chp1.power[11])*0.1158 + (chp1.power[12] - 0.03*chp1.power[12])*0.1158 + (chp1.power[13] - 0.03*chp1.power[13])*0.1158 + (chp1.power[14] - 0.03*chp1.power[14])*0.1158 + (chp1.power[15] - 0.03*chp1.power[15])*0.1158 + (chp1.power[16] - 0.03*chp1.power[16])*0.1158 + (chp1.power[17] - 0.03*chp1.power[17])*0.1158 + (chp1.power[18] - 0.03*chp1.power[18])*0.1158 + (chp1.power[19] - 0.03*chp1.power[19])*0.1158 + (chp1.power[20] - 0.03*chp1.power[20])*0.1158 + (chp1.power[21] - 0.03*chp1.power[21])*0.1158 + (chp1.power[22] - 0.03*chp1.power[22])*0.1158 + (chp1.power[23] - 0.03*chp1.power[23])*0.1158 + (chp1.power[24] - 0.03*chp1.power[24])*0.1158 + (0.0024*chp1.power[1] + 0.0024*chp1.power[2] + 0.0024*chp1.power[3] + 0.0024*chp1.power[4] + 0.0024*chp1.power[5] + 0.0024*chp1.power[6] + 0.0024*chp1.power[7] + 0.0024*chp1.power[8] + 0.0024*chp1.power[9] + 0.0024*chp1.power[10] + 0.0024*chp1.power[11] + 0.0024*chp1.power[12] + 0.0024*chp1.power[13] + 0.0024*chp1.power[14] + 0.0024*chp1.power[15] + 0.0024*chp1.power[16] + 0.0024*chp1.power[17] + 0.0024*chp1.power[18] + 0.0024*chp1.power[19] + 0.0024*chp1.power[20] + 0.0024*chp1.power[21] + 0.0024*chp1.power[22] + 0.0024*chp1.power[23] + 0.0024*chp1.power[24] + 0.1552*chp1.power[1] + 0.1552*chp1.power[2] + 0.1552*chp1.power[3] + 0.1552*chp1.power[4] + 0.1552*chp1.power[5] + 0.1552*chp1.power[6] + 0.1552*chp1.power[7] + 0.1552*chp1.power[8] + 0.1552*chp1.power[9] + 0.1552*chp1.power[10] + 0.1552*chp1.power[11] + 0.1552*chp1.power[12] + 0.1552*chp1.power[13] + 0.1552*chp1.power[14] + 0.1552*chp1.power[15] + 0.1552*chp1.power[16] + 0.1552*chp1.power[17] + 0.1552*chp1.power[18] + 0.1552*chp1.power[19] + 0.1552*chp1.power[20] + 0.1552*chp1.power[21] + 0.1552*chp1.power[22] + 0.1552*chp1.power[23] + 0.1552*chp1.power[24]) + (chp1.power[1] - 0.03*chp1.power[1])*0.0097 + (chp1.power[2] - 0.03*chp1.power[2])*0.0097 + (chp1.power[3] - 0.03*chp1.power[3])*0.0097 + (chp1.power[4] - 0.03*chp1.power[4])*0.0097 + (chp1.power[5] - 0.03*chp1.power[5])*0.0097 + (chp1.power[6] - 0.03*chp1.power[6])*0.0097 + (chp1.power[7] - 0.03*chp1.power[7])*0.0097 + (chp1.power[8] - 0.03*chp1.power[8])*0.0097 + (chp1.power[9] - 0.03*chp1.power[9])*0.0097 + (chp1.power[10] - 0.03*chp1.power[10])*0.0097 + (chp1.power[11] - 0.03*chp1.power[11])*0.0097 + (chp1.power[12] - 0.03*chp1.power[12])*0.0097 + (chp1.power[13] - 0.03*chp1.power[13])*0.0097 + (chp1.power[14] - 0.03*chp1.power[14])*0.0097 + (chp1.power[15] - 0.03*chp1.power[15])*0.0097 + (chp1.power[16] - 0.03*chp1.power[16])*0.0097 + (chp1.power[17] - 0.03*chp1.power[17])*0.0097 + (chp1.power[18] - 0.03*chp1.power[18])*0.0097 + (chp1.power[19] - 0.03*chp1.power[19])*0.0097 + (chp1.power[20] - 0.03*chp1.power[20])*0.0097 + (chp1.power[21] - 0.03*chp1.power[21])*0.0097 + (chp1.power[22] - 0.03*chp1.power[22])*0.0097 + (chp1.power[23] - 0.03*chp1.power[23])*0.0097 + (chp1.power[24] - 0.03*chp1.power[24])*0.0097 + (0.05499999999999999*chp1.gas[1] + 0.05499999999999999*chp1.gas[2] + 0.05499999999999999*chp1.gas[3] + 0.05499999999999999*chp1.gas[4] + 0.05499999999999999*chp1.gas[5] + 0.05499999999999999*chp1.gas[6] + 0.05499999999999999*chp1.gas[7] + 0.05499999999999999*chp1.gas[8] + 0.05499999999999999*chp1.gas[9] + 0.05499999999999999*chp1.gas[10] + 0.05499999999999999*chp1.gas[11] + 0.05499999999999999*chp1.gas[12] + 0.05499999999999999*chp1.gas[13] + 0.05499999999999999*chp1.gas[14] + 0.05499999999999999*chp1.gas[15] + 0.05499999999999999*chp1.gas[16] + 0.05499999999999999*chp1.gas[17] + 0.05499999999999999*chp1.gas[18] + 0.05499999999999999*chp1.gas[19] + 0.05499999999999999*chp1.gas[20] + 0.05499999999999999*chp1.gas[21] + 0.05499999999999999*chp1.gas[22] + 0.05499999999999999*chp1.gas[23] + 0.05499999999999999*chp1.gas[24]))
+        None : 1.543*chp1.gas[1] + 1.543*chp1.gas[2] + 1.543*chp1.gas[3] + 1.543*chp1.gas[4] + 1.543*chp1.gas[5] + 1.543*chp1.gas[6] + 1.543*chp1.gas[7] + 1.543*chp1.gas[8] + 1.543*chp1.gas[9] + 1.543*chp1.gas[10] + 1.543*chp1.gas[11] + 1.543*chp1.gas[12] + 1.543*chp1.gas[13] + 1.543*chp1.gas[14] + 1.543*chp1.gas[15] + 1.543*chp1.gas[16] + 1.543*chp1.gas[17] + 1.543*chp1.gas[18] + 1.543*chp1.gas[19] + 1.543*chp1.gas[20] + 1.543*chp1.gas[21] + 1.543*chp1.gas[22] + 1.543*chp1.gas[23] + 1.543*chp1.gas[24] + 1543.0*boiler1.gas[1] + 1543.0*boiler1.gas[2] + 1543.0*boiler1.gas[3] + 1543.0*boiler1.gas[4] + 1543.0*boiler1.gas[5] + 1543.0*boiler1.gas[6] + 1543.0*boiler1.gas[7] + 1543.0*boiler1.gas[8] + 1543.0*boiler1.gas[9] + 1543.0*boiler1.gas[10] + 1543.0*boiler1.gas[11] + 1543.0*boiler1.gas[12] + 1543.0*boiler1.gas[13] + 1543.0*boiler1.gas[14] + 1543.0*boiler1.gas[15] + 1543.0*boiler1.gas[16] + 1543.0*boiler1.gas[17] + 1543.0*boiler1.gas[18] + 1543.0*boiler1.gas[19] + 1543.0*boiler1.gas[20] + 1543.0*boiler1.gas[21] + 1543.0*boiler1.gas[22] + 1543.0*boiler1.gas[23] + 1543.0*boiler1.gas[24] + 1.8*chp1.bin[1] + 1.8*chp1.bin[2] + 1.8*chp1.bin[3] + 1.8*chp1.bin[4] + 1.8*chp1.bin[5] + 1.8*chp1.bin[6] + 1.8*chp1.bin[7] + 1.8*chp1.bin[8] + 1.8*chp1.bin[9] + 1.8*chp1.bin[10] + 1.8*chp1.bin[11] + 1.8*chp1.bin[12] + 1.8*chp1.bin[13] + 1.8*chp1.bin[14] + 1.8*chp1.bin[15] + 1.8*chp1.bin[16] + 1.8*chp1.bin[17] + 1.8*chp1.bin[18] + 1.8*chp1.bin[19] + 1.8*chp1.bin[20] + 1.8*chp1.bin[21] + 1.8*chp1.bin[22] + 1.8*chp1.bin[23] + 1.8*chp1.bin[24] - (0.251*chp1.power[1] + 0.251*chp1.power[2] + 0.251*chp1.power[3] + 0.251*chp1.power[4] + 0.251*chp1.power[5] + 0.251*chp1.power[6] + 0.251*chp1.power[7] + 0.251*chp1.power[8] + 0.251*chp1.power[9] + 0.251*chp1.power[10] + 0.251*chp1.power[11] + 0.251*chp1.power[12] + 0.251*chp1.power[13] + 0.251*chp1.power[14] + 0.251*chp1.power[15] + 0.251*chp1.power[16] + 0.251*chp1.power[17] + 0.251*chp1.power[18] + 0.251*chp1.power[19] + 0.251*chp1.power[20] + 0.251*chp1.power[21] + 0.251*chp1.power[22] + 0.251*chp1.power[23] + 0.251*chp1.power[24]) - (0.105*chp1.heat[1] + 0.105*chp1.heat[2] + 0.105*chp1.heat[3] + 0.105*chp1.heat[4] + 0.105*chp1.heat[5] + 0.105*chp1.heat[6] + 0.105*chp1.heat[7] + 0.105*chp1.heat[8] + 0.105*chp1.heat[9] + 0.105*chp1.heat[10] + 0.105*chp1.heat[11] + 0.105*chp1.heat[12] + 0.105*chp1.heat[13] + 0.105*chp1.heat[14] + 0.105*chp1.heat[15] + 0.105*chp1.heat[16] + 0.105*chp1.heat[17] + 0.105*chp1.heat[18] + 0.105*chp1.heat[19] + 0.105*chp1.heat[20] + 0.105*chp1.heat[21] + 0.105*chp1.heat[22] + 0.105*chp1.heat[23] + 0.105*chp1.heat[24] + 0.105*boiler1.heat[1] + 0.105*boiler1.heat[2] + 0.105*boiler1.heat[3] + 0.105*boiler1.heat[4] + 0.105*boiler1.heat[5] + 0.105*boiler1.heat[6] + 0.105*boiler1.heat[7] + 0.105*boiler1.heat[8] + 0.105*boiler1.heat[9] + 0.105*boiler1.heat[10] + 0.105*boiler1.heat[11] + 0.105*boiler1.heat[12] + 0.105*boiler1.heat[13] + 0.105*boiler1.heat[14] + 0.105*boiler1.heat[15] + 0.105*boiler1.heat[16] + 0.105*boiler1.heat[17] + 0.105*boiler1.heat[18] + 0.105*boiler1.heat[19] + 0.105*boiler1.heat[20] + 0.105*boiler1.heat[21] + 0.105*boiler1.heat[22] + 0.105*boiler1.heat[23] + 0.105*boiler1.heat[24]) - ((chp1.power[1] - 0.03*chp1.power[1])*0.1158 + (chp1.power[2] - 0.03*chp1.power[2])*0.1158 + (chp1.power[3] - 0.03*chp1.power[3])*0.1158 + (chp1.power[4] - 0.03*chp1.power[4])*0.1158 + (chp1.power[5] - 0.03*chp1.power[5])*0.1158 + (chp1.power[6] - 0.03*chp1.power[6])*0.1158 + (chp1.power[7] - 0.03*chp1.power[7])*0.1158 + (chp1.power[8] - 0.03*chp1.power[8])*0.1158 + (chp1.power[9] - 0.03*chp1.power[9])*0.1158 + (chp1.power[10] - 0.03*chp1.power[10])*0.1158 + (chp1.power[11] - 0.03*chp1.power[11])*0.1158 + (chp1.power[12] - 0.03*chp1.power[12])*0.1158 + (chp1.power[13] - 0.03*chp1.power[13])*0.1158 + (chp1.power[14] - 0.03*chp1.power[14])*0.1158 + (chp1.power[15] - 0.03*chp1.power[15])*0.1158 + (chp1.power[16] - 0.03*chp1.power[16])*0.1158 + (chp1.power[17] - 0.03*chp1.power[17])*0.1158 + (chp1.power[18] - 0.03*chp1.power[18])*0.1158 + (chp1.power[19] - 0.03*chp1.power[19])*0.1158 + (chp1.power[20] - 0.03*chp1.power[20])*0.1158 + (chp1.power[21] - 0.03*chp1.power[21])*0.1158 + (chp1.power[22] - 0.03*chp1.power[22])*0.1158 + (chp1.power[23] - 0.03*chp1.power[23])*0.1158 + (chp1.power[24] - 0.03*chp1.power[24])*0.1158 + (0.0024*chp1.power[1] + 0.0024*chp1.power[2] + 0.0024*chp1.power[3] + 0.0024*chp1.power[4] + 0.0024*chp1.power[5] + 0.0024*chp1.power[6] + 0.0024*chp1.power[7] + 0.0024*chp1.power[8] + 0.0024*chp1.power[9] + 0.0024*chp1.power[10] + 0.0024*chp1.power[11] + 0.0024*chp1.power[12] + 0.0024*chp1.power[13] + 0.0024*chp1.power[14] + 0.0024*chp1.power[15] + 0.0024*chp1.power[16] + 0.0024*chp1.power[17] + 0.0024*chp1.power[18] + 0.0024*chp1.power[19] + 0.0024*chp1.power[20] + 0.0024*chp1.power[21] + 0.0024*chp1.power[22] + 0.0024*chp1.power[23] + 0.0024*chp1.power[24] + 0.1552*chp1.power[1] + 0.1552*chp1.power[2] + 0.1552*chp1.power[3] + 0.1552*chp1.power[4] + 0.1552*chp1.power[5] + 0.1552*chp1.power[6] + 0.1552*chp1.power[7] + 0.1552*chp1.power[8] + 0.1552*chp1.power[9] + 0.1552*chp1.power[10] + 0.1552*chp1.power[11] + 0.1552*chp1.power[12] + 0.1552*chp1.power[13] + 0.1552*chp1.power[14] + 0.1552*chp1.power[15] + 0.1552*chp1.power[16] + 0.1552*chp1.power[17] + 0.1552*chp1.power[18] + 0.1552*chp1.power[19] + 0.1552*chp1.power[20] + 0.1552*chp1.power[21] + 0.1552*chp1.power[22] + 0.1552*chp1.power[23] + 0.1552*chp1.power[24]) + (chp1.power[1] - 0.03*chp1.power[1])*0.0097 + (chp1.power[2] - 0.03*chp1.power[2])*0.0097 + (chp1.power[3] - 0.03*chp1.power[3])*0.0097 + (chp1.power[4] - 0.03*chp1.power[4])*0.0097 + (chp1.power[5] - 0.03*chp1.power[5])*0.0097 + (chp1.power[6] - 0.03*chp1.power[6])*0.0097 + (chp1.power[7] - 0.03*chp1.power[7])*0.0097 + (chp1.power[8] - 0.03*chp1.power[8])*0.0097 + (chp1.power[9] - 0.03*chp1.power[9])*0.0097 + (chp1.power[10] - 0.03*chp1.power[10])*0.0097 + (chp1.power[11] - 0.03*chp1.power[11])*0.0097 + (chp1.power[12] - 0.03*chp1.power[12])*0.0097 + (chp1.power[13] - 0.03*chp1.power[13])*0.0097 + (chp1.power[14] - 0.03*chp1.power[14])*0.0097 + (chp1.power[15] - 0.03*chp1.power[15])*0.0097 + (chp1.power[16] - 0.03*chp1.power[16])*0.0097 + (chp1.power[17] - 0.03*chp1.power[17])*0.0097 + (chp1.power[18] - 0.03*chp1.power[18])*0.0097 + (chp1.power[19] - 0.03*chp1.power[19])*0.0097 + (chp1.power[20] - 0.03*chp1.power[20])*0.0097 + (chp1.power[21] - 0.03*chp1.power[21])*0.0097 + (chp1.power[22] - 0.03*chp1.power[22])*0.0097 + (chp1.power[23] - 0.03*chp1.power[23])*0.0097 + (chp1.power[24] - 0.03*chp1.power[24])*0.0097 + (0.05499999999999999*chp1.gas[1] + 0.05499999999999999*chp1.gas[2] + 0.05499999999999999*chp1.gas[3] + 0.05499999999999999*chp1.gas[4] + 0.05499999999999999*chp1.gas[5] + 0.05499999999999999*chp1.gas[6] + 0.05499999999999999*chp1.gas[7] + 0.05499999999999999*chp1.gas[8] + 0.05499999999999999*chp1.gas[9] + 0.05499999999999999*chp1.gas[10] + 0.05499999999999999*chp1.gas[11] + 0.05499999999999999*chp1.gas[12] + 0.05499999999999999*chp1.gas[13] + 0.05499999999999999*chp1.gas[14] + 0.05499999999999999*chp1.gas[15] + 0.05499999999999999*chp1.gas[16] + 0.05499999999999999*chp1.gas[17] + 0.05499999999999999*chp1.gas[18] + 0.05499999999999999*chp1.gas[19] + 0.05499999999999999*chp1.gas[20] + 0.05499999999999999*chp1.gas[21] + 0.05499999999999999*chp1.gas[22] + 0.05499999999999999*chp1.gas[23] + 0.05499999999999999*chp1.gas[24]))
     second_stage_cost : Size=1, Index=None
         Key  : Expression
-        None :        0.0
+        None : heat_storage1.dispatch_heat_charge[1] + heat_storage1.dispatch_heat_charge[2] + heat_storage1.dispatch_heat_charge[3] + heat_storage1.dispatch_heat_charge[4] + heat_storage1.dispatch_heat_charge[5] + heat_storage1.dispatch_heat_charge[6] + heat_storage1.dispatch_heat_charge[7] + heat_storage1.dispatch_heat_charge[8] + heat_storage1.dispatch_heat_charge[9] + heat_storage1.dispatch_heat_charge[10] + heat_storage1.dispatch_heat_charge[11] + heat_storage1.dispatch_heat_charge[12] + heat_storage1.dispatch_heat_charge[13] + heat_storage1.dispatch_heat_charge[14] + heat_storage1.dispatch_heat_charge[15] + heat_storage1.dispatch_heat_charge[16] + heat_storage1.dispatch_heat_charge[17] + heat_storage1.dispatch_heat_charge[18] + heat_storage1.dispatch_heat_charge[19] + heat_storage1.dispatch_heat_charge[20] + heat_storage1.dispatch_heat_charge[21] + heat_storage1.dispatch_heat_charge[22] + heat_storage1.dispatch_heat_charge[23] + heat_storage1.dispatch_heat_charge[24]
 
 1 Objective Declarations
     objective : Size=1, Index=None, Active=True
         Key  : Active : Sense    : Expression
-        None :   True : minimize : (1.543*chp1.gas[1] + 1.543*chp1.gas[2] + 1.543*chp1.gas[3] + 1.543*chp1.gas[4] + 1.543*chp1.gas[5] + 1.543*chp1.gas[6] + 1.543*chp1.gas[7] + 1.543*chp1.gas[8] + 1.543*chp1.gas[9] + 1.543*chp1.gas[10] + 1.543*chp1.gas[11] + 1.543*chp1.gas[12] + 1.543*chp1.gas[13] + 1.543*chp1.gas[14] + 1.543*chp1.gas[15] + 1.543*chp1.gas[16] + 1.543*chp1.gas[17] + 1.543*chp1.gas[18] + 1.543*chp1.gas[19] + 1.543*chp1.gas[20] + 1.543*chp1.gas[21] + 1.543*chp1.gas[22] + 1.543*chp1.gas[23] + 1.543*chp1.gas[24] + 1.543*boiler1.gas[1] + 1.543*boiler1.gas[2] + 1.543*boiler1.gas[3] + 1.543*boiler1.gas[4] + 1.543*boiler1.gas[5] + 1.543*boiler1.gas[6] + 1.543*boiler1.gas[7] + 1.543*boiler1.gas[8] + 1.543*boiler1.gas[9] + 1.543*boiler1.gas[10] + 1.543*boiler1.gas[11] + 1.543*boiler1.gas[12] + 1.543*boiler1.gas[13] + 1.543*boiler1.gas[14] + 1.543*boiler1.gas[15] + 1.543*boiler1.gas[16] + 1.543*boiler1.gas[17] + 1.543*boiler1.gas[18] + 1.543*boiler1.gas[19] + 1.543*boiler1.gas[20] + 1.543*boiler1.gas[21] + 1.543*boiler1.gas[22] + 1.543*boiler1.gas[23] + 1.543*boiler1.gas[24] + 1.8*chp1.bin[1] + 1.8*chp1.bin[2] + 1.8*chp1.bin[3] + 1.8*chp1.bin[4] + 1.8*chp1.bin[5] + 1.8*chp1.bin[6] + 1.8*chp1.bin[7] + 1.8*chp1.bin[8] + 1.8*chp1.bin[9] + 1.8*chp1.bin[10] + 1.8*chp1.bin[11] + 1.8*chp1.bin[12] + 1.8*chp1.bin[13] + 1.8*chp1.bin[14] + 1.8*chp1.bin[15] + 1.8*chp1.bin[16] + 1.8*chp1.bin[17] + 1.8*chp1.bin[18] + 1.8*chp1.bin[19] + 1.8*chp1.bin[20] + 1.8*chp1.bin[21] + 1.8*chp1.bin[22] + 1.8*chp1.bin[23] + 1.8*chp1.bin[24] - (0.251*chp1.power[1] + 0.251*chp1.power[2] + 0.251*chp1.power[3] + 0.251*chp1.power[4] + 0.251*chp1.power[5] + 0.251*chp1.power[6] + 0.251*chp1.power[7] + 0.251*chp1.power[8] + 0.251*chp1.power[9] + 0.251*chp1.power[10] + 0.251*chp1.power[11] + 0.251*chp1.power[12] + 0.251*chp1.power[13] + 0.251*chp1.power[14] + 0.251*chp1.power[15] + 0.251*chp1.power[16] + 0.251*chp1.power[17] + 0.251*chp1.power[18] + 0.251*chp1.power[19] + 0.251*chp1.power[20] + 0.251*chp1.power[21] + 0.251*chp1.power[22] + 0.251*chp1.power[23] + 0.251*chp1.power[24]) - (0.105*chp1.heat[1] + 0.105*chp1.heat[2] + 0.105*chp1.heat[3] + 0.105*chp1.heat[4] + 0.105*chp1.heat[5] + 0.105*chp1.heat[6] + 0.105*chp1.heat[7] + 0.105*chp1.heat[8] + 0.105*chp1.heat[9] + 0.105*chp1.heat[10] + 0.105*chp1.heat[11] + 0.105*chp1.heat[12] + 0.105*chp1.heat[13] + 0.105*chp1.heat[14] + 0.105*chp1.heat[15] + 0.105*chp1.heat[16] + 0.105*chp1.heat[17] + 0.105*chp1.heat[18] + 0.105*chp1.heat[19] + 0.105*chp1.heat[20] + 0.105*chp1.heat[21] + 0.105*chp1.heat[22] + 0.105*chp1.heat[23] + 0.105*chp1.heat[24] + 0.105*boiler1.heat[1] + 0.105*boiler1.heat[2] + 0.105*boiler1.heat[3] + 0.105*boiler1.heat[4] + 0.105*boiler1.heat[5] + 0.105*boiler1.heat[6] + 0.105*boiler1.heat[7] + 0.105*boiler1.heat[8] + 0.105*boiler1.heat[9] + 0.105*boiler1.heat[10] + 0.105*boiler1.heat[11] + 0.105*boiler1.heat[12] + 0.105*boiler1.heat[13] + 0.105*boiler1.heat[14] + 0.105*boiler1.heat[15] + 0.105*boiler1.heat[16] + 0.105*boiler1.heat[17] + 0.105*boiler1.heat[18] + 0.105*boiler1.heat[19] + 0.105*boiler1.heat[20] + 0.105*boiler1.heat[21] + 0.105*boiler1.heat[22] + 0.105*boiler1.heat[23] + 0.105*boiler1.heat[24]) - ((chp1.power[1] - 0.03*chp1.power[1])*0.1158 + (chp1.power[2] - 0.03*chp1.power[2])*0.1158 + (chp1.power[3] - 0.03*chp1.power[3])*0.1158 + (chp1.power[4] - 0.03*chp1.power[4])*0.1158 + (chp1.power[5] - 0.03*chp1.power[5])*0.1158 + (chp1.power[6] - 0.03*chp1.power[6])*0.1158 + (chp1.power[7] - 0.03*chp1.power[7])*0.1158 + (chp1.power[8] - 0.03*chp1.power[8])*0.1158 + (chp1.power[9] - 0.03*chp1.power[9])*0.1158 + (chp1.power[10] - 0.03*chp1.power[10])*0.1158 + (chp1.power[11] - 0.03*chp1.power[11])*0.1158 + (chp1.power[12] - 0.03*chp1.power[12])*0.1158 + (chp1.power[13] - 0.03*chp1.power[13])*0.1158 + (chp1.power[14] - 0.03*chp1.power[14])*0.1158 + (chp1.power[15] - 0.03*chp1.power[15])*0.1158 + (chp1.power[16] - 0.03*chp1.power[16])*0.1158 + (chp1.power[17] - 0.03*chp1.power[17])*0.1158 + (chp1.power[18] - 0.03*chp1.power[18])*0.1158 + (chp1.power[19] - 0.03*chp1.power[19])*0.1158 + (chp1.power[20] - 0.03*chp1.power[20])*0.1158 + (chp1.power[21] - 0.03*chp1.power[21])*0.1158 + (chp1.power[22] - 0.03*chp1.power[22])*0.1158 + (chp1.power[23] - 0.03*chp1.power[23])*0.1158 + (chp1.power[24] - 0.03*chp1.power[24])*0.1158 + (0.0024*chp1.power[1] + 0.0024*chp1.power[2] + 0.0024*chp1.power[3] + 0.0024*chp1.power[4] + 0.0024*chp1.power[5] + 0.0024*chp1.power[6] + 0.0024*chp1.power[7] + 0.0024*chp1.power[8] + 0.0024*chp1.power[9] + 0.0024*chp1.power[10] + 0.0024*chp1.power[11] + 0.0024*chp1.power[12] + 0.0024*chp1.power[13] + 0.0024*chp1.power[14] + 0.0024*chp1.power[15] + 0.0024*chp1.power[16] + 0.0024*chp1.power[17] + 0.0024*chp1.power[18] + 0.0024*chp1.power[19] + 0.0024*chp1.power[20] + 0.0024*chp1.power[21] + 0.0024*chp1.power[22] + 0.0024*chp1.power[23] + 0.0024*chp1.power[24] + 0.1552*chp1.power[1] + 0.1552*chp1.power[2] + 0.1552*chp1.power[3] + 0.1552*chp1.power[4] + 0.1552*chp1.power[5] + 0.1552*chp1.power[6] + 0.1552*chp1.power[7] + 0.1552*chp1.power[8] + 0.1552*chp1.power[9] + 0.1552*chp1.power[10] + 0.1552*chp1.power[11] + 0.1552*chp1.power[12] + 0.1552*chp1.power[13] + 0.1552*chp1.power[14] + 0.1552*chp1.power[15] + 0.1552*chp1.power[16] + 0.1552*chp1.power[17] + 0.1552*chp1.power[18] + 0.1552*chp1.power[19] + 0.1552*chp1.power[20] + 0.1552*chp1.power[21] + 0.1552*chp1.power[22] + 0.1552*chp1.power[23] + 0.1552*chp1.power[24]) + (chp1.power[1] - 0.03*chp1.power[1])*0.0097 + (chp1.power[2] - 0.03*chp1.power[2])*0.0097 + (chp1.power[3] - 0.03*chp1.power[3])*0.0097 + (chp1.power[4] - 0.03*chp1.power[4])*0.0097 + (chp1.power[5] - 0.03*chp1.power[5])*0.0097 + (chp1.power[6] - 0.03*chp1.power[6])*0.0097 + (chp1.power[7] - 0.03*chp1.power[7])*0.0097 + (chp1.power[8] - 0.03*chp1.power[8])*0.0097 + (chp1.power[9] - 0.03*chp1.power[9])*0.0097 + (chp1.power[10] - 0.03*chp1.power[10])*0.0097 + (chp1.power[11] - 0.03*chp1.power[11])*0.0097 + (chp1.power[12] - 0.03*chp1.power[12])*0.0097 + (chp1.power[13] - 0.03*chp1.power[13])*0.0097 + (chp1.power[14] - 0.03*chp1.power[14])*0.0097 + (chp1.power[15] - 0.03*chp1.power[15])*0.0097 + (chp1.power[16] - 0.03*chp1.power[16])*0.0097 + (chp1.power[17] - 0.03*chp1.power[17])*0.0097 + (chp1.power[18] - 0.03*chp1.power[18])*0.0097 + (chp1.power[19] - 0.03*chp1.power[19])*0.0097 + (chp1.power[20] - 0.03*chp1.power[20])*0.0097 + (chp1.power[21] - 0.03*chp1.power[21])*0.0097 + (chp1.power[22] - 0.03*chp1.power[22])*0.0097 + (chp1.power[23] - 0.03*chp1.power[23])*0.0097 + (chp1.power[24] - 0.03*chp1.power[24])*0.0097 + (0.05499999999999999*chp1.gas[1] + 0.05499999999999999*chp1.gas[2] + 0.05499999999999999*chp1.gas[3] + 0.05499999999999999*chp1.gas[4] + 0.05499999999999999*chp1.gas[5] + 0.05499999999999999*chp1.gas[6] + 0.05499999999999999*chp1.gas[7] + 0.05499999999999999*chp1.gas[8] + 0.05499999999999999*chp1.gas[9] + 0.05499999999999999*chp1.gas[10] + 0.05499999999999999*chp1.gas[11] + 0.05499999999999999*chp1.gas[12] + 0.05499999999999999*chp1.gas[13] + 0.05499999999999999*chp1.gas[14] + 0.05499999999999999*chp1.gas[15] + 0.05499999999999999*chp1.gas[16] + 0.05499999999999999*chp1.gas[17] + 0.05499999999999999*chp1.gas[18] + 0.05499999999999999*chp1.gas[19] + 0.05499999999999999*chp1.gas[20] + 0.05499999999999999*chp1.gas[21] + 0.05499999999999999*chp1.gas[22] + 0.05499999999999999*chp1.gas[23] + 0.05499999999999999*chp1.gas[24]))) + 0
+        None :   True : minimize : (1.543*chp1.gas[1] + 1.543*chp1.gas[2] + 1.543*chp1.gas[3] + 1.543*chp1.gas[4] + 1.543*chp1.gas[5] + 1.543*chp1.gas[6] + 1.543*chp1.gas[7] + 1.543*chp1.gas[8] + 1.543*chp1.gas[9] + 1.543*chp1.gas[10] + 1.543*chp1.gas[11] + 1.543*chp1.gas[12] + 1.543*chp1.gas[13] + 1.543*chp1.gas[14] + 1.543*chp1.gas[15] + 1.543*chp1.gas[16] + 1.543*chp1.gas[17] + 1.543*chp1.gas[18] + 1.543*chp1.gas[19] + 1.543*chp1.gas[20] + 1.543*chp1.gas[21] + 1.543*chp1.gas[22] + 1.543*chp1.gas[23] + 1.543*chp1.gas[24] + 1543.0*boiler1.gas[1] + 1543.0*boiler1.gas[2] + 1543.0*boiler1.gas[3] + 1543.0*boiler1.gas[4] + 1543.0*boiler1.gas[5] + 1543.0*boiler1.gas[6] + 1543.0*boiler1.gas[7] + 1543.0*boiler1.gas[8] + 1543.0*boiler1.gas[9] + 1543.0*boiler1.gas[10] + 1543.0*boiler1.gas[11] + 1543.0*boiler1.gas[12] + 1543.0*boiler1.gas[13] + 1543.0*boiler1.gas[14] + 1543.0*boiler1.gas[15] + 1543.0*boiler1.gas[16] + 1543.0*boiler1.gas[17] + 1543.0*boiler1.gas[18] + 1543.0*boiler1.gas[19] + 1543.0*boiler1.gas[20] + 1543.0*boiler1.gas[21] + 1543.0*boiler1.gas[22] + 1543.0*boiler1.gas[23] + 1543.0*boiler1.gas[24] + 1.8*chp1.bin[1] + 1.8*chp1.bin[2] + 1.8*chp1.bin[3] + 1.8*chp1.bin[4] + 1.8*chp1.bin[5] + 1.8*chp1.bin[6] + 1.8*chp1.bin[7] + 1.8*chp1.bin[8] + 1.8*chp1.bin[9] + 1.8*chp1.bin[10] + 1.8*chp1.bin[11] + 1.8*chp1.bin[12] + 1.8*chp1.bin[13] + 1.8*chp1.bin[14] + 1.8*chp1.bin[15] + 1.8*chp1.bin[16] + 1.8*chp1.bin[17] + 1.8*chp1.bin[18] + 1.8*chp1.bin[19] + 1.8*chp1.bin[20] + 1.8*chp1.bin[21] + 1.8*chp1.bin[22] + 1.8*chp1.bin[23] + 1.8*chp1.bin[24] - (0.251*chp1.power[1] + 0.251*chp1.power[2] + 0.251*chp1.power[3] + 0.251*chp1.power[4] + 0.251*chp1.power[5] + 0.251*chp1.power[6] + 0.251*chp1.power[7] + 0.251*chp1.power[8] + 0.251*chp1.power[9] + 0.251*chp1.power[10] + 0.251*chp1.power[11] + 0.251*chp1.power[12] + 0.251*chp1.power[13] + 0.251*chp1.power[14] + 0.251*chp1.power[15] + 0.251*chp1.power[16] + 0.251*chp1.power[17] + 0.251*chp1.power[18] + 0.251*chp1.power[19] + 0.251*chp1.power[20] + 0.251*chp1.power[21] + 0.251*chp1.power[22] + 0.251*chp1.power[23] + 0.251*chp1.power[24]) - (0.105*chp1.heat[1] + 0.105*chp1.heat[2] + 0.105*chp1.heat[3] + 0.105*chp1.heat[4] + 0.105*chp1.heat[5] + 0.105*chp1.heat[6] + 0.105*chp1.heat[7] + 0.105*chp1.heat[8] + 0.105*chp1.heat[9] + 0.105*chp1.heat[10] + 0.105*chp1.heat[11] + 0.105*chp1.heat[12] + 0.105*chp1.heat[13] + 0.105*chp1.heat[14] + 0.105*chp1.heat[15] + 0.105*chp1.heat[16] + 0.105*chp1.heat[17] + 0.105*chp1.heat[18] + 0.105*chp1.heat[19] + 0.105*chp1.heat[20] + 0.105*chp1.heat[21] + 0.105*chp1.heat[22] + 0.105*chp1.heat[23] + 0.105*chp1.heat[24] + 0.105*boiler1.heat[1] + 0.105*boiler1.heat[2] + 0.105*boiler1.heat[3] + 0.105*boiler1.heat[4] + 0.105*boiler1.heat[5] + 0.105*boiler1.heat[6] + 0.105*boiler1.heat[7] + 0.105*boiler1.heat[8] + 0.105*boiler1.heat[9] + 0.105*boiler1.heat[10] + 0.105*boiler1.heat[11] + 0.105*boiler1.heat[12] + 0.105*boiler1.heat[13] + 0.105*boiler1.heat[14] + 0.105*boiler1.heat[15] + 0.105*boiler1.heat[16] + 0.105*boiler1.heat[17] + 0.105*boiler1.heat[18] + 0.105*boiler1.heat[19] + 0.105*boiler1.heat[20] + 0.105*boiler1.heat[21] + 0.105*boiler1.heat[22] + 0.105*boiler1.heat[23] + 0.105*boiler1.heat[24]) - ((chp1.power[1] - 0.03*chp1.power[1])*0.1158 + (chp1.power[2] - 0.03*chp1.power[2])*0.1158 + (chp1.power[3] - 0.03*chp1.power[3])*0.1158 + (chp1.power[4] - 0.03*chp1.power[4])*0.1158 + (chp1.power[5] - 0.03*chp1.power[5])*0.1158 + (chp1.power[6] - 0.03*chp1.power[6])*0.1158 + (chp1.power[7] - 0.03*chp1.power[7])*0.1158 + (chp1.power[8] - 0.03*chp1.power[8])*0.1158 + (chp1.power[9] - 0.03*chp1.power[9])*0.1158 + (chp1.power[10] - 0.03*chp1.power[10])*0.1158 + (chp1.power[11] - 0.03*chp1.power[11])*0.1158 + (chp1.power[12] - 0.03*chp1.power[12])*0.1158 + (chp1.power[13] - 0.03*chp1.power[13])*0.1158 + (chp1.power[14] - 0.03*chp1.power[14])*0.1158 + (chp1.power[15] - 0.03*chp1.power[15])*0.1158 + (chp1.power[16] - 0.03*chp1.power[16])*0.1158 + (chp1.power[17] - 0.03*chp1.power[17])*0.1158 + (chp1.power[18] - 0.03*chp1.power[18])*0.1158 + (chp1.power[19] - 0.03*chp1.power[19])*0.1158 + (chp1.power[20] - 0.03*chp1.power[20])*0.1158 + (chp1.power[21] - 0.03*chp1.power[21])*0.1158 + (chp1.power[22] - 0.03*chp1.power[22])*0.1158 + (chp1.power[23] - 0.03*chp1.power[23])*0.1158 + (chp1.power[24] - 0.03*chp1.power[24])*0.1158 + (0.0024*chp1.power[1] + 0.0024*chp1.power[2] + 0.0024*chp1.power[3] + 0.0024*chp1.power[4] + 0.0024*chp1.power[5] + 0.0024*chp1.power[6] + 0.0024*chp1.power[7] + 0.0024*chp1.power[8] + 0.0024*chp1.power[9] + 0.0024*chp1.power[10] + 0.0024*chp1.power[11] + 0.0024*chp1.power[12] + 0.0024*chp1.power[13] + 0.0024*chp1.power[14] + 0.0024*chp1.power[15] + 0.0024*chp1.power[16] + 0.0024*chp1.power[17] + 0.0024*chp1.power[18] + 0.0024*chp1.power[19] + 0.0024*chp1.power[20] + 0.0024*chp1.power[21] + 0.0024*chp1.power[22] + 0.0024*chp1.power[23] + 0.0024*chp1.power[24] + 0.1552*chp1.power[1] + 0.1552*chp1.power[2] + 0.1552*chp1.power[3] + 0.1552*chp1.power[4] + 0.1552*chp1.power[5] + 0.1552*chp1.power[6] + 0.1552*chp1.power[7] + 0.1552*chp1.power[8] + 0.1552*chp1.power[9] + 0.1552*chp1.power[10] + 0.1552*chp1.power[11] + 0.1552*chp1.power[12] + 0.1552*chp1.power[13] + 0.1552*chp1.power[14] + 0.1552*chp1.power[15] + 0.1552*chp1.power[16] + 0.1552*chp1.power[17] + 0.1552*chp1.power[18] + 0.1552*chp1.power[19] + 0.1552*chp1.power[20] + 0.1552*chp1.power[21] + 0.1552*chp1.power[22] + 0.1552*chp1.power[23] + 0.1552*chp1.power[24]) + (chp1.power[1] - 0.03*chp1.power[1])*0.0097 + (chp1.power[2] - 0.03*chp1.power[2])*0.0097 + (chp1.power[3] - 0.03*chp1.power[3])*0.0097 + (chp1.power[4] - 0.03*chp1.power[4])*0.0097 + (chp1.power[5] - 0.03*chp1.power[5])*0.0097 + (chp1.power[6] - 0.03*chp1.power[6])*0.0097 + (chp1.power[7] - 0.03*chp1.power[7])*0.0097 + (chp1.power[8] - 0.03*chp1.power[8])*0.0097 + (chp1.power[9] - 0.03*chp1.power[9])*0.0097 + (chp1.power[10] - 0.03*chp1.power[10])*0.0097 + (chp1.power[11] - 0.03*chp1.power[11])*0.0097 + (chp1.power[12] - 0.03*chp1.power[12])*0.0097 + (chp1.power[13] - 0.03*chp1.power[13])*0.0097 + (chp1.power[14] - 0.03*chp1.power[14])*0.0097 + (chp1.power[15] - 0.03*chp1.power[15])*0.0097 + (chp1.power[16] - 0.03*chp1.power[16])*0.0097 + (chp1.power[17] - 0.03*chp1.power[17])*0.0097 + (chp1.power[18] - 0.03*chp1.power[18])*0.0097 + (chp1.power[19] - 0.03*chp1.power[19])*0.0097 + (chp1.power[20] - 0.03*chp1.power[20])*0.0097 + (chp1.power[21] - 0.03*chp1.power[21])*0.0097 + (chp1.power[22] - 0.03*chp1.power[22])*0.0097 + (chp1.power[23] - 0.03*chp1.power[23])*0.0097 + (chp1.power[24] - 0.03*chp1.power[24])*0.0097 + (0.05499999999999999*chp1.gas[1] + 0.05499999999999999*chp1.gas[2] + 0.05499999999999999*chp1.gas[3] + 0.05499999999999999*chp1.gas[4] + 0.05499999999999999*chp1.gas[5] + 0.05499999999999999*chp1.gas[6] + 0.05499999999999999*chp1.gas[7] + 0.05499999999999999*chp1.gas[8] + 0.05499999999999999*chp1.gas[9] + 0.05499999999999999*chp1.gas[10] + 0.05499999999999999*chp1.gas[11] + 0.05499999999999999*chp1.gas[12] + 0.05499999999999999*chp1.gas[13] + 0.05499999999999999*chp1.gas[14] + 0.05499999999999999*chp1.gas[15] + 0.05499999999999999*chp1.gas[16] + 0.05499999999999999*chp1.gas[17] + 0.05499999999999999*chp1.gas[18] + 0.05499999999999999*chp1.gas[19] + 0.05499999999999999*chp1.gas[20] + 0.05499999999999999*chp1.gas[21] + 0.05499999999999999*chp1.gas[22] + 0.05499999999999999*chp1.gas[23] + 0.05499999999999999*chp1.gas[24]))) + (heat_storage1.dispatch_heat_charge[1] + heat_storage1.dispatch_heat_charge[2] + heat_storage1.dispatch_heat_charge[3] + heat_storage1.dispatch_heat_charge[4] + heat_storage1.dispatch_heat_charge[5] + heat_storage1.dispatch_heat_charge[6] + heat_storage1.dispatch_heat_charge[7] + heat_storage1.dispatch_heat_charge[8] + heat_storage1.dispatch_heat_charge[9] + heat_storage1.dispatch_heat_charge[10] + heat_storage1.dispatch_heat_charge[11] + heat_storage1.dispatch_heat_charge[12] + heat_storage1.dispatch_heat_charge[13] + heat_storage1.dispatch_heat_charge[14] + heat_storage1.dispatch_heat_charge[15] + heat_storage1.dispatch_heat_charge[16] + heat_storage1.dispatch_heat_charge[17] + heat_storage1.dispatch_heat_charge[18] + heat_storage1.dispatch_heat_charge[19] + heat_storage1.dispatch_heat_charge[20] + heat_storage1.dispatch_heat_charge[21] + heat_storage1.dispatch_heat_charge[22] + heat_storage1.dispatch_heat_charge[23] + heat_storage1.dispatch_heat_charge[24])
 
-12 Block Declarations
+14 Block Declarations
     arc01_expanded : Size=1, Index=None, Active=True
         1 Constraint Declarations
             power_equality : Size=24, Index=t, Active=True
@@ -140,35 +140,35 @@
 
         1 Declarations: power_equality
     arc02_expanded : Size=1, Index=None, Active=True
-        1 Constraint Declarations
-            heat_equality : Size=24, Index=t, Active=True
-                Key : Lower : Body                                          : Upper : Active
-                  1 :   0.0 :   chp1.heat[1] - heat_storage1.heat_charge[1] :   0.0 :   True
-                  2 :   0.0 :   chp1.heat[2] - heat_storage1.heat_charge[2] :   0.0 :   True
-                  3 :   0.0 :   chp1.heat[3] - heat_storage1.heat_charge[3] :   0.0 :   True
-                  4 :   0.0 :   chp1.heat[4] - heat_storage1.heat_charge[4] :   0.0 :   True
-                  5 :   0.0 :   chp1.heat[5] - heat_storage1.heat_charge[5] :   0.0 :   True
-                  6 :   0.0 :   chp1.heat[6] - heat_storage1.heat_charge[6] :   0.0 :   True
-                  7 :   0.0 :   chp1.heat[7] - heat_storage1.heat_charge[7] :   0.0 :   True
-                  8 :   0.0 :   chp1.heat[8] - heat_storage1.heat_charge[8] :   0.0 :   True
-                  9 :   0.0 :   chp1.heat[9] - heat_storage1.heat_charge[9] :   0.0 :   True
-                 10 :   0.0 : chp1.heat[10] - heat_storage1.heat_charge[10] :   0.0 :   True
-                 11 :   0.0 : chp1.heat[11] - heat_storage1.heat_charge[11] :   0.0 :   True
-                 12 :   0.0 : chp1.heat[12] - heat_storage1.heat_charge[12] :   0.0 :   True
-                 13 :   0.0 : chp1.heat[13] - heat_storage1.heat_charge[13] :   0.0 :   True
-                 14 :   0.0 : chp1.heat[14] - heat_storage1.heat_charge[14] :   0.0 :   True
-                 15 :   0.0 : chp1.heat[15] - heat_storage1.heat_charge[15] :   0.0 :   True
-                 16 :   0.0 : chp1.heat[16] - heat_storage1.heat_charge[16] :   0.0 :   True
-                 17 :   0.0 : chp1.heat[17] - heat_storage1.heat_charge[17] :   0.0 :   True
-                 18 :   0.0 : chp1.heat[18] - heat_storage1.heat_charge[18] :   0.0 :   True
-                 19 :   0.0 : chp1.heat[19] - heat_storage1.heat_charge[19] :   0.0 :   True
-                 20 :   0.0 : chp1.heat[20] - heat_storage1.heat_charge[20] :   0.0 :   True
-                 21 :   0.0 : chp1.heat[21] - heat_storage1.heat_charge[21] :   0.0 :   True
-                 22 :   0.0 : chp1.heat[22] - heat_storage1.heat_charge[22] :   0.0 :   True
-                 23 :   0.0 : chp1.heat[23] - heat_storage1.heat_charge[23] :   0.0 :   True
-                 24 :   0.0 : chp1.heat[24] - heat_storage1.heat_charge[24] :   0.0 :   True
+        1 Var Declarations
+            heat : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :     0 :  None :  None : False :  True :  Reals
+                  2 :     0 :  None :  None : False :  True :  Reals
+                  3 :     0 :  None :  None : False :  True :  Reals
+                  4 :     0 :  None :  None : False :  True :  Reals
+                  5 :     0 :  None :  None : False :  True :  Reals
+                  6 :     0 :  None :  None : False :  True :  Reals
+                  7 :     0 :  None :  None : False :  True :  Reals
+                  8 :     0 :  None :  None : False :  True :  Reals
+                  9 :     0 :  None :  None : False :  True :  Reals
+                 10 :     0 :  None :  None : False :  True :  Reals
+                 11 :     0 :  None :  None : False :  True :  Reals
+                 12 :     0 :  None :  None : False :  True :  Reals
+                 13 :     0 :  None :  None : False :  True :  Reals
+                 14 :     0 :  None :  None : False :  True :  Reals
+                 15 :     0 :  None :  None : False :  True :  Reals
+                 16 :     0 :  None :  None : False :  True :  Reals
+                 17 :     0 :  None :  None : False :  True :  Reals
+                 18 :     0 :  None :  None : False :  True :  Reals
+                 19 :     0 :  None :  None : False :  True :  Reals
+                 20 :     0 :  None :  None : False :  True :  Reals
+                 21 :     0 :  None :  None : False :  True :  Reals
+                 22 :     0 :  None :  None : False :  True :  Reals
+                 23 :     0 :  None :  None : False :  True :  Reals
+                 24 :     0 :  None :  None : False :  True :  Reals
 
-        1 Declarations: heat_equality
+        1 Declarations: heat
     arc03_expanded : Size=1, Index=None, Active=True
         1 Var Declarations
             heat : Size=24, Index=t
@@ -289,6 +289,66 @@
                  24 :     0 :  None :  None : False :  True :  Reals
 
         1 Declarations: gas
+    arc07_expanded : Size=1, Index=None, Active=True
+        1 Var Declarations
+            heat : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :     0 :  None :  None : False :  True :  Reals
+                  2 :     0 :  None :  None : False :  True :  Reals
+                  3 :     0 :  None :  None : False :  True :  Reals
+                  4 :     0 :  None :  None : False :  True :  Reals
+                  5 :     0 :  None :  None : False :  True :  Reals
+                  6 :     0 :  None :  None : False :  True :  Reals
+                  7 :     0 :  None :  None : False :  True :  Reals
+                  8 :     0 :  None :  None : False :  True :  Reals
+                  9 :     0 :  None :  None : False :  True :  Reals
+                 10 :     0 :  None :  None : False :  True :  Reals
+                 11 :     0 :  None :  None : False :  True :  Reals
+                 12 :     0 :  None :  None : False :  True :  Reals
+                 13 :     0 :  None :  None : False :  True :  Reals
+                 14 :     0 :  None :  None : False :  True :  Reals
+                 15 :     0 :  None :  None : False :  True :  Reals
+                 16 :     0 :  None :  None : False :  True :  Reals
+                 17 :     0 :  None :  None : False :  True :  Reals
+                 18 :     0 :  None :  None : False :  True :  Reals
+                 19 :     0 :  None :  None : False :  True :  Reals
+                 20 :     0 :  None :  None : False :  True :  Reals
+                 21 :     0 :  None :  None : False :  True :  Reals
+                 22 :     0 :  None :  None : False :  True :  Reals
+                 23 :     0 :  None :  None : False :  True :  Reals
+                 24 :     0 :  None :  None : False :  True :  Reals
+
+        1 Declarations: heat
+    arc08_expanded : Size=1, Index=None, Active=True
+        1 Constraint Declarations
+            heat_equality : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                                           : Upper : Active
+                  1 :   0.0 :   heat_storage1.dispatch_heat_discharge[1] - heat_grid.dispatch_heat_feedin[1] :   0.0 :   True
+                  2 :   0.0 :   heat_storage1.dispatch_heat_discharge[2] - heat_grid.dispatch_heat_feedin[2] :   0.0 :   True
+                  3 :   0.0 :   heat_storage1.dispatch_heat_discharge[3] - heat_grid.dispatch_heat_feedin[3] :   0.0 :   True
+                  4 :   0.0 :   heat_storage1.dispatch_heat_discharge[4] - heat_grid.dispatch_heat_feedin[4] :   0.0 :   True
+                  5 :   0.0 :   heat_storage1.dispatch_heat_discharge[5] - heat_grid.dispatch_heat_feedin[5] :   0.0 :   True
+                  6 :   0.0 :   heat_storage1.dispatch_heat_discharge[6] - heat_grid.dispatch_heat_feedin[6] :   0.0 :   True
+                  7 :   0.0 :   heat_storage1.dispatch_heat_discharge[7] - heat_grid.dispatch_heat_feedin[7] :   0.0 :   True
+                  8 :   0.0 :   heat_storage1.dispatch_heat_discharge[8] - heat_grid.dispatch_heat_feedin[8] :   0.0 :   True
+                  9 :   0.0 :   heat_storage1.dispatch_heat_discharge[9] - heat_grid.dispatch_heat_feedin[9] :   0.0 :   True
+                 10 :   0.0 : heat_storage1.dispatch_heat_discharge[10] - heat_grid.dispatch_heat_feedin[10] :   0.0 :   True
+                 11 :   0.0 : heat_storage1.dispatch_heat_discharge[11] - heat_grid.dispatch_heat_feedin[11] :   0.0 :   True
+                 12 :   0.0 : heat_storage1.dispatch_heat_discharge[12] - heat_grid.dispatch_heat_feedin[12] :   0.0 :   True
+                 13 :   0.0 : heat_storage1.dispatch_heat_discharge[13] - heat_grid.dispatch_heat_feedin[13] :   0.0 :   True
+                 14 :   0.0 : heat_storage1.dispatch_heat_discharge[14] - heat_grid.dispatch_heat_feedin[14] :   0.0 :   True
+                 15 :   0.0 : heat_storage1.dispatch_heat_discharge[15] - heat_grid.dispatch_heat_feedin[15] :   0.0 :   True
+                 16 :   0.0 : heat_storage1.dispatch_heat_discharge[16] - heat_grid.dispatch_heat_feedin[16] :   0.0 :   True
+                 17 :   0.0 : heat_storage1.dispatch_heat_discharge[17] - heat_grid.dispatch_heat_feedin[17] :   0.0 :   True
+                 18 :   0.0 : heat_storage1.dispatch_heat_discharge[18] - heat_grid.dispatch_heat_feedin[18] :   0.0 :   True
+                 19 :   0.0 : heat_storage1.dispatch_heat_discharge[19] - heat_grid.dispatch_heat_feedin[19] :   0.0 :   True
+                 20 :   0.0 : heat_storage1.dispatch_heat_discharge[20] - heat_grid.dispatch_heat_feedin[20] :   0.0 :   True
+                 21 :   0.0 : heat_storage1.dispatch_heat_discharge[21] - heat_grid.dispatch_heat_feedin[21] :   0.0 :   True
+                 22 :   0.0 : heat_storage1.dispatch_heat_discharge[22] - heat_grid.dispatch_heat_feedin[22] :   0.0 :   True
+                 23 :   0.0 : heat_storage1.dispatch_heat_discharge[23] - heat_grid.dispatch_heat_feedin[23] :   0.0 :   True
+                 24 :   0.0 : heat_storage1.dispatch_heat_discharge[24] - heat_grid.dispatch_heat_feedin[24] :   0.0 :   True
+
+        1 Declarations: heat_equality
     boiler1 : Size=1, Index=None, Active=True
         6 Var Declarations
             bin : Size=24, Index=t
@@ -1060,7 +1120,7 @@
                  23 :     0 :  None :     1 : False :  True : Binary
                  24 :     0 :  None :     1 : False :  True : Binary
 
-        21 Constraint Declarations
+        22 Constraint Declarations
             electrical_efficiency_depends_on_thermal_load1 : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                                     : Upper : Active
                   1 :  -Inf :     chp1.eta_el[1] - (0.0036999999999999976*chp1.heat[1] + 0.06640000000000018 + 1000000.0*(1 - chp1.y1[1]))*chp1.bin[1] :   0.0 :   True
@@ -1321,6 +1381,32 @@
                  22 :   0.0 : arc06_expanded.gas[22] - chp1.gas[22] :   0.0 :   True
                  23 :   0.0 : arc06_expanded.gas[23] - chp1.gas[23] :   0.0 :   True
                  24 :   0.0 : arc06_expanded.gas[24] - chp1.gas[24] :   0.0 :   True
+            heat_out_heat_outsum : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                              : Upper : Active
+                  1 :   0.0 :    arc02_expanded.heat[1] + arc07_expanded.heat[1] - chp1.heat[1] :   0.0 :   True
+                  2 :   0.0 :    arc02_expanded.heat[2] + arc07_expanded.heat[2] - chp1.heat[2] :   0.0 :   True
+                  3 :   0.0 :    arc02_expanded.heat[3] + arc07_expanded.heat[3] - chp1.heat[3] :   0.0 :   True
+                  4 :   0.0 :    arc02_expanded.heat[4] + arc07_expanded.heat[4] - chp1.heat[4] :   0.0 :   True
+                  5 :   0.0 :    arc02_expanded.heat[5] + arc07_expanded.heat[5] - chp1.heat[5] :   0.0 :   True
+                  6 :   0.0 :    arc02_expanded.heat[6] + arc07_expanded.heat[6] - chp1.heat[6] :   0.0 :   True
+                  7 :   0.0 :    arc02_expanded.heat[7] + arc07_expanded.heat[7] - chp1.heat[7] :   0.0 :   True
+                  8 :   0.0 :    arc02_expanded.heat[8] + arc07_expanded.heat[8] - chp1.heat[8] :   0.0 :   True
+                  9 :   0.0 :    arc02_expanded.heat[9] + arc07_expanded.heat[9] - chp1.heat[9] :   0.0 :   True
+                 10 :   0.0 : arc02_expanded.heat[10] + arc07_expanded.heat[10] - chp1.heat[10] :   0.0 :   True
+                 11 :   0.0 : arc02_expanded.heat[11] + arc07_expanded.heat[11] - chp1.heat[11] :   0.0 :   True
+                 12 :   0.0 : arc02_expanded.heat[12] + arc07_expanded.heat[12] - chp1.heat[12] :   0.0 :   True
+                 13 :   0.0 : arc02_expanded.heat[13] + arc07_expanded.heat[13] - chp1.heat[13] :   0.0 :   True
+                 14 :   0.0 : arc02_expanded.heat[14] + arc07_expanded.heat[14] - chp1.heat[14] :   0.0 :   True
+                 15 :   0.0 : arc02_expanded.heat[15] + arc07_expanded.heat[15] - chp1.heat[15] :   0.0 :   True
+                 16 :   0.0 : arc02_expanded.heat[16] + arc07_expanded.heat[16] - chp1.heat[16] :   0.0 :   True
+                 17 :   0.0 : arc02_expanded.heat[17] + arc07_expanded.heat[17] - chp1.heat[17] :   0.0 :   True
+                 18 :   0.0 : arc02_expanded.heat[18] + arc07_expanded.heat[18] - chp1.heat[18] :   0.0 :   True
+                 19 :   0.0 : arc02_expanded.heat[19] + arc07_expanded.heat[19] - chp1.heat[19] :   0.0 :   True
+                 20 :   0.0 : arc02_expanded.heat[20] + arc07_expanded.heat[20] - chp1.heat[20] :   0.0 :   True
+                 21 :   0.0 : arc02_expanded.heat[21] + arc07_expanded.heat[21] - chp1.heat[21] :   0.0 :   True
+                 22 :   0.0 : arc02_expanded.heat[22] + arc07_expanded.heat[22] - chp1.heat[22] :   0.0 :   True
+                 23 :   0.0 : arc02_expanded.heat[23] + arc07_expanded.heat[23] - chp1.heat[23] :   0.0 :   True
+                 24 :   0.0 : arc02_expanded.heat[24] + arc07_expanded.heat[24] - chp1.heat[24] :   0.0 :   True
             power_depends_on_thermal_load1 : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                               : Upper : Active
                   1 :  -Inf :     chp1.power[1] - (1.0846420355485744*chp1.heat[1] - 36.53706977702767 + 1000000.0*(1 - chp1.y1[1]))*chp1.bin[1] :   0.0 :   True
@@ -1619,9 +1705,139 @@
                 Key  : Name  : Size : Variable
                 None : power :   24 : chp1.power
 
-        32 Declarations: bin power gas heat eta_th eta_el y1 y2 power_out heat_out gas_in thermal_load_max_constr thermal_load_min_constr y_constr1_upper gas_depends_on_thermal_load3 power_depends_on_thermal_load1 power_depends_on_thermal_load2 power_depends_on_thermal_load1_lower power_depends_on_thermal_load2_lower gas_depends_on_thermal_load1 gas_depends_on_thermal_load2 gas_depends_on_thermal_load1_lower gas_depends_on_thermal_load2_lower thermal_efficiency_depends_on_thermal_load1 thermal_efficiency_depends_on_thermal_load2 thermal_efficiency_depends_on_thermal_load1_lower thermal_efficiency_depends_on_thermal_load2_lower electrical_efficiency_depends_on_thermal_load1 electrical_efficiency_depends_on_thermal_load2 electrical_efficiency_depends_on_thermal_load1_lower electrical_efficiency_depends_on_thermal_load2_lower gas_in_gas_insum
+        33 Declarations: bin power gas heat eta_th eta_el y1 y2 power_out heat_out gas_in thermal_load_max_constr thermal_load_min_constr y_constr1_upper gas_depends_on_thermal_load3 power_depends_on_thermal_load1 power_depends_on_thermal_load2 power_depends_on_thermal_load1_lower power_depends_on_thermal_load2_lower gas_depends_on_thermal_load1 gas_depends_on_thermal_load2 gas_depends_on_thermal_load1_lower gas_depends_on_thermal_load2_lower thermal_efficiency_depends_on_thermal_load1 thermal_efficiency_depends_on_thermal_load2 thermal_efficiency_depends_on_thermal_load1_lower thermal_efficiency_depends_on_thermal_load2_lower electrical_efficiency_depends_on_thermal_load1 electrical_efficiency_depends_on_thermal_load2 electrical_efficiency_depends_on_thermal_load1_lower electrical_efficiency_depends_on_thermal_load2_lower heat_out_heat_outsum gas_in_gas_insum
     heat_grid : Size=1, Index=None, Active=True
-        3 Var Declarations
+        8 Var Declarations
+            deficit_heat_demand : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :     0 :  None :  None : False :  True : NonNegativeReals
+                  2 :     0 :  None :  None : False :  True : NonNegativeReals
+                  3 :     0 :  None :  None : False :  True : NonNegativeReals
+                  4 :     0 :  None :  None : False :  True : NonNegativeReals
+                  5 :     0 :  None :  None : False :  True : NonNegativeReals
+                  6 :     0 :  None :  None : False :  True : NonNegativeReals
+                  7 :     0 :  None :  None : False :  True : NonNegativeReals
+                  8 :     0 :  None :  None : False :  True : NonNegativeReals
+                  9 :     0 :  None :  None : False :  True : NonNegativeReals
+                 10 :     0 :  None :  None : False :  True : NonNegativeReals
+                 11 :     0 :  None :  None : False :  True : NonNegativeReals
+                 12 :     0 :  None :  None : False :  True : NonNegativeReals
+                 13 :     0 :  None :  None : False :  True : NonNegativeReals
+                 14 :     0 :  None :  None : False :  True : NonNegativeReals
+                 15 :     0 :  None :  None : False :  True : NonNegativeReals
+                 16 :     0 :  None :  None : False :  True : NonNegativeReals
+                 17 :     0 :  None :  None : False :  True : NonNegativeReals
+                 18 :     0 :  None :  None : False :  True : NonNegativeReals
+                 19 :     0 :  None :  None : False :  True : NonNegativeReals
+                 20 :     0 :  None :  None : False :  True : NonNegativeReals
+                 21 :     0 :  None :  None : False :  True : NonNegativeReals
+                 22 :     0 :  None :  None : False :  True : NonNegativeReals
+                 23 :     0 :  None :  None : False :  True : NonNegativeReals
+                 24 :     0 :  None :  None : False :  True : NonNegativeReals
+            dispatch_heat_balance : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :  None :  None :  None : False :  True :  Reals
+                  2 :  None :  None :  None : False :  True :  Reals
+                  3 :  None :  None :  None : False :  True :  Reals
+                  4 :  None :  None :  None : False :  True :  Reals
+                  5 :  None :  None :  None : False :  True :  Reals
+                  6 :  None :  None :  None : False :  True :  Reals
+                  7 :  None :  None :  None : False :  True :  Reals
+                  8 :  None :  None :  None : False :  True :  Reals
+                  9 :  None :  None :  None : False :  True :  Reals
+                 10 :  None :  None :  None : False :  True :  Reals
+                 11 :  None :  None :  None : False :  True :  Reals
+                 12 :  None :  None :  None : False :  True :  Reals
+                 13 :  None :  None :  None : False :  True :  Reals
+                 14 :  None :  None :  None : False :  True :  Reals
+                 15 :  None :  None :  None : False :  True :  Reals
+                 16 :  None :  None :  None : False :  True :  Reals
+                 17 :  None :  None :  None : False :  True :  Reals
+                 18 :  None :  None :  None : False :  True :  Reals
+                 19 :  None :  None :  None : False :  True :  Reals
+                 20 :  None :  None :  None : False :  True :  Reals
+                 21 :  None :  None :  None : False :  True :  Reals
+                 22 :  None :  None :  None : False :  True :  Reals
+                 23 :  None :  None :  None : False :  True :  Reals
+                 24 :  None :  None :  None : False :  True :  Reals
+            dispatch_heat_feedin : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :  None :  None :  None : False :  True :  Reals
+                  2 :  None :  None :  None : False :  True :  Reals
+                  3 :  None :  None :  None : False :  True :  Reals
+                  4 :  None :  None :  None : False :  True :  Reals
+                  5 :  None :  None :  None : False :  True :  Reals
+                  6 :  None :  None :  None : False :  True :  Reals
+                  7 :  None :  None :  None : False :  True :  Reals
+                  8 :  None :  None :  None : False :  True :  Reals
+                  9 :  None :  None :  None : False :  True :  Reals
+                 10 :  None :  None :  None : False :  True :  Reals
+                 11 :  None :  None :  None : False :  True :  Reals
+                 12 :  None :  None :  None : False :  True :  Reals
+                 13 :  None :  None :  None : False :  True :  Reals
+                 14 :  None :  None :  None : False :  True :  Reals
+                 15 :  None :  None :  None : False :  True :  Reals
+                 16 :  None :  None :  None : False :  True :  Reals
+                 17 :  None :  None :  None : False :  True :  Reals
+                 18 :  None :  None :  None : False :  True :  Reals
+                 19 :  None :  None :  None : False :  True :  Reals
+                 20 :  None :  None :  None : False :  True :  Reals
+                 21 :  None :  None :  None : False :  True :  Reals
+                 22 :  None :  None :  None : False :  True :  Reals
+                 23 :  None :  None :  None : False :  True :  Reals
+                 24 :  None :  None :  None : False :  True :  Reals
+            dispatch_heat_supply : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :  None :  None :  None : False :  True :  Reals
+                  2 :  None :  None :  None : False :  True :  Reals
+                  3 :  None :  None :  None : False :  True :  Reals
+                  4 :  None :  None :  None : False :  True :  Reals
+                  5 :  None :  None :  None : False :  True :  Reals
+                  6 :  None :  None :  None : False :  True :  Reals
+                  7 :  None :  None :  None : False :  True :  Reals
+                  8 :  None :  None :  None : False :  True :  Reals
+                  9 :  None :  None :  None : False :  True :  Reals
+                 10 :  None :  None :  None : False :  True :  Reals
+                 11 :  None :  None :  None : False :  True :  Reals
+                 12 :  None :  None :  None : False :  True :  Reals
+                 13 :  None :  None :  None : False :  True :  Reals
+                 14 :  None :  None :  None : False :  True :  Reals
+                 15 :  None :  None :  None : False :  True :  Reals
+                 16 :  None :  None :  None : False :  True :  Reals
+                 17 :  None :  None :  None : False :  True :  Reals
+                 18 :  None :  None :  None : False :  True :  Reals
+                 19 :  None :  None :  None : False :  True :  Reals
+                 20 :  None :  None :  None : False :  True :  Reals
+                 21 :  None :  None :  None : False :  True :  Reals
+                 22 :  None :  None :  None : False :  True :  Reals
+                 23 :  None :  None :  None : False :  True :  Reals
+                 24 :  None :  None :  None : False :  True :  Reals
+            excess_heat_demand : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :     0 :  None :  None : False :  True : NonNegativeReals
+                  2 :     0 :  None :  None : False :  True : NonNegativeReals
+                  3 :     0 :  None :  None : False :  True : NonNegativeReals
+                  4 :     0 :  None :  None : False :  True : NonNegativeReals
+                  5 :     0 :  None :  None : False :  True : NonNegativeReals
+                  6 :     0 :  None :  None : False :  True : NonNegativeReals
+                  7 :     0 :  None :  None : False :  True : NonNegativeReals
+                  8 :     0 :  None :  None : False :  True : NonNegativeReals
+                  9 :     0 :  None :  None : False :  True : NonNegativeReals
+                 10 :     0 :  None :  None : False :  True : NonNegativeReals
+                 11 :     0 :  None :  None : False :  True : NonNegativeReals
+                 12 :     0 :  None :  None : False :  True : NonNegativeReals
+                 13 :     0 :  None :  None : False :  True : NonNegativeReals
+                 14 :     0 :  None :  None : False :  True : NonNegativeReals
+                 15 :     0 :  None :  None : False :  True : NonNegativeReals
+                 16 :     0 :  None :  None : False :  True : NonNegativeReals
+                 17 :     0 :  None :  None : False :  True : NonNegativeReals
+                 18 :     0 :  None :  None : False :  True : NonNegativeReals
+                 19 :     0 :  None :  None : False :  True : NonNegativeReals
+                 20 :     0 :  None :  None : False :  True : NonNegativeReals
+                 21 :     0 :  None :  None : False :  True : NonNegativeReals
+                 22 :     0 :  None :  None : False :  True : NonNegativeReals
+                 23 :     0 :  None :  None : False :  True : NonNegativeReals
+                 24 :     0 :  None :  None : False :  True : NonNegativeReals
             heat_balance : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
                   1 :     0 :  None :  None : False :  True : NonNegativeReals
@@ -1701,7 +1917,59 @@
                  23 :     0 :  None :  None : False :  True : NonNegativeReals
                  24 :     0 :  None :  None : False :  True : NonNegativeReals
 
-        4 Constraint Declarations
+        7 Constraint Declarations
+            dispatch_balance_constr : Size=24, Index=t, Active=True
+                Key : Lower : Body                                : Upper : Active
+                  1 :   0.0 :  heat_grid.dispatch_heat_balance[1] :   0.0 :   True
+                  2 :   0.0 :  heat_grid.dispatch_heat_balance[2] :   0.0 :   True
+                  3 :   0.0 :  heat_grid.dispatch_heat_balance[3] :   0.0 :   True
+                  4 :   0.0 :  heat_grid.dispatch_heat_balance[4] :   0.0 :   True
+                  5 :   0.0 :  heat_grid.dispatch_heat_balance[5] :   0.0 :   True
+                  6 :   0.0 :  heat_grid.dispatch_heat_balance[6] :   0.0 :   True
+                  7 :   0.0 :  heat_grid.dispatch_heat_balance[7] :   0.0 :   True
+                  8 :   0.0 :  heat_grid.dispatch_heat_balance[8] :   0.0 :   True
+                  9 :   0.0 :  heat_grid.dispatch_heat_balance[9] :   0.0 :   True
+                 10 :   0.0 : heat_grid.dispatch_heat_balance[10] :   0.0 :   True
+                 11 :   0.0 : heat_grid.dispatch_heat_balance[11] :   0.0 :   True
+                 12 :   0.0 : heat_grid.dispatch_heat_balance[12] :   0.0 :   True
+                 13 :   0.0 : heat_grid.dispatch_heat_balance[13] :   0.0 :   True
+                 14 :   0.0 : heat_grid.dispatch_heat_balance[14] :   0.0 :   True
+                 15 :   0.0 : heat_grid.dispatch_heat_balance[15] :   0.0 :   True
+                 16 :   0.0 : heat_grid.dispatch_heat_balance[16] :   0.0 :   True
+                 17 :   0.0 : heat_grid.dispatch_heat_balance[17] :   0.0 :   True
+                 18 :   0.0 : heat_grid.dispatch_heat_balance[18] :   0.0 :   True
+                 19 :   0.0 : heat_grid.dispatch_heat_balance[19] :   0.0 :   True
+                 20 :   0.0 : heat_grid.dispatch_heat_balance[20] :   0.0 :   True
+                 21 :   0.0 : heat_grid.dispatch_heat_balance[21] :   0.0 :   True
+                 22 :   0.0 : heat_grid.dispatch_heat_balance[22] :   0.0 :   True
+                 23 :   0.0 : heat_grid.dispatch_heat_balance[23] :   0.0 :   True
+                 24 :   0.0 : heat_grid.dispatch_heat_balance[24] :   0.0 :   True
+            dispatch_constr : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                                                                                                                                      : Upper : Active
+                  1 :   0.0 :      heat_grid.dispatch_heat_balance[1] - (heat_grid.heat_feedin[1] + heat_grid.dispatch_heat_feedin[1] - (heat_grid.heat_supply[1] + heat_grid.dispatch_heat_supply[1])) :   0.0 :   True
+                  2 :   0.0 :      heat_grid.dispatch_heat_balance[2] - (heat_grid.heat_feedin[2] + heat_grid.dispatch_heat_feedin[2] - (heat_grid.heat_supply[2] + heat_grid.dispatch_heat_supply[2])) :   0.0 :   True
+                  3 :   0.0 :      heat_grid.dispatch_heat_balance[3] - (heat_grid.heat_feedin[3] + heat_grid.dispatch_heat_feedin[3] - (heat_grid.heat_supply[3] + heat_grid.dispatch_heat_supply[3])) :   0.0 :   True
+                  4 :   0.0 :      heat_grid.dispatch_heat_balance[4] - (heat_grid.heat_feedin[4] + heat_grid.dispatch_heat_feedin[4] - (heat_grid.heat_supply[4] + heat_grid.dispatch_heat_supply[4])) :   0.0 :   True
+                  5 :   0.0 :      heat_grid.dispatch_heat_balance[5] - (heat_grid.heat_feedin[5] + heat_grid.dispatch_heat_feedin[5] - (heat_grid.heat_supply[5] + heat_grid.dispatch_heat_supply[5])) :   0.0 :   True
+                  6 :   0.0 :      heat_grid.dispatch_heat_balance[6] - (heat_grid.heat_feedin[6] + heat_grid.dispatch_heat_feedin[6] - (heat_grid.heat_supply[6] + heat_grid.dispatch_heat_supply[6])) :   0.0 :   True
+                  7 :   0.0 :      heat_grid.dispatch_heat_balance[7] - (heat_grid.heat_feedin[7] + heat_grid.dispatch_heat_feedin[7] - (heat_grid.heat_supply[7] + heat_grid.dispatch_heat_supply[7])) :   0.0 :   True
+                  8 :   0.0 :      heat_grid.dispatch_heat_balance[8] - (heat_grid.heat_feedin[8] + heat_grid.dispatch_heat_feedin[8] - (heat_grid.heat_supply[8] + heat_grid.dispatch_heat_supply[8])) :   0.0 :   True
+                  9 :   0.0 :      heat_grid.dispatch_heat_balance[9] - (heat_grid.heat_feedin[9] + heat_grid.dispatch_heat_feedin[9] - (heat_grid.heat_supply[9] + heat_grid.dispatch_heat_supply[9])) :   0.0 :   True
+                 10 :   0.0 : heat_grid.dispatch_heat_balance[10] - (heat_grid.heat_feedin[10] + heat_grid.dispatch_heat_feedin[10] - (heat_grid.heat_supply[10] + heat_grid.dispatch_heat_supply[10])) :   0.0 :   True
+                 11 :   0.0 : heat_grid.dispatch_heat_balance[11] - (heat_grid.heat_feedin[11] + heat_grid.dispatch_heat_feedin[11] - (heat_grid.heat_supply[11] + heat_grid.dispatch_heat_supply[11])) :   0.0 :   True
+                 12 :   0.0 : heat_grid.dispatch_heat_balance[12] - (heat_grid.heat_feedin[12] + heat_grid.dispatch_heat_feedin[12] - (heat_grid.heat_supply[12] + heat_grid.dispatch_heat_supply[12])) :   0.0 :   True
+                 13 :   0.0 : heat_grid.dispatch_heat_balance[13] - (heat_grid.heat_feedin[13] + heat_grid.dispatch_heat_feedin[13] - (heat_grid.heat_supply[13] + heat_grid.dispatch_heat_supply[13])) :   0.0 :   True
+                 14 :   0.0 : heat_grid.dispatch_heat_balance[14] - (heat_grid.heat_feedin[14] + heat_grid.dispatch_heat_feedin[14] - (heat_grid.heat_supply[14] + heat_grid.dispatch_heat_supply[14])) :   0.0 :   True
+                 15 :   0.0 : heat_grid.dispatch_heat_balance[15] - (heat_grid.heat_feedin[15] + heat_grid.dispatch_heat_feedin[15] - (heat_grid.heat_supply[15] + heat_grid.dispatch_heat_supply[15])) :   0.0 :   True
+                 16 :   0.0 : heat_grid.dispatch_heat_balance[16] - (heat_grid.heat_feedin[16] + heat_grid.dispatch_heat_feedin[16] - (heat_grid.heat_supply[16] + heat_grid.dispatch_heat_supply[16])) :   0.0 :   True
+                 17 :   0.0 : heat_grid.dispatch_heat_balance[17] - (heat_grid.heat_feedin[17] + heat_grid.dispatch_heat_feedin[17] - (heat_grid.heat_supply[17] + heat_grid.dispatch_heat_supply[17])) :   0.0 :   True
+                 18 :   0.0 : heat_grid.dispatch_heat_balance[18] - (heat_grid.heat_feedin[18] + heat_grid.dispatch_heat_feedin[18] - (heat_grid.heat_supply[18] + heat_grid.dispatch_heat_supply[18])) :   0.0 :   True
+                 19 :   0.0 : heat_grid.dispatch_heat_balance[19] - (heat_grid.heat_feedin[19] + heat_grid.dispatch_heat_feedin[19] - (heat_grid.heat_supply[19] + heat_grid.dispatch_heat_supply[19])) :   0.0 :   True
+                 20 :   0.0 : heat_grid.dispatch_heat_balance[20] - (heat_grid.heat_feedin[20] + heat_grid.dispatch_heat_feedin[20] - (heat_grid.heat_supply[20] + heat_grid.dispatch_heat_supply[20])) :   0.0 :   True
+                 21 :   0.0 : heat_grid.dispatch_heat_balance[21] - (heat_grid.heat_feedin[21] + heat_grid.dispatch_heat_feedin[21] - (heat_grid.heat_supply[21] + heat_grid.dispatch_heat_supply[21])) :   0.0 :   True
+                 22 :   0.0 : heat_grid.dispatch_heat_balance[22] - (heat_grid.heat_feedin[22] + heat_grid.dispatch_heat_feedin[22] - (heat_grid.heat_supply[22] + heat_grid.dispatch_heat_supply[22])) :   0.0 :   True
+                 23 :   0.0 : heat_grid.dispatch_heat_balance[23] - (heat_grid.heat_feedin[23] + heat_grid.dispatch_heat_feedin[23] - (heat_grid.heat_supply[23] + heat_grid.dispatch_heat_supply[23])) :   0.0 :   True
+                 24 :   0.0 : heat_grid.dispatch_heat_balance[24] - (heat_grid.heat_feedin[24] + heat_grid.dispatch_heat_feedin[24] - (heat_grid.heat_supply[24] + heat_grid.dispatch_heat_supply[24])) :   0.0 :   True
             heat_balance_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                 : Upper : Active
                   1 :   0.0 :    heat_grid.heat_balance[1] - (heat_grid.heat_feedin[1] - heat_grid.heat_supply[1]) :   0.0 :   True
@@ -1756,30 +2024,56 @@
                  24 :   0.0 : arc03_expanded.heat[24] + arc04_expanded.heat[24] - heat_grid.heat_feedin[24] :   0.0 :   True
             heat_supply_constr : Size=24, Index=t, Active=True
                 Key : Lower              : Body                      : Upper              : Active
-                  1 :  86.89020582132288 :  heat_grid.heat_supply[1] :  86.89020582132288 :   True
-                  2 : 102.67012913651094 :  heat_grid.heat_supply[2] : 102.67012913651094 :   True
-                  3 : 197.10818009752964 :  heat_grid.heat_supply[3] : 197.10818009752964 :   True
-                  4 : 131.41110425250923 :  heat_grid.heat_supply[4] : 131.41110425250923 :   True
-                  5 : 134.36278677058627 :  heat_grid.heat_supply[5] : 134.36278677058627 :   True
-                  6 : 133.35488413447985 :  heat_grid.heat_supply[6] : 133.35488413447985 :   True
-                  7 : 148.67082790766605 :  heat_grid.heat_supply[7] : 148.67082790766605 :   True
-                  8 : 155.76612945938308 :  heat_grid.heat_supply[8] : 155.76612945938308 :   True
-                  9 : 149.41335246313022 :  heat_grid.heat_supply[9] : 149.41335246313022 :   True
-                 10 : 132.52799498318225 : heat_grid.heat_supply[10] : 132.52799498318225 :   True
-                 11 :  128.1881334012233 : heat_grid.heat_supply[11] :  128.1881334012233 :   True
-                 12 :  123.8851574175104 : heat_grid.heat_supply[12] :  123.8851574175104 :   True
-                 13 : 120.24610785605115 : heat_grid.heat_supply[13] : 120.24610785605115 :   True
-                 14 :  129.2256067900492 : heat_grid.heat_supply[14] :  129.2256067900492 :   True
-                 15 : 144.84779804164918 : heat_grid.heat_supply[15] : 144.84779804164918 :   True
-                 16 : 166.56653578784764 : heat_grid.heat_supply[16] : 166.56653578784764 :   True
-                 17 : 169.65940464198837 : heat_grid.heat_supply[17] : 169.65940464198837 :   True
-                 18 : 180.98217387350823 : heat_grid.heat_supply[18] : 180.98217387350823 :   True
-                 19 : 159.72915392902087 : heat_grid.heat_supply[19] : 159.72915392902087 :   True
-                 20 : 141.17185343819725 : heat_grid.heat_supply[20] : 141.17185343819725 :   True
-                 21 : 103.37569949235706 : heat_grid.heat_supply[21] : 103.37569949235706 :   True
-                 22 : 108.05637359730451 : heat_grid.heat_supply[22] : 108.05637359730451 :   True
-                 23 : 106.48752403357732 : heat_grid.heat_supply[23] : 106.48752403357732 :   True
-                 24 :   111.895874623898 : heat_grid.heat_supply[24] :   111.895874623898 :   True
+                  1 :  34.75608232852915 :  heat_grid.heat_supply[1] :  34.75608232852915 :   True
+                  2 : 41.068051654604375 :  heat_grid.heat_supply[2] : 41.068051654604375 :   True
+                  3 :  78.84327203901185 :  heat_grid.heat_supply[3] :  78.84327203901185 :   True
+                  4 : 52.564441701003695 :  heat_grid.heat_supply[4] : 52.564441701003695 :   True
+                  5 :  53.74511470823451 :  heat_grid.heat_supply[5] :  53.74511470823451 :   True
+                  6 :  53.34195365379194 :  heat_grid.heat_supply[6] :  53.34195365379194 :   True
+                  7 :  59.46833116306642 :  heat_grid.heat_supply[7] :  59.46833116306642 :   True
+                  8 :  62.30645178375323 :  heat_grid.heat_supply[8] :  62.30645178375323 :   True
+                  9 :  59.76534098525209 :  heat_grid.heat_supply[9] :  59.76534098525209 :   True
+                 10 :   53.0111979932729 : heat_grid.heat_supply[10] :   53.0111979932729 :   True
+                 11 : 51.275253360489316 : heat_grid.heat_supply[11] : 51.275253360489316 :   True
+                 12 :  49.55406296700416 : heat_grid.heat_supply[12] :  49.55406296700416 :   True
+                 13 : 48.098443142420464 : heat_grid.heat_supply[13] : 48.098443142420464 :   True
+                 14 :  51.69024271601968 : heat_grid.heat_supply[14] :  51.69024271601968 :   True
+                 15 :  57.93911921665968 : heat_grid.heat_supply[15] :  57.93911921665968 :   True
+                 16 :  66.62661431513905 : heat_grid.heat_supply[16] :  66.62661431513905 :   True
+                 17 :  67.86376185679535 : heat_grid.heat_supply[17] :  67.86376185679535 :   True
+                 18 :  72.39286954940329 : heat_grid.heat_supply[18] :  72.39286954940329 :   True
+                 19 : 63.891661571608346 : heat_grid.heat_supply[19] : 63.891661571608346 :   True
+                 20 : 56.468741375278896 : heat_grid.heat_supply[20] : 56.468741375278896 :   True
+                 21 :  41.35027979694282 : heat_grid.heat_supply[21] :  41.35027979694282 :   True
+                 22 :   43.2225494389218 : heat_grid.heat_supply[22] :   43.2225494389218 :   True
+                 23 : 42.595009613430925 : heat_grid.heat_supply[23] : 42.595009613430925 :   True
+                 24 : 44.758349849559195 : heat_grid.heat_supply[24] : 44.758349849559195 :   True
+            heat_supply_scenario_second_constr : Size=24, Index=t, Active=True
+                Key : Lower              : Body                                                           : Upper              : Active
+                  1 :  35.15608232852915 :   heat_grid.dispatch_heat_supply[1] + heat_grid.heat_supply[1] :  35.15608232852915 :   True
+                  2 :  41.46805165460437 :   heat_grid.dispatch_heat_supply[2] + heat_grid.heat_supply[2] :  41.46805165460437 :   True
+                  3 :  79.24327203901186 :   heat_grid.dispatch_heat_supply[3] + heat_grid.heat_supply[3] :  79.24327203901186 :   True
+                  4 :  52.96444170100369 :   heat_grid.dispatch_heat_supply[4] + heat_grid.heat_supply[4] :  52.96444170100369 :   True
+                  5 :  54.14511470823451 :   heat_grid.dispatch_heat_supply[5] + heat_grid.heat_supply[5] :  54.14511470823451 :   True
+                  6 :  53.74195365379194 :   heat_grid.dispatch_heat_supply[6] + heat_grid.heat_supply[6] :  53.74195365379194 :   True
+                  7 :  59.86833116306642 :   heat_grid.dispatch_heat_supply[7] + heat_grid.heat_supply[7] :  59.86833116306642 :   True
+                  8 :  62.70645178375323 :   heat_grid.dispatch_heat_supply[8] + heat_grid.heat_supply[8] :  62.70645178375323 :   True
+                  9 :  60.16534098525209 :   heat_grid.dispatch_heat_supply[9] + heat_grid.heat_supply[9] :  60.16534098525209 :   True
+                 10 :   53.4111979932729 : heat_grid.dispatch_heat_supply[10] + heat_grid.heat_supply[10] :   53.4111979932729 :   True
+                 11 :  51.67525336048932 : heat_grid.dispatch_heat_supply[11] + heat_grid.heat_supply[11] :  51.67525336048932 :   True
+                 12 :  49.95406296700416 : heat_grid.dispatch_heat_supply[12] + heat_grid.heat_supply[12] :  49.95406296700416 :   True
+                 13 :  48.49844314242046 : heat_grid.dispatch_heat_supply[13] + heat_grid.heat_supply[13] :  48.49844314242046 :   True
+                 14 :  52.09024271601968 : heat_grid.dispatch_heat_supply[14] + heat_grid.heat_supply[14] :  52.09024271601968 :   True
+                 15 : 58.339119216659675 : heat_grid.dispatch_heat_supply[15] + heat_grid.heat_supply[15] : 58.339119216659675 :   True
+                 16 :  67.02661431513906 : heat_grid.dispatch_heat_supply[16] + heat_grid.heat_supply[16] :  67.02661431513906 :   True
+                 17 :  68.26376185679536 : heat_grid.dispatch_heat_supply[17] + heat_grid.heat_supply[17] :  68.26376185679536 :   True
+                 18 :  72.79286954940329 : heat_grid.dispatch_heat_supply[18] + heat_grid.heat_supply[18] :  72.79286954940329 :   True
+                 19 :  64.29166157160834 : heat_grid.dispatch_heat_supply[19] + heat_grid.heat_supply[19] :  64.29166157160834 :   True
+                 20 :   56.8687413752789 : heat_grid.dispatch_heat_supply[20] + heat_grid.heat_supply[20] :   56.8687413752789 :   True
+                 21 :  41.75027979694282 : heat_grid.dispatch_heat_supply[21] + heat_grid.heat_supply[21] :  41.75027979694282 :   True
+                 22 :  43.62254943892181 : heat_grid.dispatch_heat_supply[22] + heat_grid.heat_supply[22] :  43.62254943892181 :   True
+                 23 :  42.99500961343092 : heat_grid.dispatch_heat_supply[23] + heat_grid.heat_supply[23] :  42.99500961343092 :   True
+                 24 :   45.1583498495592 : heat_grid.dispatch_heat_supply[24] + heat_grid.heat_supply[24] :   45.1583498495592 :   True
             supply_heat_demand_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                       : Upper : Active
                   1 :   0.0 :  heat_grid.heat_balance[1] :   0.0 :   True
@@ -1807,17 +2101,20 @@
                  23 :   0.0 : heat_grid.heat_balance[23] :   0.0 :   True
                  24 :   0.0 : heat_grid.heat_balance[24] :   0.0 :   True
 
-        2 Port Declarations
+        3 Port Declarations
             heat_in : Size=1, Index=None
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_grid.heat_feedin
+            heat_in_secondstage : Size=1, Index=None
+                Key  : Name : Size : Variable
+                None : heat :   24 : heat_grid.dispatch_heat_feedin
             heat_out : Size=1, Index=None
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_grid.heat_supply
 
-        9 Declarations: heat_balance heat_supply heat_feedin heat_in heat_out heat_balance_constr supply_heat_demand_constr heat_supply_constr heat_in_heat_insum
+        18 Declarations: heat_balance heat_supply heat_feedin dispatch_heat_balance dispatch_heat_supply dispatch_heat_feedin excess_heat_demand deficit_heat_demand heat_in heat_out heat_balance_constr supply_heat_demand_constr heat_supply_constr heat_in_secondstage dispatch_constr dispatch_balance_constr heat_supply_scenario_second_constr heat_in_heat_insum
     heat_storage1 : Size=1, Index=None, Active=True
-        7 Var Declarations
+        9 Var Declarations
             bin_charge : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
                   1 :     0 :  None :     1 : False :  True : Binary
@@ -1870,6 +2167,84 @@
                  22 :     0 :  None :     1 : False :  True : Binary
                  23 :     0 :  None :     1 : False :  True : Binary
                  24 :     0 :  None :     1 : False :  True : Binary
+            dispatch_heat_capacity : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :     0 :  None :  None : False :  True : NonNegativeReals
+                  2 :     0 :  None :  None : False :  True : NonNegativeReals
+                  3 :     0 :  None :  None : False :  True : NonNegativeReals
+                  4 :     0 :  None :  None : False :  True : NonNegativeReals
+                  5 :     0 :  None :  None : False :  True : NonNegativeReals
+                  6 :     0 :  None :  None : False :  True : NonNegativeReals
+                  7 :     0 :  None :  None : False :  True : NonNegativeReals
+                  8 :     0 :  None :  None : False :  True : NonNegativeReals
+                  9 :     0 :  None :  None : False :  True : NonNegativeReals
+                 10 :     0 :  None :  None : False :  True : NonNegativeReals
+                 11 :     0 :  None :  None : False :  True : NonNegativeReals
+                 12 :     0 :  None :  None : False :  True : NonNegativeReals
+                 13 :     0 :  None :  None : False :  True : NonNegativeReals
+                 14 :     0 :  None :  None : False :  True : NonNegativeReals
+                 15 :     0 :  None :  None : False :  True : NonNegativeReals
+                 16 :     0 :  None :  None : False :  True : NonNegativeReals
+                 17 :     0 :  None :  None : False :  True : NonNegativeReals
+                 18 :     0 :  None :  None : False :  True : NonNegativeReals
+                 19 :     0 :  None :  None : False :  True : NonNegativeReals
+                 20 :     0 :  None :  None : False :  True : NonNegativeReals
+                 21 :     0 :  None :  None : False :  True : NonNegativeReals
+                 22 :     0 :  None :  None : False :  True : NonNegativeReals
+                 23 :     0 :  None :  None : False :  True : NonNegativeReals
+                 24 :     0 :  None :  None : False :  True : NonNegativeReals
+            dispatch_heat_charge : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :     0 :  None :  None : False :  True : NonNegativeReals
+                  2 :     0 :  None :  None : False :  True : NonNegativeReals
+                  3 :     0 :  None :  None : False :  True : NonNegativeReals
+                  4 :     0 :  None :  None : False :  True : NonNegativeReals
+                  5 :     0 :  None :  None : False :  True : NonNegativeReals
+                  6 :     0 :  None :  None : False :  True : NonNegativeReals
+                  7 :     0 :  None :  None : False :  True : NonNegativeReals
+                  8 :     0 :  None :  None : False :  True : NonNegativeReals
+                  9 :     0 :  None :  None : False :  True : NonNegativeReals
+                 10 :     0 :  None :  None : False :  True : NonNegativeReals
+                 11 :     0 :  None :  None : False :  True : NonNegativeReals
+                 12 :     0 :  None :  None : False :  True : NonNegativeReals
+                 13 :     0 :  None :  None : False :  True : NonNegativeReals
+                 14 :     0 :  None :  None : False :  True : NonNegativeReals
+                 15 :     0 :  None :  None : False :  True : NonNegativeReals
+                 16 :     0 :  None :  None : False :  True : NonNegativeReals
+                 17 :     0 :  None :  None : False :  True : NonNegativeReals
+                 18 :     0 :  None :  None : False :  True : NonNegativeReals
+                 19 :     0 :  None :  None : False :  True : NonNegativeReals
+                 20 :     0 :  None :  None : False :  True : NonNegativeReals
+                 21 :     0 :  None :  None : False :  True : NonNegativeReals
+                 22 :     0 :  None :  None : False :  True : NonNegativeReals
+                 23 :     0 :  None :  None : False :  True : NonNegativeReals
+                 24 :     0 :  None :  None : False :  True : NonNegativeReals
+            dispatch_heat_discharge : Size=24, Index=t
+                Key : Lower : Value : Upper : Fixed : Stale : Domain
+                  1 :     0 :  None :  None : False :  True : NonNegativeReals
+                  2 :     0 :  None :  None : False :  True : NonNegativeReals
+                  3 :     0 :  None :  None : False :  True : NonNegativeReals
+                  4 :     0 :  None :  None : False :  True : NonNegativeReals
+                  5 :     0 :  None :  None : False :  True : NonNegativeReals
+                  6 :     0 :  None :  None : False :  True : NonNegativeReals
+                  7 :     0 :  None :  None : False :  True : NonNegativeReals
+                  8 :     0 :  None :  None : False :  True : NonNegativeReals
+                  9 :     0 :  None :  None : False :  True : NonNegativeReals
+                 10 :     0 :  None :  None : False :  True : NonNegativeReals
+                 11 :     0 :  None :  None : False :  True : NonNegativeReals
+                 12 :     0 :  None :  None : False :  True : NonNegativeReals
+                 13 :     0 :  None :  None : False :  True : NonNegativeReals
+                 14 :     0 :  None :  None : False :  True : NonNegativeReals
+                 15 :     0 :  None :  None : False :  True : NonNegativeReals
+                 16 :     0 :  None :  None : False :  True : NonNegativeReals
+                 17 :     0 :  None :  None : False :  True : NonNegativeReals
+                 18 :     0 :  None :  None : False :  True : NonNegativeReals
+                 19 :     0 :  None :  None : False :  True : NonNegativeReals
+                 20 :     0 :  None :  None : False :  True : NonNegativeReals
+                 21 :     0 :  None :  None : False :  True : NonNegativeReals
+                 22 :     0 :  None :  None : False :  True : NonNegativeReals
+                 23 :     0 :  None :  None : False :  True : NonNegativeReals
+                 24 :     0 :  None :  None : False :  True : NonNegativeReals
             heat_balance : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
                   1 :  None :  None :  None : False :  True :  Reals
@@ -1974,34 +2349,8 @@
                  22 :     0 :  None :  None : False :  True : NonNegativeReals
                  23 :     0 :  None :  None : False :  True : NonNegativeReals
                  24 :     0 :  None :  None : False :  True : NonNegativeReals
-            x : Size=24, Index=t
-                Key : Lower : Value : Upper : Fixed : Stale : Domain
-                  1 :  None :  None :  None : False :  True :  Reals
-                  2 :  None :  None :  None : False :  True :  Reals
-                  3 :  None :  None :  None : False :  True :  Reals
-                  4 :  None :  None :  None : False :  True :  Reals
-                  5 :  None :  None :  None : False :  True :  Reals
-                  6 :  None :  None :  None : False :  True :  Reals
-                  7 :  None :  None :  None : False :  True :  Reals
-                  8 :  None :  None :  None : False :  True :  Reals
-                  9 :  None :  None :  None : False :  True :  Reals
-                 10 :  None :  None :  None : False :  True :  Reals
-                 11 :  None :  None :  None : False :  True :  Reals
-                 12 :  None :  None :  None : False :  True :  Reals
-                 13 :  None :  None :  None : False :  True :  Reals
-                 14 :  None :  None :  None : False :  True :  Reals
-                 15 :  None :  None :  None : False :  True :  Reals
-                 16 :  None :  None :  None : False :  True :  Reals
-                 17 :  None :  None :  None : False :  True :  Reals
-                 18 :  None :  None :  None : False :  True :  Reals
-                 19 :  None :  None :  None : False :  True :  Reals
-                 20 :  None :  None :  None : False :  True :  Reals
-                 21 :  None :  None :  None : False :  True :  Reals
-                 22 :  None :  None :  None : False :  True :  Reals
-                 23 :  None :  None :  None : False :  True :  Reals
-                 24 :  None :  None :  None : False :  True :  Reals
 
-        8 Constraint Declarations
+        14 Constraint Declarations
             capacity_balance_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                 : Upper : Active
                   1 :   0.0 :                                       heat_storage1.heat_capacity[1] + heat_storage1.heat_balance[1] :   0.0 :   True
@@ -2028,6 +2377,32 @@
                  22 :   0.0 : heat_storage1.heat_capacity[22] - (heat_storage1.heat_capacity[21] - heat_storage1.heat_balance[22]) :   0.0 :   True
                  23 :   0.0 : heat_storage1.heat_capacity[23] - (heat_storage1.heat_capacity[22] - heat_storage1.heat_balance[23]) :   0.0 :   True
                  24 :   0.0 : heat_storage1.heat_capacity[24] - (heat_storage1.heat_capacity[23] - heat_storage1.heat_balance[24]) :   0.0 :   True
+            capacity_balance_secondstage_rule : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                                                                                                                                                                                                              : Upper : Active
+                  1 :   0.0 :                                                       heat_storage1.heat_charge[1] + heat_storage1.dispatch_heat_charge[1] - heat_storage1.heat_discharge[1] - heat_storage1.dispatch_heat_discharge[1] + heat_storage1.dispatch_heat_capacity[1] :   0.0 :   True
+                  2 :   0.0 :       heat_storage1.dispatch_heat_capacity[2] - (heat_storage1.dispatch_heat_capacity[1] - (heat_storage1.heat_charge[2] + heat_storage1.dispatch_heat_charge[2] - (heat_storage1.heat_discharge[2] + heat_storage1.dispatch_heat_discharge[2]))) :   0.0 :   True
+                  3 :   0.0 :       heat_storage1.dispatch_heat_capacity[3] - (heat_storage1.dispatch_heat_capacity[2] - (heat_storage1.heat_charge[3] + heat_storage1.dispatch_heat_charge[3] - (heat_storage1.heat_discharge[3] + heat_storage1.dispatch_heat_discharge[3]))) :   0.0 :   True
+                  4 :   0.0 :       heat_storage1.dispatch_heat_capacity[4] - (heat_storage1.dispatch_heat_capacity[3] - (heat_storage1.heat_charge[4] + heat_storage1.dispatch_heat_charge[4] - (heat_storage1.heat_discharge[4] + heat_storage1.dispatch_heat_discharge[4]))) :   0.0 :   True
+                  5 :   0.0 :       heat_storage1.dispatch_heat_capacity[5] - (heat_storage1.dispatch_heat_capacity[4] - (heat_storage1.heat_charge[5] + heat_storage1.dispatch_heat_charge[5] - (heat_storage1.heat_discharge[5] + heat_storage1.dispatch_heat_discharge[5]))) :   0.0 :   True
+                  6 :   0.0 :       heat_storage1.dispatch_heat_capacity[6] - (heat_storage1.dispatch_heat_capacity[5] - (heat_storage1.heat_charge[6] + heat_storage1.dispatch_heat_charge[6] - (heat_storage1.heat_discharge[6] + heat_storage1.dispatch_heat_discharge[6]))) :   0.0 :   True
+                  7 :   0.0 :       heat_storage1.dispatch_heat_capacity[7] - (heat_storage1.dispatch_heat_capacity[6] - (heat_storage1.heat_charge[7] + heat_storage1.dispatch_heat_charge[7] - (heat_storage1.heat_discharge[7] + heat_storage1.dispatch_heat_discharge[7]))) :   0.0 :   True
+                  8 :   0.0 :       heat_storage1.dispatch_heat_capacity[8] - (heat_storage1.dispatch_heat_capacity[7] - (heat_storage1.heat_charge[8] + heat_storage1.dispatch_heat_charge[8] - (heat_storage1.heat_discharge[8] + heat_storage1.dispatch_heat_discharge[8]))) :   0.0 :   True
+                  9 :   0.0 :       heat_storage1.dispatch_heat_capacity[9] - (heat_storage1.dispatch_heat_capacity[8] - (heat_storage1.heat_charge[9] + heat_storage1.dispatch_heat_charge[9] - (heat_storage1.heat_discharge[9] + heat_storage1.dispatch_heat_discharge[9]))) :   0.0 :   True
+                 10 :   0.0 :  heat_storage1.dispatch_heat_capacity[10] - (heat_storage1.dispatch_heat_capacity[9] - (heat_storage1.heat_charge[10] + heat_storage1.dispatch_heat_charge[10] - (heat_storage1.heat_discharge[10] + heat_storage1.dispatch_heat_discharge[10]))) :   0.0 :   True
+                 11 :   0.0 : heat_storage1.dispatch_heat_capacity[11] - (heat_storage1.dispatch_heat_capacity[10] - (heat_storage1.heat_charge[11] + heat_storage1.dispatch_heat_charge[11] - (heat_storage1.heat_discharge[11] + heat_storage1.dispatch_heat_discharge[11]))) :   0.0 :   True
+                 12 :   0.0 : heat_storage1.dispatch_heat_capacity[12] - (heat_storage1.dispatch_heat_capacity[11] - (heat_storage1.heat_charge[12] + heat_storage1.dispatch_heat_charge[12] - (heat_storage1.heat_discharge[12] + heat_storage1.dispatch_heat_discharge[12]))) :   0.0 :   True
+                 13 :   0.0 : heat_storage1.dispatch_heat_capacity[13] - (heat_storage1.dispatch_heat_capacity[12] - (heat_storage1.heat_charge[13] + heat_storage1.dispatch_heat_charge[13] - (heat_storage1.heat_discharge[13] + heat_storage1.dispatch_heat_discharge[13]))) :   0.0 :   True
+                 14 :   0.0 : heat_storage1.dispatch_heat_capacity[14] - (heat_storage1.dispatch_heat_capacity[13] - (heat_storage1.heat_charge[14] + heat_storage1.dispatch_heat_charge[14] - (heat_storage1.heat_discharge[14] + heat_storage1.dispatch_heat_discharge[14]))) :   0.0 :   True
+                 15 :   0.0 : heat_storage1.dispatch_heat_capacity[15] - (heat_storage1.dispatch_heat_capacity[14] - (heat_storage1.heat_charge[15] + heat_storage1.dispatch_heat_charge[15] - (heat_storage1.heat_discharge[15] + heat_storage1.dispatch_heat_discharge[15]))) :   0.0 :   True
+                 16 :   0.0 : heat_storage1.dispatch_heat_capacity[16] - (heat_storage1.dispatch_heat_capacity[15] - (heat_storage1.heat_charge[16] + heat_storage1.dispatch_heat_charge[16] - (heat_storage1.heat_discharge[16] + heat_storage1.dispatch_heat_discharge[16]))) :   0.0 :   True
+                 17 :   0.0 : heat_storage1.dispatch_heat_capacity[17] - (heat_storage1.dispatch_heat_capacity[16] - (heat_storage1.heat_charge[17] + heat_storage1.dispatch_heat_charge[17] - (heat_storage1.heat_discharge[17] + heat_storage1.dispatch_heat_discharge[17]))) :   0.0 :   True
+                 18 :   0.0 : heat_storage1.dispatch_heat_capacity[18] - (heat_storage1.dispatch_heat_capacity[17] - (heat_storage1.heat_charge[18] + heat_storage1.dispatch_heat_charge[18] - (heat_storage1.heat_discharge[18] + heat_storage1.dispatch_heat_discharge[18]))) :   0.0 :   True
+                 19 :   0.0 : heat_storage1.dispatch_heat_capacity[19] - (heat_storage1.dispatch_heat_capacity[18] - (heat_storage1.heat_charge[19] + heat_storage1.dispatch_heat_charge[19] - (heat_storage1.heat_discharge[19] + heat_storage1.dispatch_heat_discharge[19]))) :   0.0 :   True
+                 20 :   0.0 : heat_storage1.dispatch_heat_capacity[20] - (heat_storage1.dispatch_heat_capacity[19] - (heat_storage1.heat_charge[20] + heat_storage1.dispatch_heat_charge[20] - (heat_storage1.heat_discharge[20] + heat_storage1.dispatch_heat_discharge[20]))) :   0.0 :   True
+                 21 :   0.0 : heat_storage1.dispatch_heat_capacity[21] - (heat_storage1.dispatch_heat_capacity[20] - (heat_storage1.heat_charge[21] + heat_storage1.dispatch_heat_charge[21] - (heat_storage1.heat_discharge[21] + heat_storage1.dispatch_heat_discharge[21]))) :   0.0 :   True
+                 22 :   0.0 : heat_storage1.dispatch_heat_capacity[22] - (heat_storage1.dispatch_heat_capacity[21] - (heat_storage1.heat_charge[22] + heat_storage1.dispatch_heat_charge[22] - (heat_storage1.heat_discharge[22] + heat_storage1.dispatch_heat_discharge[22]))) :   0.0 :   True
+                 23 :   0.0 : heat_storage1.dispatch_heat_capacity[23] - (heat_storage1.dispatch_heat_capacity[22] - (heat_storage1.heat_charge[23] + heat_storage1.dispatch_heat_charge[23] - (heat_storage1.heat_discharge[23] + heat_storage1.dispatch_heat_discharge[23]))) :   0.0 :   True
+                 24 :   0.0 : heat_storage1.dispatch_heat_capacity[24] - (heat_storage1.dispatch_heat_capacity[23] - (heat_storage1.heat_charge[24] + heat_storage1.dispatch_heat_charge[24] - (heat_storage1.heat_discharge[24] + heat_storage1.dispatch_heat_discharge[24]))) :   0.0 :   True
             heat_balance_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                : Upper : Active
                   1 :   0.0 :    heat_storage1.heat_balance[1] - (heat_storage1.heat_discharge[1] - heat_storage1.heat_charge[1]) :   0.0 :   True
@@ -2054,6 +2429,58 @@
                  22 :   0.0 : heat_storage1.heat_balance[22] - (heat_storage1.heat_discharge[22] - heat_storage1.heat_charge[22]) :   0.0 :   True
                  23 :   0.0 : heat_storage1.heat_balance[23] - (heat_storage1.heat_discharge[23] - heat_storage1.heat_charge[23]) :   0.0 :   True
                  24 :   0.0 : heat_storage1.heat_balance[24] - (heat_storage1.heat_discharge[24] - heat_storage1.heat_charge[24]) :   0.0 :   True
+            heat_in_heat_insum : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                    : Upper : Active
+                  1 :   0.0 :   arc02_expanded.heat[1] - heat_storage1.heat_charge[1] :   0.0 :   True
+                  2 :   0.0 :   arc02_expanded.heat[2] - heat_storage1.heat_charge[2] :   0.0 :   True
+                  3 :   0.0 :   arc02_expanded.heat[3] - heat_storage1.heat_charge[3] :   0.0 :   True
+                  4 :   0.0 :   arc02_expanded.heat[4] - heat_storage1.heat_charge[4] :   0.0 :   True
+                  5 :   0.0 :   arc02_expanded.heat[5] - heat_storage1.heat_charge[5] :   0.0 :   True
+                  6 :   0.0 :   arc02_expanded.heat[6] - heat_storage1.heat_charge[6] :   0.0 :   True
+                  7 :   0.0 :   arc02_expanded.heat[7] - heat_storage1.heat_charge[7] :   0.0 :   True
+                  8 :   0.0 :   arc02_expanded.heat[8] - heat_storage1.heat_charge[8] :   0.0 :   True
+                  9 :   0.0 :   arc02_expanded.heat[9] - heat_storage1.heat_charge[9] :   0.0 :   True
+                 10 :   0.0 : arc02_expanded.heat[10] - heat_storage1.heat_charge[10] :   0.0 :   True
+                 11 :   0.0 : arc02_expanded.heat[11] - heat_storage1.heat_charge[11] :   0.0 :   True
+                 12 :   0.0 : arc02_expanded.heat[12] - heat_storage1.heat_charge[12] :   0.0 :   True
+                 13 :   0.0 : arc02_expanded.heat[13] - heat_storage1.heat_charge[13] :   0.0 :   True
+                 14 :   0.0 : arc02_expanded.heat[14] - heat_storage1.heat_charge[14] :   0.0 :   True
+                 15 :   0.0 : arc02_expanded.heat[15] - heat_storage1.heat_charge[15] :   0.0 :   True
+                 16 :   0.0 : arc02_expanded.heat[16] - heat_storage1.heat_charge[16] :   0.0 :   True
+                 17 :   0.0 : arc02_expanded.heat[17] - heat_storage1.heat_charge[17] :   0.0 :   True
+                 18 :   0.0 : arc02_expanded.heat[18] - heat_storage1.heat_charge[18] :   0.0 :   True
+                 19 :   0.0 : arc02_expanded.heat[19] - heat_storage1.heat_charge[19] :   0.0 :   True
+                 20 :   0.0 : arc02_expanded.heat[20] - heat_storage1.heat_charge[20] :   0.0 :   True
+                 21 :   0.0 : arc02_expanded.heat[21] - heat_storage1.heat_charge[21] :   0.0 :   True
+                 22 :   0.0 : arc02_expanded.heat[22] - heat_storage1.heat_charge[22] :   0.0 :   True
+                 23 :   0.0 : arc02_expanded.heat[23] - heat_storage1.heat_charge[23] :   0.0 :   True
+                 24 :   0.0 : arc02_expanded.heat[24] - heat_storage1.heat_charge[24] :   0.0 :   True
+            heat_in_secondstage_heat_insum : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                             : Upper : Active
+                  1 :   0.0 :   arc07_expanded.heat[1] - heat_storage1.dispatch_heat_charge[1] :   0.0 :   True
+                  2 :   0.0 :   arc07_expanded.heat[2] - heat_storage1.dispatch_heat_charge[2] :   0.0 :   True
+                  3 :   0.0 :   arc07_expanded.heat[3] - heat_storage1.dispatch_heat_charge[3] :   0.0 :   True
+                  4 :   0.0 :   arc07_expanded.heat[4] - heat_storage1.dispatch_heat_charge[4] :   0.0 :   True
+                  5 :   0.0 :   arc07_expanded.heat[5] - heat_storage1.dispatch_heat_charge[5] :   0.0 :   True
+                  6 :   0.0 :   arc07_expanded.heat[6] - heat_storage1.dispatch_heat_charge[6] :   0.0 :   True
+                  7 :   0.0 :   arc07_expanded.heat[7] - heat_storage1.dispatch_heat_charge[7] :   0.0 :   True
+                  8 :   0.0 :   arc07_expanded.heat[8] - heat_storage1.dispatch_heat_charge[8] :   0.0 :   True
+                  9 :   0.0 :   arc07_expanded.heat[9] - heat_storage1.dispatch_heat_charge[9] :   0.0 :   True
+                 10 :   0.0 : arc07_expanded.heat[10] - heat_storage1.dispatch_heat_charge[10] :   0.0 :   True
+                 11 :   0.0 : arc07_expanded.heat[11] - heat_storage1.dispatch_heat_charge[11] :   0.0 :   True
+                 12 :   0.0 : arc07_expanded.heat[12] - heat_storage1.dispatch_heat_charge[12] :   0.0 :   True
+                 13 :   0.0 : arc07_expanded.heat[13] - heat_storage1.dispatch_heat_charge[13] :   0.0 :   True
+                 14 :   0.0 : arc07_expanded.heat[14] - heat_storage1.dispatch_heat_charge[14] :   0.0 :   True
+                 15 :   0.0 : arc07_expanded.heat[15] - heat_storage1.dispatch_heat_charge[15] :   0.0 :   True
+                 16 :   0.0 : arc07_expanded.heat[16] - heat_storage1.dispatch_heat_charge[16] :   0.0 :   True
+                 17 :   0.0 : arc07_expanded.heat[17] - heat_storage1.dispatch_heat_charge[17] :   0.0 :   True
+                 18 :   0.0 : arc07_expanded.heat[18] - heat_storage1.dispatch_heat_charge[18] :   0.0 :   True
+                 19 :   0.0 : arc07_expanded.heat[19] - heat_storage1.dispatch_heat_charge[19] :   0.0 :   True
+                 20 :   0.0 : arc07_expanded.heat[20] - heat_storage1.dispatch_heat_charge[20] :   0.0 :   True
+                 21 :   0.0 : arc07_expanded.heat[21] - heat_storage1.dispatch_heat_charge[21] :   0.0 :   True
+                 22 :   0.0 : arc07_expanded.heat[22] - heat_storage1.dispatch_heat_charge[22] :   0.0 :   True
+                 23 :   0.0 : arc07_expanded.heat[23] - heat_storage1.dispatch_heat_charge[23] :   0.0 :   True
+                 24 :   0.0 : arc07_expanded.heat[24] - heat_storage1.dispatch_heat_charge[24] :   0.0 :   True
             heat_out_heat_outsum : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                       : Upper : Active
                   1 :   0.0 :   arc03_expanded.heat[1] - heat_storage1.heat_discharge[1] :   0.0 :   True
@@ -2106,6 +2533,32 @@
                  22 :  -Inf : heat_storage1.heat_capacity[22] : 1800.0 :   True
                  23 :  -Inf : heat_storage1.heat_capacity[23] : 1800.0 :   True
                  24 :  -Inf : heat_storage1.heat_capacity[24] : 1800.0 :   True
+            max_heat_capacity_secondstage_rule : Size=24, Index=t, Active=True
+                Key : Lower : Body                                     : Upper  : Active
+                  1 :  -Inf :  heat_storage1.dispatch_heat_capacity[1] : 1800.0 :   True
+                  2 :  -Inf :  heat_storage1.dispatch_heat_capacity[2] : 1800.0 :   True
+                  3 :  -Inf :  heat_storage1.dispatch_heat_capacity[3] : 1800.0 :   True
+                  4 :  -Inf :  heat_storage1.dispatch_heat_capacity[4] : 1800.0 :   True
+                  5 :  -Inf :  heat_storage1.dispatch_heat_capacity[5] : 1800.0 :   True
+                  6 :  -Inf :  heat_storage1.dispatch_heat_capacity[6] : 1800.0 :   True
+                  7 :  -Inf :  heat_storage1.dispatch_heat_capacity[7] : 1800.0 :   True
+                  8 :  -Inf :  heat_storage1.dispatch_heat_capacity[8] : 1800.0 :   True
+                  9 :  -Inf :  heat_storage1.dispatch_heat_capacity[9] : 1800.0 :   True
+                 10 :  -Inf : heat_storage1.dispatch_heat_capacity[10] : 1800.0 :   True
+                 11 :  -Inf : heat_storage1.dispatch_heat_capacity[11] : 1800.0 :   True
+                 12 :  -Inf : heat_storage1.dispatch_heat_capacity[12] : 1800.0 :   True
+                 13 :  -Inf : heat_storage1.dispatch_heat_capacity[13] : 1800.0 :   True
+                 14 :  -Inf : heat_storage1.dispatch_heat_capacity[14] : 1800.0 :   True
+                 15 :  -Inf : heat_storage1.dispatch_heat_capacity[15] : 1800.0 :   True
+                 16 :  -Inf : heat_storage1.dispatch_heat_capacity[16] : 1800.0 :   True
+                 17 :  -Inf : heat_storage1.dispatch_heat_capacity[17] : 1800.0 :   True
+                 18 :  -Inf : heat_storage1.dispatch_heat_capacity[18] : 1800.0 :   True
+                 19 :  -Inf : heat_storage1.dispatch_heat_capacity[19] : 1800.0 :   True
+                 20 :  -Inf : heat_storage1.dispatch_heat_capacity[20] : 1800.0 :   True
+                 21 :  -Inf : heat_storage1.dispatch_heat_capacity[21] : 1800.0 :   True
+                 22 :  -Inf : heat_storage1.dispatch_heat_capacity[22] : 1800.0 :   True
+                 23 :  -Inf : heat_storage1.dispatch_heat_capacity[23] : 1800.0 :   True
+                 24 :  -Inf : heat_storage1.dispatch_heat_capacity[24] : 1800.0 :   True
             max_heat_charge_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                               : Upper : Active
                   1 :  -Inf :   heat_storage1.heat_charge[1] - 170.0*heat_storage1.bin_charge[1] :   0.0 :   True
@@ -2132,6 +2585,32 @@
                  22 :  -Inf : heat_storage1.heat_charge[22] - 170.0*heat_storage1.bin_charge[22] :   0.0 :   True
                  23 :  -Inf : heat_storage1.heat_charge[23] - 170.0*heat_storage1.bin_charge[23] :   0.0 :   True
                  24 :  -Inf : heat_storage1.heat_charge[24] - 170.0*heat_storage1.bin_charge[24] :   0.0 :   True
+            max_heat_charge_secondstagerule : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                                                                        : Upper : Active
+                  1 :  -Inf :    heat_storage1.heat_charge[1] + heat_storage1.dispatch_heat_charge[1] - 170.0*heat_storage1.bin_charge[1] :   0.0 :   True
+                  2 :  -Inf :    heat_storage1.heat_charge[2] + heat_storage1.dispatch_heat_charge[2] - 170.0*heat_storage1.bin_charge[2] :   0.0 :   True
+                  3 :  -Inf :    heat_storage1.heat_charge[3] + heat_storage1.dispatch_heat_charge[3] - 170.0*heat_storage1.bin_charge[3] :   0.0 :   True
+                  4 :  -Inf :    heat_storage1.heat_charge[4] + heat_storage1.dispatch_heat_charge[4] - 170.0*heat_storage1.bin_charge[4] :   0.0 :   True
+                  5 :  -Inf :    heat_storage1.heat_charge[5] + heat_storage1.dispatch_heat_charge[5] - 170.0*heat_storage1.bin_charge[5] :   0.0 :   True
+                  6 :  -Inf :    heat_storage1.heat_charge[6] + heat_storage1.dispatch_heat_charge[6] - 170.0*heat_storage1.bin_charge[6] :   0.0 :   True
+                  7 :  -Inf :    heat_storage1.heat_charge[7] + heat_storage1.dispatch_heat_charge[7] - 170.0*heat_storage1.bin_charge[7] :   0.0 :   True
+                  8 :  -Inf :    heat_storage1.heat_charge[8] + heat_storage1.dispatch_heat_charge[8] - 170.0*heat_storage1.bin_charge[8] :   0.0 :   True
+                  9 :  -Inf :    heat_storage1.heat_charge[9] + heat_storage1.dispatch_heat_charge[9] - 170.0*heat_storage1.bin_charge[9] :   0.0 :   True
+                 10 :  -Inf : heat_storage1.heat_charge[10] + heat_storage1.dispatch_heat_charge[10] - 170.0*heat_storage1.bin_charge[10] :   0.0 :   True
+                 11 :  -Inf : heat_storage1.heat_charge[11] + heat_storage1.dispatch_heat_charge[11] - 170.0*heat_storage1.bin_charge[11] :   0.0 :   True
+                 12 :  -Inf : heat_storage1.heat_charge[12] + heat_storage1.dispatch_heat_charge[12] - 170.0*heat_storage1.bin_charge[12] :   0.0 :   True
+                 13 :  -Inf : heat_storage1.heat_charge[13] + heat_storage1.dispatch_heat_charge[13] - 170.0*heat_storage1.bin_charge[13] :   0.0 :   True
+                 14 :  -Inf : heat_storage1.heat_charge[14] + heat_storage1.dispatch_heat_charge[14] - 170.0*heat_storage1.bin_charge[14] :   0.0 :   True
+                 15 :  -Inf : heat_storage1.heat_charge[15] + heat_storage1.dispatch_heat_charge[15] - 170.0*heat_storage1.bin_charge[15] :   0.0 :   True
+                 16 :  -Inf : heat_storage1.heat_charge[16] + heat_storage1.dispatch_heat_charge[16] - 170.0*heat_storage1.bin_charge[16] :   0.0 :   True
+                 17 :  -Inf : heat_storage1.heat_charge[17] + heat_storage1.dispatch_heat_charge[17] - 170.0*heat_storage1.bin_charge[17] :   0.0 :   True
+                 18 :  -Inf : heat_storage1.heat_charge[18] + heat_storage1.dispatch_heat_charge[18] - 170.0*heat_storage1.bin_charge[18] :   0.0 :   True
+                 19 :  -Inf : heat_storage1.heat_charge[19] + heat_storage1.dispatch_heat_charge[19] - 170.0*heat_storage1.bin_charge[19] :   0.0 :   True
+                 20 :  -Inf : heat_storage1.heat_charge[20] + heat_storage1.dispatch_heat_charge[20] - 170.0*heat_storage1.bin_charge[20] :   0.0 :   True
+                 21 :  -Inf : heat_storage1.heat_charge[21] + heat_storage1.dispatch_heat_charge[21] - 170.0*heat_storage1.bin_charge[21] :   0.0 :   True
+                 22 :  -Inf : heat_storage1.heat_charge[22] + heat_storage1.dispatch_heat_charge[22] - 170.0*heat_storage1.bin_charge[22] :   0.0 :   True
+                 23 :  -Inf : heat_storage1.heat_charge[23] + heat_storage1.dispatch_heat_charge[23] - 170.0*heat_storage1.bin_charge[23] :   0.0 :   True
+                 24 :  -Inf : heat_storage1.heat_charge[24] + heat_storage1.dispatch_heat_charge[24] - 170.0*heat_storage1.bin_charge[24] :   0.0 :   True
             max_heat_discharge_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                     : Upper : Active
                   1 :  -Inf :   heat_storage1.heat_discharge[1] - 170.0*heat_storage1.bin_discharge[1] :   0.0 :   True
@@ -2158,6 +2637,32 @@
                  22 :  -Inf : heat_storage1.heat_discharge[22] - 170.0*heat_storage1.bin_discharge[22] :   0.0 :   True
                  23 :  -Inf : heat_storage1.heat_discharge[23] - 170.0*heat_storage1.bin_discharge[23] :   0.0 :   True
                  24 :  -Inf : heat_storage1.heat_discharge[24] - 170.0*heat_storage1.bin_discharge[24] :   0.0 :   True
+            max_heat_discharge_secondstagerule : Size=24, Index=t, Active=True
+                Key : Lower : Body                                                                                                                 : Upper : Active
+                  1 :  -Inf :    heat_storage1.heat_discharge[1] + heat_storage1.dispatch_heat_discharge[1] - 170.0*heat_storage1.bin_discharge[1] :   0.0 :   True
+                  2 :  -Inf :    heat_storage1.heat_discharge[2] + heat_storage1.dispatch_heat_discharge[2] - 170.0*heat_storage1.bin_discharge[2] :   0.0 :   True
+                  3 :  -Inf :    heat_storage1.heat_discharge[3] + heat_storage1.dispatch_heat_discharge[3] - 170.0*heat_storage1.bin_discharge[3] :   0.0 :   True
+                  4 :  -Inf :    heat_storage1.heat_discharge[4] + heat_storage1.dispatch_heat_discharge[4] - 170.0*heat_storage1.bin_discharge[4] :   0.0 :   True
+                  5 :  -Inf :    heat_storage1.heat_discharge[5] + heat_storage1.dispatch_heat_discharge[5] - 170.0*heat_storage1.bin_discharge[5] :   0.0 :   True
+                  6 :  -Inf :    heat_storage1.heat_discharge[6] + heat_storage1.dispatch_heat_discharge[6] - 170.0*heat_storage1.bin_discharge[6] :   0.0 :   True
+                  7 :  -Inf :    heat_storage1.heat_discharge[7] + heat_storage1.dispatch_heat_discharge[7] - 170.0*heat_storage1.bin_discharge[7] :   0.0 :   True
+                  8 :  -Inf :    heat_storage1.heat_discharge[8] + heat_storage1.dispatch_heat_discharge[8] - 170.0*heat_storage1.bin_discharge[8] :   0.0 :   True
+                  9 :  -Inf :    heat_storage1.heat_discharge[9] + heat_storage1.dispatch_heat_discharge[9] - 170.0*heat_storage1.bin_discharge[9] :   0.0 :   True
+                 10 :  -Inf : heat_storage1.heat_discharge[10] + heat_storage1.dispatch_heat_discharge[10] - 170.0*heat_storage1.bin_discharge[10] :   0.0 :   True
+                 11 :  -Inf : heat_storage1.heat_discharge[11] + heat_storage1.dispatch_heat_discharge[11] - 170.0*heat_storage1.bin_discharge[11] :   0.0 :   True
+                 12 :  -Inf : heat_storage1.heat_discharge[12] + heat_storage1.dispatch_heat_discharge[12] - 170.0*heat_storage1.bin_discharge[12] :   0.0 :   True
+                 13 :  -Inf : heat_storage1.heat_discharge[13] + heat_storage1.dispatch_heat_discharge[13] - 170.0*heat_storage1.bin_discharge[13] :   0.0 :   True
+                 14 :  -Inf : heat_storage1.heat_discharge[14] + heat_storage1.dispatch_heat_discharge[14] - 170.0*heat_storage1.bin_discharge[14] :   0.0 :   True
+                 15 :  -Inf : heat_storage1.heat_discharge[15] + heat_storage1.dispatch_heat_discharge[15] - 170.0*heat_storage1.bin_discharge[15] :   0.0 :   True
+                 16 :  -Inf : heat_storage1.heat_discharge[16] + heat_storage1.dispatch_heat_discharge[16] - 170.0*heat_storage1.bin_discharge[16] :   0.0 :   True
+                 17 :  -Inf : heat_storage1.heat_discharge[17] + heat_storage1.dispatch_heat_discharge[17] - 170.0*heat_storage1.bin_discharge[17] :   0.0 :   True
+                 18 :  -Inf : heat_storage1.heat_discharge[18] + heat_storage1.dispatch_heat_discharge[18] - 170.0*heat_storage1.bin_discharge[18] :   0.0 :   True
+                 19 :  -Inf : heat_storage1.heat_discharge[19] + heat_storage1.dispatch_heat_discharge[19] - 170.0*heat_storage1.bin_discharge[19] :   0.0 :   True
+                 20 :  -Inf : heat_storage1.heat_discharge[20] + heat_storage1.dispatch_heat_discharge[20] - 170.0*heat_storage1.bin_discharge[20] :   0.0 :   True
+                 21 :  -Inf : heat_storage1.heat_discharge[21] + heat_storage1.dispatch_heat_discharge[21] - 170.0*heat_storage1.bin_discharge[21] :   0.0 :   True
+                 22 :  -Inf : heat_storage1.heat_discharge[22] + heat_storage1.dispatch_heat_discharge[22] - 170.0*heat_storage1.bin_discharge[22] :   0.0 :   True
+                 23 :  -Inf : heat_storage1.heat_discharge[23] + heat_storage1.dispatch_heat_discharge[23] - 170.0*heat_storage1.bin_discharge[23] :   0.0 :   True
+                 24 :  -Inf : heat_storage1.heat_discharge[24] + heat_storage1.dispatch_heat_discharge[24] - 170.0*heat_storage1.bin_discharge[24] :   0.0 :   True
             min_heat_capacity_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                            : Upper : Active
                   1 :   0.0 :  heat_storage1.heat_capacity[1] :  +Inf :   True
@@ -2184,42 +2689,48 @@
                  22 :   0.0 : heat_storage1.heat_capacity[22] :  +Inf :   True
                  23 :   0.0 : heat_storage1.heat_capacity[23] :  +Inf :   True
                  24 :   0.0 : heat_storage1.heat_capacity[24] :  +Inf :   True
-            test_constr : Size=24, Index=t, Active=True
-                Key : Lower               : Body                : Upper               : Active
-                  1 :  -34.17630358452318 :  heat_storage1.x[1] :  -34.17630358452318 :   True
-                  2 :    -30.821549878092 :  heat_storage1.x[2] :    -30.821549878092 :   True
-                  3 :   38.62809145641248 :  heat_storage1.x[3] :   38.62809145641248 :   True
-                  4 :  -41.98744820660838 :  heat_storage1.x[4] :  -41.98744820660838 :   True
-                  5 :   -20.9593248810352 :  heat_storage1.x[5] :   -20.9593248810352 :   True
-                  6 : -29.400374757825105 :  heat_storage1.x[6] : -29.400374757825105 :   True
-                  7 :    37.5130184056988 :  heat_storage1.x[7] :    37.5130184056988 :   True
-                  8 :  17.513356653656274 :  heat_storage1.x[8] :  17.513356653656274 :   True
-                  9 :   45.62143749828019 :  heat_storage1.x[9] :   45.62143749828019 :   True
-                 10 :  -38.97751545676681 : heat_storage1.x[10] :  -38.97751545676681 :   True
-                 11 :  -71.74802225814074 : heat_storage1.x[11] :  -71.74802225814074 :   True
-                 12 :  11.592746862130568 : heat_storage1.x[12] :  11.592746862130568 :   True
-                 13 :  10.553273444153078 : heat_storage1.x[13] :  10.553273444153078 :   True
-                 14 :   12.15329316993774 : heat_storage1.x[14] :   12.15329316993774 :   True
-                 15 : -14.235238982654693 : heat_storage1.x[15] : -14.235238982654693 :   True
-                 16 : -12.303575238253785 : heat_storage1.x[16] : -12.303575238253785 :   True
-                 17 :  20.815634794626703 : heat_storage1.x[17] :  20.815634794626703 :   True
-                 18 :  51.311911697206796 : heat_storage1.x[18] :  51.311911697206796 :   True
-                 19 :  -20.39916197375132 : heat_storage1.x[19] :  -20.39916197375132 :   True
-                 20 :  14.722570219890372 : heat_storage1.x[20] :  14.722570219890372 :   True
-                 21 :  -38.48268873673149 : heat_storage1.x[21] :  -38.48268873673149 :   True
-                 22 : -2.2638570574390826 : heat_storage1.x[22] : -2.2638570574390826 :   True
-                 23 :   19.23969208663742 : heat_storage1.x[23] :   19.23969208663742 :   True
-                 24 :  -38.85262515031678 : heat_storage1.x[24] :  -38.85262515031678 :   True
+            min_heat_capacity_secondstage_rule : Size=24, Index=t, Active=True
+                Key : Lower : Body                                     : Upper : Active
+                  1 :   0.0 :  heat_storage1.dispatch_heat_capacity[1] :  +Inf :   True
+                  2 :   0.0 :  heat_storage1.dispatch_heat_capacity[2] :  +Inf :   True
+                  3 :   0.0 :  heat_storage1.dispatch_heat_capacity[3] :  +Inf :   True
+                  4 :   0.0 :  heat_storage1.dispatch_heat_capacity[4] :  +Inf :   True
+                  5 :   0.0 :  heat_storage1.dispatch_heat_capacity[5] :  +Inf :   True
+                  6 :   0.0 :  heat_storage1.dispatch_heat_capacity[6] :  +Inf :   True
+                  7 :   0.0 :  heat_storage1.dispatch_heat_capacity[7] :  +Inf :   True
+                  8 :   0.0 :  heat_storage1.dispatch_heat_capacity[8] :  +Inf :   True
+                  9 :   0.0 :  heat_storage1.dispatch_heat_capacity[9] :  +Inf :   True
+                 10 :   0.0 : heat_storage1.dispatch_heat_capacity[10] :  +Inf :   True
+                 11 :   0.0 : heat_storage1.dispatch_heat_capacity[11] :  +Inf :   True
+                 12 :   0.0 : heat_storage1.dispatch_heat_capacity[12] :  +Inf :   True
+                 13 :   0.0 : heat_storage1.dispatch_heat_capacity[13] :  +Inf :   True
+                 14 :   0.0 : heat_storage1.dispatch_heat_capacity[14] :  +Inf :   True
+                 15 :   0.0 : heat_storage1.dispatch_heat_capacity[15] :  +Inf :   True
+                 16 :   0.0 : heat_storage1.dispatch_heat_capacity[16] :  +Inf :   True
+                 17 :   0.0 : heat_storage1.dispatch_heat_capacity[17] :  +Inf :   True
+                 18 :   0.0 : heat_storage1.dispatch_heat_capacity[18] :  +Inf :   True
+                 19 :   0.0 : heat_storage1.dispatch_heat_capacity[19] :  +Inf :   True
+                 20 :   0.0 : heat_storage1.dispatch_heat_capacity[20] :  +Inf :   True
+                 21 :   0.0 : heat_storage1.dispatch_heat_capacity[21] :  +Inf :   True
+                 22 :   0.0 : heat_storage1.dispatch_heat_capacity[22] :  +Inf :   True
+                 23 :   0.0 : heat_storage1.dispatch_heat_capacity[23] :  +Inf :   True
+                 24 :   0.0 : heat_storage1.dispatch_heat_capacity[24] :  +Inf :   True
 
-        2 Port Declarations
+        4 Port Declarations
             heat_in : Size=1, Index=None
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_storage1.heat_charge
+            heat_in_secondstage : Size=1, Index=None
+                Key  : Name : Size : Variable
+                None : heat :   24 : heat_storage1.dispatch_heat_charge
             heat_out : Size=1, Index=None
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_storage1.heat_discharge
+            heat_out_secondstage : Size=1, Index=None
+                Key  : Name : Size : Variable
+                None : heat :   24 : heat_storage1.dispatch_heat_discharge
 
-        17 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity x heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr test_constr heat_out_heat_outsum
+        27 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity dispatch_heat_charge dispatch_heat_discharge dispatch_heat_capacity heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr heat_in_secondstage heat_out_secondstage max_heat_charge_secondstagerule max_heat_discharge_secondstagerule max_heat_capacity_secondstage_rule min_heat_capacity_secondstage_rule capacity_balance_secondstage_rule heat_in_heat_insum heat_out_heat_outsum heat_in_secondstage_heat_insum
     ngas_grid : Size=1, Index=None, Active=True
         1 Var Declarations
             gas_balance : Size=24, Index=t
@@ -2454,7 +2965,7 @@
 
         8 Declarations: power_balance power_supply power_feedin power_in power_out max_power_supply_constr max_power_feedin_constr power_balance_constr
 
-6 Arc Declarations
+8 Arc Declarations
     arc01 : Size=1, Index=None, Active=False
         Key  : Ports                                 : Directed : Active
         None : (chp1.power_out, power_grid.power_in) :     True :  False
@@ -2473,5 +2984,11 @@
     arc06 : Size=1, Index=None, Active=False
         Key  : Ports                            : Directed : Active
         None : (ngas_grid.gas_out, chp1.gas_in) :     True :  False
+    arc07 : Size=1, Index=None, Active=False
+        Key  : Ports                                              : Directed : Active
+        None : (chp1.heat_out, heat_storage1.heat_in_secondstage) :     True :  False
+    arc08 : Size=1, Index=None, Active=False
+        Key  : Ports                                                               : Directed : Active
+        None : (heat_storage1.heat_out_secondstage, heat_grid.heat_in_secondstage) :     True :  False
 
-29 Declarations: t GAS_PRICE POWER_PRICE HEAT_PRICE heat_demand heat_demand_scenario delta_heat_demand probability chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective arc01 arc02 arc03 arc04 arc05 arc06 arc01_expanded arc02_expanded arc03_expanded arc04_expanded arc05_expanded arc06_expanded
+33 Declarations: t GAS_PRICE POWER_PRICE HEAT_PRICE heat_demand heat_demand_scenario delta_heat_demand probability chp1 boiler1 heat_storage1 ngas_grid power_grid heat_grid first_stage_cost second_stage_cost objective arc01 arc02 arc03 arc04 arc05 arc06 arc07 arc08 arc01_expanded arc02_expanded arc03_expanded arc04_expanded arc05_expanded arc06_expanded arc07_expanded arc08_expanded

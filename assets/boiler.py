@@ -41,7 +41,6 @@ class Boiler:
         asset.heat = Var(t, domain=NonNegativeReals)
         asset.gas = Var(t, domain=NonNegativeReals)
         asset.eta_th = Var(t, domain=NonNegativeReals)
-        # asset.x = Var(t, domain=NonNegativeReals)
 
        # Binary variable for Big-M constraints
         asset.y1 = Var(t, domain=Binary)

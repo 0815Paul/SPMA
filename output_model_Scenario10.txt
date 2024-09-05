@@ -1974,7 +1974,7 @@
                  22 :     0 :  None :  None : False :  True : NonNegativeReals
                  23 :     0 :  None :  None : False :  True : NonNegativeReals
                  24 :     0 :  None :  None : False :  True : NonNegativeReals
-            x : Size=24, Index=t
+            x_positiv : Size=24, Index=t
                 Key : Lower : Value : Upper : Fixed : Stale : Domain
                   1 :  None :  None :  None : False :  True :  Reals
                   2 :  None :  None :  None : False :  True :  Reals
@@ -2185,31 +2185,31 @@
                  23 :   0.0 : heat_storage1.heat_capacity[23] :  +Inf :   True
                  24 :   0.0 : heat_storage1.heat_capacity[24] :  +Inf :   True
             test_constr : Size=24, Index=t, Active=True
-                Key : Lower               : Body                : Upper               : Active
-                  1 :   8.712987542142756 :  heat_storage1.x[1] :   8.712987542142756 :   True
-                  2 :   13.38614599835239 :  heat_storage1.x[2] :   13.38614599835239 :   True
-                  3 : -30.049984521598674 :  heat_storage1.x[3] : -30.049984521598674 :   True
-                  4 : -11.219355528775253 :  heat_storage1.x[4] : -11.219355528775253 :   True
-                  5 :   -20.9593248810352 :  heat_storage1.x[5] :   -20.9593248810352 :   True
-                  6 :   23.09968505511776 :  heat_storage1.x[6] :   23.09968505511776 :   True
-                  7 :  -36.25479612775587 :  heat_storage1.x[7] :  -36.25479612775587 :   True
-                  8 :  -61.92226892046867 :  heat_storage1.x[8] :  -61.92226892046867 :   True
-                  9 :  20.683353683413713 :  heat_storage1.x[9] :  20.683353683413713 :   True
-                 10 :  19.278714090161202 : heat_storage1.x[10] :  19.278714090161202 :   True
-                 11 :  10.468256645769259 : heat_storage1.x[11] :  10.468256645769259 :   True
-                 12 : -35.210106175514255 : heat_storage1.x[12] : -35.210106175514255 :   True
-                 13 : -14.417149987864363 : heat_storage1.x[13] : -14.417149987864363 :   True
-                 14 :  -34.22677277581329 : heat_storage1.x[14] :  -34.22677277581329 :   True
-                 15 :  11.159907814105537 : heat_storage1.x[15] :  11.159907814105537 :   True
-                 16 : -12.303575238253785 : heat_storage1.x[16] : -12.303575238253785 :   True
-                 17 :  -7.271780019446709 : heat_storage1.x[17] :  -7.271780019446709 :   True
-                 18 :  -4.348450417306509 : heat_storage1.x[18] :  -4.348450417306509 :   True
-                 19 :   50.16872117917518 : heat_storage1.x[19] :   50.16872117917518 :   True
-                 20 :  -5.755868928895524 : heat_storage1.x[20] :  -5.755868928895524 :   True
-                 21 :  16.420675343237434 : heat_storage1.x[21] :  16.420675343237434 :   True
-                 22 : -19.313458712024783 : heat_storage1.x[22] : -19.313458712024783 :   True
-                 23 : -41.271498840232155 : heat_storage1.x[23] : -41.271498840232155 :   True
-                 24 :  -38.85262515031678 : heat_storage1.x[24] :  -38.85262515031678 :   True
+                Key : Lower              : Body                        : Upper              : Active
+                  1 :  8.712987542142756 :  heat_storage1.x_positiv[1] :  8.712987542142756 :   True
+                  2 :  13.38614599835239 :  heat_storage1.x_positiv[2] :  13.38614599835239 :   True
+                  3 :                0.0 :  heat_storage1.x_positiv[3] :                0.0 :   True
+                  4 :                0.0 :  heat_storage1.x_positiv[4] :                0.0 :   True
+                  5 :                0.0 :  heat_storage1.x_positiv[5] :                0.0 :   True
+                  6 :  23.09968505511776 :  heat_storage1.x_positiv[6] :  23.09968505511776 :   True
+                  7 :                0.0 :  heat_storage1.x_positiv[7] :                0.0 :   True
+                  8 :                0.0 :  heat_storage1.x_positiv[8] :                0.0 :   True
+                  9 : 20.683353683413713 :  heat_storage1.x_positiv[9] : 20.683353683413713 :   True
+                 10 : 19.278714090161202 : heat_storage1.x_positiv[10] : 19.278714090161202 :   True
+                 11 : 10.468256645769259 : heat_storage1.x_positiv[11] : 10.468256645769259 :   True
+                 12 :                0.0 : heat_storage1.x_positiv[12] :                0.0 :   True
+                 13 :                0.0 : heat_storage1.x_positiv[13] :                0.0 :   True
+                 14 :                0.0 : heat_storage1.x_positiv[14] :                0.0 :   True
+                 15 : 11.159907814105537 : heat_storage1.x_positiv[15] : 11.159907814105537 :   True
+                 16 :                0.0 : heat_storage1.x_positiv[16] :                0.0 :   True
+                 17 :                0.0 : heat_storage1.x_positiv[17] :                0.0 :   True
+                 18 :                0.0 : heat_storage1.x_positiv[18] :                0.0 :   True
+                 19 :  50.16872117917518 : heat_storage1.x_positiv[19] :  50.16872117917518 :   True
+                 20 :                0.0 : heat_storage1.x_positiv[20] :                0.0 :   True
+                 21 : 16.420675343237434 : heat_storage1.x_positiv[21] : 16.420675343237434 :   True
+                 22 :                0.0 : heat_storage1.x_positiv[22] :                0.0 :   True
+                 23 :                0.0 : heat_storage1.x_positiv[23] :                0.0 :   True
+                 24 :                0.0 : heat_storage1.x_positiv[24] :                0.0 :   True
 
         2 Port Declarations
             heat_in : Size=1, Index=None
@@ -2219,7 +2219,7 @@
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_storage1.heat_discharge
 
-        17 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity x heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr test_constr heat_out_heat_outsum
+        17 Declarations: heat_charge bin_charge heat_discharge bin_discharge heat_balance heat_capacity x_positiv heat_in heat_out max_heat_charge_constr max_heat_discharge_constr max_heat_capacity_constr min_heat_capacity_constr heat_balance_constr capacity_balance_constr test_constr heat_out_heat_outsum
     ngas_grid : Size=1, Index=None, Active=True
         1 Var Declarations
             gas_balance : Size=24, Index=t

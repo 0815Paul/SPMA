@@ -238,6 +238,9 @@ class Chp:
         asset.electrical_efficiency_depends_on_thermal_load2_lower = Constraint(t, rule=electrical_efficiency_depends_on_thermal_load_constr2_lower)
 
 
+        # Second stage constraints
+
+        
 
 
 
