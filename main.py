@@ -7,7 +7,7 @@ from datetime import datetime
 def main():
     
     # Some parameters 
-    scen_count = 2
+    scen_count = 3
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = f"{PATH_OUT_LOGS}logile_{timestamp}.log"
     options = {

@@ -154,13 +154,13 @@ class Model:
         # Second Stage Arcs
 
         # Das Constraint brauche ich nicht
-        self.instance.arc07 = Arc(
-            source = self.instance.chp1.heat_out,
-            destination=self.instance.heat_storage1.heat_in_secondstage
-        )
+        # self.instance.arc07 = Arc(
+        #     source = self.instance.chp1.heat_out,
+        #     destination=self.instance.heat_storage1.heat_in_secondstage
+        # )
 
         self.instance.arc08 = Arc(
-            source = self.instance.heat_storage1.heat_out_secondstage,
+            source = self.instance.heat_storage1.dispatch_secondstage,
             destination=self.instance.heat_grid.heat_in_secondstage
         )
 
@@ -186,7 +186,7 @@ class Model:
     def _second_stage_cost_rule(self, model):
         # return (self.model.prob[s] * self.model.delta_cost[s] for s in self.model.scenarios)
         # return 0
-        return quicksum(model.heat_storage1.dispatch_heat_charge[t] * 1 for t in model.t)
+        return quicksum(model.heat_storage1.dispatch[t] * 1 for t in model.t)
     
     def _conditional_value_at_risk(self, model):
         """Calculate Conditional Value at Risk."""
