@@ -1,5 +1,5 @@
 # Imports
-from model import Model, PATH_OUT_LOGS
+from models.stochastic.model import Model, PATH_OUT_LOGS
 import mpisppy.utils.sputils as sputils
 import pyomo.environ as pyo
 from datetime import datetime
