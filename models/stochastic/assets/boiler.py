@@ -9,7 +9,6 @@ class Boiler:
     def __init__(self, name, filepath, index_col=0, **kwargs):
         self.name = name
         self.get_data(filepath, index_col)
-      
         # leave **kwargs for future use
 
     def get_data(self, filepath, index_col):
@@ -87,6 +86,7 @@ class Boiler:
             """Minimum heat production constraint"""
             return heat_1*asset.bin[t] <= asset.heat[t]
         asset.min_heat_constr = Constraint(t, rule=thermal_load_min_rule)
+
 
         # Helper function
         def linear_function(x, x1, x2, y1, y2):
@@ -178,3 +178,7 @@ class Boiler:
         
         # __________________________________________________________________________________________
   
+
+        # def test(asset, t):
+        #     return asset.x[t] == asset.model().delta_heat_demand_scenario[t]
+        # asset.test = Constraint(t, rule=test)

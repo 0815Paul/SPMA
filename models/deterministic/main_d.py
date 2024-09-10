@@ -9,30 +9,46 @@ import assets.boiler as boiler
 import assets.heat_storage as heat_storage
 import assets.grid as grid
 
+import json
+import os
 
-# Path
-PATH_IN = 'data/input/'
-PATH_OUT = 'data/output/'
+
+# Load the config.json
+with open ('../config.json', 'r') as f:
+    config = json.load(f)
+
+# Model Config
+model_type = 'deterministic'
+model_config = config['deterministic']
+
+# Global Config
+global_config = config['global']
+
+# Paths
+input_data_path = global_config['data_path']
+output_data_path = model_config['output_file']
+
+# Declare paths
+PATH_IN = os.path.join(input_data_path, model_config['input_file'])
+PATH_OUT = os.path.join(output_data_path)
 
 # Declare constants
-GAS_PRICE = 0.1543 # €/kWh  (HS)
-POWER_PRICE = 0.251 # €/kWh (el)
-HEAT_PRICE = 0.105 # €/kWh (th)
-CALORIFIC_VALUE_NGAS = 10 # kWh/m3
-
+GAS_PRICE = global_config['gas_price'] # €/kWh  (HS)
+POWER_PRICE = global_config['power_price'] # €/kWh (el)
+HEAT_PRICE = global_config['heat_price'] # €/kWh (th)
+CALORIFIC_VALUE_NGAS = global_config['calorific_value_ngas'] # kWh/m3
 
 # CHP 
-CHP_BONUS_SELF_CONSUMPTION= 0.08  # €/kWhel
-CHP_BONUS= 0.16  # €/kWhel
-CHP_INDEX_EEX= 0.1158  # €/kWhel
-ENERGY_TAX_REFUND_GAS= 0.0055  # €/kWhHS
-AVOIDED_GRID_FEES= 0.0097  # €/kWhel
-SHARE_SELF_CONSUMPTION= 0.03 # %
-SHARE_FEED_IN= 0.97 # %
-
+CHP_BONUS_SELF_CONSUMPTION= global_config['chp_bonus_self_consumption']  # €/kWhel
+CHP_BONUS= global_config['chp_bonus']  # €/kWhel
+CHP_INDEX_EEX= global_config['chp_index_eex']  # €/kWhel
+ENERGY_TAX_REFUND_GAS= global_config['energy_tax_refund_gas']  # €/kWhHS
+AVOIDED_GRID_FEES= global_config['avoided_grid_fees']  # €/kWhel
+SHARE_SELF_CONSUMPTION= global_config['share_self_consumption'] # %
+SHARE_FEED_IN= global_config['share_feed_in'] # %
 
 # Costs
-MAINTENANCE_COSTS = 1.8 # €/kWh (HS)
+MAINTENANCE_COSTS = global_config['maintenance_cost'] # €/kWh (HS)
 
 class Model:
     """Model class."""
@@ -44,6 +60,7 @@ class Model:
         self.timeseries_data = None
         self.results = None
         self.results_data = None
+        self._load_timeseries_data()
 
     def set_solver(self, solver_name, **kwargs):
         self.solver = SolverFactory(solver_name)
@@ -51,15 +68,27 @@ class Model:
         for key in kwargs:
             self.solver.options[key] = kwargs[key]
     
-    def load_timeseries_data(self):
-        """Load timeseries data from file."""
-        self.timeseries_data = DataPortal()
+    def _load_timeseries_data(self):
+        with open(f'{PATH_IN}demands/heat_demand_20230402.json') as f:
+            heat_demand_data = json.load(f)
 
-        self.timeseries_data.load(
-            filename=PATH_IN + '/demands/heat_demand_20230401.csv',
-            index='t',
-            param='heat_demand'
-        )
+        t_values = list(map(int, heat_demand_data['heat_demand'].keys()))
+        heat_demand = {int(k): v for k, v in heat_demand_data['heat_demand'].items()}
+
+        self.timeseries_data = { None:{
+            't': {None: t_values},
+            'heat_demand': heat_demand
+        }}
+
+    # def load_timeseries_data(self):
+    #     """Load timeseries data from file."""
+    #     self.timeseries_data = DataPortal()
+
+    #     self.timeseries_data.load(
+    #         filename=PATH_IN + '/demands/heat_demand_20230401.csv',
+    #         index='t',
+    #         param='heat_demand'
+    #     )
 
         #_____ In case of power price is not constant _____#
 
@@ -124,32 +153,13 @@ class Model:
 
         # Assets
 
-        chp_filepaths = [
-            PATH_IN + '/assets/chp.csv',
-            PATH_IN + '/assets/chp_operation.csv'
-        ]
-
-        boiler_filepaths = [
-            PATH_IN + '/assets/boiler.csv',
-            PATH_IN + '/assets/boiler_operation.csv'
-        ]
-
         chp1 = chp.Chp(
-            'chp1', chp_filepaths
+            'chp1', PATH_IN + '/assets/chp_operation.csv'
         )
-
-
-        # chp1 = chp.Chp(
-        #     'chp1', PATH_IN + '/assets/chp.csv'
-        # )
 
         boiler1 = boiler.Boiler(
-            'boiler1', boiler_filepaths
+           'boiler1', PATH_IN + '/assets/boiler_operation.csv'
         )
-
-        #boiler1 = boiler.Boiler(
-        #    'boiler1', PATH_IN + '/assets/boiler.csv'
-        #)
 
         heat_storage1 = heat_storage.HeatStorage(
             'heat_storage1', PATH_IN + '/assets/heat_storage.csv'
@@ -325,11 +335,12 @@ if __name__ == "__main__":
     model.set_solver(
         solver_name= 'gurobi',
         MIPGap=0.015,
-        TimeLimit=30
+        TimeLimit=30,
+        LogFile= PATH_OUT + 'logfiletest.log'
         )
 
-    print('Loading timeseries data...')
-    model.load_timeseries_data()
+    # print('Loading timeseries data...')
+    # model.load_timeseries_data()
 
     print('Adding components...')
     model.add_components()

@@ -1,0 +1,37 @@
+{
+    "global": {
+      "data_path": "../../data/",
+      "heat_demand_file": "heat_demand_20230402.json",
+      "gas_price": 0.1543,
+      "power_price": 0.105,
+      "heat_price": 0.05,
+      "calorific_value_ngas": 10,
+      "chp_bonus_self_consumption":0.08,
+      "chp_bonus":0.16,
+      "chp_index_eex":0.1158,  
+      "energy_tax_refund_gas": 0.0055, 
+      "avoided_grid_fees": 0.0097,  
+      "share_self_consumption": 0.03, 
+      "share_feed_in":0.97,
+      "maintenance_cost": 1.8
+    },
+    "deterministic": {
+      "input_path": "input/",
+      "output_path": "output/deterministic/",
+      "log_path": "output/deterministic/logs/",
+      "timeseries_path": "output/deterministic/timeseries/",
+      "parameter1": 0,
+      "parameter2": 0
+    },
+    "stochastic": {
+      "input_path": "input/",
+      "output_path": "output/stochastic/",
+      "log_path": "output/stochastic/logs/",
+      "timeseries_path": "output/stochastic/timeseries/",
+      "objectives_path": "output/stochastic/objectives/",
+      "root_path": "output/stochastic/root/",
+      "parameter1": 0,
+      "pparameter2": 0
+    }
+  }
+  
