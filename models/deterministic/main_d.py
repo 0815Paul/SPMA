@@ -3,6 +3,7 @@ import pandas as pd
 from pyomo.opt import SolverFactory
 from pyomo.environ import *
 from pyomo.network import *
+from datetime import datetime
 
 import assets.chp as chp
 import assets.boiler as boiler
@@ -11,6 +12,7 @@ import assets.grid as grid
 
 import json
 import os
+import re
 
 
 # Load the config.json
@@ -25,12 +27,16 @@ model_config = config['deterministic']
 global_config = config['global']
 
 # Paths
-input_data_path = global_config['data_path']
-output_data_path = model_config['output_file']
+data_path = global_config['data_path']
 
 # Declare paths
-PATH_IN = os.path.join(input_data_path, model_config['input_file'])
-PATH_OUT = os.path.join(output_data_path)
+PATH_IN = os.path.join(data_path, model_config['input_path'])
+PATH_OUT = os.path.join(data_path, model_config['output_path'])
+PATH_OUT_LOGS = os.path.join(data_path, model_config['log_path'])
+PATH_OUT_TIMESERIES = os.path.join(data_path, model_config['timeseries_path'])
+
+# Heat Demand Data
+FILE_HEAT_DEMAND = global_config['heat_demand_file']
 
 # Declare constants
 GAS_PRICE = global_config['gas_price'] # €/kWh  (HS)
@@ -69,7 +75,7 @@ class Model:
             self.solver.options[key] = kwargs[key]
     
     def _load_timeseries_data(self):
-        with open(f'{PATH_IN}demands/heat_demand_20230402.json') as f:
+        with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND}') as f:
             heat_demand_data = json.load(f)
 
         t_values = list(map(int, heat_demand_data['heat_demand'].keys()))
@@ -238,7 +244,6 @@ class Model:
             self.instance,
             symbolic_solver_labels=True,
             tee=True,
-            logfile=PATH_OUT + 'logfile.txt',
             load_solutions=True,
             report_timing=True,
         )
@@ -327,16 +332,25 @@ class Model:
             energy_tax_refund
         )
         return chp_revenue
+    
+    def _extract_scenario_date(self, file):
+        """Extract Heat Demand date from the file name."""
+        numbers = re.findall(r'\d+', file)
+        extracted_date = ''.join(numbers)
+        return int(extracted_date)
 
 if __name__ == "__main__":
     model = Model()
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_filename = f"{PATH_OUT_LOGS}logile_{timestamp}.log"
 
     print('Setting solver...')
     model.set_solver(
         solver_name= 'gurobi',
         MIPGap=0.015,
         TimeLimit=30,
-        LogFile= PATH_OUT + 'logfiletest.log'
+        LogFile= log_filename
         )
 
     # print('Loading timeseries data...')
@@ -360,5 +374,7 @@ if __name__ == "__main__":
     
     print('Writing results...')
     model.write_results()
-    model.save_results(PATH_OUT + 'results.csv')
+    extracted_date = model._extract_scenario_date(FILE_HEAT_DEMAND)
+    output_file = f'd_{extracted_date}_ts.csv'
+    model.save_results(PATH_OUT_TIMESERIES +  output_file)
     

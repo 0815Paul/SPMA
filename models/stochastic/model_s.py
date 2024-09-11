@@ -37,9 +37,6 @@ global_config = config['global']
 # Paths
 data_path = global_config['data_path']
 
-# Demand Path
-
-
 # Declare paths
 PATH_IN = os.path.join(data_path, model_config['input_path'])
 PATH_OUT = os.path.join(data_path, model_config['output_path'])
@@ -49,7 +46,10 @@ PATH_OUT_OBJECTIVES = os.path.join(data_path, model_config['objectives_path'])
 PATH_OUT_ROOT = os.path.join(data_path, model_config['root_path'])
 
 # Heat Demand Data
-FILE_HEAT_DEMAND = data_path + 'demands/' + global_config['heat_demand_file']
+FILE_HEAT_DEMAND = global_config['heat_demand_file']
+FILE_HEAT_DEMAND_SCENARIOS = global_config['heat_demand_scenario_file']
+DUMMY_FILE_HEAT_DEMAND = global_config['dummy_heat_demand_file']
+DUMMY_FILE_HEAT_DEMAND_SCENARIOS = global_config['dummy_heat_demand_scenario_file']
 
 # Declare constants
 GAS_PRICE = global_config['gas_price'] # €/kWh  (HS)
@@ -255,19 +255,19 @@ class Model:
     def _load_scenario_data(self):
         """Load scenario data from files and load it in a dictionary."""  
 
-        # with open(f'{self.PATH_IN_PP}demands/heat_demand_20230402.json') as f:
-        #     heat_demand_data = json.load(f)
+        with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND}') as f:
+            heat_demand_data = json.load(f)
 
-        # with open(f'{self.PATH_IN_PP}demands/heat_demand_scenarios_20230402.json') as f:
-        #     scenario_data = json.load(f)
+        with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND_SCENARIOS}') as f:
+            scenario_data = json.load(f)
 
         ################### For Testing ###################
 
-        with open(f'{self.PATH_IN}demands/testing/heat_demand_dummy_2.json') as f:
-            heat_demand_data = json.load(f)
+        # with open(f'{PATH_IN}demands/{DUMMY_FILE_HEAT_DEMAND}') as f:
+        #     heat_demand_data = json.load(f)
 
-        with open(f'{self.PATH_IN}demands/testing/heat_demand_scenarios_dummy_2.json') as f:
-            scenario_data = json.load(f)
+        # with open(f'{PATH_IN}demands/{DUMMY_FILE_HEAT_DEMAND_SCENARIOS}') as f:
+        #     scenario_data = json.load(f)
 
         ################### For Testing ###################
 
@@ -433,7 +433,7 @@ class Model:
         """Solve the model."""
         self.results = self.ef_instance.solve_extensive_form(tee=True)
 
-    def extract_scenario_numbers(self, file):
+    def _extract_scenario_date(self, file):
         """Extract Heat Demand date from the file name."""
         numbers = re.findall(r'\d+', file)
         extracted_numbers = ''.join(numbers)
@@ -443,7 +443,7 @@ class Model:
         """Write results to file."""
 
         # Extract the Date from the file name
-        extracted_numbers = self.extract_scenario_numbers(FILE_HEAT_DEMAND)
+        extracted_date = self._extract_scenario_date(FILE_HEAT_DEMAND)
 
         # Root solution extraction
         root_solution = self.ef_instance.get_root_solution()
@@ -465,18 +465,13 @@ class Model:
 
         # Convert the dictionary into a DataFrame for tabular representation
         df_root_solution = pd.DataFrame(root_solution_dict)
-
-        # Add the 't' column as the index
         df_root_solution.index.name = 't'  # Setting 't' as the name of the index
-
-        # Sort the DataFrame by time index
         df_root_solution = df_root_solution.sort_index()
 
         # Save the root solution to a CSV file
-        root_output_file = f's_{extracted_numbers}_rs.csv'
+        root_output_file = f's_{extracted_date}_rs.csv'
         df_root_solution.to_csv(PATH_OUT_ROOT + root_output_file)
 
-        print(f'Root solution written to {root_output_file}')
 
         for sname, smodel in sputils.ef_scenarios(self.ef_instance.ef):
             df_params = pd.DataFrame()
@@ -500,7 +495,7 @@ class Model:
             df_output.index.name = 't'
             
 
-            output_file = f's_{sname}_{extracted_numbers}_ts.csv'
+            output_file = f's_{sname}_{extracted_date}_ts.csv'
             df_output.to_csv(self.PATH_OUT_TIMESERIES + output_file)
             #print(f'Results for {sname} written to {output_file}')
 
@@ -520,7 +515,7 @@ class Model:
         if not os.path.exists(self.PATH_OUT_OBJECTIVES):
             os.makedirs(self.PATH_OUT_OBJECTIVES)
         
-        extracted_numbers = self.extract_scenario_numbers(FILE_HEAT_DEMAND)
+        extracted_numbers = self._extract_scenario_date(FILE_HEAT_DEMAND)
 
         # Speichere den DataFrame als CSV-Datei
         output_filename = f"{self.PATH_OUT_OBJECTIVES}s_{extracted_numbers}_obj.csv"
