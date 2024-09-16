@@ -109,7 +109,7 @@ class Model:
         self._add_heat_storage_assets()
         self._add_grid_assets()
     
-    def _add_chp_assets(self):
+    def _add_chp_assets(self):cd 
         """Define CHP assets."""
         chp1 = chp.Chp('chp1', PATH_IN + '/assets/chp_operation.csv')
         chp1.add_to_model(self.model)

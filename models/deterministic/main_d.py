@@ -162,6 +162,9 @@ class Model:
         chp1 = chp.Chp(
             'chp1', PATH_IN + '/assets/chp_operation.csv'
         )
+        chp2 = chp.Chp(
+            'chp2', PATH_IN + '/assets/chp_operation.csv'
+        )
 
         boiler1 = boiler.Boiler(
            'boiler1', PATH_IN + '/assets/boiler_operation.csv'
@@ -182,6 +185,7 @@ class Model:
         )
 
         chp1.add_to_model(self.model)
+        chp2.add_to_model(self.model)
         boiler1.add_to_model(self.model)
         heat_storage1.add_to_model(self.model)
         ngas_grid.add_to_model(self.model)
@@ -199,8 +203,10 @@ class Model:
     def instantiate_model(self):
         """Create a concrete instance of the model."""
         self.instance = self.model.create_instance(self.timeseries_data)
-        with open('output.txt', 'w') as f:
-            self.instance.pprint(ostream=f)
+        
+        # Output the model instance to a file
+        # with open('output.txt', 'w') as f:
+        #     self.instance.pprint(ostream=f)
 
     
     def expand_arcs(self):
@@ -221,19 +227,29 @@ class Model:
             source=self.instance.chp1.heat_out,
             destination=self.instance.heat_storage1.heat_in
         )
+        # New
         self.instance.arc03 = Arc(
+            source=self.instance.chp2.power_out,
+            destination=self.instance.power_grid.power_in
+        )
+        # New
+        self.instance.arc04 = Arc(
+            source=self.instance.chp2.heat_out,
+            destination=self.instance.heat_storage1.heat_in
+        )
+        self.instance.arc05 = Arc(
             source=self.instance.heat_storage1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc04 = Arc(
+        self.instance.arc06 = Arc(
             source=self.instance.boiler1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc05 = Arc(
+        self.instance.arc07 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.boiler1.gas_in
         )
-        self.instance.arc06 = Arc(
+        self.instance.arc08 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.chp1.gas_in
         )
@@ -294,35 +310,62 @@ class Model:
         """ Calculate gas costs for CHP and Boiler."""
         gas_costs = (
         quicksum(model.chp1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) + 
+        quicksum(model.chp2.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) +
         quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
         )
         return gas_costs
     
     def _maintenance_costs(self, model):
         """Calculate maintenance costs for CHP."""
-        maintenance_costs = quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t)
+        maintenance_costs = (
+            quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t) +
+            quicksum(model.chp2.bin[t] * MAINTENANCE_COSTS for t in model.t) 
+        )
         return maintenance_costs
 
     def _power_revenue(self, model):
         """Calculate power revenue for CHP."""
-        power_revenue = quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t)
+        power_revenue = (
+            quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t) +
+            quicksum(model.chp2.power[t] * model.POWER_PRICE for t in model.t)
+        )
         return power_revenue
     
     def _heat_revenue(self, model):
         """Calculate heat revenue for CHP and Boiler."""
         heat_revenue = (
         quicksum(model.chp1.heat[t] * model.HEAT_PRICE for t in model.t) +
+        quicksum(model.chp2.heat[t] * model.HEAT_PRICE for t in model.t) +
         quicksum(model.boiler1.heat[t] * model.HEAT_PRICE for t in model.t)
         )
         return heat_revenue
     
     def _chp_revenue(self, model):
         """Calculate CHP revenue."""
-        chp_bonus_for_self_consumption = quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t)
-        chp_bonus_for_feed_in = quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t)
-        chp_index = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t)
-        avoided_grid_fees = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t)
-        energy_tax_refund = quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t)
+        chp_bonus_for_self_consumption = (
+            quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t) +
+            quicksum(model.chp2.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t)
+        )
+
+        chp_bonus_for_feed_in = (
+            quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t) +
+            quicksum(model.chp2.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t)
+        )
+
+        chp_index = (
+            quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t) +
+            quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t)
+        )
+
+        avoided_grid_fees = (
+            quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) +
+            quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t)
+        )
+
+        energy_tax_refund = (
+            quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t) +
+            quicksum(model.chp2.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t)
+        )
         
         chp_revenue = (
             chp_bonus_for_self_consumption +
