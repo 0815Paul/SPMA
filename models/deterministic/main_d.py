@@ -5,10 +5,10 @@ from pyomo.environ import *
 from pyomo.network import *
 from datetime import datetime
 
-import assets.chp as chp
-import assets.boiler as boiler
-import assets.heat_storage as heat_storage
-import assets.grid as grid
+import assets.chp_d as chp
+import assets.boiler_d as boiler
+import assets.heat_storage_d as heat_storage
+import assets.grid_d as grid
 
 import json
 import os
