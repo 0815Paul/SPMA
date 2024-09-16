@@ -1,7 +1,10 @@
 import sys
+import os
+import json
+import re
+
 import pandas as pd
 import pyomo.environ as pyo
-
 from pyomo.opt import SolverFactory
 from pyomo.environ import *
 from pyomo.network import *
@@ -11,17 +14,14 @@ from mpisppy.opt.lshaped import LShapedMethod
 from mpisppy.opt.ef import ExtensiveForm
 from mpisppy.utils.sputils import scenario_tree
 from mpisppy.utils import config
-import os
-import json
-import re
 
 import mpisppy.utils.sputils as sputils
 import mpisppy.utils.solver_spec as solver_spec
 
-import assets.chp as chp
-import assets.boiler as boiler
-import assets.heat_storage as heat_storage
-import assets.grid as grid
+import assets.chp_s as chp
+import assets.boiler_s as boiler
+import assets.heat_storage_s as heat_storage
+import assets.grid_s as grid
 
 # Load the config.json
 with open ('../config.json', 'r') as f:
@@ -74,11 +74,6 @@ class Model:
     
     def __init__(self):
         """Initialize the model."""
-        self.PATH_IN = PATH_IN
-        self.PATH_OUT = PATH_OUT
-        self.PATH_OUT_LOGS = PATH_OUT_LOGS
-        self.PATH_OUT_TIMESERIES = PATH_OUT_TIMESERIES
-        self.PATH_OUT_OBJECTIVES = PATH_OUT_OBJECTIVES
         self.model = AbstractModel()
         self.instance = None
         self.ef_instance = None
@@ -116,24 +111,27 @@ class Model:
     
     def _add_chp_assets(self):
         """Define CHP assets."""
-        chp1 = chp.Chp('chp1', self.PATH_IN + '/assets/chp_operation.csv')
+        chp1 = chp.Chp('chp1', PATH_IN + '/assets/chp_operation.csv')
         chp1.add_to_model(self.model)
+        
+        chp2 = chp.Chp('chp2', PATH_IN + '/assets/chp_operation.csv')
+        chp2.add_to_model(self.model)
 
     def _add_boiler_assets(self):
         """Define Boiler assets."""
-        boiler1 = boiler.Boiler('boiler1', self.PATH_IN + '/assets/boiler_operation.csv')
+        boiler1 = boiler.Boiler('boiler1', PATH_IN + '/assets/boiler_operation.csv')
         boiler1.add_to_model(self.model)
 
     def _add_heat_storage_assets(self):
         """Define Heat Storage assets."""
-        heat_storage1 = heat_storage.HeatStorage('heat_storage1', self.PATH_IN + '/assets/heat_storage.csv')
+        heat_storage1 = heat_storage.HeatStorage('heat_storage1', PATH_IN + '/assets/heat_storage.csv')
         heat_storage1.add_to_model(self.model)
 
     def _add_grid_assets(self):
         """Define Grid assets."""
         ngas_grid = grid.NGasGrid('ngas_grid')
-        power_grid = grid.ElectricalGrid('power_grid', self.PATH_IN + '/assets/power_grid.csv')
-        heat_grid = grid.HeatGrid('heat_grid', self.PATH_IN + '/assets/heat_grid.csv')
+        power_grid = grid.ElectricalGrid('power_grid', PATH_IN + '/assets/power_grid.csv')
+        heat_grid = grid.HeatGrid('heat_grid', PATH_IN + '/assets/heat_grid.csv')
 
         for grid_assets in [ngas_grid, power_grid, heat_grid]:
             grid_assets.add_to_model(self.model)
@@ -148,25 +146,39 @@ class Model:
             source=self.instance.chp1.heat_out,
             destination=self.instance.heat_storage1.heat_in
         )
+        # New
         self.instance.arc03 = Arc(
+            source=self.instance.chp2.power_out,
+            destination=self.instance.power_grid.power_in
+        )
+        # New
+        self.instance.arc04 = Arc(
+            source=self.instance.chp2.heat_out,
+            destination=self.instance.heat_storage1.heat_in
+        )
+        # Add the new Arcs for the heat to heat_grid
+        # ....
+
+        # Old
+        self.instance.arc05 = Arc(
             source=self.instance.heat_storage1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc04 = Arc(
+        self.instance.arc06 = Arc(
             source=self.instance.boiler1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc05 = Arc(
+        self.instance.arc07 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.boiler1.gas_in
         )
-        self.instance.arc06 = Arc(
+        self.instance.arc08 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.chp1.gas_in
         )
-
+        
         # Second Stage Arcs
-        self.instance.arc07 = Arc(
+        self.instance.arc09 = Arc(
             source = self.instance.heat_storage1.dispatch_secondstage,
             destination=self.instance.heat_grid.heat_in_secondstage
         )
@@ -191,49 +203,64 @@ class Model:
         )
 
     def _second_stage_cost_rule(self, model):
-        # return (self.model.prob[s] * self.model.delta_cost[s] for s in self.model.scenarios)
-        # return 0
         return quicksum(model.heat_storage1.dispatch[t] * 1 for t in model.t)
-    
-    def _conditional_value_at_risk(self, model):
-        """Calculate Conditional Value at Risk."""
-        # CVaR = VaR + (1 / (1 - RHO)) * quicksum(model.prob[s] * model.eta_s for s in model.scenarios)
-        # return CVaR
-        return 0
 
     def _gas_costs(self, model):
             """ Calculate gas costs for CHP and Boiler."""
             gas_costs = (
-            quicksum(model.chp1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) + 
-            quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS * 1000 for t in model.t)
+            quicksum(model.chp1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) +
+            quicksum(model.chp2.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) +  # New
+            quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
             )
             return gas_costs
     
     def _maintenance_costs(self, model):
         """Calculate maintenance costs for CHP."""
-        maintenance_costs = quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t)
+        maintenance_costs = (
+            quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t) + 
+            quicksum(model.chp2.bin[t] * MAINTENANCE_COSTS for t in model.t) # New
+        )	
         return maintenance_costs
 
     def _power_revenue(self, model):
         """Calculate power revenue for CHP."""
-        power_revenue = quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t)
+        power_revenue = (
+            quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t) + 
+            quicksum(model.chp2.power[t] * model.POWER_PRICE for t in model.t) # New
+        )
         return power_revenue
     
     def _heat_revenue(self, model):
         """Calculate heat revenue for CHP and Boiler."""
         heat_revenue = (
         quicksum(model.chp1.heat[t] * model.HEAT_PRICE for t in model.t) +
+        quicksum(model.chp2.heat[t] * model.HEAT_PRICE for t in model.t) + # New
         quicksum(model.boiler1.heat[t] * model.HEAT_PRICE for t in model.t)
         )
         return heat_revenue
     
     def _chp_revenue(self, model):
         """Calculate CHP revenue."""
-        chp_bonus_for_self_consumption = quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t)
-        chp_bonus_for_feed_in = quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t)
-        chp_index = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t)
-        avoided_grid_fees = quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t)
-        energy_tax_refund = quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t)
+        chp_bonus_for_self_consumption = (
+            quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t) +
+            quicksum(model.chp2.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t) # New
+        )
+        chp_bonus_for_feed_in = (
+            quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t) +
+            quicksum(model.chp2.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t) # New
+        )
+        chp_index = (
+            quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t) +
+            quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t) # New
+        )
+        avoided_grid_fees = (
+            quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) +
+            quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) # New
+        )
+        energy_tax_refund = (
+            quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t) +
+            quicksum(model.chp2.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t) # New
+        )
         
         chp_revenue = (
             chp_bonus_for_self_consumption +
@@ -339,13 +366,11 @@ class Model:
                    self.instance.heat_grid.heat_feedin
         ]
 
-        # print("=" * 40)
-        # print("Attaching scenario tree node...")
-        # print("=" * 40)
+        # Add the root node to the instance
         sputils.attach_root_node(self.instance, self.instance.first_stage_cost, varlist)
 
         # Add Probability to the instance
-        #self.instance._mpisppy_probability = 1.0
+        self.instance._mpisppy_probability = value(self.instance.probability)
 
         ###################### Start Debugging Print ######################
 
@@ -385,12 +410,7 @@ class Model:
         else:
             raise RuntimeError(f"Scenario: {scenario_name} not found in scenario data")
         
-        # print(scenario_data)
-
-        # Create a concrete instance of the model
-        # print("=" * 40)
-        # print("Creating instance...")
-        # print("=" * 40)
+        # Create the model instance
         self.instance = self.model.create_instance(data=scenario_data, name=scenario_name)    
         
         # Add Arcs to the model
@@ -496,7 +516,7 @@ class Model:
             
 
             output_file = f's_{sname}_{extracted_date}_ts.csv'
-            df_output.to_csv(self.PATH_OUT_TIMESERIES + output_file)
+            df_output.to_csv(PATH_OUT_TIMESERIES + output_file)
             #print(f'Results for {sname} written to {output_file}')
 
             
@@ -512,11 +532,11 @@ class Model:
         # Creates a DataFrame from the results list
         df_results = pd.DataFrame(results)
 
-        if not os.path.exists(self.PATH_OUT_OBJECTIVES):
-            os.makedirs(self.PATH_OUT_OBJECTIVES)
+        if not os.path.exists(PATH_OUT_OBJECTIVES):
+            os.makedirs(PATH_OUT_OBJECTIVES)
         
         extracted_numbers = self._extract_scenario_date(FILE_HEAT_DEMAND)
 
         # Speichere den DataFrame als CSV-Datei
-        output_filename = f"{self.PATH_OUT_OBJECTIVES}s_{extracted_numbers}_obj.csv"
+        output_filename = f"{PATH_OUT_OBJECTIVES}s_{extracted_numbers}_obj.csv"
         df_results.to_csv(output_filename, index=False)
