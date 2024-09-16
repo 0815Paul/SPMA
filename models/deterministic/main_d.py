@@ -225,12 +225,12 @@ class Model:
             destination=self.instance.power_grid.power_in
         )
         # New
-        self.instance.arc03 = Arc(
+        self.instance.arc02 = Arc(
             source=self.instance.chp2.power_out,
             destination=self.instance.power_grid.power_in
         )
         # Updated 
-        self.instance.arc02 = Arc(
+        self.instance.arc03 = Arc(
             source=self.instance.chp1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
@@ -239,25 +239,25 @@ class Model:
             source=self.instance.chp2.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc06 = Arc(
+        self.instance.arc05 = Arc(
             source=self.instance.boiler1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc07 = Arc(
+        self.instance.arc06 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.boiler1.gas_in
         )
-        self.instance.arc08 = Arc(
+        self.instance.arc07 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.chp1.gas_in
         )
         # New
-        self.instance.arc09 = Arc(
+        self.instance.arc08 = Arc(
             source=self.instance.heat_storage1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
         # New
-        self.instance.arc10 = Arc(
+        self.instance.arc09 = Arc(
             source=self.instance.heat_grid.heat_out,
             destination=self.instance.heat_storage1.heat_in
         )
@@ -400,7 +400,7 @@ if __name__ == "__main__":
     model.set_solver(
         solver_name= 'gurobi',
         MIPGap=0.015,
-        TimeLimit=30,
+        TimeLimit=20,
         LogFile= log_filename
         )
 

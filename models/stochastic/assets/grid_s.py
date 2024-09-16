@@ -144,7 +144,7 @@ class HeatGrid:
 
         # Declare constraints
         def heat_balance_rule(asset, t):
-            return asset.heat_balance[t] ==  asset.heat_feedin[t] - asset.heat_supply[t]
+            return asset.heat_balance[t] ==  asset.heat_feedin[t] - (asset.heat_supply[t] + asset.model().heat_demand[t])
         asset.heat_balance_constr = Constraint(t, rule=heat_balance_rule)
 
         def supply_heat_demand_rule(asset, t):
@@ -152,11 +152,11 @@ class HeatGrid:
             return asset.heat_balance[t] == 0
         asset.supply_heat_demand_constr = Constraint(t, rule=supply_heat_demand_rule)
 
-        def heat_supply_rule(asset, t):
-            """ Heat supply"""
-            #print("heat_supply:",asset.heat_supply[t])
-            return asset.heat_supply[t] == asset.model().heat_demand[t]
-        asset.heat_supply_constr = Constraint(t, rule=heat_supply_rule)
+        # def heat_supply_rule(asset, t):
+        #     """ Heat supply"""
+        #     #print("heat_supply:",asset.heat_supply[t])
+        #     return asset.heat_supply[t] == asset.model().heat_demand[t]
+        # asset.heat_supply_constr = Constraint(t, rule=heat_supply_rule)
 
         ########################################################################
 
@@ -189,15 +189,13 @@ class HeatGrid:
         # New
         def dispatch_heat_feedin_rule(asset, t):
             """ Decide if Excess or Deficit Dispatch heat feedin """
-            if asset.model().delta_heat_demand[t] >= 0:
-                return asset.dispatch_heat_feedin[t] == asset.model().delta_heat_demand[t]
-            else:
-                return asset.dispatch_heat_feedin[t] == asset.model().delta_heat_demand[t]
+            return asset.dispatch_heat_feedin[t] == asset.model().delta_heat_demand[t]
         asset.dispatch_heat_feedin_constr = Constraint(t, rule=dispatch_heat_feedin_rule)
 
-        def dispatch_heat_balance_rule(asset, t):
-            """ Dispatch heat"""
-            return asset.heat_supply[t] - asset.dispatch_heat_feedin[t] == asset.model().heat_demand_scenario[t]
-        asset.dispatch_heat_balance_constr = Constraint(t, rule=dispatch_heat_balance_rule)
+
+        # def dispatch_heat_balance_rule(asset, t):
+        #     """ Dispatch heat"""
+        #     return (asset.heat_supply[t] + asset.model().heat_demand[t]) - asset.dispatch_heat_feedin[t] == asset.model().heat_demand_scenario[t]
+        # asset.dispatch_heat_balance_constr = Constraint(t, rule=dispatch_heat_balance_rule)
 
 

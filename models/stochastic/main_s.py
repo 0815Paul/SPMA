@@ -12,8 +12,8 @@ def main():
     log_filename = f"{PATH_OUT_LOGS}logile_{timestamp}.log"
     options = {
         'solver': 'gurobi', 
-        'TimeLimit':10.0, # TimeLimit Option added in ExtensiveForm Class
-        'MIPGap':0.01, # MIPOpt Option added in ExtensiveForm Class
+        'MIPGap':0.015, # MIPOpt Option added in ExtensiveForm Class
+        'TimeLimit':20.0, # TimeLimit Option added in ExtensiveForm Class
         'LogFile': log_filename # LogFile Option added in ExtensiveForm Class
         }
 

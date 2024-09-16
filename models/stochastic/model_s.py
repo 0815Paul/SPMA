@@ -138,47 +138,50 @@ class Model:
     
     def _add_arcs(self):
         """Add arcs to the instance."""
+        
         self.instance.arc01 = Arc(
             source=self.instance.chp1.power_out,
             destination=self.instance.power_grid.power_in
         )
-        self.instance.arc02 = Arc(
-            source=self.instance.chp1.heat_out,
-            destination=self.instance.heat_storage1.heat_in
-        )
         # New
-        self.instance.arc03 = Arc(
+        self.instance.arc02 = Arc(
             source=self.instance.chp2.power_out,
             destination=self.instance.power_grid.power_in
+        )
+        # Updated 
+        self.instance.arc03 = Arc(
+            source=self.instance.chp1.heat_out,
+            destination=self.instance.heat_grid.heat_in
         )
         # New
         self.instance.arc04 = Arc(
             source=self.instance.chp2.heat_out,
-            destination=self.instance.heat_storage1.heat_in
-        )
-        # Add the new Arcs for the heat to heat_grid
-        # ....
-
-        # Old
-        self.instance.arc05 = Arc(
-            source=self.instance.heat_storage1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc06 = Arc(
+        self.instance.arc05 = Arc(
             source=self.instance.boiler1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        self.instance.arc07 = Arc(
+        self.instance.arc06 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.boiler1.gas_in
         )
-        self.instance.arc08 = Arc(
+        self.instance.arc07 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.chp1.gas_in
         )
-        
-        # Second Stage Arcs
+        # New
+        self.instance.arc08 = Arc(
+            source=self.instance.heat_storage1.heat_out,
+            destination=self.instance.heat_grid.heat_in
+        )
+        # New
         self.instance.arc09 = Arc(
+            source=self.instance.heat_grid.heat_out,
+            destination=self.instance.heat_storage1.heat_in
+        )
+        # Second Stage Arcs
+        self.instance.arc10 = Arc(
             source = self.instance.heat_storage1.dispatch_secondstage,
             destination=self.instance.heat_grid.heat_in_secondstage
         )
@@ -204,6 +207,8 @@ class Model:
 
     def _second_stage_cost_rule(self, model):
         return quicksum(model.heat_storage1.dispatch[t] * 1 for t in model.t)
+
+     
 
     def _gas_costs(self, model):
             """ Calculate gas costs for CHP and Boiler."""
