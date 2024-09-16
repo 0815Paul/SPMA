@@ -219,26 +219,24 @@ class Model:
 
     def add_arcs(self):
         """Add arcs to the instance."""
+        
         self.instance.arc01 = Arc(
             source=self.instance.chp1.power_out,
             destination=self.instance.power_grid.power_in
-        )
-        self.instance.arc02 = Arc(
-            source=self.instance.chp1.heat_out,
-            destination=self.instance.heat_storage1.heat_in
         )
         # New
         self.instance.arc03 = Arc(
             source=self.instance.chp2.power_out,
             destination=self.instance.power_grid.power_in
         )
+        # Updated 
+        self.instance.arc02 = Arc(
+            source=self.instance.chp1.heat_out,
+            destination=self.instance.heat_grid.heat_in
+        )
         # New
         self.instance.arc04 = Arc(
             source=self.instance.chp2.heat_out,
-            destination=self.instance.heat_storage1.heat_in
-        )
-        self.instance.arc05 = Arc(
-            source=self.instance.heat_storage1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
         self.instance.arc06 = Arc(
@@ -252,6 +250,16 @@ class Model:
         self.instance.arc08 = Arc(
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.chp1.gas_in
+        )
+        # New
+        self.instance.arc09 = Arc(
+            source=self.instance.heat_storage1.heat_out,
+            destination=self.instance.heat_grid.heat_in
+        )
+        # New
+        self.instance.arc10 = Arc(
+            source=self.instance.heat_grid.heat_out,
+            destination=self.instance.heat_storage1.heat_in
         )
 
     def solve(self):

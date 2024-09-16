@@ -135,19 +135,18 @@ class HeatGrid:
         )
 
         # Declare constraints
+
+        # New constraint
+        # Changed the constraint
         def heat_balance_rule(asset, t):
-            return asset.heat_balance[t] ==  asset.heat_feedin[t] - asset.heat_supply[t]
+            return asset.heat_balance[t] ==  asset.heat_feedin[t] - (asset.heat_supply[t] + asset.model().heat_demand[t])
         asset.heat_balance_constr = Constraint(t, rule=heat_balance_rule)
 
         def supply_heat_demand_rule(asset, t):
             """ Supply heat demand"""
             return asset.heat_balance[t] == 0
         asset.supply_heat_demand_constr = Constraint(t, rule=supply_heat_demand_rule)
+        
 
-        def heat_supply_rule(asset, t):
-            """ Heat supply"""
-            #print("heat_supply:",asset.heat_supply[t])
-            return asset.heat_supply[t] == asset.model().heat_demand[t]
-        asset.heat_supply_constr = Constraint(t, rule=heat_supply_rule)
 
       

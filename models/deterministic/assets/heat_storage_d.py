@@ -86,5 +86,12 @@ class HeatStorage:
         asset.capacity_balance_constr = Constraint(t, rule=capacity_balance_rule)
 
 
+        # New constraints
+        def charge_discharge_binary_rule(asset, t):
+            """Charge and discharge constraints"""
+            return asset.bin_charge[t] + asset.bin_discharge[t] <= 1
+        asset.charge_discharge_constr = Constraint(t, rule=charge_discharge_binary_rule)
+
+
 
    
