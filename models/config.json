@@ -35,6 +35,14 @@
       "root_path": "output/stochastic/root/",
       "parameter1": 0,
       "pparameter2": 0
+    },
+    "postprocessing": {
+      "input_path_s": "../data/output/stochastic/timeseries/",
+      "input_path_d": "../data/output/deterministic/timeseries/",
+      "log_path_s": "../data/output/stochastic/logs/",
+      "log_path_d": "../data/output/deterministic/logs/",
+      "output_path": "../data/postprocessing/",
+      "parameter2": 0
     }
   }
   
