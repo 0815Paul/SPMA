@@ -66,6 +66,10 @@ AVOIDED_GRID_FEES= global_config['avoided_grid_fees']  # €/kWhel
 SHARE_SELF_CONSUMPTION= global_config['share_self_consumption'] # %
 SHARE_FEED_IN= global_config['share_feed_in'] # %
 
+# Boiler
+POWERCOST_TO_HEAT_SALES_RATIO = global_config['power_cost_to_heat_sales_ratio'] 
+
+
 # Costs
 MAINTENANCE_COSTS = global_config['maintenance_cost'] # €/kWh (HS)
 
@@ -199,6 +203,7 @@ class Model:
     def _first_stage_cost_rule(self, model):
         return (
             self._gas_costs(model) + 
+            self._power_costs(model) +
             self._maintenance_costs(model) - 
             self._power_revenue(model) - 
             self._heat_revenue(model) - 
@@ -218,6 +223,12 @@ class Model:
             quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
             )
             return gas_costs
+    # New
+    def _power_costs(self, model):
+        """Calculate power costs for CHP."""
+        power_costs = quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * POWER_PRICE for t in model.t)
+        return power_costs
+
     
     def _maintenance_costs(self, model):
         """Calculate maintenance costs for CHP."""

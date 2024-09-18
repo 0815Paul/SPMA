@@ -6,8 +6,8 @@
       "dummy_heat_demand_file": "testing/dummy_heat_demand_20230402.json",
       "dummy_heat_demand_scenario_file": "testing/dummy_heat_demand_scenarios_20230402.json",
       "gas_price": 0.1543,
-      "power_price": 0.105,
-      "heat_price": 0.05,
+      "power_price": 0.251,
+      "heat_price": 0.105,
       "calorific_value_ngas": 10,
       "chp_bonus_self_consumption":0.08,
       "chp_bonus":0.16,
@@ -16,7 +16,8 @@
       "avoided_grid_fees": 0.0097,  
       "share_self_consumption": 0.03, 
       "share_feed_in":0.97,
-      "maintenance_cost": 1.8
+      "maintenance_cost": 1.8,
+      "power_cost_to_heat_sales_ratio": 0.02
     },
     "deterministic": {
       "input_path": "input/",
