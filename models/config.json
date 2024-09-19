@@ -44,6 +44,10 @@
       "log_path_d": "../data/output/deterministic/logs/",
       "output_path": "../data/postprocessing/",
       "parameter2": 0
+    },
+    "preprocessing": {
+      "input_path":"./data/raw/",
+      "output_path":"./data/demands/"
     }
   }
   
