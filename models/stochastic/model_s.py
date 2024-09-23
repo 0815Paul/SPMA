@@ -437,10 +437,10 @@ class Model:
         
         ###################### Start Debugging Print ######################
 
-        # output_filename = f'output_model_{scenario_name}.txt'
+        output_filename = f'output_model_{scenario_name}.txt'
 
-        # with open(output_filename, 'w') as f:
-        #     self.instance.pprint(ostream=f)
+        with open(output_filename, 'w') as f:
+            self.instance.pprint(ostream=f)
 
         ###################### End Debugging Print ######################
 

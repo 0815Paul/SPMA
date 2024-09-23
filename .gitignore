@@ -12,7 +12,7 @@
 .vscode
 
 data/raw
-data/input
+#data/input
 data_test
 
 # Byte-compiled / optimized / DLL files
