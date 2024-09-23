@@ -390,6 +390,28 @@ class Model:
         extracted_date = ''.join(numbers)
         return int(extracted_date)
 
+
+
+    def _extract_scenario_info(self, file):
+        """Extract the start date, end date, and period from the file name."""
+        base_name = os.path.basename(file)
+        if base_name.startswith('heat_demand_') and base_name.endswith('.json'):
+            extracted = base_name[len('heat_demand_'):-len('.json')]
+            # Zerlege die Zeichenkette
+            try:
+                start_to_end, period = extracted.rsplit('_', 1)
+                start_date_str, end_date_str = start_to_end.split('_to_')
+                # Konvertiere die Datumsstrings in Datumsobjekte
+                start_date = start_date_str
+                end_date = end_date_str
+                return start_date, end_date, period
+            except ValueError:
+                # Fehler bei der Zerlegung
+                return None, None, None
+        else:
+            return None, None, None
+
+
 if __name__ == "__main__":
     model = Model()
 
@@ -425,7 +447,8 @@ if __name__ == "__main__":
     
     print('Writing results...')
     model.write_results()
-    extracted_date = model._extract_scenario_date(FILE_HEAT_DEMAND)
-    output_file = f'd_{extracted_date}_ts.csv'
+    start_date, end_date, period = model._extract_scenario_info(FILE_HEAT_DEMAND)
+    output_file = f'd_{start_date}_to_{end_date}_{period}_ts.csv'
     model.save_results(PATH_OUT_TIMESERIES +  output_file)
+    
     

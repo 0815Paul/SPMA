@@ -1,8 +1,8 @@
 {
     "global": {
       "data_path": "../../data/",
-      "heat_demand_file": "heat_demand_20230402.json",
-      "heat_demand_scenario_file": "heat_demand_scenarios_20230402.json",
+      "heat_demand_file": "heat_demand_20230614_to_20230614_day.json",
+      "heat_demand_scenario_file": "reduced_heat_demand_scenarios_20230614_to_20230614_day.json",
       "dummy_heat_demand_file": "testing/dummy_heat_demand_20230402.json",
       "dummy_heat_demand_scenario_file": "testing/dummy_heat_demand_scenarios_20230402.json",
       "gas_price": 0.1543,

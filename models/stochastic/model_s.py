@@ -468,18 +468,31 @@ class Model:
     def solve(self):
         """Solve the model."""
         self.results = self.ef_instance.solve_extensive_form(tee=True)
-
-    def _extract_scenario_date(self, file):
-        """Extract Heat Demand date from the file name."""
-        numbers = re.findall(r'\d+', file)
-        extracted_numbers = ''.join(numbers)
-        return int(extracted_numbers)
+    
+    def _extract_scenario_info(self, file):
+        """Extract the start date, end date, and period from the file name."""
+        base_name = os.path.basename(file)
+        if base_name.startswith('heat_demand_') and base_name.endswith('.json'):
+            extracted = base_name[len('heat_demand_'):-len('.json')]
+            # Zerlege die Zeichenkette
+            try:
+                start_to_end, period = extracted.rsplit('_', 1)
+                start_date_str, end_date_str = start_to_end.split('_to_')
+                # Konvertiere die Datumsstrings in Datumsobjekte
+                start_date = start_date_str
+                end_date = end_date_str
+                return start_date, end_date, period
+            except ValueError:
+                # Fehler bei der Zerlegung
+                return None, None, None
+        else:
+            return None, None, None
 
     def write_results(self, ef):
         """Write results to file."""
 
         # Extract the Date from the file name
-        extracted_date = self._extract_scenario_date(FILE_HEAT_DEMAND)
+        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
 
         # Root solution extraction
         root_solution = self.ef_instance.get_root_solution()
@@ -505,7 +518,7 @@ class Model:
         df_root_solution = df_root_solution.sort_index()
 
         # Save the root solution to a CSV file
-        root_output_file = f's_{extracted_date}_rs.csv'
+        root_output_file = f's_{start_date}_to_{end_date}_{period}_rs.csv'
         df_root_solution.to_csv(PATH_OUT_ROOT + root_output_file)
 
 
@@ -531,7 +544,8 @@ class Model:
             df_output.index.name = 't'
             
 
-            output_file = f's_{sname}_{extracted_date}_ts.csv'
+  
+            output_file = f's_{sname}_{start_date}_to_{end_date}_{period}_ts.csv'
             df_output.to_csv(PATH_OUT_TIMESERIES + output_file)
             #print(f'Results for {sname} written to {output_file}')
 
@@ -541,6 +555,8 @@ class Model:
         """Writes he Objective-Value for each scenario."""
         results = []
         
+        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+
         for sname, smodel in sputils.ef_scenarios(ef):
             objective_value = pyo.value(smodel.objective)
             results.append({'Scenario:': sname, 'ObjectiveValue': objective_value})
@@ -550,9 +566,8 @@ class Model:
 
         if not os.path.exists(PATH_OUT_OBJECTIVES):
             os.makedirs(PATH_OUT_OBJECTIVES)
-        
-        extracted_numbers = self._extract_scenario_date(FILE_HEAT_DEMAND)
+
 
         # Speichere den DataFrame als CSV-Datei
-        output_filename = f"{PATH_OUT_OBJECTIVES}s_{extracted_numbers}_obj.csv"
+        output_filename = f"{PATH_OUT_OBJECTIVES}s_{start_date}_to_{end_date}_{period}_obj.csv"
         df_results.to_csv(output_filename, index=False)
