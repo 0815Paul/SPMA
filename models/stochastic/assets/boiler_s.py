@@ -107,7 +107,7 @@ class Boiler:
 
         # __________________________________
 
-      
+
         def y_constraint1_upper(asset, t):
             """Big-M constraint 1 - upper bound"""
             return asset.y1[t] + asset.y2[t] == asset.bin[t]
@@ -124,13 +124,6 @@ class Boiler:
             return asset.heat[t] >= heat_2 * asset.y2[t]
         asset.gas_depends_on_thermal_load3 = Constraint(t, rule=gas_depends_on_thermal_load_rule3)
        
-        # ______ Another way to implement the constraint from above ______
-
-        # def gas_depends_on_thermal_load_rule(asset, t):
-        #     return asset.heat[t] <= heat_2 * asset.y1[t] + heat_3 * asset.y2[t]
-        # asset.gas_depends_on_thermal_load = Constraint(t, rule=gas_depends_on_thermal_load_rule)
-
-        # ________________________________________________________________
 
         # Upper bound
         def gas_depends_on_thermal_load_constr1(asset, t):
@@ -141,8 +134,6 @@ class Boiler:
             return asset.gas[t] <= (linear_function(asset.heat[t], heat_2, heat_3, gas_2, gas_3) + M * (1 - asset.y2[t]))*asset.bin[t]
         asset.gas_depends_on_thermal_constr2 = Constraint(t, rule=gas_depends_on_thermal_load_constr2)
         
-        # ______ Lower Bound Constraints for gas consumption depending on the thermal load ______
-
         #Lower bound
         def gas_depends_on_thermal_load_constr1_lower(asset, t):
             return asset.gas[t] >= (linear_function(asset.heat[t], heat_1, heat_2, gas_1, gas_2)- M * (1 - asset.y1[t]))*asset.bin[t]
@@ -151,9 +142,6 @@ class Boiler:
         def gas_depends_on_thermal_load_constr2_lower(asset, t):
             return asset.gas[t] >= (linear_function(asset.heat[t], heat_2, heat_3, gas_2, gas_3) - M * (1 - asset.y2[t]))*asset.bin[t]
         asset.gas_depends_on_thermal_load2_lower = Constraint(t, rule=gas_depends_on_thermal_load_constr2_lower)
-
-        # ________________________________________________________________________________________
-
 
         # Big M constraints for thermal efficiency depending on the thermal load
         
@@ -166,7 +154,7 @@ class Boiler:
             return asset.eta_th[t] <= (linear_function(asset.heat[t], heat_2, heat_3, eta_th_2, eta_th_3) + M * (1 - asset.y2[t]))* asset.bin[t]
         asset.thermal_efficiency_depends_on_thermal_load2 = Constraint(t, rule=thermal_efficiency_depends_on_thermal_load_constr2)
 
-        # ______ Lower Bound Constraints for thermal efficiency depending on the thermal load ______
+        # Lower Bound 
 
         def thermal_efficiency_depends_on_thermal_load_constr1_lower(asset, t):
             return asset.eta_th[t] >= (linear_function(asset.heat[t], heat_1, heat_2, eta_th_1, eta_th_2)- M * (1 - asset.y1[t])) * asset.bin[t]
@@ -176,9 +164,4 @@ class Boiler:
             return asset.eta_th[t] >= (linear_function(asset.heat[t], heat_2, heat_3, eta_th_2, eta_th_3) - M * (1 - asset.y2[t]))* asset.bin[t]
         asset.thermal_efficiency_depends_on_thermal_load2_lower = Constraint(t, rule=thermal_efficiency_depends_on_thermal_load_constr2_lower)
         
-        # __________________________________________________________________________________________
-  
-
-        # def test(asset, t):
-        #     return asset.x[t] == asset.model().delta_heat_demand_scenario[t]
-        # asset.test = Constraint(t, rule=test)
+       

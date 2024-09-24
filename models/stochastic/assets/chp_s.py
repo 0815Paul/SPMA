@@ -41,6 +41,19 @@ class Chp:
         asset.y1 = Var(t, domain=Binary)
         asset.y2 = Var(t, domain=Binary)
 
+        # Second stage components
+
+        # asset.dispatch_power = Var(t, domain=NonNegativeReals)
+        # asset.dispatch_gas = Var(t, domain=NonNegativeReals)
+        # asset.dispatch_heat = Var(t, domain=NonNegativeReals)
+        # asset.dispatch_eta_th = Var(t, domain=NonNegativeReals)
+        # asset.dispatch_eta_el = Var(t, domain=NonNegativeReals)
+        
+        # asset.dispatch_y1 = Var(t, domain=Binary)
+        # asset.dispatch_y2 = Var(t, domain=Binary)
+        # asset.dispatch_bin = Var(t, within=Binary)
+
+
         asset.power_out = Port()
         asset.power_out.add(
             asset.power,
@@ -65,7 +78,6 @@ class Chp:
             include_splitfrac=False
         )
         
-
         chp_op_data = self.data
 
         # Heat
@@ -136,15 +148,8 @@ class Chp:
         def gas_depends_on_thermal_load_rule3(asset, t):
             return asset.heat[t] >= heat_2 * asset.y2[t]
         asset.gas_depends_on_thermal_load3 = Constraint(t, rule=gas_depends_on_thermal_load_rule3)
-       
-        # ______ Another way to implement the constraint from above ______
 
-        # def gas_depends_on_thermal_load_rule(asset, t):
-        #     return asset.heat[t] <= heat_2 * asset.y1[t] + heat_3 * asset.y2[t]
-        # asset.gas_depends_on_thermal_load = Constraint(t, rule=gas_depends_on_thermal_load_rule)
-
-        # ________________________________________________________________
-
+        
         # Big-M constraints for power depending on thermal load
 
         # Upper bound
@@ -156,7 +161,7 @@ class Chp:
             return asset.power[t] <= (linear_function(asset.heat[t], heat_2, heat_3, power_2, power_3) + M * (1 - asset.y2[t]))* asset.bin[t]
         asset.power_depends_on_thermal_load2 = Constraint(t, rule=power_depends_on_thermal_load_constr2)
 
-        # ______ Lower Bound Constraints for gas consumption depending on the thermal load ______
+        # Lower bound
 
         def power_depends_on_thermal_load_constr1_lower(asset, t):
             return asset.power[t] >= linear_function(asset.heat[t], heat_1, heat_2, power_1, power_2) - M * (1 - asset.y1[t])
@@ -166,9 +171,6 @@ class Chp:
             return asset.power[t] >= linear_function(asset.heat[t], heat_2, heat_3, power_2, power_3) - M * (1 - asset.y2[t])
         asset.power_depends_on_thermal_load2_lower = Constraint(t, rule=power_depends_on_thermal_load_constr2_lower)
         
-        # ________________________________________________________________________________________
-
-
         # Big-M constraints for gas depending on thermal load
         
         # Upper bound
@@ -231,11 +233,139 @@ class Chp:
             return asset.eta_el[t] >= (linear_function(asset.heat[t], heat_2, heat_3, eta_el_2, eta_el_3) - M * (1 - asset.y2[t]))*asset.bin[t]
         asset.electrical_efficiency_depends_on_thermal_load2_lower = Constraint(t, rule=electrical_efficiency_depends_on_thermal_load_constr2_lower)
 
+        ########################################## NOT IMPLEMENTED ##########################################
 
         # Second stage constraints
+        # Dispatch constraints
+
+        # asset.dispatch_heat_out = Port()
+        # asset.dispatch_heat_out.add(
+        #     asset.dispatch_heat,
+        #     'heat',
+        #     Port.Extensive,
+        #     include_splitfrac=False
+        # )
+
+        # asset.dispatch_power_out = Port()
+        # asset.dispatch_power_out.add(
+        #     asset.dispatch_power,
+        #     'power',
+        #     Port.Extensive,
+        #     include_splitfrac=False
+        # )
+
+        # asset.dispatch_gas_in = Port()
+        # asset.dispatch_gas_in.add(
+        #     asset.dispatch_gas,
+        #     'gas',
+        #     Port.Extensive,
+        #     include_splitfrac=False
+        # )
+        
+        # def dispatch_y_constraint1_upper(asset, t):
+        #     """Big-M constraint 1 - upper bound"""
+        #     return asset.dispatch_y1[t] + asset.dispatch_y2[t] == asset.dispatch_bin[t]
+        # asset.y_constr1_upper = Constraint(t, rule=dispatch_y_constraint1_upper)
+
+
+        # def dispatch_thermal_load_max_rule(asset, t):
+        #     """Rule for the maximum thermal load."""
+        #     thermal_load_max = chp_op_data.loc[3, 'heat']
+        #     return asset.heat[t] + asset.dispatch_heat[t] <= thermal_load_max * asset.dispatch_bin[t]
+        # asset.thermal_load_max_constr = Constraint(t, rule=dispatch_thermal_load_max_rule)
+
+        # def dispatch_thermal_load_min_rule(asset, t):
+        #     """Rule for the minimum thermal load."""
+        #     thermal_load_min = chp_op_data.loc[1, 'heat']
+        #     return thermal_load_min * asset.dispatch_bin[t] <= asset.heat[t] + asset.dispatch_heat[t]
+        # asset.thermal_load_min_constr = Constraint(t, rule=dispatch_thermal_load_min_rule)
+
+        # def dispatch_gas_depends_on_thermal_load_rule2(asset, t):
+        #     return asset.heat[t] + asset.dispatch_heat[t] <= heat_2 *asset.dispatch_y1[t]
+        # asset.gas_depends_on_thermal_load2 = Constraint(t, rule=dispatch_gas_depends_on_thermal_load_rule2)
+    
+
+        # def dispatch_gas_depends_on_thermal_load_rule3(asset, t):
+        #     return asset.heat[t] + asset.dispatch_heat[t] >= heat_2 * asset.dispatch_y2[t]
+        # asset.gas_depends_on_thermal_load3 = Constraint(t, rule=dispatch_gas_depends_on_thermal_load_rule3)
+
+        # # Upper bound
+        # def dispatch_power_depends_on_thermal_load_constr1(asset, t):
+        #     return asset.power[t] + asset.dispatch_power[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, power_1, power_2)  + M * (1 - asset.dispatch_y1[t]))*asset.dispatch_bin[t]
+        # asset.power_depends_on_thermal_load1 = Constraint(t, rule=dispatch_power_depends_on_thermal_load_constr1)
+
+        # def dispatch_power_depends_on_thermal_load_constr2(asset, t):
+        #     return asset.power[t] + asset.dispatch_power[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, power_2, power_3) + M * (1 - asset.dispatch_y2[t]))* asset.dispatch_bin[t]
+        # asset.power_depends_on_thermal_load2 = Constraint(t, rule=dispatch_power_depends_on_thermal_load_constr2)
+
+        # # ______ Lower Bound Constraints for gas consumption depending on the thermal load ______
+
+        # def dispatch_power_depends_on_thermal_load_constr1_lower(asset, t):
+        #     return asset.power[t] + asset.dispatch_power[t] >= linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, power_1, power_2) - M * (1 - asset.dispatch_y1[t])
+        # asset.power_depends_on_thermal_load1_lower = Constraint(t, rule=dispatch_power_depends_on_thermal_load_constr1_lower)
+
+        # def dispatch_power_depends_on_thermal_load_constr2_lower(asset, t): 
+        #     return asset.power[t] + asset.dispatch_power[t] >= linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, power_2, power_3) - M * (1 - asset.dispatch_y2[t])
+        # asset.power_depends_on_thermal_load2_lower = Constraint(t, rule=dispatch_power_depends_on_thermal_load_constr2_lower)
 
         
-
-
-
+        # # Big-M constraints for gas depending on thermal load
         
+        # # Upper bound
+        # def dispatch_gas_depends_on_thermal_load_constr1(asset, t):
+        #     return asset.gas[t] + asset.dispatch_gas[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, gas_1, gas_2) + M * (1 - asset.dispatch_y1[t])) * asset.dispatch_bin[t]
+        # asset.gas_depends_on_thermal_load1 = Constraint(t, rule=dispatch_gas_depends_on_thermal_load_constr1)
+
+        # def dispatch_gas_depends_on_thermal_load_constr2(asset, t):
+        #     return asset.gas[t] + asset.dispatch_gas[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, gas_2, gas_3)  + M * (1 - asset.dispatch_y2[t])) *asset.dispatch_bin[t]
+        # asset.gas_depends_on_thermal_load2 = Constraint(t, rule=dispatch_gas_depends_on_thermal_load_constr2)
+        
+        # # Lower bound
+        # def dispatch_gas_depends_on_thermal_load_constr1_lower(asset, t):
+        #     return asset.gas[t] + asset.dispatch_gas[t] >= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, gas_1, gas_2)  - M * (1 - asset.dispatch_y1[t])) *asset.dispatch_bin[t]
+        # asset.gas_depends_on_thermal_load1_lower = Constraint(t, rule=dispatch_gas_depends_on_thermal_load_constr1_lower)
+
+        # def dispatch_gas_depends_on_thermal_load_constr2_lower(asset, t):
+        #     return asset.gas[t] + asset.dispatch_gas[t] >= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, gas_2, gas_3) - M * (1 - asset.dispatch_y2[t])) *asset.dispatch_bin[t]
+        # asset.gas_depends_on_thermal_load2_lower = Constraint(t, rule=dispatch_gas_depends_on_thermal_load_constr2_lower)
+
+        #  # Big-M constraints for thermal efficiency depending on thermal load
+
+        # # Upper bound
+        # def dispatch_thermal_efficiency_depends_on_thermal_load_constr1(asset, t):
+        #     return asset.dispatch_eta_th[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, eta_th_1, eta_th_2) + M * (1 - asset.dispatch_y1[t])) *asset.dispatch_bin[t]
+        # asset.thermal_efficiency_depends_on_thermal_load1 = Constraint(t, rule=dispatch_thermal_efficiency_depends_on_thermal_load_constr1)
+       
+        # def dispatch_thermal_efficiency_depends_on_thermal_load_constr2(asset, t):
+        #     return asset.dispatch_eta_th[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, eta_th_2, eta_th_3) + M * (1 - asset.dispatch_y2[t]))*asset.dispatch_bin[t]
+        # asset.thermal_efficiency_depends_on_thermal_load2 = Constraint(t, rule=dispatch_thermal_efficiency_depends_on_thermal_load_constr2)
+
+        # # Lower bound
+        # def dispatch_thermal_efficiency_depends_on_thermal_load_constr1_lower(asset, t):
+        #     return asset.dispatch_eta_th[t] >= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, eta_th_1, eta_th_2) - M * (1 - asset.dispatch_y1[t])) *asset.dispatch_bin[t]
+        # asset.thermal_efficiency_depends_on_thermal_load1_lower = Constraint(t, rule=dispatch_thermal_efficiency_depends_on_thermal_load_constr1_lower)
+
+        # def dispatch_thermal_efficiency_depends_on_thermal_load_constr2_lower(asset, t):
+        #     return asset.dispatch_eta_th[t] >= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, eta_th_2, eta_th_3) - M * (1 - asset.dispatch_y2[t])) *asset.dispatch_bin[t]
+        # asset.thermal_efficiency_depends_on_thermal_load2_lower = Constraint(t, rule=dispatch_thermal_efficiency_depends_on_thermal_load_constr2_lower)
+   
+        # # Upper bound
+        # def dispatch_electrical_efficiency_depends_on_thermal_load_constr1(asset, t):
+        #     return asset.dispatch_eta_el[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, eta_el_1, eta_el_2) + M * (1 - asset.dispatch_y1[t])) *asset.dispatch_bin[t]
+        # asset.electrical_efficiency_depends_on_thermal_load1 = Constraint(t, rule=dispatch_electrical_efficiency_depends_on_thermal_load_constr1)
+
+
+        # def dispatch_electrical_efficiency_depends_on_thermal_load_constr2(asset, t):
+        #     return asset.dispatch_eta_el[t] <= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, eta_el_2, eta_el_3) + M * (1 - asset.dispatch_y2[t]))*asset.dispatch_bin[t]
+        # asset.electrical_efficiency_depends_on_thermal_load2 = Constraint(t, rule=dispatch_electrical_efficiency_depends_on_thermal_load_constr2)
+
+        # # Lower bound
+        # def dispatch_electrical_efficiency_depends_on_thermal_load_constr1_lower(asset, t):
+        #     return asset.dispatch_eta_el[t] >= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_1, heat_2, eta_el_1, eta_el_2) - M * (1 - asset.dispatch_y1[t])) *asset.dispatch_bin[t]
+        # asset.electrical_efficiency_depends_on_thermal_load1_lower = Constraint(t, rule=dispatch_electrical_efficiency_depends_on_thermal_load_constr1_lower)
+
+        # def dispatch_electrical_efficiency_depends_on_thermal_load_constr2_lower(asset, t):
+        #     return asset.dispatch_eta_el[t] >= (linear_function(asset.heat[t] + asset.dispatch_heat[t], heat_2, heat_3, eta_el_2, eta_el_3) - M * (1 - asset.dispatch_y2[t]))*asset.dispatch_bin[t]
+        # asset.electrical_efficiency_depends_on_thermal_load2_lower = Constraint(t, rule=dispatch_electrical_efficiency_depends_on_thermal_load_constr2_lower)
+
+        #######################################################################################################

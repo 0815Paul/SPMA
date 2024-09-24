@@ -185,10 +185,30 @@ class Model:
             destination=self.instance.heat_storage1.heat_in
         )
         # Second Stage Arcs
+
+        # New
         self.instance.arc10 = Arc(
-            source = self.instance.heat_storage1.dispatch_secondstage,
-            destination=self.instance.heat_grid.heat_in_secondstage
+            source = self.instance.heat_storage1.dispatch_heat_out,
+            destination = self.instance.heat_grid.dispatch_heat_in
         )
+        self.instance.arc11 = Arc(
+            source = self.instance.heat_grid.dispatch_heat_out,
+            destination = self.instance.heat_storage1.dispatch_heat_in
+        )
+        # self.instance.arc12 = Arc(
+        #     source = self.instance.chp1.dispatch_heat_out,
+        #     destination = self.instance.heat_grid.dispatch_heat_in
+        # )
+        # self.instance.arc13 = Arc(
+        #     source = self.instance.chp1.dispatch_power_out,
+        #     destination = self.instance.power_grid.dispatch_power_in
+        # )
+        # self.instance.arc14 = Arc(
+        #     source = self.instance.ngas_grid.dispatch_gas_out,
+        #     destination = self.instance.chp1.dispatch_gas_in
+        # )
+
+
 
 
     def _expand_arcs(self):
@@ -211,7 +231,12 @@ class Model:
         )
 
     def _second_stage_cost_rule(self, model):
-        return quicksum(model.heat_storage1.dispatch[t] * 1 for t in model.t)
+        second = (
+            quicksum(model.heat_storage1.dispatch_heat_charge[t] * 1 for t in model.t) +
+            quicksum(model.heat_storage1.dispatch_heat_discharge[t] * 1 for t in model.t) 
+            
+        )
+        return second
 
      
 
@@ -361,6 +386,16 @@ class Model:
                    self.instance.chp1.heat,
                    self.instance.chp1.eta_th,
                    self.instance.chp1.eta_el,
+                   self.instance.chp1.y1,
+                   self.instance.chp1.y2,
+                   self.instance.chp2.bin, 
+                   self.instance.chp2.power,
+                   self.instance.chp2.gas,
+                   self.instance.chp2.heat,
+                   self.instance.chp2.eta_th,
+                   self.instance.chp2.eta_el,
+                   self.instance.chp2.y1,
+                   self.instance.chp2.y2,
                    self.instance.boiler1.bin,
                    self.instance.boiler1.heat,
                    self.instance.boiler1.gas,

@@ -62,6 +62,26 @@ class ElectricalGrid:
             return asset.power_balance[t] == asset.power_supply[t] - asset.power_feedin[t]
         asset.power_balance_constr = Constraint(t, rule=power_balance_rule)
 
+        ########################################################################
+       
+        # asset.dispatch_power_feedin = Var(t, within=NonNegativeReals)
+
+        # # Declare second stage components
+        # asset.dispatch_power_in = Port()
+        # asset.dispatch_power_in.add(
+        #     asset.dispatch_power_feedin,
+        #     'power',
+        #     Port.Extensive,
+        #     include_splitfrac=False
+        # )
+
+        # def dispatch_max_power_feedin_rule(asset, t):
+        #     """Maximum power feed-in constraint"""
+        #     return asset.dispatch_power_feedin[t] <= self.data.loc['max', 'power']
+        # asset.max_power_feedin_constr = Constraint(t, rule=dispatch_max_power_feedin_rule)
+
+
+
 
 class NGasGrid:
     """"Natural Gas Grid class"""
@@ -89,6 +109,16 @@ class NGasGrid:
             Port.Extensive,
             include_splitfrac=False
         )
+
+        # asset.dispatch_gas_balance = Var(t, within=Reals)
+
+        # asset.dispatch_gas_out = Port()
+        # asset.dispatch_gas_out.add(
+        #     asset.dispatch_gas_balance,
+        #     'gas',
+        #     Port.Extensive,
+        #     include_splitfrac=False
+        # )
 
 class HeatGrid:
     """"Heat Grid class"""
@@ -121,7 +151,9 @@ class HeatGrid:
         # Declare second stage components
         # asset.dispatch_heat_balance = Var(t, within=NonNegativeReals)
         # asset.dispatch_heat_supply = Var(t, within=NonNegativeReals)
-        asset.dispatch_heat_feedin = Var(t, within=Reals)
+        asset.dispatch_heat_feedin = Var(t, within=NonNegativeReals)
+        asset.dispatch_heat_supply = Var(t, within=NonNegativeReals)
+        asset.dispatch_heat_balance = Var(t, within=Reals)
 
         # asset.excess_heat_demand = Var(t, within=NonNegativeReals)
         # asset.deficit_heat_demand = Var(t, within=NonNegativeReals)
@@ -187,10 +219,10 @@ class HeatGrid:
         # asset.deficit_heat_demand_constr = Constraint(t, rule=deficit_heat_demand_rule)
 
         # New
-        def dispatch_heat_feedin_rule(asset, t):
-            """ Decide if Excess or Deficit Dispatch heat feedin """
-            return asset.dispatch_heat_feedin[t] == asset.model().delta_heat_demand[t]
-        asset.dispatch_heat_feedin_constr = Constraint(t, rule=dispatch_heat_feedin_rule)
+        # def dispatch_heat_feedin_rule(asset, t):
+        #     """ Decide if Excess or Deficit Dispatch heat feedin """
+        #     return asset.dispatch_heat_feedin[t] == asset.model().delta_heat_demand[t]
+        # asset.dispatch_heat_feedin_constr = Constraint(t, rule=dispatch_heat_feedin_rule)
 
 
         # def dispatch_heat_balance_rule(asset, t):
@@ -199,3 +231,26 @@ class HeatGrid:
         # asset.dispatch_heat_balance_constr = Constraint(t, rule=dispatch_heat_balance_rule)
 
 
+        asset.dispatch_heat_in = Port()
+        asset.dispatch_heat_in.add(
+            asset.dispatch_heat_feedin,
+            'heat',
+            Port.Extensive,
+            include_splitfrac=False
+        )
+
+        asset.dispatch_heat_out = Port()
+        asset.dispatch_heat_out.add(
+            asset.dispatch_heat_supply,
+            'heat',
+            Port.Extensive,
+            include_splitfrac=False
+        )
+
+        def dispatch_balance_rule(asset, t):
+            return asset.dispatch_heat_balance[t] == asset.model().delta_heat_demand[t] + asset.dispatch_heat_feedin[t] - asset.dispatch_heat_supply[t]
+        asset.dispatch_balance_constr = Constraint(t, rule=dispatch_balance_rule)
+
+        def dispatch_balance_rule_2(asset, t):
+            return asset.dispatch_heat_balance[t] == 0
+        asset.dispatch_balance_constr_2 = Constraint(t, rule=dispatch_balance_rule_2)
