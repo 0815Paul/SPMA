@@ -72,9 +72,9 @@ class Boiler:
         gas_2 = heat_2 / eta_th_2
         gas_3 = heat_3 / eta_th_3
 
-        # print("Gas Boiler :", gas_1, gas_2, gas_3)
-        # print("Heat Boiler:", heat_1, heat_2, heat_3)
-        # print("eta_th Boiler:", eta_th_1, eta_th_2, eta_th_3)
+        print("Gas Boiler :", gas_1, gas_2, gas_3)
+        print("Heat Boiler:", heat_1, heat_2, heat_3)
+        print("eta_th Boiler:", eta_th_1, eta_th_2, eta_th_3)
 
         # Constraints
 

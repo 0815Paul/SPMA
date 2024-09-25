@@ -148,15 +148,6 @@ class HeatGrid:
         asset.heat_supply = Var(t, within=NonNegativeReals)
         asset.heat_feedin = Var(t, within=NonNegativeReals)
         
-        # Declare second stage components
-        # asset.dispatch_heat_balance = Var(t, within=NonNegativeReals)
-        # asset.dispatch_heat_supply = Var(t, within=NonNegativeReals)
-        asset.dispatch_heat_feedin = Var(t, within=NonNegativeReals)
-        asset.dispatch_heat_supply = Var(t, within=NonNegativeReals)
-        asset.dispatch_heat_balance = Var(t, within=Reals)
-
-        # asset.excess_heat_demand = Var(t, within=NonNegativeReals)
-        # asset.deficit_heat_demand = Var(t, within=NonNegativeReals)
 
         # Declare ports
         asset.heat_in = Port()
@@ -194,6 +185,11 @@ class HeatGrid:
 
         # Declare second stage constraints
 
+        # Declare second stage components
+        asset.dispatch_heat_feedin = Var(t, within=NonNegativeReals)
+        asset.dispatch_heat_supply = Var(t, within=NonNegativeReals)
+        asset.dispatch_heat_balance = Var(t, within=Reals)
+        
         asset.heat_in_secondstage = Port()
         asset.heat_in_secondstage.add(
             asset.dispatch_heat_feedin,

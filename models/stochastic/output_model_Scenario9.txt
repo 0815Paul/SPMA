@@ -2927,7 +2927,7 @@
                 Key  : Name : Size : Variable
                 None : heat :   24 : heat_grid.heat_supply
 
-        16 Declarations: heat_balance heat_supply heat_feedin dispatch_heat_feedin dispatch_heat_supply dispatch_heat_balance heat_in heat_out heat_balance_constr supply_heat_demand_constr heat_in_secondstage dispatch_heat_in dispatch_heat_out dispatch_balance_constr dispatch_balance_constr_2 heat_in_heat_insum
+        16 Declarations: heat_balance heat_supply heat_feedin heat_in heat_out heat_balance_constr supply_heat_demand_constr dispatch_heat_feedin dispatch_heat_supply dispatch_heat_balance heat_in_secondstage dispatch_heat_in dispatch_heat_out dispatch_balance_constr dispatch_balance_constr_2 heat_in_heat_insum
     heat_storage1 : Size=1, Index=None, Active=True
         9 Var Declarations
             bin_charge : Size=24, Index=t
@@ -3298,56 +3298,56 @@
                  24 :   0.0 : arc08_expanded.heat[24] - heat_storage1.heat_discharge[24] :   0.0 :   True
             max_heat_capacity_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                            : Upper  : Active
-                  1 :  -Inf :  heat_storage1.heat_capacity[1] : 2500.0 :   True
-                  2 :  -Inf :  heat_storage1.heat_capacity[2] : 2500.0 :   True
-                  3 :  -Inf :  heat_storage1.heat_capacity[3] : 2500.0 :   True
-                  4 :  -Inf :  heat_storage1.heat_capacity[4] : 2500.0 :   True
-                  5 :  -Inf :  heat_storage1.heat_capacity[5] : 2500.0 :   True
-                  6 :  -Inf :  heat_storage1.heat_capacity[6] : 2500.0 :   True
-                  7 :  -Inf :  heat_storage1.heat_capacity[7] : 2500.0 :   True
-                  8 :  -Inf :  heat_storage1.heat_capacity[8] : 2500.0 :   True
-                  9 :  -Inf :  heat_storage1.heat_capacity[9] : 2500.0 :   True
-                 10 :  -Inf : heat_storage1.heat_capacity[10] : 2500.0 :   True
-                 11 :  -Inf : heat_storage1.heat_capacity[11] : 2500.0 :   True
-                 12 :  -Inf : heat_storage1.heat_capacity[12] : 2500.0 :   True
-                 13 :  -Inf : heat_storage1.heat_capacity[13] : 2500.0 :   True
-                 14 :  -Inf : heat_storage1.heat_capacity[14] : 2500.0 :   True
-                 15 :  -Inf : heat_storage1.heat_capacity[15] : 2500.0 :   True
-                 16 :  -Inf : heat_storage1.heat_capacity[16] : 2500.0 :   True
-                 17 :  -Inf : heat_storage1.heat_capacity[17] : 2500.0 :   True
-                 18 :  -Inf : heat_storage1.heat_capacity[18] : 2500.0 :   True
-                 19 :  -Inf : heat_storage1.heat_capacity[19] : 2500.0 :   True
-                 20 :  -Inf : heat_storage1.heat_capacity[20] : 2500.0 :   True
-                 21 :  -Inf : heat_storage1.heat_capacity[21] : 2500.0 :   True
-                 22 :  -Inf : heat_storage1.heat_capacity[22] : 2500.0 :   True
-                 23 :  -Inf : heat_storage1.heat_capacity[23] : 2500.0 :   True
-                 24 :  -Inf : heat_storage1.heat_capacity[24] : 2500.0 :   True
+                  1 :  -Inf :  heat_storage1.heat_capacity[1] : 1000.0 :   True
+                  2 :  -Inf :  heat_storage1.heat_capacity[2] : 1000.0 :   True
+                  3 :  -Inf :  heat_storage1.heat_capacity[3] : 1000.0 :   True
+                  4 :  -Inf :  heat_storage1.heat_capacity[4] : 1000.0 :   True
+                  5 :  -Inf :  heat_storage1.heat_capacity[5] : 1000.0 :   True
+                  6 :  -Inf :  heat_storage1.heat_capacity[6] : 1000.0 :   True
+                  7 :  -Inf :  heat_storage1.heat_capacity[7] : 1000.0 :   True
+                  8 :  -Inf :  heat_storage1.heat_capacity[8] : 1000.0 :   True
+                  9 :  -Inf :  heat_storage1.heat_capacity[9] : 1000.0 :   True
+                 10 :  -Inf : heat_storage1.heat_capacity[10] : 1000.0 :   True
+                 11 :  -Inf : heat_storage1.heat_capacity[11] : 1000.0 :   True
+                 12 :  -Inf : heat_storage1.heat_capacity[12] : 1000.0 :   True
+                 13 :  -Inf : heat_storage1.heat_capacity[13] : 1000.0 :   True
+                 14 :  -Inf : heat_storage1.heat_capacity[14] : 1000.0 :   True
+                 15 :  -Inf : heat_storage1.heat_capacity[15] : 1000.0 :   True
+                 16 :  -Inf : heat_storage1.heat_capacity[16] : 1000.0 :   True
+                 17 :  -Inf : heat_storage1.heat_capacity[17] : 1000.0 :   True
+                 18 :  -Inf : heat_storage1.heat_capacity[18] : 1000.0 :   True
+                 19 :  -Inf : heat_storage1.heat_capacity[19] : 1000.0 :   True
+                 20 :  -Inf : heat_storage1.heat_capacity[20] : 1000.0 :   True
+                 21 :  -Inf : heat_storage1.heat_capacity[21] : 1000.0 :   True
+                 22 :  -Inf : heat_storage1.heat_capacity[22] : 1000.0 :   True
+                 23 :  -Inf : heat_storage1.heat_capacity[23] : 1000.0 :   True
+                 24 :  -Inf : heat_storage1.heat_capacity[24] : 1000.0 :   True
             max_heat_capacity_secondstage_rule : Size=24, Index=t, Active=True
                 Key : Lower : Body                                     : Upper  : Active
-                  1 :  -Inf :  heat_storage1.dispatch_heat_capacity[1] : 2500.0 :   True
-                  2 :  -Inf :  heat_storage1.dispatch_heat_capacity[2] : 2500.0 :   True
-                  3 :  -Inf :  heat_storage1.dispatch_heat_capacity[3] : 2500.0 :   True
-                  4 :  -Inf :  heat_storage1.dispatch_heat_capacity[4] : 2500.0 :   True
-                  5 :  -Inf :  heat_storage1.dispatch_heat_capacity[5] : 2500.0 :   True
-                  6 :  -Inf :  heat_storage1.dispatch_heat_capacity[6] : 2500.0 :   True
-                  7 :  -Inf :  heat_storage1.dispatch_heat_capacity[7] : 2500.0 :   True
-                  8 :  -Inf :  heat_storage1.dispatch_heat_capacity[8] : 2500.0 :   True
-                  9 :  -Inf :  heat_storage1.dispatch_heat_capacity[9] : 2500.0 :   True
-                 10 :  -Inf : heat_storage1.dispatch_heat_capacity[10] : 2500.0 :   True
-                 11 :  -Inf : heat_storage1.dispatch_heat_capacity[11] : 2500.0 :   True
-                 12 :  -Inf : heat_storage1.dispatch_heat_capacity[12] : 2500.0 :   True
-                 13 :  -Inf : heat_storage1.dispatch_heat_capacity[13] : 2500.0 :   True
-                 14 :  -Inf : heat_storage1.dispatch_heat_capacity[14] : 2500.0 :   True
-                 15 :  -Inf : heat_storage1.dispatch_heat_capacity[15] : 2500.0 :   True
-                 16 :  -Inf : heat_storage1.dispatch_heat_capacity[16] : 2500.0 :   True
-                 17 :  -Inf : heat_storage1.dispatch_heat_capacity[17] : 2500.0 :   True
-                 18 :  -Inf : heat_storage1.dispatch_heat_capacity[18] : 2500.0 :   True
-                 19 :  -Inf : heat_storage1.dispatch_heat_capacity[19] : 2500.0 :   True
-                 20 :  -Inf : heat_storage1.dispatch_heat_capacity[20] : 2500.0 :   True
-                 21 :  -Inf : heat_storage1.dispatch_heat_capacity[21] : 2500.0 :   True
-                 22 :  -Inf : heat_storage1.dispatch_heat_capacity[22] : 2500.0 :   True
-                 23 :  -Inf : heat_storage1.dispatch_heat_capacity[23] : 2500.0 :   True
-                 24 :  -Inf : heat_storage1.dispatch_heat_capacity[24] : 2500.0 :   True
+                  1 :  -Inf :  heat_storage1.dispatch_heat_capacity[1] : 1000.0 :   True
+                  2 :  -Inf :  heat_storage1.dispatch_heat_capacity[2] : 1000.0 :   True
+                  3 :  -Inf :  heat_storage1.dispatch_heat_capacity[3] : 1000.0 :   True
+                  4 :  -Inf :  heat_storage1.dispatch_heat_capacity[4] : 1000.0 :   True
+                  5 :  -Inf :  heat_storage1.dispatch_heat_capacity[5] : 1000.0 :   True
+                  6 :  -Inf :  heat_storage1.dispatch_heat_capacity[6] : 1000.0 :   True
+                  7 :  -Inf :  heat_storage1.dispatch_heat_capacity[7] : 1000.0 :   True
+                  8 :  -Inf :  heat_storage1.dispatch_heat_capacity[8] : 1000.0 :   True
+                  9 :  -Inf :  heat_storage1.dispatch_heat_capacity[9] : 1000.0 :   True
+                 10 :  -Inf : heat_storage1.dispatch_heat_capacity[10] : 1000.0 :   True
+                 11 :  -Inf : heat_storage1.dispatch_heat_capacity[11] : 1000.0 :   True
+                 12 :  -Inf : heat_storage1.dispatch_heat_capacity[12] : 1000.0 :   True
+                 13 :  -Inf : heat_storage1.dispatch_heat_capacity[13] : 1000.0 :   True
+                 14 :  -Inf : heat_storage1.dispatch_heat_capacity[14] : 1000.0 :   True
+                 15 :  -Inf : heat_storage1.dispatch_heat_capacity[15] : 1000.0 :   True
+                 16 :  -Inf : heat_storage1.dispatch_heat_capacity[16] : 1000.0 :   True
+                 17 :  -Inf : heat_storage1.dispatch_heat_capacity[17] : 1000.0 :   True
+                 18 :  -Inf : heat_storage1.dispatch_heat_capacity[18] : 1000.0 :   True
+                 19 :  -Inf : heat_storage1.dispatch_heat_capacity[19] : 1000.0 :   True
+                 20 :  -Inf : heat_storage1.dispatch_heat_capacity[20] : 1000.0 :   True
+                 21 :  -Inf : heat_storage1.dispatch_heat_capacity[21] : 1000.0 :   True
+                 22 :  -Inf : heat_storage1.dispatch_heat_capacity[22] : 1000.0 :   True
+                 23 :  -Inf : heat_storage1.dispatch_heat_capacity[23] : 1000.0 :   True
+                 24 :  -Inf : heat_storage1.dispatch_heat_capacity[24] : 1000.0 :   True
             max_heat_charge_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                               : Upper : Active
                   1 :  -Inf :   heat_storage1.heat_charge[1] - 170.0*heat_storage1.bin_charge[1] :   0.0 :   True

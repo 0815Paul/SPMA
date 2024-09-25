@@ -248,7 +248,7 @@ class Model:
             quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
             )
             return gas_costs
-    # New
+    
     def _power_costs(self, model):
         """Calculate power costs for CHP."""
         power_costs = quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * POWER_PRICE for t in model.t)
