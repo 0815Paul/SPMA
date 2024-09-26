@@ -34,6 +34,9 @@ class HeatStorage:
         asset.heat_balance = Var(t, within=Reals)
         asset.heat_capacity = Var(t, within=NonNegativeReals)
 
+        # Declare Params
+        asset.initial_soc = Param(initialize=self.data.loc['max', 'content']*0.8)
+
 
         asset.heat_in = Port()
         asset.heat_in.add(
@@ -51,7 +54,7 @@ class HeatStorage:
             include_splitfrac=False
         )   
 
-        # Declare construction rules for components
+       # Declare construction rules for components
         def max_heat_charge_rule(asset, t):
             """Maximum heat charge constraint"""
             return asset.heat_charge[t] <= self.data.loc['max', 'heat']*asset.bin_charge[t]
@@ -80,18 +83,18 @@ class HeatStorage:
         def capacity_balance_rule(asset, t):
             """Capacity balance constraint, heat capacity is the difference between the initial capacity and the heat balance at time t"""
             if t == 1:
-                return asset.heat_capacity[t] == 0 - asset.heat_balance[t] 
+                return asset.heat_capacity[t] == asset.initial_soc - asset.heat_balance[t] 
             else:
                 return asset.heat_capacity[t] == asset.heat_capacity[t-1] - asset.heat_balance[t]
         asset.capacity_balance_constr = Constraint(t, rule=capacity_balance_rule)
 
-
-        # New constraints
         def charge_discharge_binary_rule(asset, t):
             """Charge and discharge constraints"""
             return asset.bin_charge[t] + asset.bin_discharge[t] <= 1
         asset.charge_discharge_constr = Constraint(t, rule=charge_discharge_binary_rule)
 
-
+        def soc_cycle_rule(asset):
+            return asset.heat_capacity[t.last()] == asset.heat_capacity[t.first()]
+        asset.soc_cycle_constr = Constraint(rule=soc_cycle_rule)
 
    

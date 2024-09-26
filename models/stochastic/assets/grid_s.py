@@ -80,9 +80,6 @@ class ElectricalGrid:
         #     return asset.dispatch_power_feedin[t] <= self.data.loc['max', 'power']
         # asset.max_power_feedin_constr = Constraint(t, rule=dispatch_max_power_feedin_rule)
 
-
-
-
 class NGasGrid:
     """"Natural Gas Grid class"""
     def __init__(self, name):

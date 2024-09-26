@@ -110,7 +110,6 @@ class Chp:
         # print("Heat CHP:", heat_1, heat_2, heat_3)
 
         # Constraints
-
         def thermal_load_max_rule(asset, t):
             """Rule for the maximum thermal load."""
             thermal_load_max = chp_op_data.loc[3, 'heat']
@@ -130,108 +129,120 @@ class Chp:
             return a * x + b
             
         
-        # Big-M
-        M = 1e6
-     
+        # Big-M Parameter
+        M = 1e5
 
-        def y_constraint1_upper(asset, t):
-            """Big-M constraint 1 - upper bound"""
+        def y_activation_constraint(asset, t):
+            """Ensures that y1 and y2 sum up to bin"""
             return asset.y1[t] + asset.y2[t] == asset.bin[t]
-        asset.y_constr1_upper = Constraint(t, rule=y_constraint1_upper)
-    
-        # Big-M constraints for gas consumption depending on the thermal load
+        asset.y_activation_constr = Constraint(t, rule=y_activation_constraint)
 
-        def gas_depends_on_thermal_load_rule2(asset, t):
-            return asset.heat[t] <= heat_2 *asset.y1[t]
-        asset.gas_depends_on_thermal_load2 = Constraint(t, rule=gas_depends_on_thermal_load_rule2)
+        # Constraints for heat depending on y1 and y2
+        def heat_upper_bound_y1_constraint(asset, t):
+            """Upper bound on heat when y1 is active"""
+            return asset.heat[t] <= heat_2 * asset.y1[t]
+        asset.heat_upper_bound_y1_constr = Constraint(t, rule=heat_upper_bound_y1_constraint)
 
-        def gas_depends_on_thermal_load_rule3(asset, t):
+        def heat_lower_bound_y2_constraint(asset, t):
+            """Lower bound on heat when y2 is active"""
             return asset.heat[t] >= heat_2 * asset.y2[t]
-        asset.gas_depends_on_thermal_load3 = Constraint(t, rule=gas_depends_on_thermal_load_rule3)
+        asset.heat_lower_bound_y2_constr = Constraint(t, rule=heat_lower_bound_y2_constraint)
 
-        
-        # Big-M constraints for power depending on thermal load
+        # Constraints for power depending on thermal load
 
-        # Upper bound
-        def power_depends_on_thermal_load_constr1(asset, t):
-            return asset.power[t] <= (linear_function(asset.heat[t], heat_1, heat_2, power_1, power_2)  + M * (1 - asset.y1[t]))*asset.bin[t]
-        asset.power_depends_on_thermal_load1 = Constraint(t, rule=power_depends_on_thermal_load_constr1)
+        # Upper bounds
+        def power_upper_bound_y1_constraint(asset, t):
+            """Upper bound on power in region 1"""
+            return asset.power[t] <= (linear_function(asset.heat[t], heat_1, heat_2, power_1, power_2) + M * (1 - asset.y1[t])) * asset.bin[t]
+        asset.power_upper_bound_y1_constr = Constraint(t, rule=power_upper_bound_y1_constraint)
 
-        def power_depends_on_thermal_load_constr2(asset, t):
-            return asset.power[t] <= (linear_function(asset.heat[t], heat_2, heat_3, power_2, power_3) + M * (1 - asset.y2[t]))* asset.bin[t]
-        asset.power_depends_on_thermal_load2 = Constraint(t, rule=power_depends_on_thermal_load_constr2)
+        def power_upper_bound_y2_constraint(asset, t):
+            """Upper bound on power in region 2"""
+            return asset.power[t] <= (linear_function(asset.heat[t], heat_2, heat_3, power_2, power_3) + M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.power_upper_bound_y2_constr = Constraint(t, rule=power_upper_bound_y2_constraint)
 
-        # Lower bound
+        # Lower bounds
+        def power_lower_bound_y1_constraint(asset, t):
+            """Lower bound on power in region 1"""
+            return asset.power[t] >= (linear_function(asset.heat[t], heat_1, heat_2, power_1, power_2) - M * (1 - asset.y1[t])) * asset.bin[t]
+        asset.power_lower_bound_y1_constr = Constraint(t, rule=power_lower_bound_y1_constraint)
 
-        def power_depends_on_thermal_load_constr1_lower(asset, t):
-            return asset.power[t] >= linear_function(asset.heat[t], heat_1, heat_2, power_1, power_2) - M * (1 - asset.y1[t])
-        asset.power_depends_on_thermal_load1_lower = Constraint(t, rule=power_depends_on_thermal_load_constr1_lower)
+        def power_lower_bound_y2_constraint(asset, t):
+            """Lower bound on power in region 2"""
+            return asset.power[t] >= (linear_function(asset.heat[t], heat_2, heat_3, power_2, power_3) - M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.power_lower_bound_y2_constr = Constraint(t, rule=power_lower_bound_y2_constraint)
 
-        def power_depends_on_thermal_load_constr2_lower(asset, t): 
-            return asset.power[t] >= linear_function(asset.heat[t], heat_2, heat_3, power_2, power_3) - M * (1 - asset.y2[t])
-        asset.power_depends_on_thermal_load2_lower = Constraint(t, rule=power_depends_on_thermal_load_constr2_lower)
-        
-        # Big-M constraints for gas depending on thermal load
-        
-        # Upper bound
-        def gas_depends_on_thermal_load_constr1(asset, t):
+        # Constraints for gas depending on thermal load
+
+        # Upper bounds
+        def gas_upper_bound_y1_constraint(asset, t):
+            """Upper bound on gas consumption in region 1"""
             return asset.gas[t] <= (linear_function(asset.heat[t], heat_1, heat_2, gas_1, gas_2) + M * (1 - asset.y1[t])) * asset.bin[t]
-        asset.gas_depends_on_thermal_load1 = Constraint(t, rule=gas_depends_on_thermal_load_constr1)
+        asset.gas_upper_bound_y1_constr = Constraint(t, rule=gas_upper_bound_y1_constraint)
 
-        def gas_depends_on_thermal_load_constr2(asset, t):
-            return asset.gas[t] <= (linear_function(asset.heat[t], heat_2, heat_3, gas_2, gas_3)  + M * (1 - asset.y2[t])) *asset.bin[t]
-        asset.gas_depends_on_thermal_load2 = Constraint(t, rule=gas_depends_on_thermal_load_constr2)
-        
-        # Lower bound
-        def gas_depends_on_thermal_load_constr1_lower(asset, t):
-            return asset.gas[t] >= (linear_function(asset.heat[t], heat_1, heat_2, gas_1, gas_2)  - M * (1 - asset.y1[t])) *asset.bin[t]
-        asset.gas_depends_on_thermal_load1_lower = Constraint(t, rule=gas_depends_on_thermal_load_constr1_lower)
+        def gas_upper_bound_y2_constraint(asset, t):
+            """Upper bound on gas consumption in region 2"""
+            return asset.gas[t] <= (linear_function(asset.heat[t], heat_2, heat_3, gas_2, gas_3) + M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.gas_upper_bound_y2_constr = Constraint(t, rule=gas_upper_bound_y2_constraint)
 
-        def gas_depends_on_thermal_load_constr2_lower(asset, t):
-            return asset.gas[t] >= (linear_function(asset.heat[t], heat_2, heat_3, gas_2, gas_3) - M * (1 - asset.y2[t])) *asset.bin[t]
-        asset.gas_depends_on_thermal_load2_lower = Constraint(t, rule=gas_depends_on_thermal_load_constr2_lower)
+        # Lower bounds
+        def gas_lower_bound_y1_constraint(asset, t):
+            """Lower bound on gas consumption in region 1"""
+            return asset.gas[t] >= (linear_function(asset.heat[t], heat_1, heat_2, gas_1, gas_2) - M * (1 - asset.y1[t])) * asset.bin[t]
+        asset.gas_lower_bound_y1_constr = Constraint(t, rule=gas_lower_bound_y1_constraint)
 
-        # Big-M constraints for thermal efficiency depending on thermal load
+        def gas_lower_bound_y2_constraint(asset, t):
+            """Lower bound on gas consumption in region 2"""
+            return asset.gas[t] >= (linear_function(asset.heat[t], heat_2, heat_3, gas_2, gas_3) - M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.gas_lower_bound_y2_constr = Constraint(t, rule=gas_lower_bound_y2_constraint)
 
-        # Upper bound
-        def thermal_efficiency_depends_on_thermal_load_constr1(asset, t):
-            return asset.eta_th[t] <= (linear_function(asset.heat[t], heat_1, heat_2, eta_th_1, eta_th_2) + M * (1 - asset.y1[t])) *asset.bin[t]
-        asset.thermal_efficiency_depends_on_thermal_load1 = Constraint(t, rule=thermal_efficiency_depends_on_thermal_load_constr1)
-       
-        def thermal_efficiency_depends_on_thermal_load_constr2(asset, t):
-            return asset.eta_th[t] <= (linear_function(asset.heat[t], heat_2, heat_3, eta_th_2, eta_th_3) + M * (1 - asset.y2[t]))*asset.bin[t]
-        asset.thermal_efficiency_depends_on_thermal_load2 = Constraint(t, rule=thermal_efficiency_depends_on_thermal_load_constr2)
+        # Constraints for thermal efficiency depending on thermal load
 
-        # Lower bound
-        def thermal_efficiency_depends_on_thermal_load_constr1_lower(asset, t):
-            return asset.eta_th[t] >= (linear_function(asset.heat[t], heat_1, heat_2, eta_th_1, eta_th_2) - M * (1 - asset.y1[t])) *asset.bin[t]
-        asset.thermal_efficiency_depends_on_thermal_load1_lower = Constraint(t, rule=thermal_efficiency_depends_on_thermal_load_constr1_lower)
+        # Upper bounds
+        def eta_th_upper_bound_y1_constraint(asset, t):
+            """Upper bound on thermal efficiency in region 1"""
+            return asset.eta_th[t] <= (linear_function(asset.heat[t], heat_1, heat_2, eta_th_1, eta_th_2) + M * (1 - asset.y1[t])) * asset.bin[t]
+        asset.eta_th_upper_bound_y1_constr = Constraint(t, rule=eta_th_upper_bound_y1_constraint)
 
-        def thermal_efficiency_depends_on_thermal_load_constr2_lower(asset, t):
-            return asset.eta_th[t] >= (linear_function(asset.heat[t], heat_2, heat_3, eta_th_2, eta_th_3) - M * (1 - asset.y2[t])) *asset.bin[t]
-        asset.thermal_efficiency_depends_on_thermal_load2_lower = Constraint(t, rule=thermal_efficiency_depends_on_thermal_load_constr2_lower)
+        def eta_th_upper_bound_y2_constraint(asset, t):
+            """Upper bound on thermal efficiency in region 2"""
+            return asset.eta_th[t] <= (linear_function(asset.heat[t], heat_2, heat_3, eta_th_2, eta_th_3) + M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.eta_th_upper_bound_y2_constr = Constraint(t, rule=eta_th_upper_bound_y2_constraint)
 
+        # Lower bounds
+        def eta_th_lower_bound_y1_constraint(asset, t):
+            """Lower bound on thermal efficiency in region 1"""
+            return asset.eta_th[t] >= (linear_function(asset.heat[t], heat_1, heat_2, eta_th_1, eta_th_2) - M * (1 - asset.y1[t])) * asset.bin[t]
+        asset.eta_th_lower_bound_y1_constr = Constraint(t, rule=eta_th_lower_bound_y1_constraint)
 
-        # Big-M constraints for electrical efficiency depending on thermal load
-        
-        # Upper bound
-        def electrical_efficiency_depends_on_thermal_load_constr1(asset, t):
-            return asset.eta_el[t] <= (linear_function(asset.heat[t], heat_1, heat_2, eta_el_1, eta_el_2) + M * (1 - asset.y1[t])) *asset.bin[t]
-        asset.electrical_efficiency_depends_on_thermal_load1 = Constraint(t, rule=electrical_efficiency_depends_on_thermal_load_constr1)
+        def eta_th_lower_bound_y2_constraint(asset, t):
+            """Lower bound on thermal efficiency in region 2"""
+            return asset.eta_th[t] >= (linear_function(asset.heat[t], heat_2, heat_3, eta_th_2, eta_th_3) - M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.eta_th_lower_bound_y2_constr = Constraint(t, rule=eta_th_lower_bound_y2_constraint)
 
+        # Constraints for electrical efficiency depending on thermal load
 
-        def electrical_efficiency_depends_on_thermal_load_constr2(asset, t):
-            return asset.eta_el[t] <= (linear_function(asset.heat[t], heat_2, heat_3, eta_el_2, eta_el_3) + M * (1 - asset.y2[t]))*asset.bin[t]
-        asset.electrical_efficiency_depends_on_thermal_load2 = Constraint(t, rule=electrical_efficiency_depends_on_thermal_load_constr2)
+        # Upper bounds
+        def eta_el_upper_bound_y1_constraint(asset, t):
+            """Upper bound on electrical efficiency in region 1"""
+            return asset.eta_el[t] <= (linear_function(asset.heat[t], heat_1, heat_2, eta_el_1, eta_el_2) + M * (1 - asset.y1[t])) * asset.bin[t]
+        asset.eta_el_upper_bound_y1_constr = Constraint(t, rule=eta_el_upper_bound_y1_constraint)
 
-        # Lower bound
-        def electrical_efficiency_depends_on_thermal_load_constr1_lower(asset, t):
-            return asset.eta_el[t] >= (linear_function(asset.heat[t], heat_1, heat_2, eta_el_1, eta_el_2) - M * (1 - asset.y1[t])) *asset.bin[t]
-        asset.electrical_efficiency_depends_on_thermal_load1_lower = Constraint(t, rule=electrical_efficiency_depends_on_thermal_load_constr1_lower)
+        def eta_el_upper_bound_y2_constraint(asset, t):
+            """Upper bound on electrical efficiency in region 2"""
+            return asset.eta_el[t] <= (linear_function(asset.heat[t], heat_2, heat_3, eta_el_2, eta_el_3) + M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.eta_el_upper_bound_y2_constr = Constraint(t, rule=eta_el_upper_bound_y2_constraint)
 
-        def electrical_efficiency_depends_on_thermal_load_constr2_lower(asset, t):
-            return asset.eta_el[t] >= (linear_function(asset.heat[t], heat_2, heat_3, eta_el_2, eta_el_3) - M * (1 - asset.y2[t]))*asset.bin[t]
-        asset.electrical_efficiency_depends_on_thermal_load2_lower = Constraint(t, rule=electrical_efficiency_depends_on_thermal_load_constr2_lower)
+        # Lower bounds
+        def eta_el_lower_bound_y1_constraint(asset, t):
+            """Lower bound on electrical efficiency in region 1"""
+            return asset.eta_el[t] >= (linear_function(asset.heat[t], heat_1, heat_2, eta_el_1, eta_el_2) - M * (1 - asset.y1[t])) * asset.bin[t]
+        asset.eta_el_lower_bound_y1_constr = Constraint(t, rule=eta_el_lower_bound_y1_constraint)
+
+        def eta_el_lower_bound_y2_constraint(asset, t):
+            """Lower bound on electrical efficiency in region 2"""
+            return asset.eta_el[t] >= (linear_function(asset.heat[t], heat_2, heat_3, eta_el_2, eta_el_3) - M * (1 - asset.y2[t])) * asset.bin[t]
+        asset.eta_el_lower_bound_y2_constr = Constraint(t, rule=eta_el_lower_bound_y2_constraint)
 
         ########################################## NOT IMPLEMENTED ##########################################
 

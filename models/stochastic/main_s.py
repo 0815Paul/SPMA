@@ -7,13 +7,13 @@ from datetime import datetime
 def main():
     
     # Some parameters 
-    scen_count = 10
+    scen_count = 8
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_filename = f"{PATH_OUT_LOGS}logile_{timestamp}.log"
     options = {
         'solver': 'gurobi', 
         'MIPGap':0.015, # MIPOpt Option added in ExtensiveForm Class
-        'TimeLimit':20.0, # TimeLimit Option added in ExtensiveForm Class
+        'TimeLimit':20, # TimeLimit Option added in ExtensiveForm Class
         'LogFile': log_filename # LogFile Option added in ExtensiveForm Class
         }
 
@@ -32,8 +32,6 @@ def main():
     # Create the extensive form
     my_ef = my_model.create_extensive_form(options, scenario_names, scenario_creator_kwargs)
    
-
-    
     # Write the extensive form to a file
     # with open('ef_output.txt', 'w') as f:
     #     my_ef.ef.pprint(ostream=f)

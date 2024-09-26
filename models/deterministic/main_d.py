@@ -321,15 +321,15 @@ class Model:
     def _gas_costs(self, model):
         """ Calculate gas costs for CHP and Boiler."""
         gas_costs = (
-        quicksum(model.chp1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) + 
-        quicksum(model.chp2.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t) +
-        quicksum(model.boiler1.gas[t] * model.GAS_PRICE * CALORIFIC_VALUE_NGAS for t in model.t)
+        quicksum(model.chp1.gas[t] * model.GAS_PRICE for t in model.t) + 
+        quicksum(model.chp2.gas[t] * model.GAS_PRICE for t in model.t) +
+        quicksum(model.boiler1.gas[t] * model.GAS_PRICE  for t in model.t)
         )
         return gas_costs
     
     def _power_costs(self, model):
         """Calculate power costs for CHP."""
-        power_costs = quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * POWER_PRICE for t in model.t)
+        power_costs = quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * model.POWER_PRICE for t in model.t)
         return power_costs
     
     def _maintenance_costs(self, model):
@@ -380,8 +380,8 @@ class Model:
         )
 
         energy_tax_refund = (
-            quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t) +
-            quicksum(model.chp2.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t)
+            quicksum(model.chp1.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t) +
+            quicksum(model.chp2.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t)
         )
         
         chp_revenue = (
