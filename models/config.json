@@ -27,6 +27,8 @@
       "log_path": "output/deterministic/logs/",
       "timeseries_path": "output/deterministic/timeseries/",
       "objectives_path": "output/deterministic/objectives/",
+      "actual_path": "output/deterministic/cases/actual/",
+      "scenarios_path": "output/deterministic/cases/scenarios/",
       "parameter1": 0,
       "parameter2": 0
     },
