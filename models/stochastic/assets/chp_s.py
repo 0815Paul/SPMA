@@ -273,6 +273,7 @@ class Chp:
         #     include_splitfrac=False
         # )
         
+        
         # def dispatch_y_constraint1_upper(asset, t):
         #     """Big-M constraint 1 - upper bound"""
         #     return asset.dispatch_y1[t] + asset.dispatch_y2[t] == asset.dispatch_bin[t]

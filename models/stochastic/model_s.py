@@ -69,6 +69,9 @@ SHARE_FEED_IN= global_config['share_feed_in'] # %
 # Boiler
 POWERCOST_TO_HEAT_SALES_RATIO = global_config['power_cost_to_heat_sales_ratio'] 
 
+# Heat Storage
+COST_CHARGE = global_config['cost_charge'] # €/kWh
+COST_DISCHARGE = global_config['cost_discharge'] # €/kWh
 
 # Costs
 MAINTENANCE_COSTS = global_config['maintenance_cost'] # €/kWh (HS)
@@ -224,6 +227,7 @@ class Model:
         return (
             self._gas_costs(model) + 
             self._power_costs(model) +
+            self._storage_costs(model) +	
             self._maintenance_costs(model) - 
             self._power_revenue(model) - 
             self._heat_revenue(model) - 
@@ -232,13 +236,10 @@ class Model:
 
     def _second_stage_cost_rule(self, model):
         second = (
-            quicksum(model.heat_storage1.dispatch_heat_charge[t] * 1 for t in model.t) +
-            quicksum(model.heat_storage1.dispatch_heat_discharge[t] * 1 for t in model.t) 
-            
+            quicksum(model.heat_storage1.dispatch_heat_charge[t] * COST_CHARGE for t in model.t) +
+            quicksum(model.heat_storage1.dispatch_heat_discharge[t] * COST_DISCHARGE for t in model.t) 
         )
         return second
-
-     
 
     def _gas_costs(self, model):
             """ Calculate gas costs for CHP and Boiler."""
@@ -254,6 +255,13 @@ class Model:
         power_costs = quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * model.POWER_PRICE for t in model.t)
         return power_costs
 
+    def _storage_costs(self, model):
+        """Calculate storage costs for Heat Storage."""
+        storage_costs = (
+            quicksum(model.heat_storage1.heat_charge[t] * COST_CHARGE for t in model.t) +
+            quicksum(model.heat_storage1.heat_discharge[t] * COST_DISCHARGE for t in model.t)
+        )
+        return storage_costs
     
     def _maintenance_costs(self, model):
         """Calculate maintenance costs for CHP."""
@@ -299,8 +307,8 @@ class Model:
             quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) # New
         )
         energy_tax_refund = (
-            quicksum(model.chp1.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t) +
-            quicksum(model.chp2.gas[t] * CALORIFIC_VALUE_NGAS * ENERGY_TAX_REFUND_GAS for t in model.t) # New
+            quicksum(model.chp1.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t) +
+            quicksum(model.chp2.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t) # New
         )
         
         chp_revenue = (
@@ -316,6 +324,7 @@ class Model:
         """Add objective function to model."""
         def objective_expression_rule(model):
             return model.first_stage_cost + model.second_stage_cost
+            #return model.first_stage_cost
         self.model.objective = Objective(rule=objective_expression_rule,sense=minimize)  
     
     #####################################################################################
@@ -422,6 +431,7 @@ class Model:
 
         # Add Probability to the instance
         self.instance._mpisppy_probability = value(self.instance.probability)
+        
 
         ###################### Start Debugging Print ######################
 

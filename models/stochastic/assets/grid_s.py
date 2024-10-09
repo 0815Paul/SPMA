@@ -187,13 +187,13 @@ class HeatGrid:
         asset.dispatch_heat_supply = Var(t, within=NonNegativeReals)
         asset.dispatch_heat_balance = Var(t, within=Reals)
         
-        asset.heat_in_secondstage = Port()
-        asset.heat_in_secondstage.add(
-            asset.dispatch_heat_feedin,
-            'heat',
-            Port.Extensive,
-            include_splitfrac=False
-        )
+        # asset.heat_in_secondstage = Port()
+        # asset.heat_in_secondstage.add(
+        #     asset.dispatch_heat_feedin,
+        #     'heat',
+        #     Port.Extensive,
+        #     include_splitfrac=False
+        # )
 
         # def excess_heat_demand_rule(asset, t):
         #     """ Excess heat demand"""

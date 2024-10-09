@@ -1,8 +1,8 @@
 {
     "global": {
       "data_path": "../../data/",
-      "heat_demand_file": "heat_demand_20230614_to_20230614_day.json",
-      "heat_demand_scenario_file": "reduced_heat_demand_scenarios_20230614_to_20230614_day.json",
+      "heat_demand_file": "heat_demand_20230626_to_20230626_day.json",
+      "heat_demand_scenario_file": "reduced_heat_demand_scenarios_20230626_to_20230626_day.json",
       "dummy_heat_demand_file": "testing/dummy_heat_demand_20230402.json",
       "dummy_heat_demand_scenario_file": "testing/dummy_heat_demand_scenarios_20230402.json",
       "gas_price": 0.1543,
@@ -17,7 +17,9 @@
       "share_self_consumption": 0.03, 
       "share_feed_in":0.97,
       "maintenance_cost": 1.8,
-      "power_cost_to_heat_sales_ratio": 0.02
+      "power_cost_to_heat_sales_ratio": 0.02,
+      "cost_charge": 0.01,
+      "cost_discharge": 0.01
     },
     "deterministic": {
       "input_path": "input/",

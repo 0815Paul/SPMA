@@ -56,6 +56,10 @@ SHARE_FEED_IN= global_config['share_feed_in'] # %
 # Boiler
 POWERCOST_TO_HEAT_SALES_RATIO = global_config['power_cost_to_heat_sales_ratio'] 
 
+# Heat Storage
+COST_CHARGE = global_config['cost_charge'] # €/kWh
+COST_DISCHARGE = global_config['cost_discharge'] # €/kWh
+
 # Costs
 MAINTENANCE_COSTS = global_config['maintenance_cost'] # €/kWh (HS)
 
@@ -207,9 +211,9 @@ class Model:
         """Create a concrete instance of the model."""
         self.instance = self.model.create_instance(self.timeseries_data)
         
-        # Output the model instance to a file
-        # with open('output.txt', 'w') as f:
-        #     self.instance.pprint(ostream=f)
+        #Output the model instance to a file
+        with open('output.txt', 'w') as f:
+            self.instance.pprint(ostream=f)
 
     
     def expand_arcs(self):
@@ -311,6 +315,7 @@ class Model:
         objective_expr = (
             self._gas_costs(model) +
             self._power_costs(model) +
+            self._storage_costs(model) +
             self._maintenance_costs(model) -
             self._power_revenue(model) -
             self._heat_revenue(model) -
@@ -331,6 +336,15 @@ class Model:
         """Calculate power costs for CHP."""
         power_costs = quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * model.POWER_PRICE for t in model.t)
         return power_costs
+    
+    # New
+    def _storage_costs(self, model):
+        """Calculate storage costs for Heat Storage."""
+        storage_costs = (
+            quicksum(model.heat_storage1.heat_charge[t] * COST_CHARGE for t in model.t) +
+            quicksum(model.heat_storage1.heat_discharge[t] * COST_DISCHARGE for t in model.t)
+        )
+        return storage_costs
     
     def _maintenance_costs(self, model):
         """Calculate maintenance costs for CHP."""
@@ -451,8 +465,11 @@ if __name__ == "__main__":
     model.add_arcs()
     model.expand_arcs()
 
+    
     print('Solving model...')
     model.solve()
+
+        
     
     print('Writing results...')
     model.write_results()
