@@ -51,6 +51,10 @@ FILE_HEAT_DEMAND_SCENARIOS = global_config['heat_demand_scenario_file']
 DUMMY_FILE_HEAT_DEMAND = global_config['dummy_heat_demand_file']
 DUMMY_FILE_HEAT_DEMAND_SCENARIOS = global_config['dummy_heat_demand_scenario_file']
 
+# Weighted Heat Demand
+
+WEIGHTED_HEAT_DEMAND = global_config['weighted_heat_demand']
+
 # Declare constants
 GAS_PRICE = global_config['gas_price'] # €/kWh  (HS)
 POWER_PRICE = global_config['power_price'] # €/kWh (el)
@@ -76,6 +80,9 @@ COST_DISCHARGE = global_config['cost_discharge'] # €/kWh
 # Costs
 MAINTENANCE_COSTS = global_config['maintenance_cost'] # €/kWh (HS)
 
+# Flag to choose between weighted heat demand and normal heat demand
+USE_WEIGHTED_HEAT_DEMAND = True  # Set to True to use weighted heat demand, False for normal heat demand
+
 class Model:
     """Model class."""
     
@@ -88,6 +95,10 @@ class Model:
         self.timeseries_data = None
         self.scenario_data = None
         self.results = None
+        self.start_date = None
+        self.end_date = None
+        self.period = None
+        self.heat_demand_file = None
         self._initialize_model_components()
 
     def _initialize_model_components(self):
@@ -332,8 +343,23 @@ class Model:
     def _load_scenario_data(self):
         """Load scenario data from files and load it in a dictionary."""  
 
-        with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND}') as f:
-            heat_demand_data = json.load(f)
+        if USE_WEIGHTED_HEAT_DEMAND:
+            with open(f'{PATH_IN}demands/{WEIGHTED_HEAT_DEMAND}') as f:
+                print('##########################################')
+                print('####### Data: Weighted Heat Demand #######')
+                print('##########################################')
+                heat_demand_data = json.load(f)
+        else:
+            with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND}') as f:
+                print('###############################################')
+                print(f'####### Data: Forecasted Heat Demand #########')
+                print('###############################################')
+                heat_demand_data = json.load(f)
+
+        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+        self.start_date = start_date
+        self.end_date = end_date
+        self.period = period
 
         with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND_SCENARIOS}') as f:
             scenario_data = json.load(f)
@@ -498,7 +524,6 @@ class Model:
         for key in kwargs:
             self.solver.options[key] = kwargs[key]    
     
-
     def create_extensive_form(self, options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
         self.ef_instance = ExtensiveForm(
@@ -537,7 +562,18 @@ class Model:
         """Write results to file."""
 
         # Extract the Date from the file name
-        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+        #start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+
+        start_date = self.start_date
+        end_date = self.end_date
+        period = self.period
+
+
+        # Determine prefix based on heat demand type
+        if USE_WEIGHTED_HEAT_DEMAND:
+            prefix = 'weighted_'
+        else:
+            prefix = ''
 
         # Root solution extraction
         root_solution = self.ef_instance.get_root_solution()
@@ -563,7 +599,7 @@ class Model:
         df_root_solution = df_root_solution.sort_index()
 
         # Save the root solution to a CSV file
-        root_output_file = f's_{start_date}_to_{end_date}_{period}_rs.csv'
+        root_output_file = f's_{prefix}{start_date}_to_{end_date}_{period}_rs.csv'
         df_root_solution.to_csv(PATH_OUT_ROOT + root_output_file)
 
 
@@ -590,17 +626,26 @@ class Model:
             
 
   
-            output_file = f's_{sname}_{start_date}_to_{end_date}_{period}_ts.csv'
+            output_file = f's_{prefix}{start_date}_to_{end_date}_{period}_{sname}_ts.csv'
             df_output.to_csv(PATH_OUT_TIMESERIES + output_file)
             #print(f'Results for {sname} written to {output_file}')
 
             
     
     def write_objective_values(self, ef):
-        """Writes he Objective-Value for each scenario."""
+        """Writes the Objective-Value for each scenario."""
         results = []
         
-        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+        #start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+        start_date = self.start_date
+        end_date = self.end_date
+        period = self.period
+
+        # Determine prefix based on heat demand type
+        if USE_WEIGHTED_HEAT_DEMAND:
+            prefix = 'weighted_'
+        else:
+            prefix = ''
 
         for sname, smodel in sputils.ef_scenarios(ef):
             objective_value = pyo.value(smodel.objective)
@@ -614,5 +659,5 @@ class Model:
 
 
         # Speichere den DataFrame als CSV-Datei
-        output_filename = f"{PATH_OUT_OBJECTIVES}s_{start_date}_to_{end_date}_{period}_obj.csv"
+        output_filename = f"{PATH_OUT_OBJECTIVES}s_{prefix}{start_date}_to_{end_date}_{period}_obj.csv"
         df_results.to_csv(output_filename, index=False)

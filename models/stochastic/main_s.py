@@ -33,8 +33,8 @@ def main():
     my_ef = my_model.create_extensive_form(options, scenario_names, scenario_creator_kwargs)
    
     # Write the extensive form to a file
-    with open('ef_output.txt', 'w') as f:
-         my_ef.ef.pprint(ostream=f)
+    # with open('ef_output.txt', 'w') as f:
+    #      my_ef.ef.pprint(ostream=f)
         
     # Solve the extensive form
     my_model.solve()
@@ -43,7 +43,7 @@ def main():
     print(f"EF objective: {pyo.value(my_ef.ef.EF_Obj)}")
 
     # Output the root solution
-    print(my_ef.get_root_solution())
+    # print(my_ef.get_root_solution())
 
     # Output the objective value for each scenario
     for sname, smodel in sputils.ef_scenarios(my_ef.ef):
