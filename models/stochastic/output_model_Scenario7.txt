@@ -15,56 +15,56 @@
         None : 0.251
     delta_heat_demand : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
-          1 :  -20.311882400168514
-          2 :   34.004740197449145
-          3 :    -33.4209838989393
-          4 :    6.105797067117017
-          5 :  -21.184613437743714
-          6 :   -37.09441104894258
-          7 : 0.022302265277737376
-          8 :   26.673292092048406
-          9 :    17.94638509893079
-         10 :    9.086232220939472
-         11 :  -13.139874616225562
-         12 :   -55.26038742998953
-         13 :  -26.371817905639332
-         14 :     -9.4417079873325
-         15 :   27.136250939255007
-         16 :   15.668097485544596
-         17 :   -51.84319700673465
-         18 :  -35.681554075027364
-         19 :   -5.387799572022864
-         20 :    -5.46282710755133
-         21 :  -0.1041460117255042
-         22 :     4.70655444688926
-         23 :    21.54766782333603
-         24 : -0.46921356091994326
+          1 :   12.73165802119022
+          2 :  30.821549878092007
+          3 :  -38.62809145641248
+          4 :  11.219355528775253
+          5 :  -4.661963494086592
+          6 :  3.1503448513536654
+          7 :  11.665524616604316
+          8 :   35.44372706242702
+          9 :   4.254730131452739
+         10 :   9.849400683302804
+         11 : -10.468256645769266
+         12 : -34.994173380952994
+         13 :   14.41714998786437
+         14 :  -12.15329316993774
+         15 :  14.235238982654693
+         16 :   40.74669487324531
+         17 : -20.815634794626696
+         18 :  -51.31191169720678
+         19 :  -3.123465743890847
+         20 :  26.234308077681437
+         21 :   20.18156737674185
+         22 :  19.313458712024783
+         23 :  41.271498840232155
+         24 :  18.638850401429266
     heat_demand : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
-          1 :  5.559557195027181
-          2 :  49.34710631653783
-          3 :  95.48301447282147
-          4 : 56.749591780486476
-          5 :  49.50375031353054
-          6 : 23.800422893263466
-          7 : 50.545475024211406
-          8 :  48.99565872712138
-          9 :  69.68266580715647
-         10 : 49.466786098443336
-         11 :   44.2786831072234
-         12 : 22.480622706817734
-         13 :  4.363685219917748
-         14 :  53.10252780655519
-         15 :  65.93673852464127
-         16 : 30.730173247128615
-         17 :  27.19614092916644
-         18 :  78.92180463369827
-         19 : 56.264775590459465
-         20 : 19.839942780349546
-         21 : 15.213526720257892
-         22 : 23.752315785915645
-         23 : 17.838477111533994
-         24 : 19.405105995306062
+          1 :  38.60309761638592
+          2 : 46.163915997180695
+          3 :  90.27590691534829
+          4 :  61.86315024214471
+          5 :  66.02640025718766
+          6 :  64.04517879355971
+          7 : 62.188697375537984
+          8 :      57.7660936975
+          9 :  55.99101083967842
+         10 :  50.22995456080667
+         11 :   46.9503010776797
+         12 :  42.74683675585427
+         13 :  45.15265311342145
+         14 :  50.39094262394995
+         15 :  53.03572656804096
+         16 :  55.80877063482933
+         17 :  58.22370314127439
+         18 : 63.291447011518855
+         19 :  58.52910941859148
+         20 :  51.53707796558231
+         21 : 35.499240108725246
+         22 :  38.35922005105117
+         23 :  37.56230812843012
+         24 :  38.51316995765527
     heat_demand_scenario : Size=24, Index=t, Domain=Any, Default=None, Mutable=False
         Key : Value
           1 :  25.871439595195696
@@ -2832,31 +2832,31 @@
 
         5 Constraint Declarations
             dispatch_balance_constr : Size=24, Index=t, Active=True
-                Key : Lower : Body                                                                                                                                   : Upper : Active
-                  1 :   0.0 :     heat_grid.dispatch_heat_balance[1] - (-20.311882400168514 + heat_grid.dispatch_heat_feedin[1] - heat_grid.dispatch_heat_supply[1]) :   0.0 :   True
-                  2 :   0.0 :      heat_grid.dispatch_heat_balance[2] - (34.004740197449145 + heat_grid.dispatch_heat_feedin[2] - heat_grid.dispatch_heat_supply[2]) :   0.0 :   True
-                  3 :   0.0 :       heat_grid.dispatch_heat_balance[3] - (-33.4209838989393 + heat_grid.dispatch_heat_feedin[3] - heat_grid.dispatch_heat_supply[3]) :   0.0 :   True
-                  4 :   0.0 :       heat_grid.dispatch_heat_balance[4] - (6.105797067117017 + heat_grid.dispatch_heat_feedin[4] - heat_grid.dispatch_heat_supply[4]) :   0.0 :   True
-                  5 :   0.0 :     heat_grid.dispatch_heat_balance[5] - (-21.184613437743714 + heat_grid.dispatch_heat_feedin[5] - heat_grid.dispatch_heat_supply[5]) :   0.0 :   True
-                  6 :   0.0 :      heat_grid.dispatch_heat_balance[6] - (-37.09441104894258 + heat_grid.dispatch_heat_feedin[6] - heat_grid.dispatch_heat_supply[6]) :   0.0 :   True
-                  7 :   0.0 :    heat_grid.dispatch_heat_balance[7] - (0.022302265277737376 + heat_grid.dispatch_heat_feedin[7] - heat_grid.dispatch_heat_supply[7]) :   0.0 :   True
-                  8 :   0.0 :      heat_grid.dispatch_heat_balance[8] - (26.673292092048406 + heat_grid.dispatch_heat_feedin[8] - heat_grid.dispatch_heat_supply[8]) :   0.0 :   True
-                  9 :   0.0 :       heat_grid.dispatch_heat_balance[9] - (17.94638509893079 + heat_grid.dispatch_heat_feedin[9] - heat_grid.dispatch_heat_supply[9]) :   0.0 :   True
-                 10 :   0.0 :    heat_grid.dispatch_heat_balance[10] - (9.086232220939472 + heat_grid.dispatch_heat_feedin[10] - heat_grid.dispatch_heat_supply[10]) :   0.0 :   True
-                 11 :   0.0 :  heat_grid.dispatch_heat_balance[11] - (-13.139874616225562 + heat_grid.dispatch_heat_feedin[11] - heat_grid.dispatch_heat_supply[11]) :   0.0 :   True
-                 12 :   0.0 :   heat_grid.dispatch_heat_balance[12] - (-55.26038742998953 + heat_grid.dispatch_heat_feedin[12] - heat_grid.dispatch_heat_supply[12]) :   0.0 :   True
-                 13 :   0.0 :  heat_grid.dispatch_heat_balance[13] - (-26.371817905639332 + heat_grid.dispatch_heat_feedin[13] - heat_grid.dispatch_heat_supply[13]) :   0.0 :   True
-                 14 :   0.0 :     heat_grid.dispatch_heat_balance[14] - (-9.4417079873325 + heat_grid.dispatch_heat_feedin[14] - heat_grid.dispatch_heat_supply[14]) :   0.0 :   True
-                 15 :   0.0 :   heat_grid.dispatch_heat_balance[15] - (27.136250939255007 + heat_grid.dispatch_heat_feedin[15] - heat_grid.dispatch_heat_supply[15]) :   0.0 :   True
-                 16 :   0.0 :   heat_grid.dispatch_heat_balance[16] - (15.668097485544596 + heat_grid.dispatch_heat_feedin[16] - heat_grid.dispatch_heat_supply[16]) :   0.0 :   True
-                 17 :   0.0 :   heat_grid.dispatch_heat_balance[17] - (-51.84319700673465 + heat_grid.dispatch_heat_feedin[17] - heat_grid.dispatch_heat_supply[17]) :   0.0 :   True
-                 18 :   0.0 :  heat_grid.dispatch_heat_balance[18] - (-35.681554075027364 + heat_grid.dispatch_heat_feedin[18] - heat_grid.dispatch_heat_supply[18]) :   0.0 :   True
-                 19 :   0.0 :   heat_grid.dispatch_heat_balance[19] - (-5.387799572022864 + heat_grid.dispatch_heat_feedin[19] - heat_grid.dispatch_heat_supply[19]) :   0.0 :   True
-                 20 :   0.0 :    heat_grid.dispatch_heat_balance[20] - (-5.46282710755133 + heat_grid.dispatch_heat_feedin[20] - heat_grid.dispatch_heat_supply[20]) :   0.0 :   True
-                 21 :   0.0 :  heat_grid.dispatch_heat_balance[21] - (-0.1041460117255042 + heat_grid.dispatch_heat_feedin[21] - heat_grid.dispatch_heat_supply[21]) :   0.0 :   True
-                 22 :   0.0 :     heat_grid.dispatch_heat_balance[22] - (4.70655444688926 + heat_grid.dispatch_heat_feedin[22] - heat_grid.dispatch_heat_supply[22]) :   0.0 :   True
-                 23 :   0.0 :    heat_grid.dispatch_heat_balance[23] - (21.54766782333603 + heat_grid.dispatch_heat_feedin[23] - heat_grid.dispatch_heat_supply[23]) :   0.0 :   True
-                 24 :   0.0 : heat_grid.dispatch_heat_balance[24] - (-0.46921356091994326 + heat_grid.dispatch_heat_feedin[24] - heat_grid.dispatch_heat_supply[24]) :   0.0 :   True
+                Key : Lower : Body                                                                                                                                  : Upper : Active
+                  1 :   0.0 :      heat_grid.dispatch_heat_balance[1] - (12.73165802119022 + heat_grid.dispatch_heat_feedin[1] - heat_grid.dispatch_heat_supply[1]) :   0.0 :   True
+                  2 :   0.0 :     heat_grid.dispatch_heat_balance[2] - (30.821549878092007 + heat_grid.dispatch_heat_feedin[2] - heat_grid.dispatch_heat_supply[2]) :   0.0 :   True
+                  3 :   0.0 :     heat_grid.dispatch_heat_balance[3] - (-38.62809145641248 + heat_grid.dispatch_heat_feedin[3] - heat_grid.dispatch_heat_supply[3]) :   0.0 :   True
+                  4 :   0.0 :     heat_grid.dispatch_heat_balance[4] - (11.219355528775253 + heat_grid.dispatch_heat_feedin[4] - heat_grid.dispatch_heat_supply[4]) :   0.0 :   True
+                  5 :   0.0 :     heat_grid.dispatch_heat_balance[5] - (-4.661963494086592 + heat_grid.dispatch_heat_feedin[5] - heat_grid.dispatch_heat_supply[5]) :   0.0 :   True
+                  6 :   0.0 :     heat_grid.dispatch_heat_balance[6] - (3.1503448513536654 + heat_grid.dispatch_heat_feedin[6] - heat_grid.dispatch_heat_supply[6]) :   0.0 :   True
+                  7 :   0.0 :     heat_grid.dispatch_heat_balance[7] - (11.665524616604316 + heat_grid.dispatch_heat_feedin[7] - heat_grid.dispatch_heat_supply[7]) :   0.0 :   True
+                  8 :   0.0 :      heat_grid.dispatch_heat_balance[8] - (35.44372706242702 + heat_grid.dispatch_heat_feedin[8] - heat_grid.dispatch_heat_supply[8]) :   0.0 :   True
+                  9 :   0.0 :      heat_grid.dispatch_heat_balance[9] - (4.254730131452739 + heat_grid.dispatch_heat_feedin[9] - heat_grid.dispatch_heat_supply[9]) :   0.0 :   True
+                 10 :   0.0 :   heat_grid.dispatch_heat_balance[10] - (9.849400683302804 + heat_grid.dispatch_heat_feedin[10] - heat_grid.dispatch_heat_supply[10]) :   0.0 :   True
+                 11 :   0.0 : heat_grid.dispatch_heat_balance[11] - (-10.468256645769266 + heat_grid.dispatch_heat_feedin[11] - heat_grid.dispatch_heat_supply[11]) :   0.0 :   True
+                 12 :   0.0 : heat_grid.dispatch_heat_balance[12] - (-34.994173380952994 + heat_grid.dispatch_heat_feedin[12] - heat_grid.dispatch_heat_supply[12]) :   0.0 :   True
+                 13 :   0.0 :   heat_grid.dispatch_heat_balance[13] - (14.41714998786437 + heat_grid.dispatch_heat_feedin[13] - heat_grid.dispatch_heat_supply[13]) :   0.0 :   True
+                 14 :   0.0 :  heat_grid.dispatch_heat_balance[14] - (-12.15329316993774 + heat_grid.dispatch_heat_feedin[14] - heat_grid.dispatch_heat_supply[14]) :   0.0 :   True
+                 15 :   0.0 :  heat_grid.dispatch_heat_balance[15] - (14.235238982654693 + heat_grid.dispatch_heat_feedin[15] - heat_grid.dispatch_heat_supply[15]) :   0.0 :   True
+                 16 :   0.0 :   heat_grid.dispatch_heat_balance[16] - (40.74669487324531 + heat_grid.dispatch_heat_feedin[16] - heat_grid.dispatch_heat_supply[16]) :   0.0 :   True
+                 17 :   0.0 : heat_grid.dispatch_heat_balance[17] - (-20.815634794626696 + heat_grid.dispatch_heat_feedin[17] - heat_grid.dispatch_heat_supply[17]) :   0.0 :   True
+                 18 :   0.0 :  heat_grid.dispatch_heat_balance[18] - (-51.31191169720678 + heat_grid.dispatch_heat_feedin[18] - heat_grid.dispatch_heat_supply[18]) :   0.0 :   True
+                 19 :   0.0 :  heat_grid.dispatch_heat_balance[19] - (-3.123465743890847 + heat_grid.dispatch_heat_feedin[19] - heat_grid.dispatch_heat_supply[19]) :   0.0 :   True
+                 20 :   0.0 :  heat_grid.dispatch_heat_balance[20] - (26.234308077681437 + heat_grid.dispatch_heat_feedin[20] - heat_grid.dispatch_heat_supply[20]) :   0.0 :   True
+                 21 :   0.0 :   heat_grid.dispatch_heat_balance[21] - (20.18156737674185 + heat_grid.dispatch_heat_feedin[21] - heat_grid.dispatch_heat_supply[21]) :   0.0 :   True
+                 22 :   0.0 :  heat_grid.dispatch_heat_balance[22] - (19.313458712024783 + heat_grid.dispatch_heat_feedin[22] - heat_grid.dispatch_heat_supply[22]) :   0.0 :   True
+                 23 :   0.0 :  heat_grid.dispatch_heat_balance[23] - (41.271498840232155 + heat_grid.dispatch_heat_feedin[23] - heat_grid.dispatch_heat_supply[23]) :   0.0 :   True
+                 24 :   0.0 :  heat_grid.dispatch_heat_balance[24] - (18.638850401429266 + heat_grid.dispatch_heat_feedin[24] - heat_grid.dispatch_heat_supply[24]) :   0.0 :   True
             dispatch_balance_constr_2 : Size=24, Index=t, Active=True
                 Key : Lower : Body                                : Upper : Active
                   1 :   0.0 :  heat_grid.dispatch_heat_balance[1] :   0.0 :   True
@@ -2885,30 +2885,30 @@
                  24 :   0.0 : heat_grid.dispatch_heat_balance[24] :   0.0 :   True
             heat_balance_constr : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                        : Upper : Active
-                  1 :   0.0 :     heat_grid.heat_balance[1] - (heat_grid.heat_feedin[1] - (heat_grid.heat_supply[1] + 5.559557195027181)) :   0.0 :   True
-                  2 :   0.0 :     heat_grid.heat_balance[2] - (heat_grid.heat_feedin[2] - (heat_grid.heat_supply[2] + 49.34710631653783)) :   0.0 :   True
-                  3 :   0.0 :     heat_grid.heat_balance[3] - (heat_grid.heat_feedin[3] - (heat_grid.heat_supply[3] + 95.48301447282147)) :   0.0 :   True
-                  4 :   0.0 :    heat_grid.heat_balance[4] - (heat_grid.heat_feedin[4] - (heat_grid.heat_supply[4] + 56.749591780486476)) :   0.0 :   True
-                  5 :   0.0 :     heat_grid.heat_balance[5] - (heat_grid.heat_feedin[5] - (heat_grid.heat_supply[5] + 49.50375031353054)) :   0.0 :   True
-                  6 :   0.0 :    heat_grid.heat_balance[6] - (heat_grid.heat_feedin[6] - (heat_grid.heat_supply[6] + 23.800422893263466)) :   0.0 :   True
-                  7 :   0.0 :    heat_grid.heat_balance[7] - (heat_grid.heat_feedin[7] - (heat_grid.heat_supply[7] + 50.545475024211406)) :   0.0 :   True
-                  8 :   0.0 :     heat_grid.heat_balance[8] - (heat_grid.heat_feedin[8] - (heat_grid.heat_supply[8] + 48.99565872712138)) :   0.0 :   True
-                  9 :   0.0 :     heat_grid.heat_balance[9] - (heat_grid.heat_feedin[9] - (heat_grid.heat_supply[9] + 69.68266580715647)) :   0.0 :   True
-                 10 :   0.0 : heat_grid.heat_balance[10] - (heat_grid.heat_feedin[10] - (heat_grid.heat_supply[10] + 49.466786098443336)) :   0.0 :   True
-                 11 :   0.0 :   heat_grid.heat_balance[11] - (heat_grid.heat_feedin[11] - (heat_grid.heat_supply[11] + 44.2786831072234)) :   0.0 :   True
-                 12 :   0.0 : heat_grid.heat_balance[12] - (heat_grid.heat_feedin[12] - (heat_grid.heat_supply[12] + 22.480622706817734)) :   0.0 :   True
-                 13 :   0.0 :  heat_grid.heat_balance[13] - (heat_grid.heat_feedin[13] - (heat_grid.heat_supply[13] + 4.363685219917748)) :   0.0 :   True
-                 14 :   0.0 :  heat_grid.heat_balance[14] - (heat_grid.heat_feedin[14] - (heat_grid.heat_supply[14] + 53.10252780655519)) :   0.0 :   True
-                 15 :   0.0 :  heat_grid.heat_balance[15] - (heat_grid.heat_feedin[15] - (heat_grid.heat_supply[15] + 65.93673852464127)) :   0.0 :   True
-                 16 :   0.0 : heat_grid.heat_balance[16] - (heat_grid.heat_feedin[16] - (heat_grid.heat_supply[16] + 30.730173247128615)) :   0.0 :   True
-                 17 :   0.0 :  heat_grid.heat_balance[17] - (heat_grid.heat_feedin[17] - (heat_grid.heat_supply[17] + 27.19614092916644)) :   0.0 :   True
-                 18 :   0.0 :  heat_grid.heat_balance[18] - (heat_grid.heat_feedin[18] - (heat_grid.heat_supply[18] + 78.92180463369827)) :   0.0 :   True
-                 19 :   0.0 : heat_grid.heat_balance[19] - (heat_grid.heat_feedin[19] - (heat_grid.heat_supply[19] + 56.264775590459465)) :   0.0 :   True
-                 20 :   0.0 : heat_grid.heat_balance[20] - (heat_grid.heat_feedin[20] - (heat_grid.heat_supply[20] + 19.839942780349546)) :   0.0 :   True
-                 21 :   0.0 : heat_grid.heat_balance[21] - (heat_grid.heat_feedin[21] - (heat_grid.heat_supply[21] + 15.213526720257892)) :   0.0 :   True
-                 22 :   0.0 : heat_grid.heat_balance[22] - (heat_grid.heat_feedin[22] - (heat_grid.heat_supply[22] + 23.752315785915645)) :   0.0 :   True
-                 23 :   0.0 : heat_grid.heat_balance[23] - (heat_grid.heat_feedin[23] - (heat_grid.heat_supply[23] + 17.838477111533994)) :   0.0 :   True
-                 24 :   0.0 : heat_grid.heat_balance[24] - (heat_grid.heat_feedin[24] - (heat_grid.heat_supply[24] + 19.405105995306062)) :   0.0 :   True
+                  1 :   0.0 :     heat_grid.heat_balance[1] - (heat_grid.heat_feedin[1] - (heat_grid.heat_supply[1] + 38.60309761638592)) :   0.0 :   True
+                  2 :   0.0 :    heat_grid.heat_balance[2] - (heat_grid.heat_feedin[2] - (heat_grid.heat_supply[2] + 46.163915997180695)) :   0.0 :   True
+                  3 :   0.0 :     heat_grid.heat_balance[3] - (heat_grid.heat_feedin[3] - (heat_grid.heat_supply[3] + 90.27590691534829)) :   0.0 :   True
+                  4 :   0.0 :     heat_grid.heat_balance[4] - (heat_grid.heat_feedin[4] - (heat_grid.heat_supply[4] + 61.86315024214471)) :   0.0 :   True
+                  5 :   0.0 :     heat_grid.heat_balance[5] - (heat_grid.heat_feedin[5] - (heat_grid.heat_supply[5] + 66.02640025718766)) :   0.0 :   True
+                  6 :   0.0 :     heat_grid.heat_balance[6] - (heat_grid.heat_feedin[6] - (heat_grid.heat_supply[6] + 64.04517879355971)) :   0.0 :   True
+                  7 :   0.0 :    heat_grid.heat_balance[7] - (heat_grid.heat_feedin[7] - (heat_grid.heat_supply[7] + 62.188697375537984)) :   0.0 :   True
+                  8 :   0.0 :         heat_grid.heat_balance[8] - (heat_grid.heat_feedin[8] - (heat_grid.heat_supply[8] + 57.7660936975)) :   0.0 :   True
+                  9 :   0.0 :     heat_grid.heat_balance[9] - (heat_grid.heat_feedin[9] - (heat_grid.heat_supply[9] + 55.99101083967842)) :   0.0 :   True
+                 10 :   0.0 :  heat_grid.heat_balance[10] - (heat_grid.heat_feedin[10] - (heat_grid.heat_supply[10] + 50.22995456080667)) :   0.0 :   True
+                 11 :   0.0 :   heat_grid.heat_balance[11] - (heat_grid.heat_feedin[11] - (heat_grid.heat_supply[11] + 46.9503010776797)) :   0.0 :   True
+                 12 :   0.0 :  heat_grid.heat_balance[12] - (heat_grid.heat_feedin[12] - (heat_grid.heat_supply[12] + 42.74683675585427)) :   0.0 :   True
+                 13 :   0.0 :  heat_grid.heat_balance[13] - (heat_grid.heat_feedin[13] - (heat_grid.heat_supply[13] + 45.15265311342145)) :   0.0 :   True
+                 14 :   0.0 :  heat_grid.heat_balance[14] - (heat_grid.heat_feedin[14] - (heat_grid.heat_supply[14] + 50.39094262394995)) :   0.0 :   True
+                 15 :   0.0 :  heat_grid.heat_balance[15] - (heat_grid.heat_feedin[15] - (heat_grid.heat_supply[15] + 53.03572656804096)) :   0.0 :   True
+                 16 :   0.0 :  heat_grid.heat_balance[16] - (heat_grid.heat_feedin[16] - (heat_grid.heat_supply[16] + 55.80877063482933)) :   0.0 :   True
+                 17 :   0.0 :  heat_grid.heat_balance[17] - (heat_grid.heat_feedin[17] - (heat_grid.heat_supply[17] + 58.22370314127439)) :   0.0 :   True
+                 18 :   0.0 : heat_grid.heat_balance[18] - (heat_grid.heat_feedin[18] - (heat_grid.heat_supply[18] + 63.291447011518855)) :   0.0 :   True
+                 19 :   0.0 :  heat_grid.heat_balance[19] - (heat_grid.heat_feedin[19] - (heat_grid.heat_supply[19] + 58.52910941859148)) :   0.0 :   True
+                 20 :   0.0 :  heat_grid.heat_balance[20] - (heat_grid.heat_feedin[20] - (heat_grid.heat_supply[20] + 51.53707796558231)) :   0.0 :   True
+                 21 :   0.0 : heat_grid.heat_balance[21] - (heat_grid.heat_feedin[21] - (heat_grid.heat_supply[21] + 35.499240108725246)) :   0.0 :   True
+                 22 :   0.0 :  heat_grid.heat_balance[22] - (heat_grid.heat_feedin[22] - (heat_grid.heat_supply[22] + 38.35922005105117)) :   0.0 :   True
+                 23 :   0.0 :  heat_grid.heat_balance[23] - (heat_grid.heat_feedin[23] - (heat_grid.heat_supply[23] + 37.56230812843012)) :   0.0 :   True
+                 24 :   0.0 :  heat_grid.heat_balance[24] - (heat_grid.heat_feedin[24] - (heat_grid.heat_supply[24] + 38.51316995765527)) :   0.0 :   True
             heat_in_heat_insum : Size=24, Index=t, Active=True
                 Key : Lower : Body                                                                                                                              : Upper : Active
                   1 :   0.0 :      arc03_expanded.heat[1] + arc04_expanded.heat[1] + arc05_expanded.heat[1] + arc08_expanded.heat[1] - heat_grid.heat_feedin[1] :   0.0 :   True

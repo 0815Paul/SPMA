@@ -2,6 +2,8 @@ import sys
 import os
 import json
 import re
+import logging
+from datetime import datetime
 
 import pandas as pd
 import pyomo.environ as pyo
@@ -80,8 +82,6 @@ COST_DISCHARGE = global_config['cost_discharge'] # €/kWh
 # Costs
 MAINTENANCE_COSTS = global_config['maintenance_cost'] # €/kWh (HS)
 
-# Flag to choose between weighted heat demand and normal heat demand
-USE_WEIGHTED_HEAT_DEMAND = True  # Set to True to use weighted heat demand, False for normal heat demand
 
 class Model:
     """Model class."""
@@ -99,6 +99,9 @@ class Model:
         self.end_date = None
         self.period = None
         self.heat_demand_file = None
+        self.USE_WEIGHTED_HEAT_DEMAND = Model.USE_WEIGHTED_HEAT_DEMAND
+        self.logfile_name = None
+        self.configure_logging()
         self._initialize_model_components()
 
     def _initialize_model_components(self):
@@ -343,7 +346,7 @@ class Model:
     def _load_scenario_data(self):
         """Load scenario data from files and load it in a dictionary."""  
 
-        if USE_WEIGHTED_HEAT_DEMAND:
+        if self.USE_WEIGHTED_HEAT_DEMAND:
             with open(f'{PATH_IN}demands/{WEIGHTED_HEAT_DEMAND}') as f:
                 print('##########################################')
                 print('####### Data: Weighted Heat Demand #######')
@@ -356,10 +359,7 @@ class Model:
                 print('###############################################')
                 heat_demand_data = json.load(f)
 
-        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
-        self.start_date = start_date
-        self.end_date = end_date
-        self.period = period
+        
 
         with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND_SCENARIOS}') as f:
             scenario_data = json.load(f)
@@ -526,6 +526,7 @@ class Model:
     
     def create_extensive_form(self, options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
+        options['LogFile'] = self.logfile_name
         self.ef_instance = ExtensiveForm(
             options,
             all_scenario_names,
@@ -538,6 +539,7 @@ class Model:
     def solve(self):
         """Solve the model."""
         self.results = self.ef_instance.solve_extensive_form(tee=True)
+        logging.info(f"Model solved successfully")
     
     def _extract_scenario_info(self, file):
         """Extract the start date, end date, and period from the file name."""
@@ -570,7 +572,7 @@ class Model:
 
 
         # Determine prefix based on heat demand type
-        if USE_WEIGHTED_HEAT_DEMAND:
+        if self.USE_WEIGHTED_HEAT_DEMAND:
             prefix = 'weighted_'
         else:
             prefix = ''
@@ -630,7 +632,7 @@ class Model:
             df_output.to_csv(PATH_OUT_TIMESERIES + output_file)
             #print(f'Results for {sname} written to {output_file}')
 
-            
+        logging.info(f"Results written to file")       
     
     def write_objective_values(self, ef):
         """Writes the Objective-Value for each scenario."""
@@ -642,7 +644,7 @@ class Model:
         period = self.period
 
         # Determine prefix based on heat demand type
-        if USE_WEIGHTED_HEAT_DEMAND:
+        if self.USE_WEIGHTED_HEAT_DEMAND:
             prefix = 'weighted_'
         else:
             prefix = ''
@@ -661,3 +663,30 @@ class Model:
         # Speichere den DataFrame als CSV-Datei
         output_filename = f"{PATH_OUT_OBJECTIVES}s_{prefix}{start_date}_to_{end_date}_{period}_obj.csv"
         df_results.to_csv(output_filename, index=False)
+
+        logging.info(f"Objective values written to file")
+
+    def configure_logging(self):
+        """Configures logging within the model class."""
+        
+        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+        self.start_date = start_date
+        self.end_date = end_date
+        self.period = period
+
+        # Bestimmen Sie den Präfix basierend auf der Flagge
+        if self.USE_WEIGHTED_HEAT_DEMAND:
+            prefix = 'weighted_'
+        else:
+            prefix = ''
+
+        # Erstellen Sie das Log-Verzeichnis, falls es nicht existiert
+        if not os.path.exists(PATH_OUT_LOGS):
+            os.makedirs(PATH_OUT_LOGS)
+
+        # Erstellen Sie den Log-Dateinamen
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.logfile_name = f"{PATH_OUT_LOGS}{prefix}logfile_{timestamp}_{start_date}_{period}.log"
+
+        # Konfigurieren Sie das Logging
+        logging.basicConfig(filename=self.logfile_name, level=logging.INFO)

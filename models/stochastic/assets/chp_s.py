@@ -16,7 +16,6 @@ class Chp:
             filepath,
             index_col=index_col
         )
-
     
     def add_to_model(self, model):
         model.add_component(

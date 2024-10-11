@@ -1,5 +1,5 @@
 # Imports
-from model_s import Model, PATH_OUT_LOGS
+from model_s import Model
 import mpisppy.utils.sputils as sputils
 import pyomo.environ as pyo
 from datetime import datetime
@@ -8,14 +8,15 @@ def main():
     
     # Some parameters 
     scen_count = 10
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_filename = f"{PATH_OUT_LOGS}logile_{timestamp}.log"
+
+    # Define the solver
     options = {
         'solver': 'gurobi', 
         'MIPGap':0.015, # MIPOpt Option added in ExtensiveForm Class
-        'TimeLimit':100, # TimeLimit Option added in ExtensiveForm Class
-        'LogFile': log_filename # LogFile Option added in ExtensiveForm Class
+        'TimeLimit':100 # TimeLimit Option added in ExtensiveForm Class
         }
+
+    Model.USE_WEIGHTED_HEAT_DEMAND = False
 
     scenario_creator_kwargs = {}
 
