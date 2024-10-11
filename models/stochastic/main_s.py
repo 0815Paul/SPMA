@@ -12,11 +12,11 @@ def main():
     # Define the solver
     options = {
         'solver': 'gurobi', 
-        'MIPGap':0.015, # MIPOpt Option added in ExtensiveForm Class
+        'MIPGap':0.0015, # MIPOpt Option added in ExtensiveForm Class
         'TimeLimit':100 # TimeLimit Option added in ExtensiveForm Class
         }
 
-    Model.USE_WEIGHTED_HEAT_DEMAND = False
+    Model.USE_WEIGHTED_HEAT_DEMAND = True
 
     scenario_creator_kwargs = {}
 

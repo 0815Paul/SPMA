@@ -248,6 +248,17 @@ class Model:
             self._chp_revenue(model)
         )
 
+    # def _first_stage_cost_rule(self, model):
+    #     return (
+    #         self._power_revenue(model) + 
+    #         self._heat_revenue(model) + 
+    #         self._chp_revenue(model) -
+    #         self._gas_costs(model) -
+    #         self._power_costs(model) -
+    #         self._storage_costs(model) -	
+    #         self._maintenance_costs(model) 
+    #     )
+
     def _second_stage_cost_rule(self, model):
         second = (
             quicksum(model.heat_storage1.dispatch_heat_charge[t] * COST_CHARGE for t in model.t) +
