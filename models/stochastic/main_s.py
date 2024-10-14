@@ -16,7 +16,7 @@ def main():
         'TimeLimit':100 # TimeLimit Option added in ExtensiveForm Class
         }
 
-    Model.USE_WEIGHTED_HEAT_DEMAND = True
+    Model.USE_WEIGHTED_HEAT_DEMAND = False 
 
     scenario_creator_kwargs = {}
 

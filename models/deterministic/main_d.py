@@ -375,7 +375,7 @@ if __name__ == "__main__":
     # Flag zum Steuern, ob mehrere Szenarien durchlaufen werden sollen
     
     run_multiple_scenarios = False  # Setzen Sie diesen Wert auf False, um nur ein Szenario zu laufen
-    Model.USE_WEIGHTED_HEAT_DEMAND = True
+    Model.USE_WEIGHTED_HEAT_DEMAND = False
 
     # Einheitliche Solver-Einstellungen
     solver_name = 'gurobi'

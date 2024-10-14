@@ -4,7 +4,7 @@
       "heat_demand_file": "heat_demand_20230626_to_20230626_day.json",
       "heat_demand_scenario_file": "reduced_heat_demand_scenarios_20230626_to_20230626_day.json",
       "weighted_heat_demand": "./weighted_heat_demand/weighted_heat_demand_20230626.json",
-      "dummy_heat_demand_file": "testing/dummy_heat_demand_20230402.json",
+      "dummy_heat_demand_file": "testing/dummy_heat_demand_20230622.json",
       "dummy_heat_demand_scenario_file": "testing/dummy_heat_demand_scenarios_20230402.json",
       "gas_price": 0.1543,
       "power_price": 0.251,
@@ -46,6 +46,7 @@
     "postprocessing": {
       "input_path_s": "../data/output/stochastic/timeseries/",
       "input_path_d": "../data/output/deterministic/timeseries/",
+      "input_path_mean": "../data/input/demands/weighted_heat_demand/",
       "log_path_s": "../data/output/stochastic/logs/",
       "log_path_d": "../data/output/deterministic/logs/",
       "output_path": "../data/postprocessing/",
