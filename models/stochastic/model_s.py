@@ -54,7 +54,6 @@ DUMMY_FILE_HEAT_DEMAND = global_config['dummy_heat_demand_file']
 DUMMY_FILE_HEAT_DEMAND_SCENARIOS = global_config['dummy_heat_demand_scenario_file']
 
 # Weighted Heat Demand
-
 WEIGHTED_HEAT_DEMAND = global_config['weighted_heat_demand']
 
 # Declare constants
@@ -100,6 +99,7 @@ class Model:
         self.period = None
         self.heat_demand_file = None
         self.USE_WEIGHTED_HEAT_DEMAND = Model.USE_WEIGHTED_HEAT_DEMAND
+        self.SPECIAL_CASE = Model.SPECIAL_CASE
         self.logfile_name = None
         self.configure_logging()
         self._initialize_model_components()
@@ -224,8 +224,6 @@ class Model:
         #     source = self.instance.ngas_grid.dispatch_gas_out,
         #     destination = self.instance.chp1.dispatch_gas_in
         # )
-
-
 
 
     def _expand_arcs(self):
@@ -612,7 +610,7 @@ class Model:
         df_root_solution = df_root_solution.sort_index()
 
         # Save the root solution to a CSV file
-        root_output_file = f's_{prefix}{start_date}_to_{end_date}_{period}_rs.csv'
+        root_output_file = f's_{prefix}{start_date}_to_{end_date}_{period}{self.SPECIAL_CASE}_rs.csv'
         df_root_solution.to_csv(PATH_OUT_ROOT + root_output_file)
 
 
@@ -639,7 +637,7 @@ class Model:
             
 
   
-            output_file = f's_{prefix}{start_date}_to_{end_date}_{period}_{sname}_ts.csv'
+            output_file = f's_{prefix}{start_date}_to_{end_date}_{period}_{sname}{self.SPECIAL_CASE}_ts.csv'
             df_output.to_csv(PATH_OUT_TIMESERIES + output_file)
             #print(f'Results for {sname} written to {output_file}')
 
@@ -672,7 +670,7 @@ class Model:
 
 
         # Speichere den DataFrame als CSV-Datei
-        output_filename = f"{PATH_OUT_OBJECTIVES}s_{prefix}{start_date}_to_{end_date}_{period}_obj.csv"
+        output_filename = f"{PATH_OUT_OBJECTIVES}s_{prefix}{start_date}_to_{end_date}_{period}{self.SPECIAL_CASE}_obj.csv"
         df_results.to_csv(output_filename, index=False)
 
         logging.info(f"Objective values written to file")
@@ -697,7 +695,7 @@ class Model:
 
         # Erstellen Sie den Log-Dateinamen
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.logfile_name = f"{PATH_OUT_LOGS}{prefix}logfile_{timestamp}_{start_date}_{period}.log"
+        self.logfile_name = f"{PATH_OUT_LOGS}{prefix}logfile_{timestamp}_{start_date}_{period}{self.SPECIAL_CASE}.log"
 
         # Konfigurieren Sie das Logging
         logging.basicConfig(filename=self.logfile_name, level=logging.INFO)

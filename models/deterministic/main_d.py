@@ -380,7 +380,7 @@ if __name__ == "__main__":
     # Einheitliche Solver-Einstellungen
     solver_name = 'gurobi'
     solver_options = {
-        'MIPGap': 0.015,
+        'MIPGap': 0.0015,
         'TimeLimit': 20
     }
 

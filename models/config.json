@@ -1,9 +1,9 @@
 {
     "global": {
       "data_path": "../../data/",
-      "heat_demand_file": "heat_demand_20230626_to_20230626_day.json",
-      "heat_demand_scenario_file": "reduced_heat_demand_scenarios_20230626_to_20230626_day.json",
-      "weighted_heat_demand": "./weighted_heat_demand/weighted_heat_demand_20230626.json",
+      "heat_demand_file": "heat_demand_20230409_to_20230409_day.json",
+      "heat_demand_scenario_file": "reduced_heat_demand_scenarios_20230409_to_20230409_day.json",
+      "weighted_heat_demand": "./weighted_heat_demand/weighted_heat_demand_20230409.json",
       "dummy_heat_demand_file": "testing/dummy_heat_demand_20230622.json",
       "dummy_heat_demand_scenario_file": "testing/dummy_heat_demand_scenarios_20230402.json",
       "gas_price": 0.1543,

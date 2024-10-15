@@ -6,8 +6,18 @@ from datetime import datetime
 
 def main():
     
-    # Some parameters 
+    #################################################
+    
+    # Want to use the weighted heat demand?
+    Model.USE_WEIGHTED_HEAT_DEMAND = False 
+
+    # Want to use a special case?
+    USE_SPECIAL_CASE = False 
+    
+    # Define the number of scenarios
     scen_count = 10
+
+    #################################################
 
     # Define the solver
     options = {
@@ -16,7 +26,12 @@ def main():
         'TimeLimit':100 # TimeLimit Option added in ExtensiveForm Class
         }
 
-    Model.USE_WEIGHTED_HEAT_DEMAND = False 
+    
+    if USE_SPECIAL_CASE:
+        Model.SPECIAL_CASE = '_extrem'
+    else:
+        Model.SPECIAL_CASE = ''
+    
 
     scenario_creator_kwargs = {}
 
