@@ -375,14 +375,15 @@ if __name__ == "__main__":
     # Flag zum Steuern, ob mehrere Szenarien durchlaufen werden sollen
     
     run_multiple_scenarios = False  # Setzen Sie diesen Wert auf False, um nur ein Szenario zu laufen
-    Model.USE_WEIGHTED_HEAT_DEMAND = False
+    Model.USE_WEIGHTED_HEAT_DEMAND = True
 
     # Einheitliche Solver-Einstellungen
     solver_name = 'gurobi'
     solver_options = {
         'MIPGap': 0.0015,
-        'TimeLimit': 20
+        'TimeLimit': 100
     }
+    
 
     if run_multiple_scenarios:
         # Laden der Heat-Demand-Szenarien
@@ -406,7 +407,7 @@ if __name__ == "__main__":
             start_date, end_date, period = model._extract_scenario_info(FILE_HEAT_DEMAND)
 
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            log_filename = f"{PATH_OUT_LOGS}logfile_{scenario_name}_{timestamp}_{start_date}_{period}.log"
+            log_filename = f"{PATH_OUT_LOGS}logfile_{timestamp}_{start_date}_{period}_{scenario_name}.log"
 
             print('Setting solver...')
             # Verwendung der einheitlichen Solver-Einstellungen
@@ -441,7 +442,7 @@ if __name__ == "__main__":
             model.write_results()
 
             # Speichern der Ergebnisse mit Szenarioname im Dateinamen
-            output_file = f'd_{scenario_name}_{start_date}_to_{end_date}_{period}_ts.csv'
+            output_file = f'd_{start_date}_to_{end_date}_{period}_{scenario_name}_ts.csv'
             model.save_results(PATH_OUT_SCENARIOS + output_file)
 
         # Speichern der Zielfunktionswerte in einer separaten CSV-Datei
