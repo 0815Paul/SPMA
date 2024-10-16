@@ -375,7 +375,7 @@ if __name__ == "__main__":
     # Flag zum Steuern, ob mehrere Szenarien durchlaufen werden sollen
     
     run_multiple_scenarios = False  # Setzen Sie diesen Wert auf False, um nur ein Szenario zu laufen
-    Model.USE_WEIGHTED_HEAT_DEMAND = True
+    Model.USE_WEIGHTED_HEAT_DEMAND = False 
 
     # Einheitliche Solver-Einstellungen
     solver_name = 'gurobi'
@@ -518,56 +518,56 @@ if __name__ == "__main__":
 
         # Erweiterung: Optimieren des tatsächlichen Heat Demands
         # Laden des tatsächlichen Heat Demands aus der entsprechenden Datei
-        # with open(f'{PATH_IN}demands/actual_{FILE_HEAT_DEMAND}') as f:
-        #     actual_heat_demand_data = json.load(f)
+        with open(f'{PATH_IN}demands/actual_{FILE_HEAT_DEMAND}') as f:
+            actual_heat_demand_data = json.load(f)
 
-        # if 'heat_demand' in actual_heat_demand_data:
-        #     actual_heat_demand_data = actual_heat_demand_data['heat_demand']
+        if 'heat_demand' in actual_heat_demand_data:
+            actual_heat_demand_data = actual_heat_demand_data['heat_demand']
 
-        # actual_model = Model(actual_heat_demand_data)
+        actual_model = Model(actual_heat_demand_data)
 
-        # # Wir können den Start- und Enddatum wieder extrahieren, falls notwendig
-        # start_date_actual, end_date_actual, period_actual = actual_model._extract_scenario_info(FILE_HEAT_DEMAND)
+        # Wir können den Start- und Enddatum wieder extrahieren, falls notwendig
+        start_date_actual, end_date_actual, period_actual = actual_model._extract_scenario_info(FILE_HEAT_DEMAND)
 
-        # timestamp_actual = datetime.now().strftime("%Y%m%d_%H%M%S")
-        # log_filename_actual = f"{PATH_OUT_LOGS}logfile_actual_{start_date}.log"
+        timestamp_actual = datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_filename_actual = f"{PATH_OUT_LOGS}logfile_actual_{start_date}.log"
 
-        # print('Setting solver for actual heat demand...')
-        # # Verwendung der einheitlichen Solver-Einstellungen
-        # solver_options_with_log = solver_options.copy()
-        # solver_options_with_log['LogFile'] = log_filename_actual
-        # actual_model.set_solver(
-        #     solver_name=solver_name,
-        #     **solver_options_with_log
-        # )
+        print('Setting solver for actual heat demand...')
+        # Verwendung der einheitlichen Solver-Einstellungen
+        solver_options_with_log = solver_options.copy()
+        solver_options_with_log['LogFile'] = log_filename_actual
+        actual_model.set_solver(
+            solver_name=solver_name,
+            **solver_options_with_log
+        )
 
-        # print('Adding components...')
-        # actual_model.add_components()
+        print('Adding components...')
+        actual_model.add_components()
 
-        # print('Adding objective...')
-        # actual_model.add_objective()
+        print('Adding objective...')
+        actual_model.add_objective()
 
-        # print('Instantiating model...')
-        # actual_model.instantiate_model()
+        print('Instantiating model...')
+        actual_model.instantiate_model()
 
-        # print('Declaring arcs...')
-        # actual_model.add_arcs()
-        # actual_model.expand_arcs()
+        print('Declaring arcs...')
+        actual_model.add_arcs()
+        actual_model.expand_arcs()
 
-        # print('Solving model...')
-        # actual_model.solve()
+        print('Solving model...')
+        actual_model.solve()
 
-        # print('Writing results...')
-        # actual_model.write_results()
+        print('Writing results...')
+        actual_model.write_results()
 
-        # # Speichern der Ergebnisse
-        # output_file_actual = f'd_actual_{start_date_actual}_to_{end_date_actual}_{period_actual}_ts.csv'
-        # actual_model.save_results(PATH_OUT_ACTUAL + output_file_actual)
+        # Speichern der Ergebnisse
+        output_file_actual = f'd_actual_{start_date_actual}_to_{end_date_actual}_{period_actual}_ts.csv'
+        actual_model.save_results(PATH_OUT_ACTUAL + output_file_actual)
 
-        # # Speichern des Zielfunktionswertes
-        # objective_value_actual = actual_model.objective_value
-        # df_objectives_actual = pd.DataFrame([{'Scenario': 'actual', 'ObjectiveValue': objective_value_actual}])
-        # objectives_file_actual = f'{PATH_OUT_ACTUAL}d_actual_{start_date_actual}_to_{end_date_actual}_{period_actual}_obj.csv'
-        # df_objectives_actual.to_csv(objectives_file_actual, index=False)
+        # Speichern des Zielfunktionswertes
+        objective_value_actual = actual_model.objective_value
+        df_objectives_actual = pd.DataFrame([{'Scenario': 'actual', 'ObjectiveValue': objective_value_actual}])
+        objectives_file_actual = f'{PATH_OUT_ACTUAL}d_actual_{start_date_actual}_to_{end_date_actual}_{period_actual}_obj.csv'
+        df_objectives_actual.to_csv(objectives_file_actual, index=False)
 
-        # print('\n### Actual heat demand scenario has been processed. ###')
+        print('\n### Actual heat demand scenario has been processed. ###')
