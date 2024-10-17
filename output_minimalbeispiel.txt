@@ -1,0 +1,52 @@
+9 Var Declarations
+    w_beet_excess_verkauf : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    w_beet_verkauf : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    w_corn_verkauf : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    w_wheat_verkauf : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    x_beet_flaeche : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    x_corn_flaeche : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    x_wheat_flaeche : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    y_corn_ankauf : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+    y_wheat_ankauf : Size=1, Index=None
+        Key  : Lower : Value : Upper : Fixed : Stale : Domain
+        None :     0 :  None :  None : False :  True : NonNegativeReals
+
+1 Objective Declarations
+    objective : Size=1, Index=None, Active=True
+        Key  : Active : Sense    : Expression
+        None :   True : minimize : 150*x_wheat_flaeche + 230*x_corn_flaeche + 260*x_beet_flaeche + 238*y_wheat_ankauf - 170*w_wheat_verkauf + 210*y_corn_ankauf - 150*w_corn_verkauf - 36*w_beet_verkauf - 10*w_beet_excess_verkauf
+
+5 Constraint Declarations
+    beet_constraint : Size=1, Index=None, Active=True
+        Key  : Lower : Body                                                       : Upper : Active
+        None :  -Inf : w_beet_verkauf + w_beet_excess_verkauf - 24*x_beet_flaeche :   0.0 :   True
+    beet_quota_constraint : Size=1, Index=None, Active=True
+        Key  : Lower : Body           : Upper  : Active
+        None :  -Inf : w_beet_verkauf : 6000.0 :   True
+    corn_constraint : Size=1, Index=None, Active=True
+        Key  : Lower : Body                                                 : Upper : Active
+        None : 240.0 : 12.6*x_corn_flaeche + y_corn_ankauf - w_corn_verkauf :  +Inf :   True
+    land_constraint : Size=1, Index=None, Active=True
+        Key  : Lower : Body                                              : Upper : Active
+        None :  -Inf : x_wheat_flaeche + x_corn_flaeche + x_beet_flaeche : 500.0 :   True
+    wheat_constraint : Size=1, Index=None, Active=True
+        Key  : Lower : Body                                                     : Upper : Active
+        None : 200.0 : 444.0*x_wheat_flaeche + y_wheat_ankauf - w_wheat_verkauf :  +Inf :   True
+
+15 Declarations: x_wheat_flaeche x_corn_flaeche x_beet_flaeche w_wheat_verkauf w_corn_verkauf w_beet_verkauf w_beet_excess_verkauf y_wheat_ankauf y_corn_ankauf land_constraint wheat_constraint corn_constraint beet_constraint beet_quota_constraint objective

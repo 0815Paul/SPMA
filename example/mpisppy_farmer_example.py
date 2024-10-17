@@ -32,9 +32,9 @@ cost_beet = 260
 
 # Szenarien
 scenarios = {
-    'good': {'prob': 1/10, 'yield_wheat': 3.0, 'yield_corn': 3.6, 'yield_beet': 24},
+    'good': {'prob': 1/10, 'yield_wheat': 444.0, 'yield_corn': 12.6, 'yield_beet': 24},
     'average': {'prob': 1/5, 'yield_wheat': 2.5, 'yield_corn': 3.0, 'yield_beet': 20},
-    'bad': {'prob': 1/3, 'yield_wheat': 2.0, 'yield_corn': 2.4, 'yield_beet': 16},
+    'bad': {'prob': 1/3, 'yield_wheat': 44.0, 'yield_corn': 2.4, 'yield_beet': 16},
 }
 
 # Szenario-Erstellungsfunktion
@@ -75,6 +75,8 @@ def scenario_creator(scenario_name, node_names=None, cb_data=None):
     model.second_stage_cost = (purchase_price_wheat * model.y_wheat_ankauf - price_wheat * model.w_wheat_verkauf +
                          purchase_price_corn * model.y_corn_ankauf - price_corn * model.w_corn_verkauf -
                          price_beet * model.w_beet_verkauf - price_beet_excess * model.w_beet_excess_verkauf)
+    
+
 
     # Zielfunktion
     model.objective = Objective(expr=model.first_stage_cost + model.second_stage_cost, sense=minimize)
