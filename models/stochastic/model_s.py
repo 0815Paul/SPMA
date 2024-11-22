@@ -1,29 +1,22 @@
-import sys
-import os
+# Standard library imports
 import json
-import re
 import logging
+import os
 from datetime import datetime
 
+# Third-party imports
 import pandas as pd
 import pyomo.environ as pyo
-from pyomo.opt import SolverFactory
-from pyomo.environ import *
-from pyomo.network import *
-
-from mpisppy.opt.ph import PH
-from mpisppy.opt.lshaped import LShapedMethod
-from mpisppy.opt.ef import ExtensiveForm
-from mpisppy.utils.sputils import scenario_tree
-from mpisppy.utils import config
-
+from pyomo.network import Arc
 import mpisppy.utils.sputils as sputils
-import mpisppy.utils.solver_spec as solver_spec
+from mpisppy.opt.ef import ExtensiveForm
 
-import assets.chp_s as chp
+# Local imports
 import assets.boiler_s as boiler
-import assets.heat_storage_s as heat_storage
+import assets.chp_s as chp
 import assets.grid_s as grid
+import assets.heat_storage_s as heat_storage
+
 
 # Load the config.json
 with open ('../config.json', 'r') as f:
@@ -85,28 +78,33 @@ MAINTENANCE_COSTS = global_config['maintenance_cost'] # €/kWh (HS)
 class Model:
     """Model class."""
     
-    def __init__(self):
+    def __init__(self, heat_demand_file, heat_demand_scenario_file):
         """Initialize the model."""
-        self.model = AbstractModel()
+        self.model = pyo.AbstractModel()
         self.instance = None
         self.ef_instance = None
-        self.solver = None
         self.timeseries_data = None
         self.scenario_data = None
         self.results = None
         self.start_date = None
         self.end_date = None
         self.period = None
-        self.heat_demand_file = None
         self.USE_WEIGHTED_HEAT_DEMAND = Model.USE_WEIGHTED_HEAT_DEMAND
         self.SPECIAL_CASE = Model.SPECIAL_CASE
         self.logfile_name = None
+        
+        # Speichern der Dateinamen als Instanzvariablen
+        self.heat_demand_file = heat_demand_file
+        self.heat_demand_scenario_file = heat_demand_scenario_file
+        
+        # Konfigurieren des Loggings und Initialisieren der Komponenten
         self.configure_logging()
+        self._load_scenario_data()
         self._initialize_model_components()
 
     def _initialize_model_components(self):
         """Initialize basic model components."""
-        self.model.t = Set(ordered=True)
+        self.model.t = pyo.Set(ordered=True)
         self._define_parameters()
         self._load_scenario_data()        
         self._define_assets()
@@ -116,13 +114,13 @@ class Model:
     def _define_parameters(self):
         """Define model parameters."""
         # Load Constants and the heat demand
-        self.model.GAS_PRICE = Param(initialize=GAS_PRICE)
-        self.model.POWER_PRICE = Param(initialize=POWER_PRICE)
-        self.model.HEAT_PRICE = Param(initialize=HEAT_PRICE)
-        self.model.heat_demand = Param(self.model.t)
-        self.model.heat_demand_scenario = Param(self.model.t)
-        self.model.delta_heat_demand = Param(self.model.t)
-        self.model.probability = Param()
+        self.model.GAS_PRICE = pyo.Param(initialize=GAS_PRICE)
+        self.model.POWER_PRICE = pyo.Param(initialize=POWER_PRICE)
+        self.model.HEAT_PRICE = pyo.Param(initialize=HEAT_PRICE)
+        self.model.heat_demand = pyo.Param(self.model.t)
+        self.model.heat_demand_scenario = pyo.Param(self.model.t)
+        self.model.delta_heat_demand = pyo.Param(self.model.t)
+        self.model.probability = pyo.Param()
         
     def _define_assets(self):
         self._add_chp_assets()
@@ -164,17 +162,14 @@ class Model:
             source=self.instance.chp1.power_out,
             destination=self.instance.power_grid.power_in
         )
-        # New
         self.instance.arc02 = Arc(
             source=self.instance.chp2.power_out,
             destination=self.instance.power_grid.power_in
         )
-        # Updated 
         self.instance.arc03 = Arc(
             source=self.instance.chp1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        # New
         self.instance.arc04 = Arc(
             source=self.instance.chp2.heat_out,
             destination=self.instance.heat_grid.heat_in
@@ -191,19 +186,16 @@ class Model:
             source=self.instance.ngas_grid.gas_out,
             destination=self.instance.chp1.gas_in
         )
-        # New
         self.instance.arc08 = Arc(
             source=self.instance.heat_storage1.heat_out,
             destination=self.instance.heat_grid.heat_in
         )
-        # New
         self.instance.arc09 = Arc(
             source=self.instance.heat_grid.heat_out,
             destination=self.instance.heat_storage1.heat_in
         )
         # Second Stage Arcs
 
-        # New
         self.instance.arc10 = Arc(
             source = self.instance.heat_storage1.dispatch_heat_out,
             destination = self.instance.heat_grid.dispatch_heat_in
@@ -212,28 +204,15 @@ class Model:
             source = self.instance.heat_grid.dispatch_heat_out,
             destination = self.instance.heat_storage1.dispatch_heat_in
         )
-        # self.instance.arc12 = Arc(
-        #     source = self.instance.chp1.dispatch_heat_out,
-        #     destination = self.instance.heat_grid.dispatch_heat_in
-        # )
-        # self.instance.arc13 = Arc(
-        #     source = self.instance.chp1.dispatch_power_out,
-        #     destination = self.instance.power_grid.dispatch_power_in
-        # )
-        # self.instance.arc14 = Arc(
-        #     source = self.instance.ngas_grid.dispatch_gas_out,
-        #     destination = self.instance.chp1.dispatch_gas_in
-        # )
-
 
     def _expand_arcs(self):
         """Expands arcs and generate connection constraints."""
-        TransformationFactory('network.expand_arcs').apply_to(self.instance)
+        pyo.TransformationFactory('network.expand_arcs').apply_to(self.instance)
     
     def _define_expressions(self):
         """Define Model expressions."""
-        self.model.first_stage_cost = Expression(rule=self._first_stage_cost_rule)
-        self.model.second_stage_cost = Expression(rule=self._second_stage_cost_rule)
+        self.model.first_stage_cost = pyo.Expression(rule=self._first_stage_cost_rule)
+        self.model.second_stage_cost = pyo.Expression(rule=self._second_stage_cost_rule)
 
     def _first_stage_cost_rule(self, model):
         return (
@@ -246,92 +225,83 @@ class Model:
             self._chp_revenue(model)
         )
 
-    # def _first_stage_cost_rule(self, model):
-    #     return (
-    #         self._power_revenue(model) + 
-    #         self._heat_revenue(model) + 
-    #         self._chp_revenue(model) -
-    #         self._gas_costs(model) -
-    #         self._power_costs(model) -
-    #         self._storage_costs(model) -	
-    #         self._maintenance_costs(model) 
-    #     )
-
     def _second_stage_cost_rule(self, model):
         second = (
-            quicksum(model.heat_storage1.dispatch_heat_charge[t] * COST_CHARGE for t in model.t) +
-            quicksum(model.heat_storage1.dispatch_heat_discharge[t] * COST_DISCHARGE for t in model.t) 
+            pyo.quicksum(model.heat_storage1.dispatch_storage_charge[t] * COST_CHARGE for t in model.t) +
+            pyo.quicksum(model.heat_storage1.dispatch_storage_discharge[t] * COST_DISCHARGE for t in model.t) +
+            pyo.quicksum(model.heat_storage1.dispatch_external_charge[t] * (COST_CHARGE+0.2) for t in model.t) +
+            pyo.quicksum(model.heat_storage1.dispatch_external_discharge[t] * (COST_DISCHARGE+0.2) for t in model.t)
         )
         return second
 
     def _gas_costs(self, model):
             """ Calculate gas costs for CHP and Boiler."""
             gas_costs = (
-            quicksum(model.chp1.gas[t] * model.GAS_PRICE  for t in model.t) +
-            quicksum(model.chp2.gas[t] * model.GAS_PRICE  for t in model.t) +  
-            quicksum(model.boiler1.gas[t] * model.GAS_PRICE  for t in model.t)
+            pyo.quicksum(model.chp1.gas[t] * model.GAS_PRICE  for t in model.t) +
+            pyo.quicksum(model.chp2.gas[t] * model.GAS_PRICE  for t in model.t) +  
+            pyo.quicksum(model.boiler1.gas[t] * model.GAS_PRICE  for t in model.t)
             )
             return gas_costs
     
     def _power_costs(self, model):
         """Calculate power costs for CHP."""
-        power_costs = quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * model.POWER_PRICE for t in model.t)
+        power_costs = pyo.quicksum(model.boiler1.heat[t] * POWERCOST_TO_HEAT_SALES_RATIO * model.POWER_PRICE for t in model.t)
         return power_costs
 
     def _storage_costs(self, model):
         """Calculate storage costs for Heat Storage."""
         storage_costs = (
-            quicksum(model.heat_storage1.heat_charge[t] * COST_CHARGE for t in model.t) +
-            quicksum(model.heat_storage1.heat_discharge[t] * COST_DISCHARGE for t in model.t)
+            pyo.quicksum(model.heat_storage1.heat_charge[t] * COST_CHARGE for t in model.t) +
+            pyo.quicksum(model.heat_storage1.heat_discharge[t] * COST_DISCHARGE for t in model.t)
         )
         return storage_costs
     
     def _maintenance_costs(self, model):
         """Calculate maintenance costs for CHP."""
         maintenance_costs = (
-            quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t) + 
-            quicksum(model.chp2.bin[t] * MAINTENANCE_COSTS for t in model.t) # New
+            pyo.quicksum(model.chp1.bin[t] * MAINTENANCE_COSTS for t in model.t) + 
+            pyo.quicksum(model.chp2.bin[t] * MAINTENANCE_COSTS for t in model.t) # New
         )	
         return maintenance_costs
 
     def _power_revenue(self, model):
         """Calculate power revenue for CHP."""
         power_revenue = (
-            quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t) + 
-            quicksum(model.chp2.power[t] * model.POWER_PRICE for t in model.t) # New
+            pyo.quicksum(model.chp1.power[t] * model.POWER_PRICE for t in model.t) + 
+            pyo.quicksum(model.chp2.power[t] * model.POWER_PRICE for t in model.t) # New
         )
         return power_revenue
     
     def _heat_revenue(self, model):
         """Calculate heat revenue for CHP and Boiler."""
         heat_revenue = (
-        quicksum(model.chp1.heat[t] * model.HEAT_PRICE for t in model.t) +
-        quicksum(model.chp2.heat[t] * model.HEAT_PRICE for t in model.t) + # New
-        quicksum(model.boiler1.heat[t] * model.HEAT_PRICE for t in model.t)
+        pyo.quicksum(model.chp1.heat[t] * model.HEAT_PRICE for t in model.t) +
+        pyo.quicksum(model.chp2.heat[t] * model.HEAT_PRICE for t in model.t) + # New
+        pyo.quicksum(model.boiler1.heat[t] * model.HEAT_PRICE for t in model.t)
         )
         return heat_revenue
     
     def _chp_revenue(self, model):
         """Calculate CHP revenue."""
         chp_bonus_for_self_consumption = (
-            quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t) +
-            quicksum(model.chp2.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t) # New
+            pyo.quicksum(model.chp1.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t) +
+            pyo.quicksum(model.chp2.power[t] * CHP_BONUS_SELF_CONSUMPTION * SHARE_SELF_CONSUMPTION for t in model.t) # New
         )
         chp_bonus_for_feed_in = (
-            quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t) +
-            quicksum(model.chp2.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t) # New
+            pyo.quicksum(model.chp1.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t) +
+            pyo.quicksum(model.chp2.power[t] * CHP_BONUS * SHARE_FEED_IN for t in model.t) # New
         )
         chp_index = (
-            quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t) +
-            quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t) # New
+            pyo.quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t) +
+            pyo.quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * CHP_INDEX_EEX for t in model.t) # New
         )
         avoided_grid_fees = (
-            quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) +
-            quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) # New
+            pyo.quicksum((model.chp1.power[t] - model.chp1.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) +
+            pyo.quicksum((model.chp2.power[t] - model.chp2.power[t] * SHARE_SELF_CONSUMPTION) * AVOIDED_GRID_FEES for t in model.t) # New
         )
         energy_tax_refund = (
-            quicksum(model.chp1.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t) +
-            quicksum(model.chp2.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t) # New
+            pyo.quicksum(model.chp1.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t) +
+            pyo.quicksum(model.chp2.gas[t] * ENERGY_TAX_REFUND_GAS for t in model.t) # New
         )
         
         chp_revenue = (
@@ -348,29 +318,25 @@ class Model:
         def objective_expression_rule(model):
             return model.first_stage_cost + model.second_stage_cost
             #return model.first_stage_cost
-        self.model.objective = Objective(rule=objective_expression_rule,sense=minimize)  
+        self.model.objective = pyo.Objective(rule=objective_expression_rule,sense=pyo.minimize)  
     
-    #####################################################################################
-
     def _load_scenario_data(self):
         """Load scenario data from files and load it in a dictionary."""  
 
         if self.USE_WEIGHTED_HEAT_DEMAND:
-            with open(f'{PATH_IN}demands/{WEIGHTED_HEAT_DEMAND}') as f:
+            with open(os.path.join(PATH_IN, 'demands', WEIGHTED_HEAT_DEMAND)) as f:
                 print('##########################################')
                 print('####### Data: Weighted Heat Demand #######')
                 print('##########################################')
                 heat_demand_data = json.load(f)
         else:
-            with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND}') as f:
+            with open(self.heat_demand_file) as f:
                 print('###############################################')
                 print(f'####### Data: Forecasted Heat Demand #########')
                 print('###############################################')
                 heat_demand_data = json.load(f)
 
-        
-
-        with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND_SCENARIOS}') as f:
+        with open(self.heat_demand_scenario_file) as f:
             scenario_data = json.load(f)
 
         ################### For Testing ###################
@@ -382,7 +348,6 @@ class Model:
         #     scenario_data = json.load(f)
 
         ################### For Testing ###################
-
 
         # Extrahiere t-Werte und konvertiere sie in int
         t_values = list(map(int, heat_demand_data['heat_demand'].keys()))
@@ -412,17 +377,12 @@ class Model:
             except Exception as e:
                 print(f"Allgemeiner Fehler im Szenario {scenario_name}: {e}")
 
-    
     def _scenario_creator(self, scenario_name):
         """Create a scenario model."""
         print("=" * 40)
         print(f"Creating scenario: {scenario_name}...")
         print("=" * 40)
         self.instance = self._build_scenario_model(scenario_name)
-        
-        # Variable mit Index t anlegen
-        
-        # varlist = [self.instance.chp1.gas]
         
         varlist = [self.instance.chp1.bin, 
                    self.instance.chp1.power,
@@ -465,7 +425,7 @@ class Model:
         sputils.attach_root_node(self.instance, self.instance.first_stage_cost, varlist)
 
         # Add Probability to the instance
-        self.instance._mpisppy_probability = value(self.instance.probability)
+        self.instance._mpisppy_probability = pyo.value(self.instance.probability)
         
 
         ###################### Start Debugging Print ######################
@@ -525,13 +485,6 @@ class Model:
         ###################### End Debugging Print ######################
 
         return self.instance
-
-    # Not needed for now
-    def set_solver(self, solver_name, **kwargs):
-        """Set solver for the model."""
-        self.solver = SolverFactory(solver_name)
-        for key in kwargs:
-            self.solver.options[key] = kwargs[key]    
     
     def create_extensive_form(self, options , all_scenario_names, scenario_creator_kwargs):
         """Create the extensive form."""
@@ -547,8 +500,15 @@ class Model:
 
     def solve(self):
         """Solve the model."""
-        self.results = self.ef_instance.solve_extensive_form(tee=True)
-        logging.info(f"Model solved successfully")
+        solver_name = self.ef_instance.options['solver']
+        solver_options = self.ef_instance.options.get('solver_options', {})
+        solver = pyo.SolverFactory(solver_name)
+        # Set the solver options
+        for key, value in solver_options.items():
+            solver.options[key] = value
+        # Solve the extensive form
+        self.results = solver.solve(self.ef_instance.ef, tee=True)
+        logging.info("Model solved successfully")
     
     def _extract_scenario_info(self, file):
         """Extract the start date, end date, and period from the file name."""
@@ -619,17 +579,17 @@ class Model:
             df_vars = pd.DataFrame()
             df_output = pd.DataFrame()
         
-            for params in smodel.component_objects(Param, active=True):
+            for params in smodel.component_objects(pyo.Param, active=True):
                 name = params.name
                 if len(params) == 1:
-                    single_value = value(list(params.values())[0])
+                    single_value = pyo.value(list(params.values())[0])
                     df_params[name]= [single_value for t in smodel.t]
                 else:
-                    df_params[name] = [value(params[t]) for t in smodel.t]
+                    df_params[name] = [pyo.value(params[t]) for t in smodel.t]
             
-            for vars in smodel.component_objects(Var, active = True):
+            for vars in smodel.component_objects(pyo.Var, active = True):
                 name = vars.name
-                df_vars[name] = [value(vars[t]) for t in smodel.t]
+                df_vars[name] = [pyo.value(vars[t]) for t in smodel.t]
 
             df_output = pd.concat([df_params, df_vars], axis=1)
             df_output.index = smodel.t
@@ -668,7 +628,6 @@ class Model:
         if not os.path.exists(PATH_OUT_OBJECTIVES):
             os.makedirs(PATH_OUT_OBJECTIVES)
 
-
         # Speichere den DataFrame als CSV-Datei
         output_filename = f"{PATH_OUT_OBJECTIVES}s_{prefix}{start_date}_to_{end_date}_{period}{self.SPECIAL_CASE}_obj.csv"
         df_results.to_csv(output_filename, index=False)
@@ -678,7 +637,7 @@ class Model:
     def configure_logging(self):
         """Configures logging within the model class."""
         
-        start_date, end_date, period = self._extract_scenario_info(FILE_HEAT_DEMAND)
+        start_date, end_date, period = self._extract_scenario_info(self.heat_demand_file)
         self.start_date = start_date
         self.end_date = end_date
         self.period = period

@@ -38,7 +38,7 @@ class HeatStorage:
         asset.initial_soc = Param(initialize=self.data.loc['max', 'content']*0.8)
         
         # Second Stage Components
-        asset.dispatch_heat_capacity = Var(t, within=Reals)
+        # asset.dispatch_heat_capacity = Var(t, within=Reals)
         asset.dispatch_heat_charge = Var(t, within=NonNegativeReals)
         asset.dispatch_heat_discharge = Var(t, within=NonNegativeReals)
         
@@ -122,6 +122,24 @@ class HeatStorage:
             include_splitfrac=False
         )
 
+        asset.dispatch_storage_capacity = Var(t, within=NonNegativeReals)
+        asset.dispatch_storage_charge = Var(t, within=NonNegativeReals)
+        asset.dispatch_storage_discharge = Var(t, within=NonNegativeReals)
+        asset.dispatch_external_charge = Var(t, within=NonNegativeReals)
+        asset.dispatch_external_discharge = Var(t, within=NonNegativeReals)
+        asset.dispatch_buffer_charge = Param(t, within=NonNegativeReals, initialize=12)
+        asset.dispatch_buffer_discharge = Param(t, within=NonNegativeReals, initialize=12)
+
+
+
+        def external_charge_rule(asset, t):
+            return asset.dispatch_heat_charge[t] == asset.dispatch_storage_charge[t] + asset.dispatch_external_charge[t] + asset.dispatch_buffer_charge[t]
+        asset.external_charge_rule = Constraint(t, rule=external_charge_rule)
+
+        def external_discharge_rule(asset, t):
+            return asset.dispatch_heat_discharge[t] == asset.dispatch_storage_discharge[t] + asset.dispatch_external_discharge[t] + asset.dispatch_buffer_discharge[t]
+        asset.external_discharge_rule = Constraint(t, rule=external_discharge_rule)
+
         def max_heat_charge_secondstage_rule(asset, t):
             """Second Stage Maximum heat charge constraint"""
             return asset.heat_charge[t] + asset.dispatch_heat_charge[t] <= self.data.loc['max', 'heat']
@@ -135,19 +153,19 @@ class HeatStorage:
         def capacity_balance_secondstage_rule(asset, t):
             """Second Stage Capacity balance constraint, heat capacity is the difference between the initial capacity and the heat balance at time t"""
             if t == 1:
-                return asset.dispatch_heat_capacity[t] == asset.initial_soc + ((asset.heat_charge[t] + asset.dispatch_heat_charge[t]) - (asset.heat_discharge[t] + asset.dispatch_heat_discharge[t]))
+                return asset.dispatch_storage_capacity[t] == asset.initial_soc + ((asset.heat_charge[t] + asset.dispatch_storage_charge[t]) - (asset.heat_discharge[t] + asset.dispatch_storage_discharge[t]))
             else:
-                return asset.dispatch_heat_capacity[t] == asset.dispatch_heat_capacity[t-1] + ((asset.heat_charge[t] + asset.dispatch_heat_charge[t]) - (asset.heat_discharge[t]+asset.dispatch_heat_discharge[t]))
+                return asset.dispatch_storage_capacity[t] == asset.dispatch_storage_capacity[t-1] + ((asset.heat_charge[t] + asset.dispatch_storage_charge[t]) - (asset.heat_discharge[t]+asset.dispatch_storage_discharge[t]))
         asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)
 
         # Dispatch is not limited by the capacity of the storage
 
-        # def max_heat_capacity_secondstage_rule(asset, t):
-        #     """Second Stage Maximum heat capacity constraint"""
-        #     return asset.dispatch_heat_capacity[t] <= self.data.loc['max', 'content']
-        # asset.max_heat_capacity_secondstage_rule = Constraint(t, rule=max_heat_capacity_secondstage_rule)
+        def max_heat_capacity_secondstage_rule(asset, t):
+            """Second Stage Maximum heat capacity constraint"""
+            return asset.dispatch_storage_capacity[t] <= self.data.loc['max', 'content']
+        asset.max_heat_capacity_secondstage_rule = Constraint(t, rule=max_heat_capacity_secondstage_rule)
 
-        # def min_heat_capacity_secondstage_rule(asset, t):
-        #     """Second Stage Minimum heat capacity constraint"""
-        #     return asset.dispatch_heat_capacity[t] >= self.data.loc['min', 'content']
-        # asset.min_heat_capacity_secondstage_rule = Constraint(t, rule=min_heat_capacity_secondstage_rule)
+        def min_heat_capacity_secondstage_rule(asset, t):
+            """Second Stage Minimum heat capacity constraint"""
+            return asset.dispatch_storage_capacity[t] >= self.data.loc['min', 'content']
+        asset.min_heat_capacity_secondstage_rule = Constraint(t, rule=min_heat_capacity_secondstage_rule)
