@@ -132,10 +132,10 @@ class Model:
     
     def _add_chp_assets(self):
         """Define CHP assets."""
-        chp1 = chp.Chp('chp1', PATH_IN + '/assets/chp_operation.csv')
+        chp1 = chp.Chp('chp1', PATH_IN + '/assets/chp_operation_1.csv')
         chp1.add_to_model(self.model)
         
-        chp2 = chp.Chp('chp2', PATH_IN + '/assets/chp_operation.csv')
+        chp2 = chp.Chp('chp2', PATH_IN + '/assets/chp_operation_2.csv')
         chp2.add_to_model(self.model)
 
     def _add_boiler_assets(self):
