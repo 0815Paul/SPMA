@@ -227,10 +227,9 @@ class Model:
 
     def _second_stage_cost_rule(self, model):
         second = (
-            pyo.quicksum(model.heat_storage1.dispatch_storage_charge[t] * COST_CHARGE for t in model.t) +
-            pyo.quicksum(model.heat_storage1.dispatch_storage_discharge[t] * COST_DISCHARGE for t in model.t) +
-            pyo.quicksum(model.heat_storage1.dispatch_external_charge[t] * (COST_CHARGE+0.2) for t in model.t) +
-            pyo.quicksum(model.heat_storage1.dispatch_external_discharge[t] * (COST_DISCHARGE+0.2) for t in model.t)
+            pyo.quicksum(model.heat_storage1.dispatch_heat_charge[t] * COST_CHARGE for t in model.t) +
+            pyo.quicksum(model.heat_storage1.dispatch_heat_discharge[t] * COST_DISCHARGE for t in model.t) +
+            pyo.quicksum(model.heat_storage1.use_extension[t] * 0 for t in model.t) 
         )
         return second
 
