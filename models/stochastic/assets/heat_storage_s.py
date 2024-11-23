@@ -156,12 +156,17 @@ class HeatStorage:
         #                 (asset.heat_discharge[t] + asset.dispatch_heat_discharge[t]))
         # asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)
 
+        # def capacity_balance_secondstage_rule(asset, t):
+        #     """Second Stage Capacity balance constraint"""
+        #     if t == 1:
+        #         return asset.dispatch_heat_capacity[t] == asset.heat_capacity[t] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
+        #     else:
+        #         return asset.dispatch_heat_capacity[t] == asset.dispatch_heat_capacity[t-1] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
+        # asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)
+
         def capacity_balance_secondstage_rule(asset, t):
             """Second Stage Capacity balance constraint"""
-            if t == 1:
-                return asset.dispatch_heat_capacity[t] == asset.heat_capacity[t] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
-            else:
-                return asset.dispatch_heat_capacity[t] == asset.dispatch_heat_capacity[t-1] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
+            return asset.dispatch_heat_capacity[t] == asset.heat_capacity[t] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
         asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)
 
         # Enforce that dispatch_heat_capacity[t] is the sum of storage and extension
