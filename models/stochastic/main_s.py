@@ -101,7 +101,7 @@ def main():
             scenario_creator_kwargs = {}
 
             # Create a list of scenario names
-            scenario_names = [f'Scenario{i + 1}' for i in range(scen_count)]
+            scenario_names = [f'Szenario{i + 1}' for i in range(scen_count)]
 
             # Create the extensive form
             options = {
