@@ -143,27 +143,6 @@ class HeatStorage:
                     <= self.data.loc['max', 'heat'])
         asset.max_heat_discharge_secondstagerule = Constraint(t, rule=max_heat_discharge_secondstage_rule)
 
-        # Capacity balance in the second stage
-        # def capacity_balance_secondstage_rule(asset, t):
-        #     """Second Stage Capacity balance constraint"""
-        #     if t == 1:
-        #         return (asset.dispatch_heat_capacity[t] == asset.initial_soc +
-        #                 (asset.heat_charge[t] + asset.dispatch_heat_charge[t]) -
-        #                 (asset.heat_discharge[t] + asset.dispatch_heat_discharge[t]))
-        #     else:
-        #         return (asset.dispatch_heat_capacity[t] == asset.dispatch_heat_capacity[t-1] +
-        #                 (asset.heat_charge[t] + asset.dispatch_heat_charge[t]) -
-        #                 (asset.heat_discharge[t] + asset.dispatch_heat_discharge[t]))
-        # asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)
-
-        # def capacity_balance_secondstage_rule(asset, t):
-        #     """Second Stage Capacity balance constraint"""
-        #     if t == 1:
-        #         return asset.dispatch_heat_capacity[t] == asset.heat_capacity[t] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
-        #     else:
-        #         return asset.dispatch_heat_capacity[t] == asset.dispatch_heat_capacity[t-1] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
-        # asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)
-
         def capacity_balance_secondstage_rule(asset, t):
             """Second Stage Capacity balance constraint"""
             return asset.dispatch_heat_capacity[t] == asset.heat_capacity[t] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
@@ -203,9 +182,23 @@ class HeatStorage:
         asset.storage_capacity_limit_constr = Constraint(t, rule=storage_capacity_limit_rule)
 
 
+        # Capacity balance in the second stage
+        # def capacity_balance_secondstage_rule(asset, t):
+        #     """Second Stage Capacity balance constraint"""
+        #     if t == 1:
+        #         return (asset.dispatch_heat_capacity[t] == asset.initial_soc +
+        #                 (asset.heat_charge[t] + asset.dispatch_heat_charge[t]) -
+        #                 (asset.heat_discharge[t] + asset.dispatch_heat_discharge[t]))
+        #     else:
+        #         return (asset.dispatch_heat_capacity[t] == asset.dispatch_heat_capacity[t-1] +
+        #                 (asset.heat_charge[t] + asset.dispatch_heat_charge[t]) -
+        #                 (asset.heat_discharge[t] + asset.dispatch_heat_discharge[t]))
+        # asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)
 
-
-        # Binary variable definition
-        # Pyomo automatically handles binary variables, so no extra constraints are needed here
-
-        # Non-negativity constraints are implicit in variable declarations
+        # def capacity_balance_secondstage_rule(asset, t):
+        #     """Second Stage Capacity balance constraint"""
+        #     if t == 1:
+        #         return asset.dispatch_heat_capacity[t] == asset.heat_capacity[t] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
+        #     else:
+        #         return asset.dispatch_heat_capacity[t] == asset.dispatch_heat_capacity[t-1] + asset.dispatch_heat_charge[t] - asset.dispatch_heat_discharge[t]
+        # asset.capacity_balance_secondstage_rule = Constraint(t, rule=capacity_balance_secondstage_rule)

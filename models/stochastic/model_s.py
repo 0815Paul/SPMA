@@ -229,7 +229,7 @@ class Model:
         second = (
             pyo.quicksum(model.heat_storage1.dispatch_heat_charge[t] * COST_CHARGE for t in model.t) +
             pyo.quicksum(model.heat_storage1.dispatch_heat_discharge[t] * COST_DISCHARGE for t in model.t) +
-            pyo.quicksum(model.heat_storage1.use_extension[t] * 5 for t in model.t) 
+            pyo.quicksum(model.heat_storage1.use_extension[t] * 10 for t in model.t) 
         )
         return second
 

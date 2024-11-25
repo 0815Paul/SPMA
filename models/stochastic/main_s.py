@@ -40,7 +40,7 @@ def main():
     Model.USE_WEIGHTED_HEAT_DEMAND = False
 
     # Do you want to use a special case?
-    USE_SPECIAL_CASE = False
+    USE_SPECIAL_CASE = True
 
     # Define the number of scenarios (only relevant if automate_processing = False)
     scen_count = 10
@@ -56,7 +56,7 @@ def main():
     }
 
     if USE_SPECIAL_CASE:
-        Model.SPECIAL_CASE = '_extrem'
+        Model.SPECIAL_CASE = '_USE_EXT_COST_10'
     else:
         Model.SPECIAL_CASE = ''
 
