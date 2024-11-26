@@ -355,108 +355,141 @@ class Model:
     def _extract_scenario_info(self, file):
         """Extract the start date, end date, and period from the file name."""
         base_name = os.path.basename(file)
-        if base_name.startswith('heat_demand_') and base_name.endswith('.json'):
-            extracted = base_name[len('heat_demand_'):-len('.json')]
-            # Zerlege die Zeichenkette
-            try:
-                start_to_end, period = extracted.rsplit('_', 1)
-                start_date_str, end_date_str = start_to_end.split('_to_')
-                # Konvertiere die Datumsstrings in Datumsobjekte
-                start_date = start_date_str
-                end_date = end_date_str
-                return start_date, end_date, period
-            except ValueError:
-                # Fehler bei der Zerlegung
-                return None, None, None
-        else:
-            return None, None, None
+        
+        # Muster für Dateien, die mit 'heat_demand_' beginnen
+        pattern1 = r'heat_demand_(\d{8})_to_(\d{8})_(\w+)\.json$'
+        match1 = re.match(pattern1, base_name)
+        if match1:
+            start_date = match1.group(1)
+            end_date = match1.group(2)
+            period = match1.group(3)
+            return start_date, end_date, period
+        
+        # Muster für Dateien, die mit 'weighted_heat_demand_' beginnen
+        pattern2 = r'weighted_heat_demand_(\d{8})\.json$'
+        match2 = re.match(pattern2, base_name)
+        if match2:
+            start_date = match2.group(1)
+            end_date = match2.group(1)  # Kein Enddatum in diesem Dateinamen
+            period = 'day'    # Kein Zeitraum in diesem Dateinamen
+            return start_date, end_date, period
+        
+        # Muster für Dateien, die mit 'reduced_heat_demand_scenarios_' beginnen
+        pattern3 = r'reduced_heat_demand_scenarios_(\d{8})_to_(\d{8})_(\w+)\.json$'
+        match3 = re.match(pattern3, base_name)
+        if match3:
+            start_date = match3.group(1)
+            end_date = match3.group(2)
+            period = match3.group(3)
+            return start_date, end_date, period
+        
+        # Falls kein Muster passt, None zurückgeben
+        return None, None, None
+    
 
 
 if __name__ == "__main__":
     # Flag zum Steuern, ob mehrere Szenarien durchlaufen werden sollen
     
     run_multiple_scenarios = False  # Setzen Sie diesen Wert auf False, um nur ein Szenario zu laufen
-    Model.USE_WEIGHTED_HEAT_DEMAND = False 
+    Model.USE_WEIGHTED_HEAT_DEMAND = True 
 
     # Einheitliche Solver-Einstellungen
     solver_name = 'gurobi'
     solver_options = {
-        'MIPGap': 0.0015,
-        'TimeLimit': 10
+        'MIPGap': 0.01,
+        'TimeLimit': 1000,
     }
-    
 
     if run_multiple_scenarios:
-        # Laden der Heat-Demand-Szenarien
-        with open(f'{PATH_IN}demands/{FILE_HEAT_DEMAND_SCENARIOS}') as f:
-            heat_demand_scenarios = json.load(f)
+        # Pfad zu den Szenario-Dateien
+        scenario_files = glob.glob(f'{PATH_IN}demands/reduced_heat_demand_scenarios_*.json')
 
-        # Entfernen der "Probability" Einträge aus den Szenarien
-        for scenario in heat_demand_scenarios:
-            if 'Probability' in heat_demand_scenarios[scenario]:
-                del heat_demand_scenarios[scenario]['Probability']
+        # Liste zur Speicherung aller Zielfunktionswerte
+        all_objective_values = []
 
-        # Liste zur Speicherung der Zielfunktionswerte
-        objective_values = []
-    
-        # Iteration über alle Szenarien
-        for scenario_name, heat_demand_data in heat_demand_scenarios.items():
-            print(f'\n### Running scenario: {scenario_name} ###\n')
+        # Iteration über alle Szenario-Dateien
+        for scenario_file in scenario_files:
+            # Laden der Heat-Demand-Szenarien aus der aktuellen Datei
+            with open(scenario_file) as f:
+                heat_demand_scenarios = json.load(f)
 
-            model = Model(heat_demand_data)
+            # Entfernen der "Probability" Einträge aus den Szenarien
+            for scenario in heat_demand_scenarios:
+                if 'Probability' in heat_demand_scenarios[scenario]:
+                    del heat_demand_scenarios[scenario]['Probability']
 
-            start_date, end_date, period = model._extract_scenario_info(FILE_HEAT_DEMAND)
+            # Extrahieren von Startdatum, Enddatum und Zeitraum aus dem Dateinamen
+            dummy_model = Model({})
+            start_date, end_date, period = dummy_model._extract_scenario_info(scenario_file)
 
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            log_filename = f"{PATH_OUT_LOGS}logfile_{timestamp}_{start_date}_{period}_{scenario_name}.log"
+            # Liste zur Speicherung der Zielfunktionswerte für die aktuelle Datei
+            objective_values = []
 
-            print('Setting solver...')
-            # Verwendung der einheitlichen Solver-Einstellungen
-            solver_options_with_log = solver_options.copy()
-            solver_options_with_log['LogFile'] = log_filename
-            model.set_solver(
-                solver_name=solver_name,
-                **solver_options_with_log
-            )
+            # Iteration über alle Szenarien in der aktuellen Datei
+            for scenario_name, heat_demand_data in heat_demand_scenarios.items():
+                print(f'\n### Running scenario: {scenario_name} from file: {os.path.basename(scenario_file)} ###\n')
 
-            print('Adding components...')
-            model.add_components()
+                model = Model(heat_demand_data)
 
-            print('Adding objective...')
-            model.add_objective()
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                log_filename = f"{PATH_OUT_LOGS}logfile_{timestamp}_{start_date}_{period}_{scenario_name}.log"
 
-            print('Instantiating model...')
-            model.instantiate_model()
+                print('Setting solver...')
+                # Verwendung der einheitlichen Solver-Einstellungen
+                solver_options_with_log = solver_options.copy()
+                solver_options_with_log['LogFile'] = log_filename
+                model.set_solver(
+                    solver_name=solver_name,
+                    **solver_options_with_log
+                )
 
-            print('Declaring arcs...')
-            model.add_arcs()
-            model.expand_arcs()
+                print('Adding components...')
+                model.add_components()
 
-            print('Solving model...')
-            model.solve()
+                print('Adding objective...')
+                model.add_objective()
 
-            # Zielfunktionswert speichern
-            objective_value = model.objective_value
-            objective_values.append({'Scenario': scenario_name, 'ObjectiveValue': objective_value})
+                print('Instantiating model...')
+                model.instantiate_model()
 
-            print('Writing results...')
-            model.write_results()
+                print('Declaring arcs...')
+                model.add_arcs()
+                model.expand_arcs()
 
-            # Speichern der Ergebnisse mit Szenarioname im Dateinamen
-            output_file = f'd_{start_date}_to_{end_date}_{period}_{scenario_name}_ts.csv'
-            model.save_results(PATH_OUT_SCENARIOS + output_file)
+                print('Solving model...')
+                model.solve()
 
-        # Speichern der Zielfunktionswerte in einer separaten CSV-Datei
-        df_objectives = pd.DataFrame(objective_values)
-        objectives_file = f'{PATH_OUT_SCENARIOS}d_scenarios_{start_date}_to_{end_date}_{period}_obj.csv'
-        df_objectives.to_csv(objectives_file, index=False)
+                # Zielfunktionswert speichern
+                objective_value = model.objective_value
+                objective_values.append({'Scenario': scenario_name, 'ObjectiveValue': objective_value})
 
-        print(f'\n### All scenarios have been processed. Objective values saved to {objectives_file} ###')
+                print('Writing results...')
+                model.write_results()
+
+                # Speichern der Ergebnisse mit Szenarioname und Dateiname im Dateinamen
+                output_file = f'd_{start_date}_to_{end_date}_{period}_{scenario_name}_ts.csv'
+                model.save_results(PATH_OUT_SCENARIOS + output_file)
+
+            # Speichern der Zielfunktionswerte für die aktuelle Datei
+            df_objectives = pd.DataFrame(objective_values)
+            objectives_file = f'{PATH_OUT_SCENARIOS}d_scenarios_{start_date}_to_{end_date}_{period}_obj.csv'
+            df_objectives.to_csv(objectives_file, index=False)
+            
+            print(f'\n### Scenario file {start_date} have been processed  ###')
+
+        #     # Hinzufügen der Ergebnisse zur Gesamtliste
+        #     all_objective_values.extend(objective_values)
+
+        # # Optional: Speichern aller Zielfunktionswerte in einer Gesamtdatei
+        # df_all_objectives = pd.DataFrame(all_objective_values)
+        # all_objectives_file = f'{PATH_OUT_SCENARIOS}d_all_scenarios_objectives.csv'
+        # df_all_objectives.to_csv(all_objectives_file, index=False)
 
     else:
 
         if Model.USE_WEIGHTED_HEAT_DEMAND:
-            heat_demand_file = WEIGHTED_HEAT_DEMAND
+            heat_demand_files = glob.glob(f'{PATH_IN}demands/weighted_heat_demand/weighted_heat_demand_*.json')
             prefix = 'weighted_'
         else:
             #heat_demand_file = FILE_HEAT_DEMAND

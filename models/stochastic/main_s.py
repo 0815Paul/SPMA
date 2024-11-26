@@ -40,7 +40,7 @@ def main():
     Model.USE_WEIGHTED_HEAT_DEMAND = False
 
     # Do you want to use a special case?
-    USE_SPECIAL_CASE = True
+    USE_SPECIAL_CASE = False
 
     # Define the number of scenarios (only relevant if automate_processing = False)
     scen_count = 10
@@ -51,8 +51,8 @@ def main():
     # Define the solver and options
     solver_name = 'gurobi'
     solver_options = {
-        'MIPGap': 0.0015,
-        'TimeLimit': 10,
+        'MIPGap': 0.01,
+        'TimeLimit': 1000,
     }
 
     if USE_SPECIAL_CASE:
@@ -101,7 +101,7 @@ def main():
             scenario_creator_kwargs = {}
 
             # Create a list of scenario names
-            scenario_names = [f'Szenario{i + 1}' for i in range(scen_count)]
+            scenario_names = [f'Scenario{i + 1}' for i in range(scen_count)]
 
             # Create the extensive form
             options = {
