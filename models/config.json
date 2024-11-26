@@ -48,6 +48,7 @@
       "input_path_d": "../data/output/deterministic/timeseries/",
       "input_path_d_obj": "../data/output/deterministic/objectives/",
       "input_path_s_obj": "../data/output/stochastic/objectives/",
+      "input_path_d_obj_act": "../data/output/deterministic/cases/actual/",
       "input_path_mean": "../data/input/demands/weighted_heat_demand/",
       "input_path_ws": "../data/output/deterministic/cases/scenarios/",
       "input_path_hd": "../data/input/demands/",
