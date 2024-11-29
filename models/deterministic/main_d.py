@@ -402,7 +402,7 @@ if __name__ == "__main__":
     
     run_actual_heat_demand = False
     run_multiple_scenarios = False # Setzen Sie diesen Wert auf False, um nur ein Szenario zu laufen
-    Model.USE_WEIGHTED_HEAT_DEMAND = False
+    Model.USE_WEIGHTED_HEAT_DEMAND = True
 
     # Einheitliche Solver-Einstellungen
     solver_name = 'gurobi'
