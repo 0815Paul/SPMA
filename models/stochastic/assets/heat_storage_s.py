@@ -107,7 +107,7 @@ class HeatStorage:
 
         def soc_cycle_rule(asset):
             """State of charge must be the same at the beginning and end"""
-            return asset.heat_capacity[t.last()] == asset.heat_capacity[t.first()]
+            return asset.heat_capacity[t.last()] == asset.initial_soc
         asset.soc_cycle_constr = Constraint(rule=soc_cycle_rule)
 
         ##############################################################

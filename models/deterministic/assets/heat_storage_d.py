@@ -94,7 +94,7 @@ class HeatStorage:
         asset.charge_discharge_constr = Constraint(t, rule=charge_discharge_binary_rule)
 
         def soc_cycle_rule(asset):
-            return asset.heat_capacity[t.last()] == asset.heat_capacity[t.first()]
+            return asset.heat_capacity[t.last()] == asset.initial_soc
         asset.soc_cycle_constr = Constraint(rule=soc_cycle_rule)
 
    
