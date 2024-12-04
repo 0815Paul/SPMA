@@ -1,0 +1,3 @@
+Modell,MAE [kWh],MSE [kWh^2],MAPE [%]
+Deterministisches Modell,356.34,243022.44,15.59
+Stochastisches Modell,259.9,138019.37,11.25

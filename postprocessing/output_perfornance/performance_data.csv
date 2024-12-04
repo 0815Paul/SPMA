@@ -1,0 +1,19 @@
+Datum,Modell,Rechenzeit [s],Iterationen,Knoten,Gap [%],Status
+20230316,Deterministisch,0.04,527,1,0.8095,Optimal
+20230316,Stochastisch,0.28,402,1,0.131,Optimal
+20230409,Deterministisch,0.04,570,1,0.0,Optimal
+20230409,Stochastisch,0.22,522,1,0.194,Optimal
+20230410,Deterministisch,0.19,4642,879,0.9927,Optimal
+20230410,Stochastisch,1.98,104508,19592,0.9967,Optimal
+20230501,Deterministisch,29.26,1439337,221720,0.9959,Optimal
+20230501,Stochastisch,0.3,538,1,0.7651,Optimal
+20230515,Deterministisch,0.06,370,1,0.0004,Optimal
+20230515,Stochastisch,0.24,415,1,0.0004,Optimal
+20230619,Deterministisch,5.68,339144,84263,0.9998,Optimal
+20230619,Stochastisch,1.73,39384,10804,0.9879,Optimal
+20230622,Deterministisch,0.24,2492,406,0.0,Optimal
+20230622,Stochastisch,1.49,29946,4870,0.7642,Optimal
+20230709,Deterministisch,0.08,369,1,0.0429,Optimal
+20230709,Stochastisch,0.24,404,1,0.0447,Optimal
+20230710,Deterministisch,0.43,8640,1492,0.0,Optimal
+20230710,Stochastisch,0.83,18360,1558,0.0,Optimal
