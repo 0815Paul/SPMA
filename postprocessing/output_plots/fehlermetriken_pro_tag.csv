@@ -1,19 +1,19 @@
-date,Modell,MAE [kWh],MSE [kWh^2],MAPE [%]
-20230316,Deterministisches Modell,931.82,868294.69,24.8
-20230316,Stochastisches Modell,710.48,504777.24,18.91
-20230409,Deterministisches Modell,942.51,888315.73,33.66
-20230409,Stochastisches Modell,729.75,532541.13,26.06
-20230410,Deterministisches Modell,561.5,315287.64,23.29
-20230410,Stochastisches Modell,325.13,105712.2,13.49
-20230501,Deterministisches Modell,195.06,38049.16,8.14
-20230501,Stochastisches Modell,11.72,137.3,0.49
-20230515,Deterministisches Modell,27.59,761.29,1.66
-20230515,Stochastisches Modell,253.67,64346.28,15.28
-20230619,Deterministisches Modell,106.73,11391.04,9.09
-20230619,Stochastisches Modell,142.48,20300.07,12.13
-20230622,Deterministisches Modell,145.15,21067.33,13.13
-20230622,Stochastisches Modell,109.18,11920.22,9.88
-20230709,Deterministisches Modell,144.93,21004.78,12.64
-20230709,Stochastisches Modell,48.75,2376.31,4.25
-20230710,Deterministisches Modell,151.76,23030.29,13.89
-20230710,Stochastisches Modell,7.97,63.59,0.73
+date     ,Modell                   ,MAE [kWh] ,MSE [kWh^2] ,MAPE [%]
+20230316 ,Deterministisches Modell ,   931.82 ,  868294.69 ,   24.8
+20230316 ,Stochastisches Modell    ,   710.48 ,  504777.24 ,   18.91
+20230409 ,Deterministisches Modell ,   942.51 ,  888315.73 ,   33.66
+20230409 ,Stochastisches Modell    ,   729.75 ,  532541.13 ,   26.06
+20230410 ,Deterministisches Modell ,   561.5  ,  315287.64 ,   23.29
+20230410 ,Stochastisches Modell    ,   325.13 ,  105712.2  ,   13.49
+20230501 ,Deterministisches Modell ,   195.06 ,   38049.16 ,    8.14
+20230501 ,Stochastisches Modell    ,    11.72 ,     137.3  ,    0.49
+20230515 ,Deterministisches Modell ,    27.59 ,     761.29 ,    1.66
+20230515 ,Stochastisches Modell    ,   253.67 ,   64346.28 ,   15.28
+20230619 ,Deterministisches Modell ,   106.73 ,   11391.04 ,    9.09
+20230619 ,Stochastisches Modell    ,   142.48 ,   20300.07 ,   12.13
+20230622 ,Deterministisches Modell ,   145.15 ,   21067.33 ,   13.13
+20230622 ,Stochastisches Modell    ,   109.18 ,   11920.22 ,    9.88
+20230709 ,Deterministisches Modell ,   144.93 ,   21004.78 ,   12.64
+20230709 ,Stochastisches Modell    ,    48.75 ,    2376.31 ,    4.25
+20230710 ,Deterministisches Modell ,   151.76 ,   23030.29 ,   13.89
+20230710 ,Stochastisches Modell    ,     7.97 ,      63.59 ,    0.73
