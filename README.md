@@ -35,9 +35,5 @@ Alle Rechte an diesem Repository und seinem Inhalt sind vorbehalten. Eine Weiter
 
 ---
 
-### Kontakt
-
-Bei Fragen oder Anregungen können Sie mich unter folgender E-Mail-Adresse erreichen: wilhelm.paul@posteo.de
-
 
 
