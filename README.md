@@ -8,7 +8,7 @@ Dieses GitHub-Repository dient als Begleitmaterial für meine Masterarbeit zum T
 
 ### In Gedenken
 
-** Diese Arbeit widme ich meinem guten Freund Ole. ** 
+**Diese Arbeit widme ich meinem guten Freund Ole.** 
 
 Bis bald Kumpel ♡. 
 
