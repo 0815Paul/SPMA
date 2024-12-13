@@ -16,9 +16,6 @@ Bis bald Kumpel ♡.
 
 ## Informationen
 
-- **Abgabetermin:** 13.12.24
-- **Autor:** P.Wilhelm
-- **Betreuer:** Prof. Dr.-Ing. Jens Schneider, Martin Hafemann
 - **Institut:** HTWK Leipzig
 - **Studiengang:** Energie-, Gebäude-, Umwelttechnik (Master)
 ---
